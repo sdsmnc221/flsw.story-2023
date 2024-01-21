@@ -112,8 +112,8 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
             "will-change": "opacity, transform",
             z: () => gsap.utils.random(500, 950),
             opacity: 0,
-            xPercent: (pos) => gsap.utils.random(-100, 100),
-            yPercent: (pos) => gsap.utils.random(-10, 10),
+            xPercent: () => gsap.utils.random(-100, 100),
+            yPercent: () => gsap.utils.random(-10, 10),
             rotationX: () => gsap.utils.random(-90, 90),
           },
           {
