@@ -1,0 +1,17 @@
+@import "./colors";
+@import "./fonts";
+
+body {
+  color: $tangora-dark-blue;
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+
+  @extend .josefin-sans-300;
+
+  width: 100vw;
+  overflow-x: hidden;
+
+  .app {
+    width: 100%;
+  }
+}
