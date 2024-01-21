@@ -22,9 +22,11 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted } from "vue";
+import { onMounted } from "vue";
 import { initSmoothScrolling, scroll } from "./helpers/scrollFx";
 import Splitting from "splitting";
+import "splitting/dist/splitting.css";
+import "splitting/dist/splitting-cells.css";
 
 import xpContent from "./configs/xpContent.json";
 

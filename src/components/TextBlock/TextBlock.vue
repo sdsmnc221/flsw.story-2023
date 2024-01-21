@@ -32,7 +32,7 @@ interface Props {
   fx?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   background: "clear-day-white",
   textColor: "tangora-dark-blue",
   fx: "fx1",

@@ -2,25 +2,20 @@ import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
-import "splitting/dist/splitting.css";
-import "splitting/dist/splitting-cells.css";
-import Splitting from "splitting";
-
-Splitting();
 
 // Lenis smooth scrolling
-let lenis;
+let lenis: any;
 
 // Initialize Lenis smooth scrolling
 const initSmoothScrolling = () => {
   lenis = new Lenis({
     lerp: 0.2,
     smooth: true,
-  });
+  } as any);
 
   lenis.on("scroll", () => ScrollTrigger.update());
 
-  const scrollFn = (time) => {
+  const scrollFn = (time: any) => {
     lenis.raf(time);
     requestAnimationFrame(scrollFn);
   };
@@ -75,7 +70,7 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
       fx.nodes.forEach((title) => {
         const chars = title.querySelectorAll(".char");
 
-        chars.forEach((char) =>
+        chars.forEach((char: any) =>
           gsap.set(char.parentNode, { perspective: 1000 })
         );
 
