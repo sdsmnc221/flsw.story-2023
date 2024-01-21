@@ -88,6 +88,14 @@ withDefaults(defineProps<Props>(), {
     }
     &__content {
       padding: 0 12%;
+
+      &.fx3 {
+        text-transform: uppercase;
+        font-size: 2.8rem;
+        padding: 0 4.8%;
+        text-align: center;
+        line-height: 2.4rem;
+      }
     }
   }
 }
