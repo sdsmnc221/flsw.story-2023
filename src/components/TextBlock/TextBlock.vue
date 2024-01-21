@@ -17,7 +17,11 @@
     >
       {{ title }}
     </h2>
-    <div class="text-block__content" :class="fx" data-splitting>
+    <div
+      class="text-block__content"
+      :class="`${fx} ${fx === 'fx3' ? 'josefin-sans-600' : ''}`"
+      data-splitting
+    >
       <slot />
     </div>
   </section>
@@ -45,7 +49,7 @@ withDefaults(defineProps<Props>(), {
   min-height: 100vh;
   padding: 16%;
   display: flex;
-  text-align: justify;
+  text-align: left;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -65,6 +69,14 @@ withDefaults(defineProps<Props>(), {
   &__content {
     padding: 0 24%;
     margin-top: 32px;
+
+    &.fx3 {
+      text-transform: uppercase;
+      font-size: 3.2rem;
+      padding: 0 16%;
+      text-align: center;
+      line-height: 3.2rem;
+    }
   }
 
   @media (max-width: 768px) {

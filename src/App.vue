@@ -11,13 +11,6 @@
     >
       {{ section.text }}
     </text-block>
-
-    <!-- <footer
-      class="app__footer"
-      :style="`background-color: var(--${
-        xpContent.length % 2 === 0 ? 'tuscany-blue' : 'clear-day-white'
-      });`"
-    /> -->
   </main>
 </template>
 
@@ -53,9 +46,19 @@ onMounted(() => {
       ],
     };
 
+    const fx3 = {
+      id: "fx3",
+      nodes: [
+        ...document.querySelectorAll(
+          ".text-block__content.fx3[data-splitting]"
+        ),
+      ],
+    };
+
     initSmoothScrolling();
     scroll(fx1);
     scroll(fx2);
+    scroll(fx3);
   }, 640);
 });
 </script>
