@@ -45,7 +45,7 @@ withDefaults(defineProps<Props>(), {
   min-height: 100vh;
   padding: 16%;
   display: flex;
-  text-align: center;
+  text-align: justify;
   justify-content: center;
   align-items: center;
   flex-direction: column;
