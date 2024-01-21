@@ -3,21 +3,39 @@
     class="text-block"
     :style="`background-color: var(--${background}); color: var(--${textColor});`"
   >
-    <h2 class="text-block__title yeseva-one-regular">{{ title }}</h2>
-    <slot />
+    <p
+      v-if="subtitle"
+      class="text-block__subtitle josefin-sans-300 fx2"
+      data-splitting
+    >
+      {{ subtitle }}
+    </p>
+    <h2
+      v-if="title"
+      class="text-block__title yeseva-one-regular fx2"
+      data-splitting
+    >
+      {{ title }}
+    </h2>
+    <div class="text-block__content" :class="fx" data-splitting>
+      <slot />
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
 interface Props {
-  title: string;
+  subtitle?: string;
+  title?: string;
   background?: string;
   textColor?: string;
+  fx?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   background: "clear-day-white",
-  textColor: "clear-day-black",
+  textColor: "tangora-dark-blue",
+  fx: "fx1",
 });
 </script>
 
@@ -27,10 +45,38 @@ const props = withDefaults(defineProps<Props>(), {
   min-height: 100vh;
   padding: 16%;
   display: flex;
-  text-align: justify;
+  text-align: center;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 32px;
+
+  &__title {
+    font-size: 1.6rem;
+    text-transform: lowercase;
+    padding: 0 32%;
+    text-align: center;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    text-transform: lowercase;
+  }
+
+  &__content {
+    padding: 0 24%;
+    margin-top: 32px;
+  }
+
+  @media (max-width: 768px) {
+    /* Styles for mobile devices */
+    padding: 8%;
+    &__title {
+      padding: 0 12%;
+      font-size: 1.2rem;
+    }
+    &__content {
+      padding: 0 12%;
+    }
+  }
 }
 </style>
