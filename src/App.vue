@@ -59,6 +59,13 @@ onMounted(() => {
     scroll(fx1);
     scroll(fx2);
     scroll(fx3);
+
+    const pinSpacer = document.querySelector(".pin-spacer") as HTMLElement;
+    if (pinSpacer) {
+      pinSpacer.style.backgroundColor = `var(--${
+        xpContent.length % 2 !== 0 ? "clear-day-white" : "tuscany-blue"
+      })`;
+    }
   }, 640);
 });
 </script>
