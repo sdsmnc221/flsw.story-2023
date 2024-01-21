@@ -65,6 +65,7 @@ onMounted(() => {
 
 <style lang="scss">
 .app {
+  overflow: hidden;
   &__footer {
     width: 100vw;
     height: 32vh;
