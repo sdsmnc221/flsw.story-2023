@@ -1,7 +1,13 @@
 <template>
   <div class="marquee-block" ref="elRef">
     <div class="marquee-block-link yeseva-one-regular">
-      {{ title }} - {{ title }}
+      <span>{{ title }}</span>
+      -
+      <span>{{ title }}</span>
+      -
+      <span>{{ title }}</span>
+      -
+      <span>{{ title }}</span>
     </div>
     <div class="marquee">
       <div class="marquee__inner-wrap">
@@ -10,7 +16,7 @@
             <span>{{ cat }}</span>
             <div
               class="marquee__img"
-              :style="`background-image: url(img/${cat}.jpg)`"
+              :style="`background-image: url(/img/1.png)`"
             ></div>
           </template>
         </div>
@@ -112,6 +118,10 @@ onMounted(() => {
   --marquee-text: var(--clear-day-white);
   --menu-focus: var(--shakespear-blue);
 
+  --offset: 20vw;
+  --move-initial: calc(-25% + var(--offset));
+  --move-final: calc(-50% + var(--offset));
+
   cursor: default;
   position: relative;
   overflow: hidden;
@@ -121,6 +131,10 @@ onMounted(() => {
 
   &:nth-child(2) {
     .marquee-block-link {
+      animation-direction: reverse;
+    }
+
+    .marquee__inner {
       animation-direction: reverse;
     }
   }
@@ -137,7 +151,13 @@ onMounted(() => {
     line-height: 1.2;
     letter-spacing: 0.32rem;
     padding: 1vh 1vw 0;
+    width: fit-content;
     animation: marquee 7.2s linear infinite;
+    transform: translate3d(var(--move-initial), 0, 0);
+
+    span {
+      width: max-content;
+    }
 
     &:focus,
     &:focus-visible {
@@ -177,7 +197,8 @@ onMounted(() => {
       align-items: center;
       display: flex;
       position: relative;
-      animation: marquee 15s linear infinite;
+      animation: marquee 12s linear infinite;
+      transform: translate3d(var(--move-initial), 0, 0);
       will-change: transform;
     }
 
@@ -195,22 +216,21 @@ onMounted(() => {
     &__img {
       width: 10vw;
       height: 70%;
-      margin: 0 2vw;
+
       border-radius: 5vw;
-      background-size: cover;
+      background-size: contain;
       background-position: 50% 50%;
+      background-repeat: no-repeat;
     }
   }
 
   @keyframes marquee {
-    100% {
-      transform: translate3d(-50%, 0, 0);
+    0% {
+      transform: translate3d(var(--move-initial), 0, 0);
     }
-  }
 
-  @keyframes marquee-reverse {
     100% {
-      transform: translate3d(50%, 0, 0);
+      transform: translate3d(var(--move-final), 0, 0);
     }
   }
 }
