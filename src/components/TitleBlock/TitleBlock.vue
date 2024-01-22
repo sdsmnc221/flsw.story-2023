@@ -127,7 +127,6 @@ onMounted(() => {
     gap: 0;
     padding: 0 3.2%;
     padding-top: 6.4%;
-    justify-content: flex-start;
     text-align: left;
 
     &__subtitle {
