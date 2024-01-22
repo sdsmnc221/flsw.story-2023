@@ -8,5 +8,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     TextBlock: typeof import('./src/components/TextBlock/TextBlock.vue')['default']
+    TitleBlock: typeof import('./src/components/TitleBlock/TitleBlock.vue')['default']
   }
 }

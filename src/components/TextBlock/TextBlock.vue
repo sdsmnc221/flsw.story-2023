@@ -55,10 +55,10 @@ withDefaults(defineProps<Props>(), {
   flex-direction: column;
 
   &__title {
-    font-size: 1.6rem;
-    text-transform: lowercase;
-    padding: 0 32%;
+    font-size: 2rem;
+    padding: 0 24%;
     text-align: center;
+    line-height: 2rem;
   }
 
   &__subtitle {

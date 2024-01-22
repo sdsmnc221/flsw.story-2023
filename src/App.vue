@@ -1,5 +1,6 @@
 <template>
   <main class="app">
+    <title-block :title="xpTitle.title" :subtitle="xpTitle.subtitle" />
     <text-block
       v-for="(section, index) of xpContent"
       :key="`section-${section.title}-${index}`"
@@ -21,6 +22,7 @@ import Splitting from "splitting";
 import "splitting/dist/splitting.css";
 import "splitting/dist/splitting-cells.css";
 
+import xpTitle from "./configs/xpTitle.json";
 import xpContent from "./configs/xpContent.json";
 
 onMounted(() => {
