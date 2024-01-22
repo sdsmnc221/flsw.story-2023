@@ -2,16 +2,37 @@
   <div class="marquee-block" ref="elRef">
     <div class="marquee-block-link yeseva-one-regular">
       <span>{{ title }}</span>
-      -
+      +
       <span>{{ title }}</span>
-      -
+      +
       <span>{{ title }}</span>
-      -
+      +
       <span>{{ title }}</span>
     </div>
     <div class="marquee">
       <div class="marquee__inner-wrap">
         <div class="marquee__inner" aria-hidden="true">
+          <template v-for="cat in cats" :key="`marquee-${cat}`">
+            <span>{{ cat }}</span>
+            <div
+              class="marquee__img"
+              :style="`background-image: url(/img/1.png)`"
+            ></div>
+          </template>
+          <template v-for="cat in cats" :key="`marquee-${cat}`">
+            <span>{{ cat }}</span>
+            <div
+              class="marquee__img"
+              :style="`background-image: url(/img/1.png)`"
+            ></div>
+          </template>
+          <template v-for="cat in cats" :key="`marquee-${cat}`">
+            <span>{{ cat }}</span>
+            <div
+              class="marquee__img"
+              :style="`background-image: url(/img/1.png)`"
+            ></div>
+          </template>
           <template v-for="cat in cats" :key="`marquee-${cat}`">
             <span>{{ cat }}</span>
             <div
@@ -197,7 +218,7 @@ onMounted(() => {
       align-items: center;
       display: flex;
       position: relative;
-      animation: marquee 12s linear infinite;
+      animation: marquee 9.6s linear infinite;
       transform: translate3d(var(--move-initial), 0, 0);
       will-change: transform;
     }
