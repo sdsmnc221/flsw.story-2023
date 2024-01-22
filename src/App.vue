@@ -1,5 +1,13 @@
 <template>
   <main class="app">
+    <section class="marquees-container">
+      <marquee-block
+        v-for="(marquee, index) in xpMarquee"
+        :key="`marquee-block-${index}`"
+        :title="marquee.title"
+        :cats="marquee.cats"
+      />
+    </section>
     <title-block :title="xpTitle.title" :subtitle="xpTitle.subtitle" />
     <text-block
       v-for="(section, index) of xpContent"
@@ -28,6 +36,7 @@ import "splitting/dist/splitting-cells.css";
 
 import xpTitle from "./configs/xpTitle.json";
 import xpContent from "./configs/xpContent.json";
+import xpMarquee from "./configs/xpMarquee.json";
 
 onMounted(() => {
   Splitting();
@@ -79,9 +88,37 @@ onMounted(() => {
 <style lang="scss">
 .app {
   overflow: hidden;
-  &__footer {
+  position: relative;
+
+  .marquees-container {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100vw;
-    height: 32vh;
+    height: 100vh;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 12vh;
+
+    & > .marquee-block {
+      transform-origin: "left";
+      &:first-child {
+        transform: rotate(6deg) translateY(20vh);
+        width: 110%;
+      }
+      &:nth-child(2) {
+        transform: rotate(0deg) translateY(20vh);
+        width: 110%;
+        text-align: center;
+      }
+      &:last-child {
+        transform: rotate(-3deg) translateY(20vh) translateX(-10vw);
+        width: 110%;
+      }
+    }
   }
 }
 </style>

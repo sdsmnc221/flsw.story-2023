@@ -1,5 +1,6 @@
 @import "./colors";
 @import "./fonts";
+@import "./animations";
 
 body {
   color: $tangora-dark-blue;
@@ -13,5 +14,17 @@ body {
 
   .app {
     width: 100%;
+
+    &::before {
+      animation: grain 8s steps(10) infinite;
+      background-image: url(/img/noise.png);
+      content: "";
+      height: 300%;
+      left: -50%;
+      opacity: 0.6;
+      position: fixed;
+      top: -100%;
+      width: 300%;
+    }
   }
 }
