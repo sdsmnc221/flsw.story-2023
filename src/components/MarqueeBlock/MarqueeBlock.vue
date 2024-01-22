@@ -77,12 +77,12 @@ const elRef: Ref<any> = ref(null);
 const animationDefaults: Ref<any> = ref({});
 
 const initEvents = () => {
-  const onMouseEnterFn = (ev) => mouseEnter(ev);
+  const onMouseEnterFn = (ev: any) => mouseEnter(ev);
   DOM.value.link.addEventListener("mouseenter", onMouseEnterFn);
-  const onMouseLeaveFn = (ev) => mouseLeave(ev);
+  const onMouseLeaveFn = (ev: any) => mouseLeave(ev);
   DOM.value.link.addEventListener("mouseleave", onMouseLeaveFn);
 };
-const mouseEnter = (ev) => {
+const mouseEnter = (ev: any) => {
   // find closest side to the mouse
   const edge = findClosestEdge(ev);
 
@@ -95,7 +95,7 @@ const mouseEnter = (ev) => {
     .set(DOM.value.marqueeInner, { y: edge === "top" ? "101%" : "-101%" }, 0)
     .to([DOM.value.marquee, DOM.value.marqueeInner], { y: "0%" }, 0);
 };
-const mouseLeave = (ev) => {
+const mouseLeave = (ev: any) => {
   // find closest side to the mouse
   const edge = findClosestEdge(ev);
 
@@ -105,7 +105,7 @@ const mouseLeave = (ev) => {
     .to(DOM.value.marqueeInner, { y: edge === "top" ? "101%" : "-101%" }, 0);
 };
 // find closest side to the mouse when entering/leaving
-const findClosestEdge = (ev) => {
+const findClosestEdge = (ev: any) => {
   const x = ev.pageX - DOM.value.el.offsetLeft;
   const y = ev.pageY - DOM.value.el.offsetTop;
   return closestEdge(x, y, DOM.value.el.clientWidth, DOM.value.el.clientHeight);
