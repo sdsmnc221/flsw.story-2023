@@ -7,7 +7,7 @@
       :subtitle="section.subtitle"
       :title="section.title"
       :background="index % 2 === 0 ? 'clear-day-white' : 'tuscany-blue'"
-      :text-color="index % 2 === 0 ? 'tangora-dark-blue' : 'clear-day-white'"
+      :text-color="index % 2 === 0 ? 'tuscany-blue' : 'clear-day-white'"
       :fx="section.fx"
     >
       {{ section.text }}

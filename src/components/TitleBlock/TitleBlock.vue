@@ -42,7 +42,8 @@ onMounted(() => {
           transformOrigin: "50% 0%",
           opacity: 0,
           rotationX: -90,
-          z: -200,
+          z: () => gsap.utils.random(-200, 200),
+          y: () => gsap.utils.random(-200, 200),
         },
         {
           ease: "power1",
@@ -50,8 +51,15 @@ onMounted(() => {
           stagger: 0.05,
           rotationX: 0,
           z: 0,
+          y: 0,
           duration: 0.64,
           delay: 1.2 * (index + 1),
+          scrollTrigger: {
+            trigger: title,
+            start: "0 90%",
+            end: "0 20%",
+            scrub: true,
+          },
         }
       );
     }
@@ -62,14 +70,19 @@ onMounted(() => {
 <style lang="scss">
 .title-block {
   width: 100vw;
-  height: 100vh;
+  height: 120vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   text-align: center;
   background-color: var(--shakespear-blue);
-  color: var(--clear-day-white);
+  color: var(--tuscany-blue);
+  background: linear-gradient(
+    to bottom,
+    var(--shakespear-blue) 0%,
+    var(--clear-day-white) 100%
+  );
 
   gap: 3.2rem;
 
@@ -77,7 +90,7 @@ onMounted(() => {
     width: 100%;
     font-size: 12rem;
     text-transform: lowercase;
-    color: var(--tuscany-blue);
+    color: var(--shakespear-blue);
   }
 
   &__title {

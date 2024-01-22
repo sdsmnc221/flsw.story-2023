@@ -56,6 +56,7 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
             ease: "none",
             opacity: 1,
             stagger: 0.064,
+            delay: () => gsap.utils.random(0.2, 0.4),
             scrollTrigger: {
               trigger: title,
               start: "top bottom-=4vh",
@@ -82,7 +83,7 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
             rotateX: () => gsap.utils.random(-160, 160),
             z: () => gsap.utils.random(-240, 240),
             y: () => gsap.utils.random(-120, 120),
-            scale: () => gsap.utils.random(0.24, 2.4),
+            scale: () => gsap.utils.random(0.24, 1.2),
           },
           {
             ease: "none",
@@ -92,6 +93,7 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
             z: 0,
             y: 0,
             stagger: () => gsap.utils.random(0.072, 0.124),
+            delay: () => gsap.utils.random(0.6, 1.2),
             scrollTrigger: {
               trigger: title,
               start: "top bottom-=10vh",
@@ -119,6 +121,7 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
             xPercent: () => gsap.utils.random(-100, 100),
             yPercent: () => gsap.utils.random(-10, 10),
             rotationX: () => gsap.utils.random(-90, 90),
+            scale: () => gsap.utils.random(0.2, 2.4),
           },
           {
             ease: "expo",
@@ -128,6 +131,7 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
             xPercent: 0,
             yPercent: 0,
             z: 0,
+            scale: 1,
             scrollTrigger: {
               trigger: title,
               start: "center center",
