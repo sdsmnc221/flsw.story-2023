@@ -12,28 +12,28 @@
     <div class="marquee">
       <div class="marquee__inner-wrap">
         <div class="marquee__inner" aria-hidden="true">
-          <template v-for="cat in cats" :key="`marquee-${cat}`">
+          <template v-for="cat in cats" :key="`marquee-${cat}-1`">
             <span>{{ cat }}</span>
             <div
               class="marquee__img"
               :style="`background-image: url(/img/1.png)`"
             ></div>
           </template>
-          <template v-for="cat in cats" :key="`marquee-${cat}`">
+          <template v-for="cat in cats" :key="`marquee-${cat}-2`">
             <span>{{ cat }}</span>
             <div
               class="marquee__img"
               :style="`background-image: url(/img/1.png)`"
             ></div>
           </template>
-          <template v-for="cat in cats" :key="`marquee-${cat}`">
+          <template v-for="cat in cats" :key="`marquee-${cat}-3`">
             <span>{{ cat }}</span>
             <div
               class="marquee__img"
               :style="`background-image: url(/img/1.png)`"
             ></div>
           </template>
-          <template v-for="cat in cats" :key="`marquee-${cat}`">
+          <template v-for="cat in cats" :key="`marquee-${cat}-4`">
             <span>{{ cat }}</span>
             <div
               class="marquee__img"
