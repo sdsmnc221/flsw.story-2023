@@ -54,6 +54,14 @@ withDefaults(defineProps<Props>(), {
   align-items: center;
   flex-direction: column;
 
+  &:has(.fx3) {
+    background: linear-gradient(
+      to top,
+      var(--shakespear-blue) 0%,
+      var(--clear-day-white) 100%
+    );
+  }
+
   &__title {
     font-size: 2rem;
     padding: 0 24%;

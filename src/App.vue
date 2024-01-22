@@ -6,8 +6,12 @@
       :key="`section-${section.title}-${index}`"
       :subtitle="section.subtitle"
       :title="section.title"
-      :background="index % 2 === 0 ? 'clear-day-white' : 'tuscany-blue'"
-      :text-color="index % 2 === 0 ? 'tuscany-blue' : 'clear-day-white'"
+      :background="index % 2 === 0 ? 'clear-day-white' : 'shakespear-blue'"
+      :text-color="
+        section.fx === 'fx3' || index % 2 === 0
+          ? 'tuscany-blue'
+          : 'clear-day-white'
+      "
       :fx="section.fx"
     >
       {{ section.text }}
@@ -65,7 +69,7 @@ onMounted(() => {
     const pinSpacer = document.querySelector(".pin-spacer") as HTMLElement;
     if (pinSpacer) {
       pinSpacer.style.backgroundColor = `var(--${
-        xpContent.length % 2 !== 0 ? "clear-day-white" : "tuscany-blue"
+        xpContent.length % 2 !== 0 ? "clear-day-white" : "shakespear-blue"
       })`;
     }
   }, 640);
