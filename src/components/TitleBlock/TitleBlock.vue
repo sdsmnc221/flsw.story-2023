@@ -56,7 +56,7 @@ onMounted(() => {
           delay: 1.2 * (index + 1),
           scrollTrigger: {
             trigger: title,
-            start: "0 90%",
+            start: "0 84%",
             end: "0 20%",
             scrub: true,
           },
