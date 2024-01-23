@@ -3,6 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "2023 Wrap-up XP for FeliSweet.com",
+  "author": "sdsmnc221 An TRUONG",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sdsmnc221/flsw.story-2023.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
