@@ -86,6 +86,8 @@ const mouseEnter = (ev: any) => {
   // find closest side to the mouse
   const edge = findClosestEdge(ev);
 
+  console.log(edge);
+
   // set the initial y position for both the marquee and marqueeInner elements
   // for the reveal effect to happen, both start at opposite positions
   // the directions are different depending on the direction the cursor enters the element (bottom or top)
@@ -93,6 +95,7 @@ const mouseEnter = (ev: any) => {
     .timeline({ defaults: animationDefaults.value })
     .set(DOM.value.marquee, { y: edge === "top" ? "-101%" : "101%" }, 0)
     .set(DOM.value.marqueeInner, { y: edge === "top" ? "101%" : "-101%" }, 0)
+    .to(DOM.value.el, { scale: 2, duration: 3.2 }, 0)
     .to([DOM.value.marquee, DOM.value.marqueeInner], { y: "0%" }, 0);
 };
 const mouseLeave = (ev: any) => {
@@ -102,13 +105,15 @@ const mouseLeave = (ev: any) => {
   gsap
     .timeline({ defaults: animationDefaults.value })
     .to(DOM.value.marquee, { y: edge === "top" ? "-101%" : "101%" }, 0)
-    .to(DOM.value.marqueeInner, { y: edge === "top" ? "101%" : "-101%" }, 0);
+    .to(DOM.value.marqueeInner, { y: edge === "top" ? "101%" : "-101%" }, 0)
+    .to(DOM.value.el, { scale: 1, duration: 3.2 }, 0);
 };
 // find closest side to the mouse when entering/leaving
 const findClosestEdge = (ev: any) => {
-  const x = ev.pageX - DOM.value.el.offsetLeft;
-  const y = ev.pageY - DOM.value.el.offsetTop;
-  return closestEdge(x, y, DOM.value.el.clientWidth, DOM.value.el.clientHeight);
+  const { left, top, width, height } = DOM.value.el.getBoundingClientRect();
+  const x = ev.pageX - left;
+  const y = ev.pageY - top;
+  return closestEdge(x, y, width, height);
 };
 
 onMounted(() => {
@@ -123,7 +128,7 @@ onMounted(() => {
     ".marquee__inner-wrap"
   );
   // some default options for the animation's speed and easing
-  animationDefaults.value = { duration: 0.6, ease: "expo" };
+  animationDefaults.value = { duration: 1.2, ease: "expo" };
   // events initialization
   initEvents();
 });
@@ -157,6 +162,12 @@ onMounted(() => {
 
     .marquee__inner {
       animation-direction: reverse;
+    }
+  }
+
+  &:first-child {
+    .marquee-block-link {
+      animation-duration: 10s;
     }
   }
 
@@ -218,7 +229,7 @@ onMounted(() => {
       align-items: center;
       display: flex;
       position: relative;
-      animation: marquee 9.6s linear infinite;
+      animation: marquee 16s linear infinite;
       transform: translate3d(var(--move-initial), 0, 0);
       will-change: transform;
     }
