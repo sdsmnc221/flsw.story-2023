@@ -2,13 +2,17 @@
     {
         "title": "prologue.",
         "text": "Bienvenue sur FeliSweet, où chaque année est une aventure féline pleine de découvertes et de moments magiques. Laissez-nous, Marie-Bénédicte et mes chats d’amour Sweety, Zigpo et Mimoso, vous emmener à travers les pages de notre histoire en 2023, une année de croissance et d'amour partagé avec nos amis à quatre pattes.",
-        "fx": "fx1"
+        "fx": "fx1",
+        "textPosition": "center"
     },
     {
         "subtitle": "chapitre 1.",
         "title": " adieux doux - les moments magiques avec Isis.",
         "text": "Dans chaque doux câlin partagé avec Isis, des liens uniques s'épanouissent, capturés en images qui se dévoilent en douceur. Ces instants magiques, visuellement narrés par des photos, ont nourri l'âme de FeliSweet. Laissez-vous emporter visuellement par ces adieux doux, une empreinte ineffaçable dans nos cœurs, avant que les mots ne prolongent le récit d'Isis.",
-        "fx": "fx1"
+        "fx": "fx1",
+        "backgroundColor": "goose-down-beige",
+        "textColor": "dallas-brown",
+        "pseudoBackgroundColor": "sandy-clay-beige"
     },
     {
         "subtitle": "chapitre 2.",

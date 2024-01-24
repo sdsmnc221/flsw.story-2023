@@ -1,4 +1,5 @@
 import { getGrid } from "./getGrid";
+import isMobile from "./isMobile";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -48,7 +49,8 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
   switch (animationType) {
     case "cllg-fx1":
       // Set some CSS related style values
-      grid.style.setProperty("--grid-width", "120%");
+      grid.style.setProperty("--grid-width", isMobile() ? "240%" : "120%");
+      grid.style.setProperty("--grid-height", isMobile() ? "100vh" : "auto");
       grid.style.setProperty("--grid-columns", "8");
       grid.style.setProperty("--grid-gap", "0");
 
@@ -174,7 +176,7 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
         gsap.fromTo(
           chars,
           {
-            "will-change": "opacity, transform, backgorund-color",
+            "will-change": "opacity, transform, background-color",
             opacity: 0,
             backgroundColor: "transparent",
             rotateX: () => gsap.utils.random(-160, 160),
@@ -185,7 +187,7 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
           {
             ease: "none",
             opacity: 1,
-            backgroundColor: "var(--clear-day-white)",
+            backgroundColor: "var(--pseudo-background)",
             rotateX: 0,
             scale: 1,
             z: 0,

@@ -15,12 +15,28 @@
       :id="`section--${index}`"
       :subtitle="section.subtitle"
       :title="section.title"
-      :background="index % 2 === 0 ? 'clear-day-white' : 'shakespear-blue'"
+      :background="
+        section.backgroundColor
+          ? section.backgroundColor
+          : index % 2 === 0
+          ? 'clear-day-white'
+          : 'shakespear-blue'
+      "
       :text-color="
-        section.fx === 'fx3' || index % 2 === 0
+        section.textColor
+          ? section.textColor
+          : section.fx === 'fx3' || index % 2 === 0
           ? 'tuscany-blue'
           : 'tangora-dark-blue'
       "
+      :pseudo-background="
+        section.pseudoBackgroundColor
+          ? section.pseudoBackgroundColor
+          : index % 2 === 0
+          ? 'clear-day-white'
+          : 'shakespear-blue'
+      "
+      v-bind="computedBindedProps(section, index)"
       :fx="section.fx"
     >
       {{ section.text }}
@@ -38,6 +54,20 @@ import "splitting/dist/splitting-cells.css";
 import xpTitle from "./configs/xpTitle.json";
 import xpContent from "./configs/xpContent.json";
 import xpMarquee from "./configs/xpMarquee.json";
+
+const computedBindedProps = (section: any, index: number) => {
+  const bindedProps: any = {};
+
+  if (section.textPosition) {
+    bindedProps.textPosition = section.textPosition;
+  }
+
+  if (index < xpContent.length - 1) {
+    bindedProps.nextSectionBackground = xpContent[index + 1].backgroundColor;
+  }
+
+  return bindedProps;
+};
 
 onMounted(() => {
   Splitting();

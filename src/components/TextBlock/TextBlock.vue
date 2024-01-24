@@ -2,7 +2,7 @@
   <section
     class="text-block"
     :class="{ 'text-block--spacing': fx !== 'fx3' }"
-    :style="`background-color: var(--${background}); color: var(--${textColor});`"
+    :style="`background-color: var(--${background}); color: var(--${textColor}); --pseudo-background: var(--${pseudoBackground}); --background: var(--${background}); --next-background: var(--${nextSectionBackground});`"
   >
     <div class="grid" :class="id" v-if="id === 'section--1'">
       <div class="grid-wrap">
@@ -16,7 +16,7 @@
     </div>
 
     <div
-      class="text text--bottom text--left text--absolute"
+      :class="`text text--${textPosition} text--left text--absolute`"
       v-if="fx !== 'fx3'"
     >
       <p
@@ -54,6 +54,9 @@ interface Props {
   title?: string;
   background?: string;
   textColor?: string;
+  pseudoBackground?: string;
+  nextSectionBackground?: string;
+  textPosition?: "bottom" | "top" | "center";
   fx?: string;
   id: string;
 }
@@ -61,6 +64,9 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   background: "clear-day-white",
   textColor: "tangora-dark-blue",
+  pseudoBackground: "clear-day-white",
+  nextSectionBackground: "clear-day-white",
+  textPosition: "bottom",
   fx: "fx1",
 });
 </script>
@@ -87,6 +93,12 @@ withDefaults(defineProps<Props>(), {
   position: relative;
   // margin-bottom: 20vh;
   // padding-bottom: 32vh;
+
+  background: linear-gradient(
+    to bottom,
+    var(--background) 0%,
+    var(--next-background) 100%
+  );
 
   &--spacing {
     padding-bottom: 64vh;
@@ -129,7 +141,7 @@ withDefaults(defineProps<Props>(), {
         width: 100%;
         height: 100%;
         z-index: -1;
-        mix-blend-mode: color-burn;
+
         transition: all 1.2s ease-in-out;
       }
       &::before {
@@ -141,18 +153,18 @@ withDefaults(defineProps<Props>(), {
         height: 100%;
         opacity: 0;
         z-index: -1;
-        mix-blend-mode: color-burn;
+
         transition: all 1.2s ease-in-out;
       }
 
       &.--background {
         &::after {
-          background-color: var(--clear-day-white);
+          background-color: var(--pseudo-background);
           opacity: 1;
         }
 
         &::before {
-          background-color: var(--clear-day-white);
+          background-color: var(--pseudo-background);
           opacity: 1;
         }
       }
@@ -185,6 +197,11 @@ withDefaults(defineProps<Props>(), {
 
     &--bottom {
       bottom: 8vh;
+    }
+
+    &--center {
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     &--left {
