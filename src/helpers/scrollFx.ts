@@ -29,9 +29,9 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
   // Child elements of grid
   const gridWrap = grid.querySelector(".grid-wrap");
   const gridItems = grid.querySelectorAll(".grid__item");
-  const gridItemsInner = [...gridItems].map((item) =>
-    item.querySelector(".grid__item-inner")
-  );
+  // const gridItemsInner = [...gridItems].map((item) =>
+  //   item.querySelector(".grid__item-inner")
+  // );
 
   // Define GSAP timeline with ScrollTrigger
   const timeline = gsap.timeline({
@@ -105,14 +105,9 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
 };
 
 // GSAP Scroll Triggers
-const scroll = (fx: { id: string; nodes: any[] }, scrollGrid = false) => {
+const scroll = (fx: { id: string; nodes: any[] }) => {
   switch (fx.id) {
     case "fx1":
-      function getProgress(t) {
-        const currProgress = t;
-        console.log(t);
-      }
-
       fx.nodes.forEach((title) => {
         gsap.fromTo(
           title,
