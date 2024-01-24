@@ -299,9 +299,10 @@ withDefaults(defineProps<Props>(), {
     column-gap: 3vw;
   }
 
-  .gallery--grid .gallery__item {
-    height: 33vh;
-    width: 33vw;
+  .gallery--grid10 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2vw;
   }
 
   .gallery--switch.gallery--grid10 {
@@ -312,61 +313,6 @@ withDefaults(defineProps<Props>(), {
 
   .gallery--switch.gallery--grid10 .gallery__item {
     grid-area: 2 / 2 / 3 / 3;
-  }
-
-  .gallery--grid10 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2vw;
-  }
-
-  .gallery--grid10:not(.gallery--switch) .pos-1 {
-    grid-area: 1 / 1;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-2 {
-    grid-area: 1 / 2;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-3 {
-    grid-area: 1 / 4;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-4 {
-    grid-area: 1 / 5;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-5 {
-    grid-area: 3 / 6;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-6 {
-    grid-area: 1 / 7;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-7 {
-    grid-area: 1 / 9;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-8 {
-    grid-area: 3 / 10;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-9 {
-    grid-area: 2 / 8;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-10 {
-    grid-area: 4 / 9;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-11 {
-    grid-area: 3 / 8;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-12 {
-    grid-area: 2 / 2;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-13 {
-    grid-area: 3 / 1;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-14 {
-    grid-area: 3 / 4;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-15 {
-    grid-area: 4 / 3;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-16 {
-    grid-area: 4 / 7;
   }
 
   @media (max-width: 768px) {
@@ -393,59 +339,65 @@ withDefaults(defineProps<Props>(), {
         padding-right: 16%;
       }
     }
+
+    &:has(.gallery--grid10) {
+      padding: 0;
+    }
   }
 
-  .gallery--grid10 {
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-1 {
-    grid-area: 1 / 1;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-2 {
-    grid-area: 1 / 2;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-3 {
-    grid-area: 1 / 4;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-4 {
-    grid-area: 1 / 5;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-5 {
-    grid-area: 3 / 6;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-6 {
-    grid-area: 1 / 7;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-7 {
-    grid-area: 1 / 9;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-8 {
-    grid-area: 3 / 10;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-9 {
-    grid-area: 2 / 8;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-10 {
-    grid-area: 4 / 9;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-11 {
-    grid-area: 3 / 8;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-12 {
-    grid-area: 2 / 2;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-13 {
-    grid-area: 3 / 1;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-14 {
-    grid-area: 3 / 4;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-15 {
-    grid-area: 4 / 3;
-  }
-  .gallery--grid10:not(.gallery--switch) .pos-16 {
-    grid-area: 4 / 7;
+  @media screen and (min-width: 53em) {
+    .gallery--grid10 {
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-1 {
+      grid-area: 1 / 1;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-2 {
+      grid-area: 1 / 2;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-3 {
+      grid-area: 1 / 4;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-4 {
+      grid-area: 1 / 5;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-5 {
+      grid-area: 3 / 6;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-6 {
+      grid-area: 1 / 7;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-7 {
+      grid-area: 1 / 9;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-8 {
+      grid-area: 3 / 10;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-9 {
+      grid-area: 2 / 8;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-10 {
+      grid-area: 4 / 9;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-11 {
+      grid-area: 3 / 8;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-12 {
+      grid-area: 2 / 2;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-13 {
+      grid-area: 3 / 1;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-14 {
+      grid-area: 3 / 4;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-15 {
+      grid-area: 4 / 3;
+    }
+    .gallery--grid10:not(.gallery--switch) .pos-16 {
+      grid-area: 4 / 7;
+    }
   }
 }
 </style>
