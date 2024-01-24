@@ -123,7 +123,7 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
       // Merge default settings with options provided when calling the function
       settings = Object.assign({}, settings, {
         flip: { absolute: true, scale: false },
-        scrollTrigger: { start: "center center", end: "+=900%" },
+        scrollTrigger: { start: "center center", end: "+=480%" },
         stagger: 0.05,
       });
 
