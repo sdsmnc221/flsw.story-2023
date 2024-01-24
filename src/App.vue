@@ -11,14 +11,15 @@
     <title-block :title="xpTitle.title" :subtitle="xpTitle.subtitle" />
     <text-block
       v-for="(section, index) of xpContent"
-      :key="`section-${section.title}-${index}`"
+      :key="`section--${index}`"
+      :id="`section--${index}`"
       :subtitle="section.subtitle"
       :title="section.title"
       :background="index % 2 === 0 ? 'clear-day-white' : 'shakespear-blue'"
       :text-color="
         section.fx === 'fx3' || index % 2 === 0
           ? 'tuscany-blue'
-          : 'clear-day-white'
+          : 'tangora-dark-blue'
       "
       :fx="section.fx"
     >
@@ -29,7 +30,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { initSmoothScrolling, scroll } from "./helpers/scrollFx";
+import { initSmoothScrolling, scroll, scrollGrid } from "./helpers/scrollFx";
 import Splitting from "splitting";
 import "splitting/dist/splitting.css";
 import "splitting/dist/splitting-cells.css";
@@ -70,10 +71,18 @@ onMounted(() => {
       ],
     };
 
+    const grid1 = {
+      id: "cllg-fx1",
+      node: document.querySelector(".section--1.grid"),
+    };
+
     initSmoothScrolling();
+
     scroll(fx1);
     scroll(fx2);
     scroll(fx3);
+
+    scrollGrid(grid1);
 
     const pinSpacer = document.querySelector(".pin-spacer") as HTMLElement;
     if (pinSpacer) {
@@ -89,6 +98,7 @@ onMounted(() => {
 .app {
   overflow: hidden;
   position: relative;
+  width: 100%;
 
   .marquees-container {
     position: absolute;
