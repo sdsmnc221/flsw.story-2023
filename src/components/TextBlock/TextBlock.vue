@@ -235,11 +235,11 @@ withDefaults(defineProps<Props>(), {
     /* Styles for mobile devices */
     padding: 8%;
     &__title {
-      padding: 0 12%;
+      // padding: 0 12%;
       font-size: 1.2rem;
     }
     &__content {
-      padding: 0 12%;
+      // padding: 0 12%;
 
       &.fx3 {
         text-transform: uppercase;
@@ -247,6 +247,12 @@ withDefaults(defineProps<Props>(), {
         padding: 0 4.8%;
         text-align: center;
         line-height: 2.4rem;
+      }
+    }
+
+    .text {
+      &--left {
+        padding-right: 16%;
       }
     }
   }

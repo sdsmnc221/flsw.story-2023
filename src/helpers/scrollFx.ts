@@ -67,7 +67,7 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
             filter: "brightness(72%) contrast(0.7)",
           },
           {
-            filter: "brightness(100%) contrast(2)",
+            filter: "brightness(100%) contrast(1)",
           },
           0
         )
