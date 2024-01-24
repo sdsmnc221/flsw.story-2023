@@ -1,7 +1,9 @@
 <template>
   <section
     class="text-block"
-    :class="{ 'text-block--spacing': fx !== 'fx3' && id !== 'section--2' }"
+    :class="`${
+      fx !== 'fx3' && id !== 'section--2' ? 'text-block--spacing' : ''
+    } ${id}`"
     :style="`background-color: var(--${background}); color: var(--${textColor}); --pseudo-background: var(--${pseudoBackground}); --background: var(--${background}); --next-background: var(--${nextSectionBackground});`"
   >
     <div class="grid" :class="id" v-if="id === 'section--1'">

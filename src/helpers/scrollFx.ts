@@ -154,7 +154,7 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
           trigger: grid,
           start: settings.scrollTrigger.start,
           end: settings.scrollTrigger.end,
-          pin: document.body.querySelector("main.app"),
+          pin: document.querySelector(".text-block.section--2"),
           scrub: true,
         },
         stagger: settings.stagger,

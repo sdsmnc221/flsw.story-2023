@@ -69,7 +69,16 @@ onMounted(() => {
       id: "fx1",
       nodes: [
         ...document.querySelectorAll(
-          ".text-block__content.fx1[data-splitting]"
+          ".text-block:not(.section--2) .text-block__content.fx1[data-splitting]"
+        ),
+      ],
+    };
+
+    const fx1Section2 = {
+      id: "fx2",
+      nodes: [
+        ...document.querySelectorAll(
+          ".section--2 .text-block__content.fx1[data-splitting]"
         ),
       ],
     };
@@ -77,9 +86,23 @@ onMounted(() => {
     const fx2 = {
       id: "fx2",
       nodes: [
-        ...document.querySelectorAll(".text-block__title.fx2[data-splitting]"),
         ...document.querySelectorAll(
-          ".text-block__subtitle.fx2[data-splitting]"
+          ".text-block:not(.section--2) .text-block__title.fx2[data-splitting]"
+        ),
+        ...document.querySelectorAll(
+          ".text-block:not(.section--2) .text-block__subtitle.fx2[data-splitting]"
+        ),
+      ],
+    };
+
+    const fx2Section2 = {
+      id: "fx2",
+      nodes: [
+        ...document.querySelectorAll(
+          ".section--2 .text-block__title.fx2[data-splitting]"
+        ),
+        ...document.querySelectorAll(
+          ".section--2 .text-block__subtitle.fx2[data-splitting]"
         ),
       ],
     };
@@ -105,15 +128,19 @@ onMounted(() => {
 
     initSmoothScrolling();
 
-    scroll(fx1);
-    scroll(fx2);
-    scroll(fx3);
+    scroll(fx1Section2);
+    scroll(fx2Section2);
 
     scrollGrid(grid1);
     scrollGrid(grid2);
 
+    scroll(fx1);
+    scroll(fx2);
+
+    scroll(fx3);
+
     const pinSpacer = document.querySelector(
-      ".app > .pin-spacer"
+      ".app > .pin-spacer:last-of-type"
     ) as HTMLElement;
     if (pinSpacer) {
       pinSpacer.style.backgroundColor = `var(--${
