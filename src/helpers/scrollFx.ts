@@ -4,6 +4,7 @@ import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/dist/Flip";
+
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
 
@@ -13,7 +14,7 @@ let lenis: any;
 // Initialize Lenis smooth scrolling
 const initSmoothScrolling = () => {
   lenis = new Lenis({
-    lerp: 0.1,
+    lerp: 0.032,
     smooth: true,
     smoothWheel: true, // Enables smooth scrolling for mouse wheel events
   } as any);
