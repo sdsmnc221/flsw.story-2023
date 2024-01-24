@@ -22,19 +22,11 @@
           ? 'clear-day-white'
           : 'shakespear-blue'
       "
-      :text-color="
-        section.textColor
-          ? section.textColor
-          : section.fx === 'fx3' || index % 2 === 0
-          ? 'tuscany-blue'
-          : 'tangora-dark-blue'
-      "
+      :text-color="section.textColor ? section.textColor : 'tuscany-blue'"
       :pseudo-background="
         section.pseudoBackgroundColor
           ? section.pseudoBackgroundColor
-          : index % 2 === 0
-          ? 'clear-day-white'
-          : 'shakespear-blue'
+          : 'clear-day-white'
       "
       v-bind="computedBindedProps(section, index)"
       :fx="section.fx"
@@ -106,6 +98,11 @@ onMounted(() => {
       node: document.querySelector(".section--1.grid"),
     };
 
+    const grid2 = {
+      id: "cllg-fx2",
+      node: document.querySelector(".section--2.gallery"),
+    };
+
     initSmoothScrolling();
 
     scroll(fx1);
@@ -113,8 +110,11 @@ onMounted(() => {
     scroll(fx3);
 
     scrollGrid(grid1);
+    scrollGrid(grid2);
 
-    const pinSpacer = document.querySelector(".pin-spacer") as HTMLElement;
+    const pinSpacer = document.querySelector(
+      ".app > .pin-spacer"
+    ) as HTMLElement;
     if (pinSpacer) {
       pinSpacer.style.backgroundColor = `var(--${
         xpContent.length % 2 !== 0 ? "clear-day-white" : "shakespear-blue"

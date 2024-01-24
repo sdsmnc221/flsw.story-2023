@@ -1,17 +1,32 @@
 <template>
   <section
     class="text-block"
-    :class="{ 'text-block--spacing': fx !== 'fx3' }"
+    :class="{ 'text-block--spacing': fx !== 'fx3' && id !== 'section--2' }"
     :style="`background-color: var(--${background}); color: var(--${textColor}); --pseudo-background: var(--${pseudoBackground}); --background: var(--${background}); --next-background: var(--${nextSectionBackground});`"
   >
     <div class="grid" :class="id" v-if="id === 'section--1'">
       <div class="grid-wrap">
-        <div class="grid__item" v-for="index in 48" :key="`grid-item-${index}`">
+        <div
+          class="grid__item"
+          v-for="index in 48"
+          :key="`${id}-grid-item-${index}`"
+        >
           <div
             class="grid__item-inner"
             style="background-image: url(img/1.jpg)"
           ></div>
         </div>
+      </div>
+    </div>
+
+    <div class="gallery-wrap" v-else-if="id === 'section--2'">
+      <div class="gallery gallery--grid10" :class="id">
+        <div
+          v-for="index in 16"
+          :key="`${id}-grid-item-${index}`"
+          :class="`gallery__item pos-${index}`"
+          style="background-image: url(img/2.jpg)"
+        ></div>
       </div>
     </div>
 
@@ -37,6 +52,7 @@
         <slot />
       </div>
     </div>
+
     <div
       class="text-block__content"
       :class="`${fx} josefin-sans-600`"
@@ -81,12 +97,13 @@ withDefaults(defineProps<Props>(), {
   --grid-columns: 4;
   --grid-inner-scale: 1;
 
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow-x: hidden;
 
   text-align: left;
 
@@ -248,6 +265,110 @@ withDefaults(defineProps<Props>(), {
     }
   }
 
+  .gallery-wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .gallery {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: none;
+  }
+
+  .gallery__item {
+    background-position: 50% 50%;
+    background-size: cover;
+    flex: none;
+    border-radius: 6px;
+    position: relative;
+    filter: brightness(1);
+  }
+
+  .gallery--grid {
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    row-gap: 2.5vw;
+    column-gap: 3vw;
+  }
+
+  .gallery--grid .gallery__item {
+    height: 33vh;
+    width: 33vw;
+  }
+
+  .gallery--switch.gallery--grid10 {
+    grid-template-columns: 1fr 300px 1fr;
+    grid-template-rows: 1fr 60vh 1fr;
+    grid-gap: 0;
+  }
+
+  .gallery--switch.gallery--grid10 .gallery__item {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+
+  .gallery--grid10 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2vw;
+  }
+
+  .gallery--grid10:not(.gallery--switch) .pos-1 {
+    grid-area: 1 / 1;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-2 {
+    grid-area: 1 / 2;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-3 {
+    grid-area: 1 / 4;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-4 {
+    grid-area: 1 / 5;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-5 {
+    grid-area: 3 / 6;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-6 {
+    grid-area: 1 / 7;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-7 {
+    grid-area: 1 / 9;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-8 {
+    grid-area: 3 / 10;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-9 {
+    grid-area: 2 / 8;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-10 {
+    grid-area: 4 / 9;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-11 {
+    grid-area: 3 / 8;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-12 {
+    grid-area: 2 / 2;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-13 {
+    grid-area: 3 / 1;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-14 {
+    grid-area: 3 / 4;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-15 {
+    grid-area: 4 / 3;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-16 {
+    grid-area: 4 / 7;
+  }
+
   @media (max-width: 768px) {
     /* Styles for mobile devices */
     padding: 8%;
@@ -272,6 +393,59 @@ withDefaults(defineProps<Props>(), {
         padding-right: 16%;
       }
     }
+  }
+
+  .gallery--grid10 {
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-1 {
+    grid-area: 1 / 1;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-2 {
+    grid-area: 1 / 2;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-3 {
+    grid-area: 1 / 4;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-4 {
+    grid-area: 1 / 5;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-5 {
+    grid-area: 3 / 6;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-6 {
+    grid-area: 1 / 7;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-7 {
+    grid-area: 1 / 9;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-8 {
+    grid-area: 3 / 10;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-9 {
+    grid-area: 2 / 8;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-10 {
+    grid-area: 4 / 9;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-11 {
+    grid-area: 3 / 8;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-12 {
+    grid-area: 2 / 2;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-13 {
+    grid-area: 3 / 1;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-14 {
+    grid-area: 3 / 4;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-15 {
+    grid-area: 4 / 3;
+  }
+  .gallery--grid10:not(.gallery--switch) .pos-16 {
+    grid-area: 4 / 7;
   }
 }
 </style>

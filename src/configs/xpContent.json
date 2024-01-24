@@ -18,13 +18,17 @@
         "subtitle": "chapitre 2.",
         "title": "feliFun - jouer jusqu'à l'Épuisement.",
         "text": "Les jeux épuisants sont l'expression de l'énergie débordante de nos amis félins. Plongez dans ces moments de bonheur pur, où le jeu devient une danse joyeuse entre humains et chats.",
-        "fx": "fx1"
+        "fx": "fx1",
+        "textPosition": "center"
     },
     {
         "subtitle": "chapitre 3.",
         "title": "des adieux difficiles - hommage aux Étoiles Félines.",
-        "text": "Dans ce chapitre dédié à nos amis qui ont rejoint les étoiles, nous rendons hommage à leur mémoire. Leurs empreintes restent gravées dans nos cœurs, et nous célébrons la vie qu'ils ont partagée avec nous.",
-        "fx": "fx1"
+        "text": "Dans ce chapitre dédié à nos amis qui ont rejoint les étoiles, nous voulons prendre un moment pour rendre hommage à leurs vies exceptionnelles : Pacha, Isis, Câline, et Mr. Chat. Leurs empreintes demeurent gravées dans nos cœurs, témoignages vivants de l'amour partagé et des souvenirs chéris. Nous célébrons la richesse de leur présence et la vie qu'ils ont si généreusement partagée avec nous, illuminant nos jours de leur amour félin inoubliable.",
+        "fx": "fx1",
+        "backgroundColor": "goose-down-beige",
+        "textColor": "dallas-brown",
+        "pseudoBackgroundColor": "sandy-clay-beige"
     },
     {
         "subtitle": "chapitre 4.",
