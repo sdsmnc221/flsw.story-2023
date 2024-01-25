@@ -52,8 +52,8 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
   switch (animationType) {
     case "cllg-fx1":
       // Set some CSS related style values
-      grid.style.setProperty("--grid-width", isMobile() ? "240%" : "120%");
-      grid.style.setProperty("--grid-height", isMobile() ? "100vh" : "auto");
+      grid.style.setProperty("--grid-width", isMobile() ? "320%" : "120%");
+      grid.style.setProperty("--grid-height", "auto");
       grid.style.setProperty("--grid-columns", "8");
       grid.style.setProperty("--grid-gap", "0");
 
@@ -96,6 +96,7 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
         .to(
           gridItems,
           {
+            scale: 2,
             ease: "power1",
             yPercent: () => gsap.utils.random(-100, 200),
           },

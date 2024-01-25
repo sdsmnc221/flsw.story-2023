@@ -92,7 +92,7 @@ withDefaults(defineProps<Props>(), {
 <style lang="scss">
 .text-block {
   --perspective: 1500px;
-  --grid-item-ratio: 1.5;
+  --grid-item-ratio: 1.32;
   --grid-width: 100%;
   --grid-height: auto;
   --grid-gap: 2vw;
@@ -119,8 +119,8 @@ withDefaults(defineProps<Props>(), {
     var(--next-background) 100%
   );
 
-  &--spacing {
-    padding-bottom: 64vh;
+  &--spacing.text-block {
+    padding-bottom: 32vh;
   }
 
   &:has(.fx3) {
@@ -244,6 +244,8 @@ withDefaults(defineProps<Props>(), {
       grid-template-columns: repeat(var(--grid-columns), 1fr);
       gap: var(--grid-gap);
       transform-style: preserve-3d;
+      place-items: center;
+      overflow-y: visible;
     }
 
     &__item {
