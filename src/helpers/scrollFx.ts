@@ -96,9 +96,9 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
         .to(
           gridItems,
           {
-            scale: 2,
             ease: "power1",
             yPercent: () => gsap.utils.random(-100, 200),
+            ...(isMobile() && { scale: 2 }),
           },
           "rowsEnd"
         );
