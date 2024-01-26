@@ -663,8 +663,6 @@ withDefaults(defineProps<Props>(), {
     &__content {
       // padding: 0 12%;
 
-      font-size: 0.84rem;
-
       &.fx3 {
         text-transform: uppercase;
         font-size: 2.8rem;
@@ -677,6 +675,10 @@ withDefaults(defineProps<Props>(), {
     .text {
       &--left {
         padding-right: 16%;
+      }
+
+      &--center {
+        transform: translateY(-64%);
       }
     }
 
