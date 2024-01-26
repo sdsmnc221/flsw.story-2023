@@ -137,7 +137,7 @@ onMounted(() => {
 
     const grid4 = {
       id: "cllg-fx4",
-      node: document.querySelector(".section--4.gallery"),
+      node: document.querySelector(".section--4.grid-wrap__gallery"),
     };
 
     const grid5 = {

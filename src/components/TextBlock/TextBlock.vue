@@ -50,23 +50,23 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="gallery-wrap gallery-wrap--dense" v-if="id === 'section--4'">
-      <div
-        class="gallery gallery--stack gallery--stack-inverse gallery--stack-dark"
-        :class="id"
-      >
+      <div class="grid-wrap grid-wrap--dense" v-if="cllgFx.includes('4')">
         <div
-          class="grid__item"
-          v-for="index in 5"
-          :key="`${id}-grid-item-${index}`"
-          style="background-image: url(img/4.jpg)"
-        ></div>
+          class="grid-wrap__gallery grid-wrap__gallery--stack grid-wrap__gallery--stack-inverse grid-wrap__gallery--stack-dark"
+          :class="id"
+        >
+          <div
+            class="grid__item"
+            v-for="index in 5"
+            :key="`${id}-grid-item-${index}`"
+            style="background-image: url(img/4.jpg)"
+          ></div>
+        </div>
       </div>
     </div>
 
-    <div class="content-wrap" v-else-if="id === 'section--5'" :class="id">
+    <div class="content-wrap" v-if="id === 'section--5'" :class="id">
       <div class="content content--layout content--layout-2">
         <div class="content__svg-wrapper --background">
           <svg
@@ -479,10 +479,144 @@ withDefaults(defineProps<Props>(), {
         }
       }
     }
-  }
 
-  .gallery-wrap--dense {
-    margin: 0;
+    &.--cllg-fx4 {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      .grid {
+        &-wrap {
+          position: relative;
+          width: 100%;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+
+          &--dense {
+            margin: 0;
+          }
+
+          &__gallery {
+            position: relative;
+            width: 100%;
+            height: 100%;
+          }
+
+          .grid-wrap__gallery--stack {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            align-items: start;
+            justify-content: start;
+            gap: 2rem;
+            padding: 2rem;
+            --offset: 1rem;
+          }
+
+          .grid-wrap__gallery--stack .grid__item {
+            border-radius: 1.5vw;
+            width: 25vw;
+            height: 35vw;
+            z-index: 1;
+          }
+        }
+      }
+
+      .grid-wrap__gallery--stack-glass .grid__item {
+        filter: opacity(1);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack .grid__item {
+        grid-area: 1 / 1 / 2 / 2;
+      }
+
+      .grid-wrap__gallery--stack-inverse .grid__item:nth-child(5) {
+        z-index: 2;
+      }
+      .grid-wrap__gallery--stack-inverse .grid__item:nth-child(4) {
+        z-index: 3;
+      }
+      .grid-wrap__gallery--stack-inverse .grid__item:nth-child(3) {
+        z-index: 4;
+      }
+      .grid-wrap__gallery--stack-inverse .grid__item:nth-child(2) {
+        z-index: 5;
+      }
+      .grid-wrap__gallery--stack-inverse .grid__item:nth-child(1) {
+        z-index: 6;
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack .grid__item:nth-child(2) {
+        margin-left: var(--offset);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack .grid__item:nth-child(3) {
+        margin-left: calc(var(--offset) * 2);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack .grid__item:nth-child(4) {
+        margin-left: calc(var(--offset) * 3);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack .grid__item:nth-child(5) {
+        margin-left: calc(var(--offset) * 4);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack .grid__item:nth-child(6) {
+        margin-left: calc(var(--offset) * 5);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(2) {
+        filter: brightness(0.8);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(3) {
+        filter: brightness(0.7);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(4) {
+        filter: brightness(0.6);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(5) {
+        filter: brightness(0.5);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(6) {
+        filter: brightness(0.4);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack-glass .grid__item {
+        opacity: 0.7;
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack-scale
+        .grid__item:nth-child(2) {
+        transform: scale(0.98);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack-scale
+        .grid__item:nth-child(3) {
+        transform: scale(0.96);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack-scale
+        .grid__item:nth-child(4) {
+        transform: scale(0.94);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack-scale
+        .grid__item:nth-child(5) {
+        transform: scale(0.92);
+      }
+
+      .gallery--switch.grid-wrap__gallery--stack-scale
+        .grid__item:nth-child(6) {
+        transform: scale(0.9);
+      }
+    }
   }
 
   .grid__item {
@@ -506,111 +640,6 @@ withDefaults(defineProps<Props>(), {
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
-  }
-
-  .gallery--stack {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    align-items: start;
-    justify-content: start;
-    gap: 2rem;
-    padding: 2rem;
-    --offset: 1rem;
-  }
-
-  .gallery--stack .grid__item {
-    border-radius: 1.5vw;
-    width: 25vw;
-    height: 35vw;
-    z-index: 1;
-  }
-
-  .gallery--stack-glass .grid__item {
-    filter: opacity(1);
-  }
-
-  .gallery--switch.gallery--stack .grid__item {
-    grid-area: 1 / 1 / 2 / 2;
-  }
-
-  .gallery--stack-inverse .grid__item:nth-child(5) {
-    z-index: 2;
-  }
-  .gallery--stack-inverse .grid__item:nth-child(4) {
-    z-index: 3;
-  }
-  .gallery--stack-inverse .grid__item:nth-child(3) {
-    z-index: 4;
-  }
-  .gallery--stack-inverse .grid__item:nth-child(2) {
-    z-index: 5;
-  }
-  .gallery--stack-inverse .grid__item:nth-child(1) {
-    z-index: 6;
-  }
-
-  .gallery--switch.gallery--stack .grid__item:nth-child(2) {
-    margin-left: var(--offset);
-  }
-
-  .gallery--switch.gallery--stack .grid__item:nth-child(3) {
-    margin-left: calc(var(--offset) * 2);
-  }
-
-  .gallery--switch.gallery--stack .grid__item:nth-child(4) {
-    margin-left: calc(var(--offset) * 3);
-  }
-
-  .gallery--switch.gallery--stack .grid__item:nth-child(5) {
-    margin-left: calc(var(--offset) * 4);
-  }
-
-  .gallery--switch.gallery--stack .grid__item:nth-child(6) {
-    margin-left: calc(var(--offset) * 5);
-  }
-
-  .gallery--switch.gallery--stack-dark .grid__item:nth-child(2) {
-    filter: brightness(0.8);
-  }
-
-  .gallery--switch.gallery--stack-dark .grid__item:nth-child(3) {
-    filter: brightness(0.7);
-  }
-
-  .gallery--switch.gallery--stack-dark .grid__item:nth-child(4) {
-    filter: brightness(0.6);
-  }
-
-  .gallery--switch.gallery--stack-dark .grid__item:nth-child(5) {
-    filter: brightness(0.5);
-  }
-
-  .gallery--switch.gallery--stack-dark .grid__item:nth-child(6) {
-    filter: brightness(0.4);
-  }
-
-  .gallery--switch.gallery--stack-glass .grid__item {
-    opacity: 0.7;
-  }
-
-  .gallery--switch.gallery--stack-scale .grid__item:nth-child(2) {
-    transform: scale(0.98);
-  }
-
-  .gallery--switch.gallery--stack-scale .grid__item:nth-child(3) {
-    transform: scale(0.96);
-  }
-
-  .gallery--switch.gallery--stack-scale .grid__item:nth-child(4) {
-    transform: scale(0.94);
-  }
-
-  .gallery--switch.gallery--stack-scale .grid__item:nth-child(5) {
-    transform: scale(0.92);
-  }
-
-  .gallery--switch.gallery--stack-scale .grid__item:nth-child(6) {
-    transform: scale(0.9);
   }
 
   .content-wrap {
@@ -727,7 +756,7 @@ withDefaults(defineProps<Props>(), {
 
     &:has(.grid-wrap__gallery--grid10),
     &:has(.grid-wrap__gallery--grid),
-    &:has(.gallery--stack) {
+    &:has(.grid-wrap__gallery--stack) {
       padding: 0;
     }
 
@@ -739,7 +768,7 @@ withDefaults(defineProps<Props>(), {
       }
     }
 
-    .gallery--stack .grid__item {
+    .grid-wrap__gallery--stack .grid__item {
       border-radius: 1.5vw;
       width: 45.7vw;
       height: 64vw;
