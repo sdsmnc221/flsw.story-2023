@@ -218,7 +218,7 @@ withDefaults(defineProps<Props>(), {
     }
 
     &--bottom {
-      bottom: -4vh;
+      bottom: -12vh;
     }
 
     &--center {
