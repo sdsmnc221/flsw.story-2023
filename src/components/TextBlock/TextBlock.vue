@@ -12,7 +12,7 @@
       <div class="grid-wrap">
         <div
           class="grid__item"
-          v-for="index in 48"
+          v-for="index in 24"
           :key="`${id}-grid-item-${index}`"
         >
           <div

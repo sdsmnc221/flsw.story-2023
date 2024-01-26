@@ -56,10 +56,10 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
   switch (animationType) {
     case "cllg-fx1":
       // Set some CSS related style values
-      grid.style.setProperty("--grid-width", isMobile() ? "320%" : "120%");
+      grid.style.setProperty("--grid-width", isMobile() ? "320%" : "100%");
       grid.style.setProperty("--grid-height", "auto");
-      grid.style.setProperty("--grid-columns", "8");
-      grid.style.setProperty("--grid-gap", "0");
+      grid.style.setProperty("--grid-columns", "4");
+      grid.style.setProperty("--grid-gap", "10%");
 
       const gridObj = getGrid(gridItems);
 
