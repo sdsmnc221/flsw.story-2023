@@ -32,15 +32,18 @@
         "subtitle": "chapitre 4.",
         "title": "défiant la peur - les rencontres avec les Timides.",
         "text": "La fierté d'approcher les chats craintifs est au cœur de ce chapitre. En tant que professionnelle passionnée des félins, j'ai surmonté les obstacles, résolvant des problèmes de comportement que même leurs humains trouvaient inaccessibles. Chaque moment a été une victoire sur la peur, illustrant la puissance de la patience et de la connexion.",
-        "fx": "fx1"
+        "fx": "fx1",
+        "backgroundColor": "light-blue"
     },
     {
         "subtitle": "chapitre 5.",
         "title": "Sushi's triumph - une transformation de 2 ans.",
         "text": "L'histoire remarquable de Sushi s'étend sur deux ans de désensibilisation, culminant dans une adoption émouvante. Partageons le triomphe de sa transformation, de l'adulte sauvage à un compagnon aimant. Sushi a trouvé une nouvelle maison en devenant ami de Gamin, qui cherchait de la compagnie après avoir perdu son ami d'enfance, Pacha.",
         "fx": "fx1",
-        "backgroundColor": "shakespear-blue",
-        "textPosition": "top"
+        "textPosition": "top",
+        "backgroundColor": "peach-shortcake-orange",
+        "textColor": "flsw-orange",
+        "pseudoBackgroundColor": "white"
     },
     {
         "subtitle": "chapitre 6.",
