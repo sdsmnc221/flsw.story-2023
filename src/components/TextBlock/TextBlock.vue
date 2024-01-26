@@ -5,7 +5,7 @@
       fx !== 'fx3' && id !== 'section--2' && id !== 'section--5'
         ? 'text-block--spacing'
         : ''
-    } ${id === 'section--1' ? 'text-block--spacing-xl' : ''} ${id}`"
+    } ${id}`"
     :style="`background-color: var(--${background}); color: var(--${textColor}); --pseudo-background: var(--${pseudoBackground}); --background: var(--${background}); --next-background: var(--${nextSectionBackground});`"
   >
     <div class="grid" :class="id" v-if="id === 'section--1'">
