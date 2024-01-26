@@ -107,6 +107,7 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
 
     case "cllg-fx2":
     case "cllg-fx3":
+    case "cllg-fx4":
       // Default settings for Flip and ScrollTrigger
       let settings = {
         flip: {
@@ -130,7 +131,7 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
         animationType === "cllg-fx2"
           ? {
               flip: { absolute: true, scale: false },
-              scrollTrigger: { start: "center center", end: "+=480%" },
+              scrollTrigger: { start: "center center", end: "+=320%" },
               stagger: 0.05,
             }
           : {}
@@ -163,10 +164,9 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
           trigger: grid,
           start: settings.scrollTrigger.start,
           end: settings.scrollTrigger.end,
-          pin:
-            animationType === "cllg-fx2"
-              ? document.querySelector(".text-block.section--2")
-              : document.querySelector(".text-block.section--3"),
+          pin: document.querySelector(
+            `.text-block.section--${animationType.replace("cllg-fx", "")}`
+          ),
           scrub: true,
         },
         stagger: settings.stagger,
