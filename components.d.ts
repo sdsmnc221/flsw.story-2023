@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CollageBlock: typeof import('./src/components/CollageBlock/CollageBlock.vue')['default']
     MarqueeBlock: typeof import('./src/components/MarqueeBlock/MarqueeBlock.vue')['default']
     TextBlock: typeof import('./src/components/TextBlock/TextBlock.vue')['default']
     TitleBlock: typeof import('./src/components/TitleBlock/TitleBlock.vue')['default']
