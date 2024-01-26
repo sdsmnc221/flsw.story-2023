@@ -386,11 +386,15 @@ const props = withDefaults(defineProps<Props>(), {
   }
 
   @media (max-width: 768px) {
-    .grid-wrap__gallery--stack .grid__item {
-      border-radius: 1.5vw;
-      width: 45.7vw;
-      height: 64vw;
-      z-index: 1;
+    &.grid {
+      &.--cllg-fx4 {
+        .grid-wrap .grid-wrap__gallery--stack .grid__item {
+          border-radius: 1.5vw;
+          width: 45.7vw;
+          height: 64vw;
+          z-index: 1;
+        }
+      }
     }
   }
 
