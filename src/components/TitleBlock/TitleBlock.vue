@@ -15,7 +15,6 @@ import "splitting/dist/splitting-cells.css";
 import Splitting from "splitting";
 import { gsap } from "gsap";
 import { onMounted } from "vue";
-import isMobile from "../../helpers/isMobile";
 
 interface Props {
   title: string;
