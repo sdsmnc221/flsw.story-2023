@@ -12,7 +12,8 @@
         "cllgFx": "fx1",
         "backgroundColor": "goose-down-beige",
         "textColor": "dallas-brown",
-        "pseudoBackgroundColor": "sandy-clay-beige"
+        "pseudoBackgroundColor": "sandy-clay-beige",
+        "spacing": "normal"
     },
     {
         "subtitle": "chapitre 2.",
@@ -29,7 +30,8 @@
         "cllgFx": "fx3",
         "backgroundColor": "goose-down-beige",
         "textColor": "dallas-brown",
-        "pseudoBackgroundColor": "sandy-clay-beige"
+        "pseudoBackgroundColor": "sandy-clay-beige",
+        "spacing": "normal"
     },
     {
         "subtitle": "chapitre 4.",
@@ -37,7 +39,8 @@
         "text": "La fierté d'approcher les chats craintifs est au cœur de ce chapitre. En tant que professionnelle passionnée des félins, j'ai surmonté les obstacles, résolvant des problèmes de comportement que même leurs humains trouvaient inaccessibles. Chaque moment a été une victoire sur la peur, illustrant la puissance de la patience et de la connexion.",
         "fx": "fx1",
         "cllgFx": "fx4",
-        "backgroundColor": "light-blue"
+        "backgroundColor": "light-blue",
+        "spacing": "normal"
     },
     {
         "subtitle": "chapitre 5.",
@@ -81,6 +84,7 @@
     },
     {
         "text": "Pour l'année 2024, que chaque jour soit une nouvelle aventure avec nos amis à fourrure.",
-        "fx": "fx3"
+        "fx": "fx3",
+        "spacing": "normal"
     }
 ]

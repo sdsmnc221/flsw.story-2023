@@ -1,11 +1,9 @@
 <template>
   <section
     class="text-block"
-    :class="`${
-      fx !== 'fx3' && id !== 'section--2' && id !== 'section--5'
-        ? 'text-block--spacing'
-        : ''
-    } ${id}`"
+    :class="`${id} ${spacing === 'normal' ? 'text-block--spacing' : ''} ${
+      spacing === 'xl' ? 'text-block--spacing-xl' : ''
+    }`"
     :style="`background-color: var(--${background}); color: var(--${textColor}); --pseudo-background: var(--${pseudoBackground}); --background: var(--${background}); --next-background: var(--${nextSectionBackground});`"
   >
     <collage-block
@@ -116,6 +114,7 @@ interface Props {
   fx?: string;
   cllgFx?: string;
   id: string;
+  spacing?: string | null;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -126,6 +125,7 @@ withDefaults(defineProps<Props>(), {
   textPosition: "center",
   fx: "fx1",
   cllgFx: "fx0",
+  spacing: null,
 });
 </script>
 
@@ -381,13 +381,21 @@ withDefaults(defineProps<Props>(), {
       }
     }
 
+    .section--3 {
+      .text {
+        &--center {
+          transform: translateY(-64%);
+        }
+      }
+    }
+
     .text {
       &--left {
         padding-right: 16%;
       }
 
       &--center {
-        transform: translateY(-64%);
+        transform: translateY(-50%);
       }
     }
 

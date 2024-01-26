@@ -62,6 +62,10 @@ const computedBindedProps = (section: any, index: number) => {
     bindedProps.cllgFx = section.cllgFx;
   }
 
+  if (section.spacing) {
+    bindedProps.spacing = section.spacing;
+  }
+
   return bindedProps;
 };
 
