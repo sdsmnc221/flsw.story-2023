@@ -15,6 +15,7 @@ import "splitting/dist/splitting-cells.css";
 import Splitting from "splitting";
 import { gsap } from "gsap";
 import { onMounted } from "vue";
+import isMobile from "../../helpers/isMobile";
 
 interface Props {
   title: string;
@@ -56,7 +57,7 @@ onMounted(() => {
           delay: 1.2 * (index + 1),
           scrollTrigger: {
             trigger: title,
-            start: "0 84%",
+            start: isMobile() ? "0 64%" : "0 84%",
             end: "0 20%",
             scrub: true,
           },
