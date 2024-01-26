@@ -57,7 +57,7 @@ onMounted(() => {
           delay: 1.2 * (index + 1),
           scrollTrigger: {
             trigger: title,
-            start: isMobile() ? "0 72%" : "0 84%",
+            start: "0 72%",
             end: "0 20%",
             scrub: true,
           },
