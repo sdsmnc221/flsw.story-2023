@@ -37,8 +37,10 @@
     {
         "subtitle": "chapitre 5.",
         "title": "Sushi's triumph - une transformation de 2 ans.",
-        "text": "L'histoire extraordinaire de Sushi, un voyage de deux ans de désensibilisation qui a abouti à son adoption. Partageons le triomphe de la transformation, de l'adulte sauvage au compagnon aimant.",
-        "fx": "fx1"
+        "text": "L'histoire remarquable de Sushi s'étend sur deux ans de désensibilisation, culminant dans une adoption émouvante. Partageons le triomphe de sa transformation, de l'adulte sauvage à un compagnon aimant. Sushi a trouvé une nouvelle maison en devenant ami de Gamin, qui cherchait de la compagnie après avoir perdu son ami d'enfance, Pacha.",
+        "fx": "fx1",
+        "backgroundColor": "shakespear-blue",
+        "textPosition": "top"
     },
     {
         "subtitle": "chapitre 6.",

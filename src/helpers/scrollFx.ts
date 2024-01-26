@@ -192,7 +192,73 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
         );
       }
       break;
+    case "cllg-fx5":
+      let DOM: any = {};
+      // flipstate saves the current state of title elements
+      let flipstate_ = null;
+      DOM.el = grid;
+      console.log(grid);
+      if (DOM.el !== null) {
+        DOM.content = [...DOM.el.querySelectorAll(".content")];
+        DOM.svg = DOM.el.querySelector(".content__img");
+        DOM.mask = DOM.svg.querySelector(".mask");
+        DOM.image = DOM.svg.querySelector("video");
 
+        // Save current state
+        flipstate_ = Flip.getState(
+          document.querySelector(
+            `.text-block.section--${animationType.replace("cllg-fx", "")}`
+          )
+        );
+
+        // Check if the mask element is a circle or a path
+        const isCircle = DOM.mask.tagName.toLowerCase() === "circle";
+
+        // Create the Flip.from that we'll pass into the ScrollTrigger animation property
+        const flip = Flip.from(flipstate_, {
+          ease: "none",
+          simple: true,
+        })
+          .fromTo(
+            DOM.mask,
+            {
+              attr: isCircle
+                ? { r: DOM.mask.getAttribute("r") }
+                : { d: DOM.mask.getAttribute("d") },
+            },
+            {
+              ease: "none",
+              attr: isCircle
+                ? { r: DOM.mask.dataset.valueFinal }
+                : { d: DOM.mask.dataset.valueFinal },
+            },
+            0
+          )
+          // Also scale up the image element
+          .fromTo(
+            DOM.image,
+            {
+              transformOrigin: "50% 50%",
+              filter: "brightness(100%)",
+            },
+            {
+              ease: "none",
+              scale: isCircle ? 1.2 : 1,
+              filter: "brightness(150%)",
+            },
+            0
+          );
+
+        ScrollTrigger.create({
+          trigger: grid.querySelector(".content--layout-2"),
+          start: "top center",
+          end: "+=64%",
+          scrub: true,
+          animation: flip,
+        });
+      }
+
+      break;
     default:
       console.error("Unknown animation type.");
       break;
