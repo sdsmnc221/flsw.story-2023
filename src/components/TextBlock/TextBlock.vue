@@ -310,8 +310,6 @@ withDefaults(defineProps<Props>(), {
     z-index: 10;
     position: relative;
 
-    font-size: 0.9rem;
-
     &--absolute {
       position: absolute;
     }
@@ -664,6 +662,8 @@ withDefaults(defineProps<Props>(), {
     }
     &__content {
       // padding: 0 12%;
+
+      font-size: 0.84rem;
 
       &.fx3 {
         text-transform: uppercase;
