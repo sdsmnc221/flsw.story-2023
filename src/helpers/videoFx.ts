@@ -55,20 +55,26 @@ const applyVideoAnimation = (element: any, animationType: string) => {
             DOM.image,
             {
               transformOrigin: "50% 50%",
-              filter: "brightness(100%)",
             },
             {
               ease: "none",
               scale: isCircle ? 1.2 : 1,
-              filter: "brightness(150%)",
             },
+            0
+          )
+          .fromTo(
+            DOM.content,
+            {
+              rotate: -16,
+            },
+            { rotate: 0 },
             0
           );
 
         ScrollTrigger.create({
-          trigger: element.querySelector(".content--layout-2"),
-          start: "top center",
-          end: "+=64%",
+          trigger: element,
+          start: "top center+=12vh",
+          end: "+=120%",
           scrub: true,
           animation: flip,
         });

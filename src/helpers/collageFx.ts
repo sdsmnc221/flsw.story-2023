@@ -132,7 +132,7 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
       // Select elements within the gallery that will be animated
 
       const galleryItems = grid.querySelectorAll(".grid__item");
-      console.log(galleryItems);
+
       const galleryItemsInner = [...galleryItems]
         .map((item) => (item.children.length > 0 ? [...item.children] : []))
         .flat();

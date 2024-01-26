@@ -76,8 +76,7 @@ defineProps<Props>();
   .content {
     display: flex;
     height: 100vh;
-    padding-right: 16vh;
-    padding-bottom: 0;
+    transform: translate(-12vw, 12vh);
     width: 100%;
   }
 
@@ -90,7 +89,6 @@ defineProps<Props>();
     width: auto;
     height: 48vh;
     aspect-ratio: 16/9;
-    transform: rotate(-4deg);
 
     svg {
       width: 100%;
@@ -104,7 +102,7 @@ defineProps<Props>();
       }
 
       video {
-        filter: unset;
+        object-fit: contain;
       }
     }
 
@@ -134,12 +132,12 @@ defineProps<Props>();
 
     &.--background {
       &::after {
-        background-color: var(--pseudo-background);
+        background-color: var(--background);
         opacity: 1;
       }
 
       &::before {
-        background-color: var(--pseudo-background);
+        background-color: var(--background);
         opacity: 1;
       }
     }
@@ -152,8 +150,7 @@ defineProps<Props>();
 
   @media (max-width: 768px) {
     .content {
-      padding: 0;
-      padding-bottom: 16vh;
+      transform: translate(4vw, -16vh);
       &__svg-wrapper {
         height: 28vh;
       }
