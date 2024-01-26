@@ -310,12 +310,14 @@ withDefaults(defineProps<Props>(), {
     z-index: 10;
     position: relative;
 
+    font-size: 0.9rem;
+
     &--absolute {
       position: absolute;
     }
 
     &--top {
-      top: -8vh;
+      top: -4vh;
     }
 
     &--bottom {
@@ -694,7 +696,7 @@ withDefaults(defineProps<Props>(), {
 
     .gallery--stack .gallery__item {
       border-radius: 1.5vw;
-      width: 32vw;
+      width: 45.7vw;
       height: 64vw;
       z-index: 1;
     }
