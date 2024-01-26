@@ -37,6 +37,10 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
     item.querySelector(".grid__item-inner")
   );
 
+  if (gridItemsInner.length) {
+    //
+  }
+
   // Define GSAP timeline with ScrollTrigger
   const timeline = gsap.timeline({
     defaults: { ease: "none" },
@@ -197,7 +201,7 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
       // flipstate saves the current state of title elements
       let flipstate_ = null;
       DOM.el = grid;
-      console.log(grid);
+
       if (DOM.el !== null) {
         DOM.content = [...DOM.el.querySelectorAll(".content")];
         DOM.svg = DOM.el.querySelector(".content__img");
