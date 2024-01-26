@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/dist/Flip";
 
 import { applyCollageAnimation } from "./collageFx";
+import { applyVideoAnimation } from "./videoFx";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
@@ -176,9 +177,17 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
   }
 };
 
-const scrollGrid = (grid: { id: string; node: any }) => {
+const scrollGrid = (grid: {
+  id: string;
+  node: Element | null;
+  type: string;
+}) => {
   if (grid.node) {
-    applyCollageAnimation(grid.node, grid.id);
+    if (grid.type === "collage") {
+      applyCollageAnimation(grid.node, grid.id);
+    } else if (grid.type === "video") {
+      applyVideoAnimation(grid.node, grid.id);
+    }
   }
 };
 

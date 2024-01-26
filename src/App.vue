@@ -66,6 +66,10 @@ const computedBindedProps = (section: any, index: number) => {
     bindedProps.spacing = section.spacing;
   }
 
+  if (section.videoFx) {
+    bindedProps.videoFx = section.videoFx;
+  }
+
   return bindedProps;
 };
 
@@ -124,29 +128,34 @@ onMounted(() => {
       ],
     };
 
-    const grid1 = {
+    const collage1 = {
       id: "cllg-fx1",
       node: document.querySelector(".section--1.grid"),
+      type: "collage",
     };
 
-    const grid2 = {
+    const collage2 = {
       id: "cllg-fx2",
       node: document.querySelector(".section--2.grid-wrap__gallery"),
+      type: "collage",
     };
 
-    const grid3 = {
+    const collage3 = {
       id: "cllg-fx3",
       node: document.querySelector(".section--3.grid-wrap__gallery"),
+      type: "collage",
     };
 
-    const grid4 = {
+    const collage4 = {
       id: "cllg-fx4",
       node: document.querySelector(".section--4.grid-wrap__gallery"),
+      type: "collage",
     };
 
-    const grid5 = {
-      id: "cllg-fx5",
-      node: document.querySelector(".section--5.content-wrap"),
+    const video1 = {
+      id: "video-fx1",
+      node: document.querySelector(".section--5.video-block"),
+      type: "video",
     };
 
     initSmoothScrolling();
@@ -154,11 +163,11 @@ onMounted(() => {
     scroll(fx1Section2);
     scroll(fx2Section2);
 
-    scrollGrid(grid1);
-    scrollGrid(grid2);
-    scrollGrid(grid3);
-    scrollGrid(grid4);
-    scrollGrid(grid5);
+    scrollGrid(collage1);
+    scrollGrid(collage2);
+    scrollGrid(collage3);
+    scrollGrid(collage4);
+    scrollGrid(video1);
 
     scroll(fx1);
     scroll(fx2);

@@ -12,61 +12,11 @@
       :collage-fx="cllgFx"
     ></collage-block>
 
-    <div class="content-wrap" v-if="id === 'section--5'" :class="id">
-      <div class="content content--layout content--layout-2">
-        <div class="content__svg-wrapper --background">
-          <svg
-            class="content__img content__img--2"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 1000 450"
-          >
-            <defs>
-              <filter id="displacementFilter2">
-                <feTurbulence
-                  type="fractalNoise"
-                  baseFrequency="0.1"
-                  numOctaves="1"
-                  result="noise"
-                />
-                <feDisplacementMap
-                  in="SourceGraphic"
-                  in2="noise"
-                  result="displacement"
-                  scale="100"
-                  xChannelSelector="R"
-                  yChannelSelector="G"
-                />
-                <feMorphology
-                  operator="dilate"
-                  radius="2"
-                  result="morph"
-                  in="displacement"
-                />
-              </filter>
-              <mask id="circleMask2">
-                <circle
-                  cx="50%"
-                  cy="50%"
-                  r="0"
-                  data-value-final="950"
-                  fill="white"
-                  class="mask"
-                  style="filter: url(#displacementFilter2)"
-                />
-              </mask>
-            </defs>
-
-            <foreignObject mask="url(#circleMask2)">
-              <video controls>
-                <source src="/img/sushi.mp4" type="video/mp4" />
-              </video>
-            </foreignObject>
-          </svg>
-        </div>
-      </div>
-    </div>
+    <video-block
+      v-if="videoFx"
+      :section-id="id"
+      :video-fx="videoFx"
+    ></video-block>
 
     <div
       :class="`text text--${textPosition} text--left text--absolute`"
@@ -112,7 +62,8 @@ interface Props {
   nextSectionBackground?: string;
   textPosition?: "bottom" | "top" | "center";
   fx?: string;
-  cllgFx?: string;
+  cllgFx?: string | null;
+  videoFx?: string | null;
   id: string;
   spacing?: string | null;
 }
@@ -124,7 +75,8 @@ withDefaults(defineProps<Props>(), {
   nextSectionBackground: "clear-day-white",
   textPosition: "center",
   fx: "fx1",
-  cllgFx: "fx0",
+  cllgFx: null,
+  videoFx: null,
   spacing: null,
 });
 </script>
@@ -266,7 +218,7 @@ withDefaults(defineProps<Props>(), {
     }
 
     &--bottom {
-      bottom: 8vh;
+      bottom: -4vh;
     }
 
     &--center {
@@ -277,89 +229,6 @@ withDefaults(defineProps<Props>(), {
     &--left {
       padding-right: 48%;
     }
-  }
-
-  .content-wrap {
-    display: flex;
-    width: 100vw;
-    height: 100%;
-  }
-
-  .content {
-    display: flex;
-    height: 100vh;
-    padding-right: 16vh;
-    padding-bottom: 0;
-    width: 100%;
-  }
-
-  .content-wrap .content:first-child {
-    height: 100vh;
-  }
-
-  .content__svg-wrapper {
-    position: relative;
-    width: auto;
-    height: 48vh;
-    aspect-ratio: 16/9;
-    transform: rotate(-4deg);
-
-    svg {
-      width: 100%;
-      height: 100%;
-      z-index: 11;
-
-      foreignObject,
-      video {
-        width: 100%;
-        height: 100%;
-      }
-
-      video {
-        filter: unset;
-      }
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 7.2%;
-      right: -7.2%;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      display: block;
-      transition: all 1.2s ease-in-out;
-    }
-    &::before {
-      content: "";
-      position: absolute;
-      top: 7.2%;
-      left: -7.2%;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      z-index: -1;
-      display: block;
-      transition: all 1.2s ease-in-out;
-    }
-
-    &.--background {
-      &::after {
-        background-color: var(--pseudo-background);
-        opacity: 1;
-      }
-
-      &::before {
-        background-color: var(--pseudo-background);
-        opacity: 1;
-      }
-    }
-  }
-
-  .content--layout {
-    justify-content: flex-end;
-    align-items: flex-end;
   }
 
   @media (max-width: 768px) {
@@ -397,20 +266,16 @@ withDefaults(defineProps<Props>(), {
       &--center {
         transform: translateY(-50%);
       }
+
+      &--bottom {
+        bottom: 4vh;
+      }
     }
 
     &:has(.grid-wrap__gallery--grid10),
     &:has(.grid-wrap__gallery--grid),
     &:has(.grid-wrap__gallery--stack) {
       padding: 0;
-    }
-
-    .content {
-      padding: 0;
-      padding-bottom: 16vh;
-      &__svg-wrapper {
-        height: 28vh;
-      }
     }
   }
 }
