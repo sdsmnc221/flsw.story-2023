@@ -13,14 +13,15 @@
         "backgroundColor": "goose-down-beige",
         "textColor": "dallas-brown",
         "pseudoBackgroundColor": "sandy-clay-beige",
-        "spacing": "normal"
+        "spacing": "xl"
     },
     {
         "subtitle": "chapitre 2.",
         "title": "feliFun - jouer jusqu'à l'Épuisement.",
         "text": "Les images des sessions de jeu s'animent, plongeant directement dans une vidéo de moments captivants. C'est dans cette énergie débordante que nos amis félins expriment leur joie pure. Explorez ces instants où le jeu se transforme en une danse joyeuse entre humains et chats, chaque saut et frémissement une invitation à partager ce bonheur ludique.",
         "fx": "fx1",
-        "cllgFx": "fx2"
+        "cllgFx": "fx2",
+        "spacing": "normal"
     },
     {
         "subtitle": "chapitre 3.",
