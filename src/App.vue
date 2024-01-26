@@ -58,6 +58,10 @@ const computedBindedProps = (section: any, index: number) => {
     bindedProps.nextSectionBackground = xpContent[index + 1].backgroundColor;
   }
 
+  if (section.cllgFx) {
+    bindedProps.cllgFx = section.cllgFx;
+  }
+
   return bindedProps;
 };
 
@@ -123,7 +127,7 @@ onMounted(() => {
 
     const grid2 = {
       id: "cllg-fx2",
-      node: document.querySelector(".section--2.gallery"),
+      node: document.querySelector(".section--2.grid-wrap__gallery"),
     };
 
     const grid3 = {

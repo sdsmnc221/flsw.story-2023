@@ -30,31 +30,31 @@ const initSmoothScrolling = () => {
 };
 
 const applyCollageAnimation = (grid: any, animationType: string) => {
-  // Child elements of grid
-  const gridWrap = grid.querySelector(".grid-wrap");
-  const gridItems = grid.querySelectorAll(".grid__item");
-  const gridItemsInner = [...gridItems].map((item) =>
-    item.querySelector(".grid__item-inner")
-  );
-
-  if (gridItemsInner.length) {
-    //
-  }
-
-  // Define GSAP timeline with ScrollTrigger
-  const timeline = gsap.timeline({
-    defaults: { ease: "none" },
-    scrollTrigger: {
-      trigger: gridWrap,
-      start: "top bottom+=5%",
-      end: "bottom top-=5%",
-      scrub: true,
-    },
-  });
-
   // Apply different animations based on type
   switch (animationType) {
     case "cllg-fx1":
+      // Child elements of grid
+      const gridWrap = grid.querySelector(".grid-wrap");
+      const gridItems = grid.querySelectorAll(".grid__item");
+      const gridItemsInner = [...gridItems].map((item) =>
+        item.querySelector(".grid__item-inner")
+      );
+
+      if (gridItemsInner.length) {
+        //
+      }
+
+      // Define GSAP timeline with ScrollTrigger
+      const timeline = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: gridWrap,
+          start: "top bottom+=5%",
+          end: "bottom top-=5%",
+          scrub: true,
+        },
+      });
+
       // Set some CSS related style values
       grid.style.setProperty("--grid-width", isMobile() ? "320%" : "100%");
       grid.style.setProperty("--grid-height", "auto");
@@ -143,7 +143,8 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
 
       // Select elements within the gallery that will be animated
 
-      const galleryItems = grid.querySelectorAll(".gallery__item");
+      const galleryItems = grid.querySelectorAll(".grid__item");
+      console.log(galleryItems);
       const galleryItemsInner = [...galleryItems]
         .map((item) => (item.children.length > 0 ? [...item.children] : []))
         .flat();
