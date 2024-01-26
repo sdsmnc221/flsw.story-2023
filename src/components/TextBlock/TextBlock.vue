@@ -32,27 +32,27 @@
           ></div>
         </div>
       </div>
-    </div>
 
-    <div class="gallery-wrap gallery-wrap--large" v-if="id === 'section--3'">
-      <div class="gallery gallery--grid gallery--breakout" :class="id">
+      <div class="grid-wrap grid-wrap--large" v-if="cllgFx.includes('3')">
         <div
-          class="grid__item grid__item-cut"
-          v-for="index in 9"
-          :key="`${id}-grid-item-${index}`"
+          class="grid-wrap__gallery grid-wrap__gallery--grid grid-wrap__gallery--breakout"
+          :class="id"
         >
           <div
-            class="grid__item-inner"
-            style="background-image: url(img/3.jpg)"
-          ></div>
+            class="grid__item grid__item-cut"
+            v-for="index in 9"
+            :key="`${id}-grid-item-${index}`"
+          >
+            <div
+              class="grid__item-inner"
+              style="background-image: url(img/3.jpg)"
+            ></div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div
-      class="gallery-wrap gallery-wrap--dense"
-      v-else-if="id === 'section--4'"
-    >
+    <div class="gallery-wrap gallery-wrap--dense" v-if="id === 'section--4'">
       <div
         class="gallery gallery--stack gallery--stack-inverse gallery--stack-dark"
         :class="id"
@@ -332,6 +332,10 @@ withDefaults(defineProps<Props>(), {
   }
 
   .grid {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
     &.--cllg-fx1 {
       display: grid;
       place-items: center;
@@ -376,10 +380,6 @@ withDefaults(defineProps<Props>(), {
     }
 
     &.--cllg-fx2 {
-      position: relative;
-      width: 100%;
-      height: 100%;
-
       .grid {
         &-wrap {
           position: relative;
@@ -417,18 +417,72 @@ withDefaults(defineProps<Props>(), {
         }
       }
     }
-  }
 
-  .gallery-wrap--large {
-    height: 110vh;
+    &.--cllg-fx3 {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      .grid {
+        &-wrap {
+          position: relative;
+          width: 100%;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+
+          .grid-wrap__gallery {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            flex: 0 0 auto;
+          }
+
+          &--large {
+            height: 110vh;
+          }
+
+          &__gallery {
+            &--grid {
+              height: auto;
+              display: grid;
+              grid-template-columns: repeat(3, auto);
+              grid-template-rows: repeat(3, auto);
+              row-gap: 2.5vw;
+              column-gap: 3vw;
+
+              grid__item {
+                height: 33vh;
+                width: 33vw;
+              }
+            }
+          }
+        }
+      }
+
+      .grid-wrap {
+        .grid-wrap__gallery {
+          &--breakout.gallery--switch {
+            width: min-content;
+            flex: none;
+            height: auto;
+            gap: 0;
+
+            .grid__item {
+              height: 110vh;
+              width: 110vw;
+              filter: brightness(0.65);
+            }
+          }
+        }
+      }
+    }
   }
 
   .gallery-wrap--dense {
     margin: 0;
-  }
-
-  .gallery--breakout {
-    width: min-content;
   }
 
   .grid__item {
@@ -452,30 +506,6 @@ withDefaults(defineProps<Props>(), {
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
-  }
-
-  .gallery--grid {
-    height: auto;
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-template-rows: repeat(3, auto);
-    row-gap: 2.5vw;
-    column-gap: 3vw;
-  }
-
-  .gallery--grid .grid__item {
-    height: 33vh;
-    width: 33vw;
-  }
-
-  .gallery--switch.gallery--grid {
-    gap: 0;
-  }
-
-  .gallery--switch.gallery--grid .grid__item {
-    height: 110vh;
-    width: 110vw;
-    filter: brightness(0.65);
   }
 
   .gallery--stack {
@@ -696,7 +726,7 @@ withDefaults(defineProps<Props>(), {
     }
 
     &:has(.grid-wrap__gallery--grid10),
-    &:has(.gallery--grid),
+    &:has(.grid-wrap__gallery--grid),
     &:has(.gallery--stack) {
       padding: 0;
     }
