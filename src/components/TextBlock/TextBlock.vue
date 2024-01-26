@@ -2,7 +2,9 @@
   <section
     class="text-block"
     :class="`${
-      fx !== 'fx3' && id !== 'section--2' ? 'text-block--spacing' : ''
+      fx !== 'fx3' && id !== 'section--2' && id !== 'section--5'
+        ? 'text-block--spacing'
+        : ''
     } ${id === 'section--1' ? 'text-block--spacing-xl' : ''} ${id}`"
     :style="`background-color: var(--${background}); color: var(--${textColor}); --pseudo-background: var(--${pseudoBackground}); --background: var(--${background}); --next-background: var(--${nextSectionBackground});`"
   >
@@ -688,6 +690,13 @@ withDefaults(defineProps<Props>(), {
       &__svg-wrapper {
         height: 28vh;
       }
+    }
+
+    .gallery--stack .gallery__item {
+      border-radius: 1.5vw;
+      width: 32vw;
+      height: 64vw;
+      z-index: 1;
     }
   }
 
