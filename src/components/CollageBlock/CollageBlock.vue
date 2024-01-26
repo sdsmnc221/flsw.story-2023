@@ -67,7 +67,7 @@ interface Props {
   sectionId: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   collageFx: "fx0",
 });
 </script>
