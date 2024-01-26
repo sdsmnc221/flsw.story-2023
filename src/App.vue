@@ -126,6 +126,11 @@ onMounted(() => {
       node: document.querySelector(".section--2.gallery"),
     };
 
+    const grid3 = {
+      id: "cllg-fx3",
+      node: document.querySelector(".section--3.gallery"),
+    };
+
     initSmoothScrolling();
 
     scroll(fx1Section2);
@@ -133,6 +138,7 @@ onMounted(() => {
 
     scrollGrid(grid1);
     scrollGrid(grid2);
+    scrollGrid(grid3);
 
     scroll(fx1);
     scroll(fx2);

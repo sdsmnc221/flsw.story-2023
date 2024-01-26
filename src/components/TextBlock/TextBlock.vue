@@ -33,6 +33,24 @@
     </div>
 
     <div
+      class="gallery-wrap gallery-wrap--large"
+      v-else-if="id === 'section--3'"
+    >
+      <div class="gallery gallery--grid gallery--breakout" :class="id">
+        <div
+          class="gallery__item gallery__item-cut"
+          v-for="index in 9"
+          :key="`${id}-grid-item-${index}`"
+        >
+          <div
+            class="gallery__item-inner"
+            style="background-image: url(img/3.jpg)"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div
       :class="`text text--${textPosition} text--left text--absolute`"
       v-if="fx !== 'fx3'"
     >
@@ -84,7 +102,7 @@ withDefaults(defineProps<Props>(), {
   textColor: "tangora-dark-blue",
   pseudoBackground: "clear-day-white",
   nextSectionBackground: "clear-day-white",
-  textPosition: "bottom",
+  textPosition: "center",
   fx: "fx1",
 });
 </script>
@@ -278,11 +296,20 @@ withDefaults(defineProps<Props>(), {
     justify-content: center;
     overflow: hidden;
   }
+
+  .gallery-wrap--large {
+    height: 110vh;
+  }
+
   .gallery {
     position: relative;
     width: 100%;
     height: 100%;
     flex: none;
+  }
+
+  .gallery--breakout {
+    width: min-content;
   }
 
   .gallery__item {
@@ -294,6 +321,20 @@ withDefaults(defineProps<Props>(), {
     filter: brightness(1);
   }
 
+  .gallery__item-cut {
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+
+  .gallery__item-inner {
+    width: 100%;
+    height: 100%;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
   .gallery--grid {
     height: auto;
     display: grid;
@@ -301,6 +342,21 @@ withDefaults(defineProps<Props>(), {
     grid-template-rows: repeat(3, auto);
     row-gap: 2.5vw;
     column-gap: 3vw;
+  }
+
+  .gallery--grid .gallery__item {
+    height: 33vh;
+    width: 33vw;
+  }
+
+  .gallery--switch.gallery--grid {
+    gap: 0;
+  }
+
+  .gallery--switch.gallery--grid .gallery__item {
+    height: 110vh;
+    width: 110vw;
+    filter: brightness(0.65);
   }
 
   .gallery--grid10 {
@@ -344,7 +400,8 @@ withDefaults(defineProps<Props>(), {
       }
     }
 
-    &:has(.gallery--grid10) {
+    &:has(.gallery--grid10),
+    &:has(.gallery--grid) {
       padding: 0;
     }
   }

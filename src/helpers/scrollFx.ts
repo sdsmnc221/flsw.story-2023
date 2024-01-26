@@ -33,9 +33,9 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
   // Child elements of grid
   const gridWrap = grid.querySelector(".grid-wrap");
   const gridItems = grid.querySelectorAll(".grid__item");
-  // const gridItemsInner = [...gridItems].map((item) =>
-  //   item.querySelector(".grid__item-inner")
-  // );
+  const gridItemsInner = [...gridItems].map((item) =>
+    item.querySelector(".grid__item-inner")
+  );
 
   // Define GSAP timeline with ScrollTrigger
   const timeline = gsap.timeline({
@@ -102,9 +102,11 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
           },
           "rowsEnd"
         );
+
       break;
 
     case "cllg-fx2":
+    case "cllg-fx3":
       // Default settings for Flip and ScrollTrigger
       let settings = {
         flip: {
@@ -122,11 +124,17 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
       };
 
       // Merge default settings with options provided when calling the function
-      settings = Object.assign({}, settings, {
-        flip: { absolute: true, scale: false },
-        scrollTrigger: { start: "center center", end: "+=480%" },
-        stagger: 0.05,
-      });
+      settings = Object.assign(
+        {},
+        settings,
+        animationType === "cllg-fx2"
+          ? {
+              flip: { absolute: true, scale: false },
+              scrollTrigger: { start: "center center", end: "+=480%" },
+              stagger: 0.05,
+            }
+          : {}
+      );
 
       // Select elements within the gallery that will be animated
 
@@ -155,7 +163,10 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
           trigger: grid,
           start: settings.scrollTrigger.start,
           end: settings.scrollTrigger.end,
-          pin: document.querySelector(".text-block.section--2"),
+          pin:
+            animationType === "cllg-fx2"
+              ? document.querySelector(".text-block.section--2")
+              : document.querySelector(".text-block.section--3"),
           scrub: true,
         },
         stagger: settings.stagger,
