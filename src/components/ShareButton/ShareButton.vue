@@ -26,7 +26,7 @@
     </div>
 
     <div class="tooltip-container" :class="{ '--copied': !!copiedData.length }">
-      <span class="tooltip">{{ copiedData }}</span>
+      <span class="tooltip">Lien copié !</span>
     </div>
   </div>
 </template>
@@ -192,8 +192,7 @@ const onShare = async () => {
     bottom: 112px;
     right: 36px;
 
-    &.--copied,
-    &:hover {
+    &.--copied {
       .tooltip {
         top: -100%;
         opacity: 1;
@@ -214,7 +213,7 @@ const onShare = async () => {
       background-color: rgb(255, 255, 255);
       border-radius: 12px;
       color: rgb(34, 34, 34);
-      font-size: 0.72rem;
+      font-size: 0.48rem;
 
       &::before {
         position: absolute;
