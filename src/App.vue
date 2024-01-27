@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { nextTick, onMounted, ref } from "vue";
 import { lock, unlock } from "tua-body-scroll-lock";
 import {
   initSmoothScrolling,
@@ -90,138 +90,137 @@ const computedBindedProps = (section: any, index: number) => {
   return bindedProps;
 };
 
-onMounted(() => {
-  Splitting();
+const initScroll = () => {
+  const fx1 = {
+    id: "fx1",
+    nodes: [
+      ...document.querySelectorAll(
+        ".text-block:not(.section--2) .text-block__content.fx1[data-splitting]"
+      ),
+    ],
+  };
 
-  lock(document.querySelector("main.app") as HTMLElement);
+  const fx1Section2 = {
+    id: "fx2",
+    nodes: [
+      ...document.querySelectorAll(
+        ".section--2 .text-block__content.fx1[data-splitting]"
+      ),
+    ],
+  };
+
+  const fx2 = {
+    id: "fx2",
+    nodes: [
+      ...document.querySelectorAll(
+        ".text-block:not(.section--2) .text-block__title.fx2[data-splitting]"
+      ),
+      ...document.querySelectorAll(
+        ".text-block:not(.section--2) .text-block__subtitle.fx2[data-splitting]"
+      ),
+    ],
+  };
+
+  const fx2Section2 = {
+    id: "fx2",
+    nodes: [
+      ...document.querySelectorAll(
+        ".section--2 .text-block__title.fx2[data-splitting]"
+      ),
+      ...document.querySelectorAll(
+        ".section--2 .text-block__subtitle.fx2[data-splitting]"
+      ),
+    ],
+  };
+
+  const fx3 = {
+    id: "fx3",
+    nodes: [
+      ...document.querySelectorAll(".text-block__content.fx3[data-splitting]"),
+    ],
+  };
+
+  const collage1 = {
+    id: "cllg-fx1",
+    node: document.querySelector(".section--1.grid"),
+    type: "collage",
+  };
+
+  const collage2 = {
+    id: "cllg-fx2",
+    node: document.querySelector(".section--2.grid-wrap__gallery"),
+    type: "collage",
+  };
+
+  const collage3 = {
+    id: "cllg-fx3",
+    node: document.querySelector(".section--3.grid-wrap__gallery"),
+    type: "collage",
+  };
+
+  const collage4 = {
+    id: "cllg-fx4",
+    node: document.querySelector(".section--4.grid-wrap__gallery"),
+    type: "collage",
+  };
+
+  const collage5 = {
+    id: "cllg-fx1",
+    node: document.querySelector(".section--6.grid"),
+    type: "collage",
+  };
+
+  const collage6 = {
+    id: "cllg-fx4",
+    node: document.querySelector(".section--7.grid-wrap__gallery"),
+    type: "collage",
+  };
+
+  const collage7 = {
+    id: "cllg-fx5",
+    node: document.querySelector(".section--8.grid"),
+    type: "collage",
+  };
+
+  const video1 = {
+    id: "video-fx1",
+    node: document.querySelector(".section--5.video-block"),
+    type: "video",
+  };
+
+  initSmoothScrolling();
+
+  scroll(fx1Section2);
+  scroll(fx2Section2);
+
+  scrollGrid(collage1);
+  scrollGrid(collage2);
+  scrollGrid(collage3);
+  scrollGrid(collage4);
+  scrollGrid(collage5);
+  scrollGrid(collage6);
+  scrollGrid(collage7);
+  scrollGrid(video1);
+
+  scroll(fx1);
+  scroll(fx2);
+
+  scroll(fx3);
 
   setTimeout(() => {
-    const initScroll = () => {
-      const fx1 = {
-        id: "fx1",
-        nodes: [
-          ...document.querySelectorAll(
-            ".text-block:not(.section--2) .text-block__content.fx1[data-splitting]"
-          ),
-        ],
-      };
+    loading.value = false;
+    firstLoading.value = false;
+    unlock(document.querySelector("main.app") as HTMLElement);
+    scrollTo(0);
+  }, 5000);
+};
 
-      const fx1Section2 = {
-        id: "fx2",
-        nodes: [
-          ...document.querySelectorAll(
-            ".section--2 .text-block__content.fx1[data-splitting]"
-          ),
-        ],
-      };
+onMounted(() => {
+  nextTick(() => {
+    Splitting();
+    initScroll();
 
-      const fx2 = {
-        id: "fx2",
-        nodes: [
-          ...document.querySelectorAll(
-            ".text-block:not(.section--2) .text-block__title.fx2[data-splitting]"
-          ),
-          ...document.querySelectorAll(
-            ".text-block:not(.section--2) .text-block__subtitle.fx2[data-splitting]"
-          ),
-        ],
-      };
-
-      const fx2Section2 = {
-        id: "fx2",
-        nodes: [
-          ...document.querySelectorAll(
-            ".section--2 .text-block__title.fx2[data-splitting]"
-          ),
-          ...document.querySelectorAll(
-            ".section--2 .text-block__subtitle.fx2[data-splitting]"
-          ),
-        ],
-      };
-
-      const fx3 = {
-        id: "fx3",
-        nodes: [
-          ...document.querySelectorAll(
-            ".text-block__content.fx3[data-splitting]"
-          ),
-        ],
-      };
-
-      const collage1 = {
-        id: "cllg-fx1",
-        node: document.querySelector(".section--1.grid"),
-        type: "collage",
-      };
-
-      const collage2 = {
-        id: "cllg-fx2",
-        node: document.querySelector(".section--2.grid-wrap__gallery"),
-        type: "collage",
-      };
-
-      const collage3 = {
-        id: "cllg-fx3",
-        node: document.querySelector(".section--3.grid-wrap__gallery"),
-        type: "collage",
-      };
-
-      const collage4 = {
-        id: "cllg-fx4",
-        node: document.querySelector(".section--4.grid-wrap__gallery"),
-        type: "collage",
-      };
-
-      const collage5 = {
-        id: "cllg-fx1",
-        node: document.querySelector(".section--6.grid"),
-        type: "collage",
-      };
-
-      const collage6 = {
-        id: "cllg-fx4",
-        node: document.querySelector(".section--7.grid-wrap__gallery"),
-        type: "collage",
-      };
-
-      const collage7 = {
-        id: "cllg-fx5",
-        node: document.querySelector(".section--8.grid"),
-        type: "collage",
-      };
-
-      const video1 = {
-        id: "video-fx1",
-        node: document.querySelector(".section--5.video-block"),
-        type: "video",
-      };
-
-      initSmoothScrolling();
-
-      scroll(fx1Section2);
-      scroll(fx2Section2);
-
-      scrollGrid(collage1);
-      scrollGrid(collage2);
-      scrollGrid(collage3);
-      scrollGrid(collage4);
-      scrollGrid(collage5);
-      scrollGrid(collage6);
-      scrollGrid(collage7);
-      scrollGrid(video1);
-
-      scroll(fx1);
-      scroll(fx2);
-
-      scroll(fx3);
-
-      setTimeout(() => {
-        loading.value = false;
-        firstLoading.value = false;
-        unlock(document.querySelector("main.app") as HTMLElement);
-        scrollTo(0);
-      }, 5000);
-    };
+    lock(document.querySelector("main.app") as HTMLElement);
 
     window.addEventListener("resize", (e: any) => {
       // cancelScroll();
@@ -245,8 +244,6 @@ onMounted(() => {
       refreshScroll();
     });
 
-    initScroll();
-
     const pinSpacer = document.querySelector(
       ".app > .pin-spacer:last-of-type"
     ) as HTMLElement;
@@ -255,7 +252,7 @@ onMounted(() => {
         xpContent.length % 2 !== 0 ? "clear-day-white" : "shakespear-blue"
       })`;
     }
-  }, 640);
+  });
 });
 </script>
 
