@@ -34,10 +34,13 @@
       {{ section.text }}
     </text-block>
   </main>
+  <transition name="fade" mode="out-in">
+    <loader-block v-if="loading"></loader-block>
+  </transition>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import {
   initSmoothScrolling,
   scroll,
@@ -51,6 +54,8 @@ import "splitting/dist/splitting-cells.css";
 import xpTitle from "./configs/xpTitle.json";
 import xpContent from "./configs/xpContent.json";
 import xpMarquee from "./configs/xpMarquee.json";
+
+const loading = ref<boolean>(true);
 
 const computedBindedProps = (section: any, index: number) => {
   const bindedProps: any = {};
@@ -200,6 +205,8 @@ onMounted(() => {
       scroll(fx2);
 
       scroll(fx3);
+
+      loading.value = false;
     };
 
     window.addEventListener("resize", () => {
@@ -209,6 +216,12 @@ onMounted(() => {
       // setTimeout(() => {
       //   initScroll();
       // }, 2000);
+
+      loading.value = true;
+
+      setTimeout(() => {
+        loading.value = false;
+      }, 1600);
 
       refreshScroll();
     });
