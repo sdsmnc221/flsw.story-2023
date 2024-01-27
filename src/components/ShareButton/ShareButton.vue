@@ -24,10 +24,16 @@
         </svg>
       </span>
     </div>
+
+    <div class="tooltip-container" :class="{ '--copied': !!copiedData.length }">
+      <span class="tooltip">{{ copiedData }}</span>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 const shareData = {
   title:
     "[FeliSweet 2023 : Entre Défis et Résilience, l'Aventure Féline Inoubliable",
@@ -35,13 +41,31 @@ const shareData = {
   url: window.location.href,
 };
 
+const copiedData = ref<string>("");
+
+const copyContent = async () => {
+  try {
+    await navigator.clipboard.writeText(window.location.href);
+    copiedData.value = window.location.href;
+
+    setTimeout(() => {
+      copiedData.value = "";
+    }, 3200);
+
+    /* Resolved - text copied to clipboard successfully */
+  } catch (err) {
+    console.error("Failed to copy: ", err);
+    /* Rejected - text failed to copy to the clipboard */
+  }
+};
+
 const onShare = async () => {
   try {
     if (!window.navigator.canShare) {
-      return;
+      await copyContent();
+    } else {
+      await window.navigator.share(shareData);
     }
-
-    await window.navigator.share(shareData);
   } catch (err) {
     console.log(err);
   }
@@ -154,6 +178,53 @@ const onShare = async () => {
             inset 0 8px 20px 0 rgba(0, 0, 0, 0.2),
             inset 0 0 5px 1px rgba(255, 255, 255, 0.6);
         }
+      }
+    }
+  }
+
+  .tooltip-container {
+    min-width: 72px;
+    height: 24px;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    position: fixed;
+    bottom: 112px;
+    right: 36px;
+
+    &.--copied,
+    &:hover {
+      .tooltip {
+        top: -100%;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+    }
+
+    .tooltip {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.3em 0.6em;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+      background-color: rgb(255, 255, 255);
+      border-radius: 12px;
+      color: rgb(34, 34, 34);
+      font-size: 0.72rem;
+
+      &::before {
+        position: absolute;
+        content: "";
+        height: 0.6em;
+        width: 0.6em;
+        bottom: -0.2em;
+        left: 50%;
+        transform: translate(-50%) rotate(45deg);
+        background-color: rgb(255, 255, 255);
       }
     }
   }
