@@ -30,8 +30,8 @@
 <script setup lang="ts">
 const shareData = {
   title:
-    "[Web] FeliSweet 2023 Entre Défis et Résilience, l'Aventure Féline Inoubliable",
-  text: "[Web] FeliSweet 2023 Entre Défis et Résilience, l'Aventure Féline Inoubliable",
+    "[FeliSweet 2023 : Entre Défis et Résilience, l'Aventure Féline Inoubliable",
+  text: "FeliSweet 2023 : Entre Défis et Résilience, l'Aventure Féline Inoubliable",
   url: window.location.href,
 };
 
