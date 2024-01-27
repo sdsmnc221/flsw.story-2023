@@ -146,6 +146,7 @@ withDefaults(defineProps<Props>(), {
     font-size: 1.2rem;
     line-height: 1.6rem;
     position: relative;
+    padding: 16px;
 
     &:not(.fx3) {
       &::after {
@@ -153,7 +154,7 @@ withDefaults(defineProps<Props>(), {
         position: absolute;
         top: 10%;
         left: 10%;
-        width: 100%;
+        width: 104%;
         height: 100%;
         z-index: -1;
 
@@ -164,7 +165,7 @@ withDefaults(defineProps<Props>(), {
         position: absolute;
         top: -5%;
         left: -10%;
-        width: 100%;
+        width: 104%;
         height: 100%;
         opacity: 0;
         z-index: -1;

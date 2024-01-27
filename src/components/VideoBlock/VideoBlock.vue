@@ -187,6 +187,8 @@ watch(
 
 <style lang="scss">
 .video-block {
+  position: relative;
+  z-index: 13;
   &.content-wrap {
     display: flex;
     width: 100vw;
