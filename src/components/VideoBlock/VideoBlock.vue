@@ -299,7 +299,7 @@ watch(
 
   @media (max-width: 768px) {
     .content {
-      transform: translate(4vw, 16vh);
+      transform: translate(4vw, 8vh);
       &__svg-wrapper {
         height: 28vh;
       }
