@@ -54,7 +54,7 @@ body {
   position: fixed;
   width: 32px; /* Set the width of your cursor */
   height: 32px; /* Set the height of your cursor */
-  background: url("img/cursor.png") no-repeat center center;
+  background: url("/img/cursor.png") no-repeat center center;
   background-size: cover;
   pointer-events: none; /* Allow interactions with elements beneath the cursor */
   transform: translate(-50%, -50%) rotate(-24deg);
