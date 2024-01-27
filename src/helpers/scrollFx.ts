@@ -197,10 +197,16 @@ const scrollGrid = (grid: {
 };
 
 const cancelScroll = () => {
+  console.log(ScrollTrigger.getAll(), gsap.globalTimeline.getChildren());
+
   ScrollTrigger.killAll();
   gsap.globalTimeline.clear();
 
   console.log(ScrollTrigger.getAll(), gsap.globalTimeline.getChildren());
+};
+
+const refreshScroll = () => {
+  ScrollTrigger.refresh();
 };
 
 export {
@@ -209,4 +215,5 @@ export {
   scroll,
   scrollGrid,
   cancelScroll,
+  refreshScroll,
 };

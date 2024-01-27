@@ -40,10 +40,9 @@
 import { onMounted } from "vue";
 import {
   initSmoothScrolling,
-  cancelSmoothScrolling,
   scroll,
   scrollGrid,
-  cancelScroll,
+  refreshScroll,
 } from "./helpers/scrollFx";
 import Splitting from "splitting";
 import "splitting/dist/splitting.css";
@@ -192,9 +191,12 @@ onMounted(() => {
     window.addEventListener("resize", () => {
       // cancelScroll();
       // cancelSmoothScrolling();
+
       // setTimeout(() => {
       //   initScroll();
-      // }, 1200);
+      // }, 2000);
+
+      refreshScroll();
     });
 
     initScroll();
