@@ -47,7 +47,7 @@
 
     <div class="grid-wrap grid-wrap--dense" v-if="collageFx.includes('4')">
       <div
-        class="grid-wrap__gallery grid-wrap__gallery--stack grid-wrap__gallery--stack-inverse grid-wrap__gallery--stack-dark grid-wrap__gallery--stack-scale"
+        class="grid-wrap__gallery grid-wrap__gallery--stack grid-wrap__gallery--stack-inverse grid-wrap__gallery--stack-dark"
         :class="sectionId"
       >
         <div
@@ -55,6 +55,19 @@
           v-for="index in 5"
           :key="`${sectionId}-grid-item-${index}`"
           style="background-image: url(img/4.jpg)"
+        ></div>
+      </div>
+    </div>
+
+    <div class="grid-wrap" v-if="collageFx.includes('5')">
+      <div
+        class="grid__item"
+        v-for="index in 48"
+        :key="`${sectionId}-grid-item-${index}`"
+      >
+        <div
+          class="grid__item-inner"
+          style="background-image: url(img/1.jpg)"
         ></div>
       </div>
     </div>
@@ -72,14 +85,35 @@ withDefaults(defineProps<Props>(), {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .collage-block {
+  --perspective: 1500px;
+
+  --grid-width: 100%;
+  --grid-height: auto;
+  --grid-gap: 2vw;
+  --grid-columns: 4;
+  --grid-inner-scale: 1;
+
   &.grid {
     position: relative;
     width: 100%;
     height: 100%;
 
     &.--cllg-fx1 {
+      --grid-item-ratio: 1.32;
+
+      .grid__item {
+        mix-blend-mode: color-burn;
+      }
+    }
+
+    &.--cllg-fx5 {
+      --grid-item-ratio: 1.5;
+    }
+
+    &.--cllg-fx1,
+    &.--cllg-fx5 {
       display: grid;
       place-items: center;
       padding: 2rem;
@@ -109,7 +143,6 @@ withDefaults(defineProps<Props>(), {
           border-radius: 8px;
           display: grid;
           place-items: center;
-          mix-blend-mode: color-burn;
 
           &-inner {
             position: relative;

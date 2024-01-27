@@ -12,31 +12,32 @@ const applyCollageAnimation = (
   animationType: string,
   sectionIndex: string
 ) => {
+  let gridWrap, gridItems, gridItemsInner, timeline;
+
+  console.log("animationType", animationType);
+
+  if (["1", "5"].some((type) => animationType.includes(type))) {
+    // Child elements of grid
+    gridWrap = grid.querySelector(".grid-wrap");
+    gridItems = grid.querySelectorAll(".grid__item");
+    gridItemsInner = [...gridItems].map((item) =>
+      item.querySelector(".grid__item-inner")
+    );
+
+    // Define GSAP timeline with ScrollTrigger
+    timeline = gsap.timeline({
+      defaults: { ease: "none" },
+      scrollTrigger: {
+        trigger: gridWrap,
+        start: "top bottom+=5%",
+        end: "bottom top-=5%",
+        scrub: true,
+      },
+    });
+  }
   // Apply different animations based on type
   switch (animationType) {
     case "cllg-fx1":
-      // Child elements of grid
-      const gridWrap = grid.querySelector(".grid-wrap");
-      const gridItems = grid.querySelectorAll(".grid__item");
-      const gridItemsInner = [...gridItems].map((item) =>
-        item.querySelector(".grid__item-inner")
-      );
-
-      if (gridItemsInner.length) {
-        //
-      }
-
-      // Define GSAP timeline with ScrollTrigger
-      const timeline = gsap.timeline({
-        defaults: { ease: "none" },
-        scrollTrigger: {
-          trigger: gridWrap,
-          start: "top bottom+=5%",
-          end: "bottom top-=5%",
-          scrub: true,
-        },
-      });
-
       // Set some CSS related style values
       grid.style.setProperty("--grid-width", isMobile() ? "320%" : "100%");
       grid.style.setProperty("--grid-height", "auto");
@@ -45,50 +46,51 @@ const applyCollageAnimation = (
 
       const gridObj = getGrid(gridItems);
 
-      timeline
-        .set(gridWrap, {
-          rotationX: 50,
-        })
-        .to(gridWrap, {
-          rotationX: 30,
-        })
-        .fromTo(
-          gridItems,
-          {
-            filter: "brightness(72%) contrast(0.7)",
-          },
-          {
-            filter: "brightness(100%) contrast(1)",
-          },
-          0
-        )
-        .to(
-          gridObj.rows("even"),
-          {
-            xPercent: -100,
-            ease: "power1",
-          },
-          0
-        )
-        .to(
-          gridObj.rows("odd"),
-          {
-            xPercent: 100,
-            ease: "power1",
-          },
-          0
-        )
-        .addLabel("rowsEnd", ">-=0.15")
-        .to(
-          gridItems,
-          {
-            ease: "power1",
-            yPercent: () => gsap.utils.random(-100, 200),
-            ...(isMobile() && { scale: 2 }),
-          },
-          "rowsEnd"
-        );
-
+      if (timeline) {
+        timeline
+          .set(gridWrap, {
+            rotationX: 50,
+          })
+          .to(gridWrap, {
+            rotationX: 30,
+          })
+          .fromTo(
+            gridItems,
+            {
+              filter: "brightness(72%) contrast(0.7)",
+            },
+            {
+              filter: "brightness(100%) contrast(1)",
+            },
+            0
+          )
+          .to(
+            gridObj.rows("even"),
+            {
+              xPercent: -100,
+              ease: "power1",
+            },
+            0
+          )
+          .to(
+            gridObj.rows("odd"),
+            {
+              xPercent: 100,
+              ease: "power1",
+            },
+            0
+          )
+          .addLabel("rowsEnd", ">-=0.15")
+          .to(
+            gridItems,
+            {
+              ease: "power1",
+              yPercent: () => gsap.utils.random(-100, 200),
+              ...(isMobile() && { scale: 2 }),
+            },
+            "rowsEnd"
+          );
+      }
       break;
 
     case "cllg-fx2":
@@ -189,72 +191,49 @@ const applyCollageAnimation = (
         );
       }
       break;
+    case "cllg-fx5":
+      // Set some CSS related style values
+      grid.style.setProperty("--grid-width", "105%");
+      grid.style.setProperty("--grid-columns", isMobile() ? "4" : "8");
+      grid.style.setProperty("--perspective", "1500px");
+      grid.style.setProperty("--grid-inner-scale", "0.5");
 
-      let DOM: any = {};
-      // flipstate saves the current state of title elements
-      let flipstate_ = null;
-      DOM.el = grid;
-
-      if (DOM.el !== null) {
-        DOM.content = [...DOM.el.querySelectorAll(".content")];
-        DOM.svg = DOM.el.querySelector(".content__img");
-        DOM.mask = DOM.svg.querySelector(".mask");
-        DOM.image = DOM.svg.querySelector("video");
-
-        // Save current state
-        flipstate_ = Flip.getState(
-          document.querySelector(
-            `.text-block.section--${animationType.replace("cllg-fx", "")}`
-          )
-        );
-
-        // Check if the mask element is a circle or a path
-        const isCircle = DOM.mask.tagName.toLowerCase() === "circle";
-
-        // Create the Flip.from that we'll pass into the ScrollTrigger animation property
-        const flip = Flip.from(flipstate_, {
-          ease: "none",
-          simple: true,
-        })
-          .fromTo(
-            DOM.mask,
+      if (timeline && gridItemsInner) {
+        timeline
+          .set(gridItems, {
+            transformOrigin: "50% 0%",
+            z: () => gsap.utils.random(-5000, -2000),
+            rotationX: () => gsap.utils.random(-65, -25),
+            filter: "brightness(0%)",
+          })
+          .to(
+            gridItems,
             {
-              attr: isCircle
-                ? { r: DOM.mask.getAttribute("r") }
-                : { d: DOM.mask.getAttribute("d") },
-            },
-            {
-              ease: "none",
-              attr: isCircle
-                ? { r: DOM.mask.dataset.valueFinal }
-                : { d: DOM.mask.dataset.valueFinal },
+              xPercent: () => gsap.utils.random(-150, 150),
+              yPercent: () => gsap.utils.random(-300, 300),
+              rotationX: 0,
+              filter: "brightness(200%)",
             },
             0
           )
-          // Also scale up the image element
-          .fromTo(
-            DOM.image,
+          .to(
+            gridWrap,
             {
-              transformOrigin: "50% 50%",
-              filter: "brightness(100%)",
+              z: 6500,
+            },
+            0
+          )
+          .fromTo(
+            gridItemsInner,
+            {
+              scale: isMobile() ? 4 : 2,
             },
             {
-              ease: "none",
-              scale: isCircle ? 1.2 : 1,
-              filter: "brightness(150%)",
+              scale: isMobile() ? 1 : 0.5,
             },
             0
           );
-
-        ScrollTrigger.create({
-          trigger: grid.querySelector(".content--layout-2"),
-          start: "top center",
-          end: "+=64%",
-          scrub: true,
-          animation: flip,
-        });
       }
-
       break;
     default:
       console.error("Unknown animation type.");

@@ -170,6 +170,12 @@ onMounted(() => {
         type: "collage",
       };
 
+      const collage7 = {
+        id: "cllg-fx5",
+        node: document.querySelector(".section--8.grid"),
+        type: "collage",
+      };
+
       const video1 = {
         id: "video-fx1",
         node: document.querySelector(".section--5.video-block"),
@@ -187,6 +193,7 @@ onMounted(() => {
       scrollGrid(collage4);
       scrollGrid(collage5);
       scrollGrid(collage6);
+      scrollGrid(collage7);
       scrollGrid(video1);
 
       scroll(fx1);

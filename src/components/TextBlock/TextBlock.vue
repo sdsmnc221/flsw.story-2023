@@ -83,14 +83,6 @@ withDefaults(defineProps<Props>(), {
 
 <style lang="scss">
 .text-block {
-  --perspective: 1500px;
-  --grid-item-ratio: 1.32;
-  --grid-width: 100%;
-  --grid-height: auto;
-  --grid-gap: 2vw;
-  --grid-columns: 4;
-  --grid-inner-scale: 1;
-
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -125,6 +117,11 @@ withDefaults(defineProps<Props>(), {
       var(--shakespear-blue) 0%,
       var(--clear-day-white) 100%
     );
+  }
+
+  &:has(.--cllg-fx5) {
+    overflow: visible;
+    z-index: 14;
   }
 
   &__title {
