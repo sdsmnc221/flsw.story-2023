@@ -37,7 +37,7 @@
     </text-block>
   </main>
   <transition name="fade" mode="out-in">
-    <loader-block v-if="loading"></loader-block>
+    <loader-block v-if="loading" :first-loading="firstLoading"></loader-block>
   </transition>
   <paw-cursor></paw-cursor>
 </template>
@@ -61,6 +61,7 @@ import xpContent from "./configs/xpContent.json";
 import xpMarquee from "./configs/xpMarquee.json";
 
 const loading = ref<boolean>(true);
+const firstLoading = ref<boolean>(true);
 
 const computedBindedProps = (section: any, index: number) => {
   const bindedProps: any = {};
@@ -215,6 +216,7 @@ onMounted(() => {
 
       setTimeout(() => {
         loading.value = false;
+        firstLoading.value = false;
         unlock(document.querySelector("main.app") as HTMLElement);
         scrollTo(0);
       }, 5000);

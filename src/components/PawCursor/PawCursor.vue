@@ -58,7 +58,7 @@ body {
   background-size: cover;
   pointer-events: none; /* Allow interactions with elements beneath the cursor */
   transform: translate(-50%, -50%) rotate(-24deg);
-  z-index: 72;
+  z-index: 98;
 
   &.--mobile {
     display: none;

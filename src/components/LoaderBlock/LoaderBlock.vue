@@ -8,12 +8,24 @@
       <div class="shadow"></div>
       <div class="shadow"></div>
     </div>
+    <div class="loader-block__status yeseva-one-regular">
+      <span v-if="firstLoading === true"
+        >En cours d'appeler les Chachouilles !</span
+      >
+      <span v-else>Un instant de réparation !</span>
+    </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface Props {
+  firstLoading: boolean;
+}
 
-<style lang="scss" scoped>
+defineProps<Props>();
+</script>
+
+<style lang="scss">
 .loader-block {
   position: fixed;
   width: 100vw;
@@ -22,7 +34,18 @@
   left: 0;
   background-color: var(--light-blue);
   overflow: hidden;
-  z-index: 99;
+  z-index: 97;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__status {
+    color: var(--tuscany-blue);
+    transform: translateY(12vh);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
 
   .wrapper {
     width: 200px;
