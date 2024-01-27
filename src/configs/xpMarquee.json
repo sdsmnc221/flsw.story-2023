@@ -1,22 +1,32 @@
 [
     {
-        "title": "Cat-Sitting & Comportements Félins 01",
+        "title": "Solitaires Enchantés",
         "cats": [
             "Taijitu",
             "Stark",
             "Sky",
             "Ruby",
             "Roky",
-            "Robin",
-            "Ted",
-            "Minet",
-            "Noisette",
-            "Okko",
-            "Plume"
+            "Isis",
+            "Gandalf",
+            "Crapule",
+            "Romi"
         ]
     },
     {
-        "title": "Foyer d'Accueil Des Petits Clochards",
+        "title": "Duos Harmonieux",
+        "cats": [
+            "Robin x Ted",
+            "Minet x Noisette",
+            "Okko x Plume",
+            "Câline x Milou",
+            "Bob x Kikou",
+            "Arès x Mia",
+            "Grudu x Aga"
+        ]
+    },
+    {
+        "title": "Éclat du Foyer des Petits Clochards",
         "cats": [
             "Séti",
             "Ruben",
@@ -27,23 +37,6 @@
             "Tagada",
             "Melba",
             "Cacaille"
-        ]
-    },
-    {
-        "title": "Cat-Sitting & Comportements Félins 02",
-        "cats": [
-            "Isis",
-            "Gandalf",
-            "Crapule",
-            "Câline",
-            "Milou",
-            "Bob",
-            "Kikou",
-            "Arès",
-            "Mia",
-            "Romi",
-            "Grudu",
-            "Aga"
         ]
     }
 ]
