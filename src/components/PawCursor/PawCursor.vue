@@ -17,7 +17,7 @@ const LERP_FACTOR = 0.1;
 const mouse = ref<{ x: number; y: number }>({ x: 0, y: 0 });
 const target = ref<{ x: number; y: number }>({ x: 0, y: 0 });
 
-const updateCursorPosition = (event) => {
+const updateCursorPosition = (event: any) => {
   target.value.x = event.clientX;
   target.value.y = event.clientY;
 };
