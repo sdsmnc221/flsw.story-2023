@@ -399,7 +399,7 @@ withDefaults(defineProps<Props>(), {
     background-position: 50% 50%;
     background-size: cover;
     flex: none;
-    border-radius: 6px;
+    border-radius: 8px;
     position: relative;
     filter: brightness(1);
   }

@@ -154,6 +154,7 @@ withDefaults(defineProps<Props>(), {
         width: 104%;
         height: 100%;
         z-index: -1;
+        border-radius: 8px;
 
         transition: all 1.2s ease-in-out;
       }
@@ -166,6 +167,7 @@ withDefaults(defineProps<Props>(), {
         height: 100%;
         opacity: 0;
         z-index: -1;
+        border-radius: 8px;
 
         transition: all 1.2s ease-in-out;
       }
