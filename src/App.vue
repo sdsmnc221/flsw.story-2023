@@ -41,11 +41,13 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import { lock, unlock } from "tua-body-scroll-lock";
 import {
   initSmoothScrolling,
   scroll,
   scrollGrid,
   refreshScroll,
+  scrollTo,
 } from "./helpers/scrollFx";
 import Splitting from "splitting";
 import "splitting/dist/splitting.css";
@@ -85,6 +87,8 @@ const computedBindedProps = (section: any, index: number) => {
 
 onMounted(() => {
   Splitting();
+
+  lock();
 
   setTimeout(() => {
     const initScroll = () => {
@@ -206,7 +210,11 @@ onMounted(() => {
 
       scroll(fx3);
 
-      loading.value = false;
+      setTimeout(() => {
+        loading.value = false;
+        unlock();
+        scrollTo(0);
+      }, 5000);
     };
 
     window.addEventListener("resize", () => {

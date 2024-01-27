@@ -86,8 +86,6 @@ const mouseEnter = (ev: any) => {
   // find closest side to the mouse
   const edge = findClosestEdge(ev);
 
-  console.log(edge);
-
   // set the initial y position for both the marquee and marqueeInner elements
   // for the reveal effect to happen, both start at opposite positions
   // the directions are different depending on the direction the cursor enters the element (bottom or top)

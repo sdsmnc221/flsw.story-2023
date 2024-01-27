@@ -14,8 +14,6 @@ const applyCollageAnimation = (
 ) => {
   let gridWrap, gridItems, gridItemsInner, timeline;
 
-  console.log("animationType", animationType);
-
   if (["1", "5"].some((type) => animationType.includes(type))) {
     // Child elements of grid
     gridWrap = grid.querySelector(".grid-wrap");

@@ -173,7 +173,6 @@ const pauseVideo = () => {
 watch(
   () => videoPlayState.value,
   (newVal) => {
-    console.log(videoRef.value);
     if (videoRef.value) {
       if (newVal) {
         videoRef.value.play();

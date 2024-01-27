@@ -15,6 +15,8 @@ let lenis: any;
 // Initialize Lenis smooth scrolling
 const initSmoothScrolling = () => {
   lenis = new Lenis({
+    // wrapper: document.querySelector("main.app"),
+    // content: document.querySelector("main.app"),
     lerp: 0.032,
     smooth: true,
     smoothWheel: true, // Enables smooth scrolling for mouse wheel events
@@ -215,6 +217,10 @@ const refreshScroll = () => {
   ScrollTrigger.refresh();
 };
 
+const scrollTo = (value: number | string) => {
+  lenis.scrollTo(value, { lerp: 0.032 });
+};
+
 export {
   initSmoothScrolling,
   cancelSmoothScrolling,
@@ -222,4 +228,5 @@ export {
   scrollGrid,
   cancelScroll,
   refreshScroll,
+  scrollTo,
 };
