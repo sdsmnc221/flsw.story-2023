@@ -11,6 +11,7 @@ declare module 'vue' {
     CollageBlock: typeof import('./src/components/CollageBlock/CollageBlock.vue')['default']
     LoaderBlock: typeof import('./src/components/LoaderBlock/LoaderBlock.vue')['default']
     MarqueeBlock: typeof import('./src/components/MarqueeBlock/MarqueeBlock.vue')['default']
+    PawCursor: typeof import('./src/components/PawCursor/PawCursor.vue')['default']
     ShareButton: typeof import('./src/components/ShareButton/ShareButton.vue')['default']
     TextBlock: typeof import('./src/components/TextBlock/TextBlock.vue')['default']
     TitleBlock: typeof import('./src/components/TitleBlock/TitleBlock.vue')['default']

@@ -39,6 +39,7 @@
   <transition name="fade" mode="out-in">
     <loader-block v-if="loading"></loader-block>
   </transition>
+  <paw-cursor></paw-cursor>
 </template>
 
 <script setup lang="ts">
