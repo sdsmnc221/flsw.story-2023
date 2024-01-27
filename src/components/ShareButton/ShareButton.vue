@@ -203,6 +203,8 @@ const onShare = async () => {
 
     .tooltip {
       position: absolute;
+      min-width: calc(0.84rem * 8);
+      text-align: center;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
@@ -213,7 +215,8 @@ const onShare = async () => {
       background-color: rgb(255, 255, 255);
       border-radius: 12px;
       color: rgb(34, 34, 34);
-      font-size: 0.48rem;
+      font-size: 0.84rem;
+      word-break: keep-all;
 
       &::before {
         position: absolute;
