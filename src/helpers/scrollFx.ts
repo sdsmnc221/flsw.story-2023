@@ -57,13 +57,13 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
               onUpdate: (self) => {
                 const { progress } = self;
 
-                if (progress > 0.2) {
+                if (progress > 0.2 && progress < 0.8) {
                   if (!title.classList.contains("--background")) {
                     title.classList.add("--background");
                   }
                 }
 
-                if (progress > 0.8) {
+                if (progress > 0.99) {
                   if (title.classList.contains("--background")) {
                     title.classList.remove("--background");
                   }
