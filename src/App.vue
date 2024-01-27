@@ -88,7 +88,7 @@ const computedBindedProps = (section: any, index: number) => {
 onMounted(() => {
   Splitting();
 
-  lock();
+  lock(document.querySelector("main.app") as HTMLElement);
 
   setTimeout(() => {
     const initScroll = () => {
@@ -212,7 +212,7 @@ onMounted(() => {
 
       setTimeout(() => {
         loading.value = false;
-        unlock();
+        unlock(document.querySelector("main.app") as HTMLElement);
         scrollTo(0);
       }, 5000);
     };
