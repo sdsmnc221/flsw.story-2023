@@ -1,5 +1,6 @@
 <template>
   <main class="app">
+    <share-button></share-button>
     <section class="marquees-container">
       <marquee-block
         v-for="(marquee, index) in xpMarquee"
