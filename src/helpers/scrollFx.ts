@@ -189,7 +189,13 @@ const scrollGrid = (grid: {
 }) => {
   if (grid.node) {
     if (grid.type === "collage") {
-      applyCollageAnimation(grid.node, grid.id);
+      applyCollageAnimation(
+        grid.node,
+        grid.id,
+        [...grid.node.classList].filter((c: string) =>
+          c.includes("section--")
+        )[0]
+      );
     } else if (grid.type === "video") {
       applyVideoAnimation(grid.node, grid.id);
     }

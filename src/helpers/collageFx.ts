@@ -7,7 +7,11 @@ import { Flip } from "gsap/dist/Flip";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
 
-const applyCollageAnimation = (grid: any, animationType: string) => {
+const applyCollageAnimation = (
+  grid: any,
+  animationType: string,
+  sectionIndex: string
+) => {
   // Apply different animations based on type
   switch (animationType) {
     case "cllg-fx1":
@@ -158,7 +162,7 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
           start: settings.scrollTrigger.start,
           end: settings.scrollTrigger.end,
           pin: document.querySelector(
-            `.text-block.section--${animationType.replace("cllg-fx", "")}`
+            `.text-block.section--${sectionIndex.replace("section--", "")}`
           ),
           scrub: true,
         },

@@ -47,7 +47,7 @@
 
     <div class="grid-wrap grid-wrap--dense" v-if="collageFx.includes('4')">
       <div
-        class="grid-wrap__gallery grid-wrap__gallery--stack grid-wrap__gallery--stack-inverse grid-wrap__gallery--stack-dark"
+        class="grid-wrap__gallery grid-wrap__gallery--stack grid-wrap__gallery--stack-inverse grid-wrap__gallery--stack-dark grid-wrap__gallery--stack-scale"
         :class="sectionId"
       >
         <div
