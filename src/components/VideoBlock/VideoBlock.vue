@@ -198,7 +198,7 @@ watch(
   .content {
     display: flex;
     height: 100vh;
-    transform: translate(-12vw, 12vh);
+    transform: translate(-12vw, 24vh);
     width: 100%;
   }
 
@@ -282,8 +282,8 @@ watch(
     align-items: center;
 
     &--play {
-      width: 12vw;
-      height: 12vw;
+      width: 8vw;
+      height: 8vw;
       cursor: pointer;
     }
 

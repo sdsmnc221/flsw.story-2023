@@ -51,7 +51,8 @@
         "textPosition": "top",
         "backgroundColor": "peach-shortcake-orange",
         "pseudoBackgroundColor": "stone-blue",
-        "textColor": "goose-down-beige"
+        "textColor": "goose-down-beige",
+        "spacing": "xl"
     },
     {
         "subtitle": "chapitre 6.",
