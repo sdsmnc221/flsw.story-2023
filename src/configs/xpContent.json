@@ -81,7 +81,8 @@
         "spacing": "normal",
         "backgroundColor": "peach-shortcake-orange",
         "textColor": "flsw-orange",
-        "pseudoBackgroundColor": "white"
+        "pseudoBackgroundColor": "white",
+        "socialMedia": true
     },
     {
         "subtitle": "épilogue.",

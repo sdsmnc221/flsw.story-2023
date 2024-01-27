@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BusinessCard: typeof import('./src/components/BusinessCard/BusinessCard.vue')['default']
     CollageBlock: typeof import('./src/components/CollageBlock/CollageBlock.vue')['default']
     LoaderBlock: typeof import('./src/components/LoaderBlock/LoaderBlock.vue')['default']
     MarqueeBlock: typeof import('./src/components/MarqueeBlock/MarqueeBlock.vue')['default']

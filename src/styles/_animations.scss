@@ -32,6 +32,18 @@
   }
 }
 
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;

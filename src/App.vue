@@ -32,6 +32,7 @@
       :fx="section.fx"
     >
       {{ section.text }}
+      <business-card v-if="section.socialMedia"></business-card>
     </text-block>
   </main>
   <transition name="fade" mode="out-in">
@@ -281,6 +282,26 @@ onMounted(() => {
       &:last-child {
         transform: rotate(-3deg) translateY(20vh) translateX(-10vw);
         width: 110%;
+      }
+    }
+  }
+
+  .text-block {
+    .business-card {
+      position: absolute;
+      right: -32vw;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .text-block {
+      &:has(.business-card) {
+        height: 120vh;
+      }
+
+      .business-card {
+        right: 0;
+        bottom: -48vh;
       }
     }
   }

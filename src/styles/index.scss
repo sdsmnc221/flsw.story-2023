@@ -3,7 +3,7 @@
 @import "./animations";
 
 body {
-  color: $tangora-dark-blue;
+  color: var(--tangora-dark-blue);
   font-size: 1.2rem;
   line-height: 1.4rem;
 
