@@ -30,6 +30,11 @@ const initSmoothScrolling = () => {
   requestAnimationFrame(scrollFn);
 };
 
+const cancelSmoothScrolling = () => {
+  cancelAnimationFrame(lenis.raf);
+  lenis.destroy();
+};
+
 // GSAP Scroll Triggers
 const scroll = (fx: { id: string; nodes: any[] }) => {
   switch (fx.id) {
@@ -191,4 +196,17 @@ const scrollGrid = (grid: {
   }
 };
 
-export { initSmoothScrolling, scroll, scrollGrid };
+const cancelScroll = () => {
+  ScrollTrigger.killAll();
+  gsap.globalTimeline.clear();
+
+  console.log(ScrollTrigger.getAll(), gsap.globalTimeline.getChildren());
+};
+
+export {
+  initSmoothScrolling,
+  cancelSmoothScrolling,
+  scroll,
+  scrollGrid,
+  cancelScroll,
+};

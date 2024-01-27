@@ -185,7 +185,7 @@ const applyCollageAnimation = (grid: any, animationType: string) => {
         );
       }
       break;
-    case "cllg-fx5":
+
       let DOM: any = {};
       // flipstate saves the current state of title elements
       let flipstate_ = null;
