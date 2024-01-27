@@ -59,6 +59,7 @@ import "splitting/dist/splitting-cells.css";
 import xpTitle from "./configs/xpTitle.json";
 import xpContent from "./configs/xpContent.json";
 import xpMarquee from "./configs/xpMarquee.json";
+import isMobile from "./helpers/isMobile";
 
 const loading = ref<boolean>(true);
 const firstLoading = ref<boolean>(true);
@@ -222,7 +223,7 @@ onMounted(() => {
       }, 5000);
     };
 
-    window.addEventListener("resize", () => {
+    window.addEventListener("resize", (e: any) => {
       // cancelScroll();
       // cancelSmoothScrolling();
 
@@ -230,11 +231,16 @@ onMounted(() => {
       //   initScroll();
       // }, 2000);
 
-      loading.value = true;
+      if (
+        !isMobile() ||
+        (isMobile() && window.innerWidth !== e.currentTarget.outerWidth)
+      ) {
+        loading.value = true;
 
-      setTimeout(() => {
-        loading.value = false;
-      }, 1600);
+        setTimeout(() => {
+          loading.value = false;
+        }, 1600);
+      }
 
       refreshScroll();
     });
