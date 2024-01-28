@@ -77,7 +77,7 @@ const onShare = async () => {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  z-index: 6;
+  z-index: 97;
   cursor: pointer;
 
   .toggle {
