@@ -261,7 +261,6 @@ onMounted(() => {
           block.parentElement &&
           block.parentElement.classList.contains("pin-spacer")
         ) {
-          console.log(block.parentElement);
           block.parentElement.style.zIndex = `${BASE_INDEX - index}`;
         } else {
           block.style.zIndex = `${BASE_INDEX - index} !important`;
