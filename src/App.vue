@@ -214,7 +214,7 @@ const initScroll = () => {
 onBeforeMount(() => {
   setTimeout(() => {
     showApp.value = true;
-  }, 100);
+  }, 1000);
 });
 
 onMounted(() => {
@@ -258,7 +258,7 @@ onMounted(() => {
         }
       });
     }, 640);
-  }, 320);
+  }, 2400);
 });
 </script>
 
