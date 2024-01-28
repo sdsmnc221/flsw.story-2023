@@ -73,7 +73,6 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
 
                 if (progress === 1) {
                   title.classList.add("--background");
-                  g;
                 }
               },
             },
