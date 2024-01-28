@@ -13,7 +13,33 @@
         "backgroundColor": "goose-down-beige",
         "textColor": "dallas-brown",
         "pseudoBackgroundColor": "sandy-clay-beige",
-        "spacing": "xl"
+        "spacing": "xl",
+        "collage": [
+            "c1-1.jpg",
+            "c1-2.jpg",
+            "c1-3.jpg",
+            "c1-4.jpg",
+            "c1-5.jpg",
+            "c1-6.jpg",
+            "c1-7.jpg",
+            "c1-8.jpg",
+            "c1-9.jpg",
+            "c1-10.jpg",
+            "c1-11.jpg",
+            "c1-12.jpg",
+            "c1-13.mp4",
+            "c1-14.mp4",
+            "c1-15.mp4",
+            "c1-16.mp4",
+            "c1-17.mp4",
+            "c1-18.mp4",
+            "c1-19.mp4",
+            "c1-20.mp4",
+            "c1-21.mp4",
+            "c1-22.mp4",
+            "c1-23.mp4",
+            "c1-24.mp4"
+        ]
     },
     {
         "subtitle": "chapitre 2.",
@@ -61,7 +87,23 @@
         "fx": "fx1",
         "cllgFx": "fx1",
         "spacing": "xl",
-        "backgroundColor": "clear-day-white"
+        "backgroundColor": "clear-day-white",
+        "collage": [
+            "c6-1.jpg",
+            "c6-2.jpg",
+            "c6-3.jpg",
+            "c6-4.jpg",
+            "c6-5.jpg",
+            "c6-6.jpg",
+            "c6-7.jpg",
+            "c6-8.jpg",
+            "c6-9.jpg",
+            "c6-10.jpg",
+            "c6-11.jpg",
+            "c6-12.jpg",
+            "c6-13.jpg",
+            "c6-15.mp4"
+        ]
     },
     {
         "subtitle": "chapitre 7.",

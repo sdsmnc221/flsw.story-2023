@@ -85,6 +85,10 @@ const computedBindedProps = (section: any, index: number) => {
     bindedProps.videoFx = section.videoFx;
   }
 
+  if (section.collage) {
+    bindedProps.collage = section.collage;
+  }
+
   return bindedProps;
 };
 

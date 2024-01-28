@@ -3,13 +3,19 @@
     <div class="grid-wrap" v-if="collageFx.includes('1')">
       <div
         class="grid__item"
-        v-for="index in 24"
+        v-for="(img, index) in computedCollage"
         :key="`${sectionId}-grid-item-${index}`"
       >
         <div
           class="grid__item-inner"
-          style="background-image: url(img/1.jpg)"
-        ></div>
+          :style="`${
+            img.includes('jpg') ? `background-image: url(${img})` : ''
+          }`"
+        >
+          <video v-if="img.includes('mp4')" autoplay muted loop>
+            <source :src="img" type="video/mp4" />
+          </video>
+        </div>
       </div>
     </div>
 
@@ -75,13 +81,33 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
+import shuffleArray from "../../helpers/shuffleArray";
+
 interface Props {
   collageFx?: string;
   sectionId: string;
+  collage?: string[] | null;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   collageFx: "fx0",
+  collage: null,
+});
+
+const computedCollage = computed<string[]>(() => {
+  if (props.collage) {
+    let collageArray = [...props.collage];
+    if (collageArray.length < 24) {
+      collageArray = [
+        ...collageArray,
+        ...Array(24 - collageArray.length).fill("1.jpg"),
+      ];
+    }
+    return shuffleArray(collageArray).map((img: string) => `/img/${img}`);
+  } else {
+    return Array(24).fill("/img/1.jpg");
+  }
 });
 </script>
 
@@ -102,10 +128,6 @@ withDefaults(defineProps<Props>(), {
 
     &.--cllg-fx1 {
       --grid-item-ratio: 1.32;
-
-      .grid__item {
-        mix-blend-mode: color-burn;
-      }
     }
 
     &.--cllg-fx5 {
@@ -140,7 +162,7 @@ withDefaults(defineProps<Props>(), {
           height: auto;
           overflow: hidden;
           position: relative;
-          border-radius: 8px;
+          border-radius: 16px;
           display: grid;
           place-items: center;
 
@@ -399,7 +421,7 @@ withDefaults(defineProps<Props>(), {
     background-position: 50% 50%;
     background-size: cover;
     flex: none;
-    border-radius: 8px;
+    border-radius: 16px;
     position: relative;
     filter: brightness(1);
   }
@@ -416,6 +438,13 @@ withDefaults(defineProps<Props>(), {
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+    }
   }
 
   @media (max-width: 768px) {

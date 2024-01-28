@@ -10,6 +10,7 @@
       v-if="cllgFx"
       :section-id="id"
       :collage-fx="cllgFx"
+      :collage="collage"
     ></collage-block>
 
     <video-block
@@ -66,6 +67,7 @@ interface Props {
   videoFx?: string | null;
   id: string;
   spacing?: string | null;
+  collage?: string[] | null;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -78,6 +80,7 @@ withDefaults(defineProps<Props>(), {
   cllgFx: null,
   videoFx: null,
   spacing: null,
+  collage: null,
 });
 </script>
 
@@ -156,7 +159,7 @@ withDefaults(defineProps<Props>(), {
         width: 104%;
         height: 100%;
         z-index: -1;
-        border-radius: 8px;
+        border-radius: 16px;
 
         transition: all 1.2s ease-in-out;
       }
@@ -169,7 +172,7 @@ withDefaults(defineProps<Props>(), {
         height: 100%;
         opacity: 0;
         z-index: -1;
-        border-radius: 8px;
+        border-radius: 16px;
 
         transition: all 1.2s ease-in-out;
       }
@@ -178,7 +181,7 @@ withDefaults(defineProps<Props>(), {
         &::after,
         &::before {
           background-color: var(--pseudo-background);
-          opacity: 0.48;
+          opacity: 0.72;
         }
       }
     }
