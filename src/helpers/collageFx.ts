@@ -39,8 +39,8 @@ const applyCollageAnimation = (
       // Set some CSS related style values
       grid.style.setProperty("--grid-width", isMobile() ? "320%" : "100%");
       grid.style.setProperty("--grid-height", "auto");
-      grid.style.setProperty("--grid-columns", "4");
-      grid.style.setProperty("--grid-gap", "10%");
+      grid.style.setProperty("--grid-columns", isMobile() ? "4" : "6");
+      grid.style.setProperty("--grid-gap", isMobile() ? "10%" : "2vw");
 
       const gridObj = getGrid(gridItems);
 
@@ -202,7 +202,7 @@ const applyCollageAnimation = (
             transformOrigin: "50% 0%",
             z: () => gsap.utils.random(-5000, -2000),
             rotationX: () => gsap.utils.random(-65, -25),
-            filter: "brightness(0%)",
+            opacity: 0,
           })
           .to(
             gridItems,
@@ -210,7 +210,7 @@ const applyCollageAnimation = (
               xPercent: () => gsap.utils.random(-150, 150),
               yPercent: () => gsap.utils.random(-300, 300),
               rotationX: 0,
-              filter: "brightness(200%)",
+              opacity: () => gsap.utils.random(0.64, 1),
             },
             0
           )

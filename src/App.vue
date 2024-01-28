@@ -252,6 +252,22 @@ onMounted(() => {
         xpContent.length % 2 !== 0 ? "clear-day-white" : "shakespear-blue"
       })`;
     }
+
+    setTimeout(() => {
+      const textBlocks = [...document.querySelectorAll(".text-block")];
+      const BASE_INDEX = 16;
+      textBlocks.forEach((block, index) => {
+        if (
+          block.parentElement &&
+          block.parentElement.classList.contains("pin-spacer")
+        ) {
+          console.log(block.parentElement);
+          block.parentElement.style.zIndex = `${BASE_INDEX - index}`;
+        } else {
+          block.style.zIndex = `${BASE_INDEX - index} !important`;
+        }
+      });
+    }, 640);
   });
 });
 </script>

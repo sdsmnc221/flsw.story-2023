@@ -91,6 +91,8 @@ withDefaults(defineProps<Props>(), {
   flex-direction: column;
   overflow-x: hidden;
 
+  top: -3.2px;
+
   text-align: left;
 
   position: relative;
@@ -276,6 +278,16 @@ withDefaults(defineProps<Props>(), {
     &:has(.grid-wrap__gallery--grid),
     &:has(.grid-wrap__gallery--stack) {
       padding: 0;
+    }
+  }
+
+  @media screen and (min-width: 53em) {
+    &--spacing.text-block {
+      padding-bottom: 48vh !important;
+    }
+
+    &--spacing-xl.text-block {
+      padding-bottom: 72vh !important;
     }
   }
 }
