@@ -11,10 +11,10 @@ customElements.define("loader-block-ce", LoaderBlockCE);
 
 console.log(document.body.querySelector("#app"));
 
-window.addEventListener("load", () => {
+setTimeout(() => {
   document.body.querySelector("#app")?.appendChild(
     new LoaderBlockCE({
       firstLoading: true,
     })
   );
-});
+}, 100);
