@@ -32,14 +32,18 @@ const loading = ref<boolean>(true);
 const firstLoading = ref<boolean>(true);
 
 onMounted(() => {
-  preloadImages([".grid__item-inner", ".grid__item"]).then((a) => {
+  preloadImages([
+    ".grid__item-inner",
+    ".grid__item",
+    ".loader-block .circle",
+  ]).then((a) => {
     console.log(a);
     setTimeout(() => {
       loading.value = false;
       setTimeout(() => {
         firstLoading.value = false;
       }, 1000);
-    }, 3200);
+    }, 2400);
   });
 
   window.addEventListener("resize", (e: any) => {
