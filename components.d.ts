@@ -10,6 +10,7 @@ declare module 'vue' {
     BusinessCard: typeof import('./src/components/BusinessCard/BusinessCard.vue')['default']
     CollageBlock: typeof import('./src/components/CollageBlock/CollageBlock.vue')['default']
     LoaderBlock: typeof import('./src/components/LoaderBlock/LoaderBlock.vue')['default']
+    'LoaderBlock.ce': typeof import('./src/components/LoaderBlock/LoaderBlock.ce.vue')['default']
     MarqueeBlock: typeof import('./src/components/MarqueeBlock/MarqueeBlock.vue')['default']
     PawCursor: typeof import('./src/components/PawCursor/PawCursor.vue')['default']
     ShareButton: typeof import('./src/components/ShareButton/ShareButton.vue')['default']

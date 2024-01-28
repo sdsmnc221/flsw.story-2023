@@ -1,5 +1,5 @@
 <template>
-  <main class="app">
+  <main class="app" v-show="showApp">
     <share-button></share-button>
     <section class="marquees-container">
       <marquee-block
@@ -36,14 +36,14 @@
       <business-card v-if="section.socialMedia"></business-card>
     </text-block>
   </main>
-  <transition name="fade" mode="out-in">
+  <!-- <transition name="fade" mode="out-in">
     <loader-block v-if="loading" :first-loading="firstLoading"></loader-block>
-  </transition>
+  </transition> -->
   <paw-cursor></paw-cursor>
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue";
 import { lock, unlock } from "tua-body-scroll-lock";
 import {
   initSmoothScrolling,
@@ -59,10 +59,8 @@ import "splitting/dist/splitting-cells.css";
 import xpTitle from "./configs/xpTitle.json";
 import xpContent from "./configs/xpContent.json";
 import xpMarquee from "./configs/xpMarquee.json";
-import isMobile from "./helpers/isMobile";
 
-const loading = ref<boolean>(true);
-const firstLoading = ref<boolean>(true);
+const showApp = ref<boolean>(false);
 
 const computedBindedProps = (section: any, index: number) => {
   const bindedProps: any = {};
@@ -208,38 +206,31 @@ const initScroll = () => {
   scroll(fx3);
 
   setTimeout(() => {
-    loading.value = false;
-    firstLoading.value = false;
     unlock(document.querySelector("main.app") as HTMLElement);
     scrollTo(0);
   }, 5000);
 };
 
+onBeforeMount(() => {
+  setTimeout(() => {
+    showApp.value = true;
+  }, 100);
+});
+
 onMounted(() => {
-  nextTick(() => {
+  setTimeout(() => {
     Splitting();
     initScroll();
 
     lock(document.querySelector("main.app") as HTMLElement);
 
-    window.addEventListener("resize", (e: any) => {
+    window.addEventListener("resize", () => {
       // cancelScroll();
       // cancelSmoothScrolling();
 
       // setTimeout(() => {
       //   initScroll();
       // }, 2000);
-
-      if (
-        !isMobile() ||
-        (isMobile() && window.innerWidth !== e.currentTarget.outerWidth)
-      ) {
-        loading.value = true;
-
-        setTimeout(() => {
-          loading.value = false;
-        }, 1600);
-      }
 
       refreshScroll();
     });
@@ -267,7 +258,7 @@ onMounted(() => {
         }
       });
     }, 640);
-  });
+  }, 320);
 });
 </script>
 
