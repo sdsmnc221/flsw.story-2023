@@ -101,7 +101,7 @@ const initScroll = () => {
   };
 
   const fx1Section2 = {
-    id: "fx2",
+    id: "fx1",
     nodes: [
       ...document.querySelectorAll(
         ".section--2 .text-block__content.fx1[data-splitting]"
@@ -256,7 +256,7 @@ onMounted(() => {
     setTimeout(() => {
       const textBlocks = [...document.querySelectorAll(".text-block")];
       const BASE_INDEX = 16;
-      textBlocks.forEach((block, index) => {
+      textBlocks.forEach((block: any, index: number) => {
         if (
           block.parentElement &&
           block.parentElement.classList.contains("pin-spacer")
