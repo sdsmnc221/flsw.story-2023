@@ -175,14 +175,10 @@ withDefaults(defineProps<Props>(), {
       }
 
       &.--background {
-        &::after {
-          background-color: var(--pseudo-background);
-          opacity: 0.72;
-        }
-
+        &::after,
         &::before {
           background-color: var(--pseudo-background);
-          opacity: 0.72;
+          opacity: 0.48;
         }
       }
     }
