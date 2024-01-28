@@ -1,4 +1,5 @@
 import imagesLoaded from "imagesloaded";
+import mediasLoaded from "@maeertin/medialoaded";
 
 const flatten = (arr: any[]): any[] =>
   arr.reduce(
@@ -12,9 +13,17 @@ const preloadImages = (selectors: string[]) => {
     ...document.querySelectorAll(selector),
   ]);
   const allNodes = flatten(nodes);
-  return new Promise((resolve) => {
+  const videosNodes = [...document.querySelectorAll(".grid:has(video")];
+
+  const imagesPromise = new Promise((resolve) => {
     imagesLoaded(allNodes, { background: true }, resolve);
   });
+
+  const mediaPromise = new Promise((resolve) => {
+    mediasLoaded(videosNodes, resolve);
+  });
+
+  return Promise.all([imagesPromise, mediaPromise]);
 };
 
 export { preloadImages };
