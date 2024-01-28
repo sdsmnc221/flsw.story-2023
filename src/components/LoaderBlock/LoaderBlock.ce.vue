@@ -22,6 +22,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import isMobile from "../../helpers/isMobile";
+import { preloadImages } from "../../helpers/preloadAssets";
 
 interface Props {}
 
@@ -31,12 +32,15 @@ const loading = ref<boolean>(true);
 const firstLoading = ref<boolean>(true);
 
 onMounted(() => {
-  setTimeout(() => {
-    loading.value = false;
+  preloadImages([".grid__item-inner", ".grid__item"]).then((a) => {
+    console.log(a);
     setTimeout(() => {
-      firstLoading.value = false;
-    }, 1000);
-  }, 3200);
+      loading.value = false;
+      setTimeout(() => {
+        firstLoading.value = false;
+      }, 1000);
+    }, 3200);
+  });
 
   window.addEventListener("resize", (e: any) => {
     if (

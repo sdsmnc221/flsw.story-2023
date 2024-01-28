@@ -52,6 +52,7 @@ import {
   refreshScroll,
   scrollTo,
 } from "./helpers/scrollFx";
+import { preloadImages } from "./helpers/preloadAssets";
 import Splitting from "splitting";
 import "splitting/dist/splitting.css";
 import "splitting/dist/splitting-cells.css";
@@ -190,29 +191,30 @@ const initScroll = () => {
     type: "video",
   };
 
-  initSmoothScrolling();
+  preloadImages([".grid__item-inner", ".grid__item"]).then(() => {
+    initSmoothScrolling();
 
-  scroll(fx1Section2);
-  scroll(fx2Section2);
+    scroll(fx1Section2);
+    scroll(fx2Section2);
 
-  scrollGrid(collage1);
-  scrollGrid(collage2);
-  scrollGrid(collage3);
-  scrollGrid(collage4);
-  scrollGrid(collage5);
-  scrollGrid(collage6);
-  scrollGrid(collage7);
-  scrollGrid(video1);
+    scrollGrid(collage1);
+    scrollGrid(collage2);
+    scrollGrid(collage3);
+    scrollGrid(collage4);
+    scrollGrid(collage5);
+    scrollGrid(collage6);
+    scrollGrid(collage7);
+    scrollGrid(video1);
 
-  scroll(fx1);
-  scroll(fx2);
+    scroll(fx1);
+    scroll(fx2);
+    scroll(fx3);
 
-  scroll(fx3);
-
-  setTimeout(() => {
-    unlock(document.querySelector("main.app") as HTMLElement);
-    scrollTo(0);
-  }, 5000);
+    setTimeout(() => {
+      unlock(document.querySelector("main.app") as HTMLElement);
+      scrollTo(0);
+    }, 200);
+  });
 };
 
 onBeforeMount(() => {

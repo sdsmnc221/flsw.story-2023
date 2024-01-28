@@ -9,8 +9,6 @@ const LoaderBlockCE = defineCustomElement(LoaderBlock);
 // register
 customElements.define("loader-block-ce", LoaderBlockCE);
 
-console.log(document.body.querySelector("#app"));
-
 setTimeout(() => {
   document.body.querySelector("#app")?.appendChild(
     new LoaderBlockCE({
