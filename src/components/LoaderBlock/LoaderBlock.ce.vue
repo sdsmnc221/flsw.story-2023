@@ -43,7 +43,7 @@ onMounted(() => {
       setTimeout(() => {
         firstLoading.value = false;
       }, 1000);
-    }, 2400);
+    }, 1600);
   });
 
   window.addEventListener("resize", (e: any) => {
