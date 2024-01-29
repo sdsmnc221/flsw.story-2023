@@ -1,5 +1,5 @@
 import imagesLoaded from "imagesloaded";
-import mediasLoaded from "@maeertin/medialoaded";
+// import mediasLoaded from "@maeertin/medialoaded";
 
 const flatten = (arr: any[]): any[] =>
   arr.reduce(
