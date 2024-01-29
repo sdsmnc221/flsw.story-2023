@@ -288,6 +288,24 @@ withDefaults(defineProps<Props>(), {
     &--spacing-xl.text-block {
       padding-bottom: 72vh !important;
     }
+
+    .text {
+      &--left {
+        padding-right: 52%;
+      }
+    }
+
+    &__subtitle {
+      font-size: 1.4rem;
+    }
+
+    &__title {
+      font-size: 2.8rem;
+    }
+
+    &__content {
+      font-size: 1.4rem;
+    }
   }
 }
 </style>

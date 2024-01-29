@@ -340,7 +340,7 @@ onMounted(() => {
         width: 110%;
       }
       &:nth-child(2) {
-        transform: rotate(0deg) translateY(20vh);
+        transform: rotate(0deg) translateY(22vh);
         width: 110%;
         text-align: center;
       }

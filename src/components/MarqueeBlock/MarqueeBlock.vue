@@ -8,6 +8,14 @@
       <span>{{ title }}</span>
       +
       <span>{{ title }}</span>
+      +
+      <span>{{ title }}</span>
+      +
+      <span>{{ title }}</span>
+      +
+      <span>{{ title }}</span>
+      +
+      <span>{{ title }}</span>
     </div>
     <div class="marquee">
       <div class="marquee__inner-wrap">
@@ -164,6 +172,12 @@ onMounted(() => {
   }
 
   &:first-child {
+    .marquee-block-link {
+      animation-duration: 10s;
+    }
+  }
+
+  &:last-child {
     .marquee-block-link {
       animation-duration: 10s;
     }
