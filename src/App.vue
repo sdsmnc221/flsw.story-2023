@@ -4,6 +4,8 @@
     <highlight-tutorial
       :title="xpMarquee.indicator.title"
       :subtitle="xpMarquee.indicator.subtitle"
+      :active="highlightActive"
+      @onHighlightCompleted="initScroll"
     ></highlight-tutorial>
 
     <section class="marquees-container">
@@ -48,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, onMounted, ref } from "vue";
+import { nextTick, onBeforeMount, onMounted, ref } from "vue";
 import { lock, unlock } from "tua-body-scroll-lock";
 import {
   initSmoothScrolling,
@@ -68,6 +70,8 @@ import xpContent from "./configs/xpContent.json";
 import xpMarquee from "./configs/xpMarquee.json";
 
 const showApp = ref<boolean>(false);
+
+const highlightActive = ref<boolean>(false);
 
 const computedBindedProps = (section: any, index: number) => {
   const bindedProps: any = {};
@@ -230,10 +234,10 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
-  setTimeout(() => {
+  nextTick(() => {
     Splitting();
 
-    initHighlight(initScroll);
+    highlightActive.value = true;
 
     lock(document.querySelector("main.app") as HTMLElement);
 
@@ -256,9 +260,9 @@ onMounted(() => {
       }
 
       if (window.scrollY <= 240) {
-        document
-          .querySelector(".highlight-tutorial")
-          ?.classList.remove("--hidden");
+        // document
+        //   .querySelector(".highlight-tutorial")
+        //   ?.classList.remove("--hidden");
         // document.querySelector("main.app")?.classList.add("--locked");
       }
     });

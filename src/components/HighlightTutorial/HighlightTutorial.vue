@@ -17,12 +17,28 @@ i
 </template>
 
 <script setup lang="ts">
+import { watch } from "vue";
+import initHighlight from "../../helpers/hightlightFx";
 interface Props {
   title: string;
   subtitle: string;
+  active: boolean;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
+
+const emits = defineEmits(["onHighlightCompleted"]);
+
+const emitEvent = () => emits("onHighlightCompleted");
+
+watch(
+  () => props.active,
+  (newVal) => {
+    if (newVal) {
+      initHighlight(emitEvent);
+    }
+  }
+);
 </script>
 
 <style lang="scss">
@@ -95,7 +111,7 @@ defineProps<Props>();
     }
 
     &__subtitle {
-      font-size: 4rem;
+      font-size: 3.2rem;
       transform: rotate(-3deg) translateY(64vh) translateX(-4%);
 
       .word {
