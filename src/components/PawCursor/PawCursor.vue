@@ -52,8 +52,8 @@ body {
 }
 .paw-cursor {
   position: fixed;
-  width: 32px; /* Set the width of your cursor */
-  height: 32px; /* Set the height of your cursor */
+  width: 48px;
+  height: 48px;
   background: url("/img/cursor.png") no-repeat center center;
   background-size: cover;
   pointer-events: none; /* Allow interactions with elements beneath the cursor */
