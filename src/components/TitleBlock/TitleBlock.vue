@@ -4,7 +4,9 @@
       {{ subtitle }}
     </p>
     <h1 class="title-block__title yeseva-one-regular" data-splitting>
-      {{ title }}
+      <span v-for="(part, index) in title" :key="`title-part-${index}`">{{
+        part
+      }}</span>
     </h1>
   </section>
 </template>
@@ -17,7 +19,7 @@ import { gsap } from "gsap";
 import { onMounted } from "vue";
 
 interface Props {
-  title: string;
+  title: string[];
   subtitle: string;
 }
 
@@ -70,7 +72,7 @@ onMounted(() => {
 <style lang="scss">
 .title-block {
   width: 100vw;
-  height: 120vh;
+  height: 148vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -84,10 +86,13 @@ onMounted(() => {
     var(--clear-day-white) 100%
   );
 
+  padding-bottom: 12vh;
+
   gap: 3.2rem;
 
   &__subtitle {
     width: 100%;
+    line-height: 10rem;
     font-size: 12rem;
     text-transform: lowercase;
     color: var(--shakespear-blue);
@@ -97,11 +102,21 @@ onMounted(() => {
     width: 100%;
     font-size: 6.4rem;
     line-height: 6rem;
+
+    & > span {
+      display: block;
+    }
   }
 
   span.char {
     display: inline-block;
     margin-left: -1.2px;
+  }
+
+  @media (min-width: 1440px) {
+    &__title {
+      margin-top: -4.8rem;
+    }
   }
 
   @media (max-width: 1024px) {
