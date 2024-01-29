@@ -112,7 +112,7 @@ watch(
 
     &__subtitle {
       font-size: 3.2rem;
-      transform: rotate(-3deg) translateY(64vh) translateX(-4%);
+      transform: rotate(-3deg) translateY(60vh) translateX(-4%);
 
       .word {
         margin-top: 20px;
