@@ -108,6 +108,8 @@ onMounted(() => {
     width: 100%;
     font-size: 6.4rem;
     line-height: 6rem;
+    margin-top: 24px;
+    letter-spacing: 2px;
 
     & > span {
       display: block;
