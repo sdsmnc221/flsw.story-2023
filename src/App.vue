@@ -206,8 +206,6 @@ const initScroll = () => {
     ".loader-block .circle",
   ]).then(() => {
     setTimeout(() => {
-      initSmoothScrolling();
-
       highlightActive.value = true;
 
       scroll(fx1Section2);
@@ -235,6 +233,8 @@ const initScroll = () => {
 };
 
 onBeforeMount(() => {
+  initSmoothScrolling();
+
   setTimeout(() => {
     showApp.value = true;
   }, 1000);
