@@ -59,7 +59,6 @@ import {
   refreshScroll,
   scrollTo,
 } from "./helpers/scrollFx";
-import initHighlight from "./helpers/hightlightFx";
 import { preloadImages } from "./helpers/preloadAssets";
 import Splitting from "splitting";
 import "splitting/dist/splitting.css";
