@@ -1,11 +1,12 @@
 import { gsap } from "gsap";
 
-const initHighlight = (cbOnComplete: () => void | null) => {
+const initHighlight = (cbOnComplete?: () => void) => {
+  console.log;
   gsap
     .timeline({
       onComplete: () => {
         document.querySelector("main.app")?.classList.remove("--locked");
-        if (cbOnComplete !== null) {
+        if (cbOnComplete) {
           cbOnComplete();
         }
       },

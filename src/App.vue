@@ -204,6 +204,8 @@ const initScroll = () => {
   preloadImages([".grid__item-inner", ".grid__item"]).then(() => {
     initSmoothScrolling();
 
+    highlightActive.value = true;
+
     scroll(fx1Section2);
     scroll(fx2Section2);
 
@@ -237,7 +239,7 @@ onMounted(() => {
   nextTick(() => {
     Splitting();
 
-    highlightActive.value = true;
+    initScroll();
 
     lock(document.querySelector("main.app") as HTMLElement);
 

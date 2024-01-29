@@ -27,15 +27,15 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const emits = defineEmits(["onHighlightCompleted"]);
+// const emits = defineEmits(["onHighlightCompleted"]);
 
-const emitEvent = () => emits("onHighlightCompleted");
+// const emitEvent = () => emits("onHighlightCompleted");
 
 watch(
   () => props.active,
   (newVal) => {
     if (newVal) {
-      initHighlight(emitEvent);
+      initHighlight();
     }
   }
 );
