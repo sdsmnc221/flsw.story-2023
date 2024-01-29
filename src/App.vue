@@ -200,7 +200,11 @@ const initScroll = () => {
     type: "video",
   };
 
-  preloadImages([".grid__item-inner", ".grid__item"]).then(() => {
+  preloadImages([
+    ".grid__item-inner",
+    ".grid__item",
+    ".loader-block .circle",
+  ]).then(() => {
     initSmoothScrolling();
 
     highlightActive.value = true;
@@ -236,11 +240,11 @@ onBeforeMount(() => {
 
 onMounted(() => {
   nextTick(() => {
+    lock(document.querySelector("main.app") as HTMLElement);
+
     Splitting();
 
     initScroll();
-
-    lock(document.querySelector("main.app") as HTMLElement);
 
     window.addEventListener("resize", () => {
       // cancelScroll();
@@ -354,6 +358,20 @@ onMounted(() => {
     .business-card {
       position: absolute;
       right: -32vw;
+    }
+  }
+
+  &.--retina {
+    @media (min-width: 1440px) {
+      .highlight-tutorial {
+        &__title {
+          transform: rotate(6deg) translateX(-28vw) translateY(22vh);
+        }
+        &__subtitle {
+          font-size: 4rem;
+          transform: rotate(-3deg) translateY(76vh) translateX(2.4vw);
+        }
+      }
     }
   }
 

@@ -17,6 +17,7 @@ import "splitting/dist/splitting-cells.css";
 import Splitting from "splitting";
 import { gsap } from "gsap";
 import { onMounted } from "vue";
+import isRetina from "../../helpers/isRetina";
 
 interface Props {
   title: string[];
@@ -27,6 +28,11 @@ defineProps<Props>();
 
 onMounted(() => {
   Splitting({});
+
+  console.log("retina", isRetina());
+  if (isRetina()) {
+    document.querySelector("main.app")?.classList.add("--retina");
+  }
 
   [
     document.querySelector(".title-block__subtitle"),
@@ -114,8 +120,13 @@ onMounted(() => {
   }
 
   @media (min-width: 1440px) {
+    height: 160vh;
+
     &__title {
-      margin-top: -4.8rem;
+      // transform: translateY(22vh);
+    }
+    &__subtitle {
+      transform: translateY(10vh);
     }
   }
 
