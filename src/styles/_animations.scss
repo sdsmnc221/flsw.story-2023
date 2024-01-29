@@ -44,6 +44,18 @@
   }
 }
 
+@keyframes blink {
+  0% {
+    background-color: var(--clear-day-white);
+  }
+  50% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: var(--clear-day-white);
+  }
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;

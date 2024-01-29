@@ -1,42 +1,48 @@
-[
-    {
-        "title": "Solitaires Enchantés",
-        "cats": [
-            "Taijitu",
-            "Stark",
-            "Sky",
-            "Ruby",
-            "Roky",
-            "Isis",
-            "Gandalf",
-            "Crapule",
-            "Romi"
-        ]
+{
+    "indicator": {
+        "title": "ici, sont honorés les Félinsweetien.ne.s !",
+        "subtitle": "Scrollez, et redécouvrez ensemble notre histoire."
     },
-    {
-        "title": "Duos Harmonieux",
-        "cats": [
-            "Robin x Ted",
-            "Minet x Noisette",
-            "Okko x Plume",
-            "Câline x Milou",
-            "Bob x Kikou",
-            "Arès x Mia",
-            "Grudu x Aga"
-        ]
-    },
-    {
-        "title": "Éclat du Foyer des Petits Clochards",
-        "cats": [
-            "Séti",
-            "Ruben",
-            "Rufus",
-            "Nougat",
-            "Praline",
-            "Snoop",
-            "Tagada",
-            "Melba",
-            "Cacaille"
-        ]
-    }
-]
+    "marquees": [
+        {
+            "title": "Solitaires Enchantés",
+            "cats": [
+                "Taijitu",
+                "Stark",
+                "Sky",
+                "Ruby",
+                "Roky",
+                "Isis",
+                "Gandalf",
+                "Crapule",
+                "Romi"
+            ]
+        },
+        {
+            "title": "Duos Harmonieux",
+            "cats": [
+                "Robin x Ted",
+                "Minet x Noisette",
+                "Okko x Plume",
+                "Câline x Milou",
+                "Bob x Kikou",
+                "Arès x Mia",
+                "Grudu x Aga"
+            ]
+        },
+        {
+            "title": "Éclat du Foyer des Petits Clochards",
+            "cats": [
+                "Séti",
+                "Ruben",
+                "Rufus",
+                "Nougat",
+                "Praline",
+                "Snoop",
+                "Tagada",
+                "Melba",
+                "Cacaille"
+            ]
+        }
+    ]
+}
