@@ -1,5 +1,5 @@
 <template>
-  <div class="share-button" @click="onShare">
+  <div class="share-button" :class="{ '--hidden': hidden }" @click="onShare">
     <div class="toggle">
       <input type="checkbox" />
       <span class="button"></span>
@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 const shareData = {
   title:
@@ -42,6 +42,8 @@ const shareData = {
 };
 
 const copiedData = ref<string>("");
+
+const hidden = ref<boolean>(true);
 
 const copyContent = async () => {
   try {
@@ -70,6 +72,16 @@ const onShare = async () => {
     console.log(err);
   }
 };
+
+onMounted(() => {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY >= document.documentElement.clientHeight) {
+      hidden.value = false;
+    } else {
+      hidden.value = true;
+    }
+  });
+});
 </script>
 
 <style lang="scss">
@@ -79,6 +91,16 @@ const onShare = async () => {
   right: 24px;
   z-index: 97;
   cursor: pointer;
+  pointer-events: all;
+
+  &.--hidden {
+    .toggle * {
+      transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0);
+    }
+  }
 
   .toggle {
     display: inline-block;
@@ -86,6 +108,7 @@ const onShare = async () => {
     height: 100px;
     width: 100px;
     transform: scale(0.84);
+    transition: all ease 1.6s ease-in-out;
 
     &:before {
       box-shadow: 0;
