@@ -13,17 +13,17 @@ const preloadImages = (selectors: string[]) => {
     ...document.querySelectorAll(selector),
   ]);
   const allNodes = flatten(nodes);
-  const videosNodes = [...document.querySelectorAll(".grid:has(video")];
+  // const videosNodes = [...document.querySelectorAll(".grid:has(video")];
 
   const imagesPromise = new Promise((resolve) => {
     imagesLoaded(allNodes, { background: true }, resolve);
   });
 
-  const mediaPromise = new Promise((resolve) => {
-    mediasLoaded(videosNodes, resolve);
-  });
+  // const mediaPromise = new Promise((resolve) => {
+  //   // mediasLoaded(videosNodes, resolve);
+  // });
 
-  return Promise.all([imagesPromise, mediaPromise]);
+  return Promise.all([imagesPromise]);
 };
 
 export { preloadImages };
