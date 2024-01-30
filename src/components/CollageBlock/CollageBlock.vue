@@ -111,7 +111,7 @@ const computedCollage = computed<string[]>(() => {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .collage-block {
   --perspective: 1500px;
 
@@ -120,8 +120,6 @@ const computedCollage = computed<string[]>(() => {
   --grid-gap: 2vw;
   --grid-columns: 4;
   --grid-inner-scale: 1;
-
-  transition: all 0.64s ease-in-out;
 
   &.grid {
     position: relative;

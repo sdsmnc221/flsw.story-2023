@@ -169,7 +169,7 @@ const applyCollageAnimation = (
       // Temporarily add the final class to capture the final state
       grid.classList.add("gallery--switch");
       const flipstate = Flip.getState([galleryItems], {
-        props: "filter, opacity, width, height",
+        props: "filter, opacity",
       });
 
       // Remove the final class to revert to the initial state
