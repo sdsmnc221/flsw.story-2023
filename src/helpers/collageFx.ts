@@ -3,6 +3,8 @@ import isMobile from "./isMobile";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/dist/Flip";
+import randomIntegerInRange from "./randomIntegerInRange";
+import dynamicStyles from "./dynamicStyles";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
@@ -140,6 +142,30 @@ const applyCollageAnimation = (
         .map((item) => (item.children.length > 0 ? [...item.children] : []))
         .flat();
 
+      if (animationType === "cllg-fx2" && !isMobile()) {
+        const gridPos: string[] = [];
+        galleryItems.forEach((_item: any, index: number) => {
+          let row: number = randomIntegerInRange(1, 4);
+          let col: number = randomIntegerInRange(1, 10);
+
+          while (!gridPos.includes(`${row}/${col}`)) {
+            row = randomIntegerInRange(1, 4);
+            col = randomIntegerInRange(1, 10);
+
+            gridPos.push(`${row}/${col}`);
+          }
+
+          dynamicStyles([
+            {
+              class: `.collage-block.grid.--cllg-fx2 .grid-wrap .grid-wrap__gallery--grid10:not(.gallery--switch) .pos-${
+                index + 1
+              }`,
+              css: `grid-area: ${row}/${col};`,
+            },
+          ]);
+        });
+      }
+
       // Temporarily add the final class to capture the final state
       grid.classList.add("gallery--switch");
       const flipstate = Flip.getState([galleryItems], {
@@ -148,6 +174,80 @@ const applyCollageAnimation = (
 
       // Remove the final class to revert to the initial state
       grid.classList.remove("gallery--switch");
+
+      // Animate video block if exists
+      const videoBlock: any = document.querySelector(
+        `.text-block.section--${sectionIndex.replace(
+          "section--",
+          ""
+        )} .video-block`
+      );
+
+      let doAnimateVideo = false;
+      let tlVideoBlock: any = gsap.timeline();
+
+      if (videoBlock) {
+        videoBlock.style.opacity = "0";
+
+        const videoBlockMask: any = videoBlock.querySelector(".mask");
+        const videoBlockImage: any = videoBlock
+          .querySelector(".content__img")
+          .querySelector("video");
+        const videoBlockContent = [...videoBlock.querySelectorAll(".content")];
+
+        const isCircle = videoBlockMask.tagName.toLowerCase() === "circle";
+
+        tlVideoBlock
+          .fromTo(
+            videoBlock,
+            {
+              opacity: 0,
+            },
+            {
+              opacity: 1,
+              duration: 3.2,
+            },
+            0
+          )
+          .fromTo(
+            videoBlockMask,
+            {
+              attr: isCircle
+                ? { r: videoBlockMask.getAttribute("r") }
+                : { d: videoBlockMask.getAttribute("d") },
+            },
+            {
+              duration: 3.2,
+              ease: "none",
+              attr: isCircle
+                ? { r: videoBlockMask.dataset.valueFinal }
+                : { d: videoBlockMask.dataset.valueFinal },
+            },
+            0
+          )
+          .fromTo(
+            videoBlockImage,
+            {
+              transformOrigin: "50% 50%",
+            },
+            {
+              duration: 3.2,
+              ease: "none",
+              scale: isCircle ? 1.2 : 1,
+            },
+            0
+          )
+          .fromTo(
+            videoBlockContent,
+            {
+              opacity: 0,
+              scale: 0,
+            },
+            { duration: 3.2, opacity: 1, scale: 1 },
+            0
+          )
+          .pause();
+      }
 
       // Create the Flip animation timeline
       const tl = Flip.to(flipstate, {
@@ -164,6 +264,28 @@ const applyCollageAnimation = (
             `.text-block.section--${sectionIndex.replace("section--", "")}`
           ),
           scrub: true,
+          ...(animationType === "cllg-fx2"
+            ? {
+                onUpdate: (self) => {
+                  const { progress } = self;
+
+                  if (parseFloat(progress.toFixed(2)) === 0.64) {
+                    if (!doAnimateVideo) {
+                      doAnimateVideo = true;
+                    }
+
+                    if (doAnimateVideo) {
+                      tlVideoBlock.play();
+                    }
+                  } else if (progress < 0.64) {
+                    if (doAnimateVideo) {
+                      tlVideoBlock.reverse();
+                      doAnimateVideo = false;
+                    }
+                  }
+                },
+              }
+            : {}),
         },
         stagger: settings.stagger,
       });

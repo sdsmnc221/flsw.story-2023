@@ -20,32 +20,32 @@
     <div class="marquee">
       <div class="marquee__inner-wrap">
         <div class="marquee__inner" aria-hidden="true">
-          <template v-for="cat in cats" :key="`marquee-${cat}-1`">
+          <template v-for="(cat, index) in cats" :key="`marquee-${cat}-1`">
             <span>{{ cat }}</span>
             <div
               class="marquee__img"
-              :style="`background-image: url(/img/1.png)`"
+              :style="`background-image: url(/img/${catsImages[index]})`"
             ></div>
           </template>
-          <template v-for="cat in cats" :key="`marquee-${cat}-2`">
+          <template v-for="(cat, index) in cats" :key="`marquee-${cat}-2`">
             <span>{{ cat }}</span>
             <div
               class="marquee__img"
-              :style="`background-image: url(/img/1.png)`"
+              :style="`background-image: url(/img/${catsImages[index]})`"
             ></div>
           </template>
-          <template v-for="cat in cats" :key="`marquee-${cat}-3`">
+          <template v-for="(cat, index) in cats" :key="`marquee-${cat}-3`">
             <span>{{ cat }}</span>
             <div
               class="marquee__img"
-              :style="`background-image: url(/img/1.png)`"
+              :style="`background-image: url(/img/${catsImages[index]})`"
             ></div>
           </template>
-          <template v-for="cat in cats" :key="`marquee-${cat}-4`">
+          <template v-for="(cat, index) in cats" :key="`marquee-${cat}-4`">
             <span>{{ cat }}</span>
             <div
               class="marquee__img"
-              :style="`background-image: url(/img/1.png)`"
+              :style="`background-image: url(/img/${catsImages[index]})`"
             ></div>
           </template>
         </div>
@@ -62,6 +62,7 @@ import { gsap } from "gsap";
 interface Props {
   title: string;
   cats: string[];
+  catsImages: string[];
 }
 
 defineProps<Props>();

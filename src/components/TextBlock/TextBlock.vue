@@ -17,6 +17,7 @@
       v-if="videoFx"
       :section-id="id"
       :video-fx="videoFx"
+      :has-collage="!!cllgFx"
     ></video-block>
 
     <div
@@ -209,6 +210,8 @@ withDefaults(defineProps<Props>(), {
 
     z-index: 10;
     position: relative;
+
+    pointer-events: none;
 
     &--absolute {
       position: absolute;

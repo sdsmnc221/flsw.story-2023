@@ -192,6 +192,7 @@ const scrollGrid = (grid: {
   id: string;
   node: Element | null;
   type: string;
+  sectionId: number;
 }) => {
   if (grid.node) {
     if (grid.type === "collage") {
@@ -203,7 +204,7 @@ const scrollGrid = (grid: {
         )[0]
       );
     } else if (grid.type === "video") {
-      applyVideoAnimation(grid.node, grid.id);
+      applyVideoAnimation(grid.node, grid.id, grid.sectionId);
     }
   }
 };

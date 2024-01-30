@@ -1,5 +1,6 @@
 <template>
   <main class="app --locked" v-show="showApp">
+    <!-- <main class="app" v-show="showApp"> -->
     <share-button></share-button>
     <highlight-tutorial
       :title="xpMarquee.indicator.title"
@@ -14,9 +15,11 @@
         :key="`marquee-block-${index}`"
         :title="marquee.title"
         :cats="marquee.cats"
+        :cats-images="marquee.img"
       />
     </section>
     <title-block :title="xpTitle.title" :subtitle="xpTitle.subtitle" />
+
     <text-block
       v-for="(section, index) of xpContent"
       :key="`section--${index}`"
@@ -156,54 +159,63 @@ const initScroll = () => {
     id: "cllg-fx1",
     node: document.querySelector(".section--1.grid"),
     type: "collage",
+    sectionId: 1,
   };
 
   const collage2 = {
     id: "cllg-fx2",
     node: document.querySelector(".section--2.grid-wrap__gallery"),
     type: "collage",
+    sectionId: 2,
   };
 
   const collage3 = {
     id: "cllg-fx3",
     node: document.querySelector(".section--3.grid-wrap__gallery"),
     type: "collage",
+    sectionId: 3,
   };
 
   const collage4 = {
     id: "cllg-fx4",
     node: document.querySelector(".section--4.grid-wrap__gallery"),
     type: "collage",
+    sectionId: 4,
   };
 
   const collage5 = {
     id: "cllg-fx2",
     node: document.querySelector(".section--6.grid-wrap__gallery"),
     type: "collage",
+    sectionId: 6,
   };
 
   const collage6 = {
     id: "cllg-fx4",
     node: document.querySelector(".section--7.grid-wrap__gallery"),
     type: "collage",
+    sectionId: 7,
   };
 
   const collage7 = {
     id: "cllg-fx5",
     node: document.querySelector(".section--8.grid"),
     type: "collage",
+    sectionId: 8,
   };
 
   const video1 = {
     id: "video-fx1",
     node: document.querySelector(".section--5.video-block"),
     type: "video",
+    sectionId: 5,
   };
 
   preloadImages([
     ".grid__item-inner",
     ".grid__item",
     ".loader-block .circle",
+    ".marquee__img",
   ]).then(() => {
     setTimeout(() => {
       highlightActive.value = true;

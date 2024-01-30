@@ -1,7 +1,6 @@
 import { gsap } from "gsap";
 
 const initHighlight = (cbOnComplete?: () => void) => {
-  console.log;
   gsap
     .timeline({
       onComplete: () => {
