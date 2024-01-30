@@ -66,17 +66,20 @@ watch(
   &__subtitle {
     // opacity: 0;
     position: relative;
-    font-size: 5rem;
+    padding: 0 10%;
+    font-size: clamp(3.2rem, 10vw, 4.4rem);
+    line-height: clamp(3.2rem, 10vw, 4.4rem);
     text-transform: lowercase;
-    transform: rotate(-3deg) translateY(74vh) translateX(2.4vw);
+    transform: rotate(-3deg) translateY(72vh) translateX(2.4vw);
+    text-align: center;
   }
 
   &__title {
     // opacity: 0;
     position: relative;
-    font-size: 4rem;
-    left: 50%;
-    transform: rotate(6deg) translateX(-20%) translateY(20vh);
+    font-size: clamp(3.2rem, 12vw, 3.6rem);
+    left: 54%;
+    transform: rotate(6deg) translateX(-16%) translateY(20vh);
   }
 
   .--stroked {

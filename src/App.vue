@@ -370,8 +370,7 @@ onMounted(() => {
           transform: rotate(6deg) translateX(-28vw) translateY(22vh);
         }
         &__subtitle {
-          font-size: 4rem;
-          transform: rotate(-3deg) translateY(76vh) translateX(2.4vw);
+          transform: rotate(-3deg) translateY(72vh) translateX(2.4vw);
         }
       }
     }
