@@ -144,7 +144,7 @@ const applyCollageAnimation = (
 
       if (animationType === "cllg-fx2" && !isMobile()) {
         const gridPos: string[] = [];
-        galleryItems.forEach((item: any, index: number) => {
+        galleryItems.forEach((_item: any, index: number) => {
           let row: number = randomIntegerInRange(1, 4);
           let col: number = randomIntegerInRange(1, 10);
 

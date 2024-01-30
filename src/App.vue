@@ -211,13 +211,6 @@ const initScroll = () => {
     sectionId: 5,
   };
 
-  const video2 = {
-    id: "video-fx1",
-    node: document.querySelector(".section--2.video-block"),
-    type: "video",
-    sectionId: 2,
-  };
-
   preloadImages([
     ".grid__item-inner",
     ".grid__item",
@@ -238,7 +231,6 @@ const initScroll = () => {
       scrollGrid(collage6);
       scrollGrid(collage7);
       scrollGrid(video1);
-      // scrollGrid(video2);
 
       scroll(fx1);
       scroll(fx2);
