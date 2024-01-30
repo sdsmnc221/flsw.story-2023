@@ -15,8 +15,6 @@ export default function dynamicStyles(
     })
   );
 
-  console.log(styleSheet);
-
   newCssRules.forEach((rule) => {
     // Check if the rule already exists and update it, or add a new rule
     // let ruleIndex = -1;

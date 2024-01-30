@@ -121,6 +121,8 @@ const computedCollage = computed<string[]>(() => {
   --grid-columns: 4;
   --grid-inner-scale: 1;
 
+  transition: all 0.64s ease-in-out;
+
   &.grid {
     position: relative;
     width: 100%;
@@ -205,8 +207,8 @@ const computedCollage = computed<string[]>(() => {
 
       .grid-wrap {
         .grid-wrap__gallery--grid10.gallery--switch {
-          grid-template-columns: 1fr 64vw 1fr;
-          grid-template-rows: 1fr calc(64vw * 9 / 16) 1fr;
+          grid-template-columns: 1fr 52vw 1fr;
+          grid-template-rows: 1fr calc(52vw * 9 / 16) 1fr;
           grid-gap: 0;
 
           .grid__item {

@@ -46,7 +46,9 @@
         "title": "feliFun - jouer jusqu'à l'Épuisement.",
         "text": "Les images des sessions de jeu s'animent, plongeant directement dans une vidéo de moments captivants. C'est dans cette énergie débordante que nos amis félins expriment leur joie pure. Explorez ces instants où le jeu se transforme en une danse joyeuse entre humains et chats, chaque saut et frémissement une invitation à partager ce bonheur ludique.",
         "fx": "fx1",
-        "cllgFx": "fx2"
+        "cllgFx": "fx2",
+        "videoFx": "fx1",
+        "textPosition": "bottom"
     },
     {
         "subtitle": "chapitre 3.",

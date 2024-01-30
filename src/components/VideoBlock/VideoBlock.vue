@@ -1,5 +1,9 @@
 <template>
-  <div class="video-block content-wrap" :class="sectionId">
+  <div
+    :class="`video-block content-wrap ${sectionId} ${
+      hasCollage ? '--has-collage' : ''
+    }`"
+  >
     <div class="content content--layout content--layout-2">
       <div class="content__svg-wrapper --background">
         <svg
@@ -154,6 +158,7 @@ import { ref, watch } from "vue";
 interface Props {
   sectionId: string;
   videoFx: string;
+  hasCollage: boolean;
 }
 
 defineProps<Props>();
@@ -188,10 +193,43 @@ watch(
 .video-block {
   position: relative;
   z-index: 13;
+
   &.content-wrap {
     display: flex;
     width: 100vw;
     height: 100%;
+  }
+
+  &.--has-collage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+
+    .content {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__svg-wrapper {
+        left: calc(50vw + 48vh * 9 / 16);
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &__controller {
+      &--play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 
   .content {
@@ -291,8 +329,8 @@ watch(
       height: 48px;
       cursor: pointer;
       position: absolute;
-      bottom: 12%;
-      left: 32px;
+      top: 12%;
+      right: 32px;
     }
   }
 

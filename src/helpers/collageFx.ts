@@ -190,6 +190,42 @@ const applyCollageAnimation = (
             `.text-block.section--${sectionIndex.replace("section--", "")}`
           ),
           scrub: true,
+          ...(animationType === "cllg-fx2"
+            ? {
+                onUpdate: (self) => {
+                  const { progress } = self;
+
+                  if (
+                    progress === 1 &&
+                    grid.parentNode.parentNode.parentNode.classList.contains(
+                      "section--2"
+                    )
+                  ) {
+                    grid.parentNode.parentNode.parentNode.style.position =
+                      "fixed";
+                  }
+
+                  console.log(
+                    progress,
+                    grid.parentNode.parentNode.parentNode.style.position
+                  );
+                },
+                onLeave: (self) => {
+                  setTimeout(() => {
+                    if (
+                      grid.parentNode.parentNode.parentNode.classList.contains(
+                        "section--2"
+                      )
+                    ) {
+                      grid.parentNode.parentNode.parentNode.style.top = "-32vh";
+                      grid.parentNode.parentNode.parentNode.style.position = "";
+                    }
+                  }, 100);
+
+                  setTimeout(() => {}, 1200);
+                },
+              }
+            : {}),
         },
         stagger: settings.stagger,
       });
