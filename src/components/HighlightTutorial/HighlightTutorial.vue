@@ -115,7 +115,9 @@ watch(
 
     &__subtitle {
       font-size: 3.2rem;
+      line-height: clamp(1.2rem, 10vw, 2rem);
       transform: rotate(-3deg) translateY(60vh) translateX(-4%);
+      text-align: left;
 
       .word {
         margin-top: 20px;
