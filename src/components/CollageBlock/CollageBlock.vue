@@ -111,7 +111,7 @@ const computedCollage = computed<string[]>(() => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .collage-block {
   --perspective: 1500px;
 
@@ -205,8 +205,8 @@ const computedCollage = computed<string[]>(() => {
 
       .grid-wrap {
         .grid-wrap__gallery--grid10.gallery--switch {
-          grid-template-columns: 1fr 300px 1fr;
-          grid-template-rows: 1fr 60vh 1fr;
+          grid-template-columns: 1fr 64vw 1fr;
+          grid-template-rows: 1fr calc(64vw * 9 / 16) 1fr;
           grid-gap: 0;
 
           .grid__item {
@@ -468,56 +468,56 @@ const computedCollage = computed<string[]>(() => {
             grid-template-columns: repeat(10, 1fr);
             grid-template-rows: repeat(4, 1fr);
 
-            &:not(.gallery--switch) {
-              .pos-1 {
-                grid-area: 1 / 1;
-              }
-              .pos-2 {
-                grid-area: 1 / 2;
-              }
-              .pos-3 {
-                grid-area: 1 / 4;
-              }
-              .pos-4 {
-                grid-area: 1 / 5;
-              }
-              .pos-5 {
-                grid-area: 3 / 6;
-              }
-              .pos-6 {
-                grid-area: 1 / 7;
-              }
-              .pos-7 {
-                grid-area: 1 / 9;
-              }
-              .pos-8 {
-                grid-area: 3 / 10;
-              }
-              .pos-9 {
-                grid-area: 2 / 8;
-              }
-              .pos-10 {
-                grid-area: 4 / 9;
-              }
-              .pos-11 {
-                grid-area: 3 / 8;
-              }
-              .pos-12 {
-                grid-area: 2 / 2;
-              }
-              .pos-13 {
-                grid-area: 3 / 1;
-              }
-              .pos-14 {
-                grid-area: 3 / 4;
-              }
-              .pos-15 {
-                grid-area: 4 / 3;
-              }
-              .pos-16 {
-                grid-area: 4 / 7;
-              }
-            }
+            // &:not(.gallery--switch) {
+            //   .pos-1 {
+            //     grid-area: 1 / 1;
+            //   }
+            //   .pos-2 {
+            //     grid-area: 1 / 2;
+            //   }
+            //   .pos-3 {
+            //     grid-area: 1 / 4;
+            //   }
+            //   .pos-4 {
+            //     grid-area: 1 / 5;
+            //   }
+            //   .pos-5 {
+            //     grid-area: 3 / 6;
+            //   }
+            //   .pos-6 {
+            //     grid-area: 1 / 7;
+            //   }
+            //   .pos-7 {
+            //     grid-area: 1 / 9;
+            //   }
+            //   .pos-8 {
+            //     grid-area: 3 / 10;
+            //   }
+            //   .pos-9 {
+            //     grid-area: 2 / 8;
+            //   }
+            //   .pos-10 {
+            //     grid-area: 4 / 9;
+            //   }
+            //   .pos-11 {
+            //     grid-area: 3 / 8;
+            //   }
+            //   .pos-12 {
+            //     grid-area: 2 / 2;
+            //   }
+            //   .pos-13 {
+            //     grid-area: 3 / 1;
+            //   }
+            //   .pos-14 {
+            //     grid-area: 3 / 4;
+            //   }
+            //   .pos-15 {
+            //     grid-area: 4 / 3;
+            //   }
+            //   .pos-16 {
+            //     grid-area: 4 / 7;
+            //   }
+            // }
           }
         }
       }

@@ -3,6 +3,8 @@ import isMobile from "./isMobile";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/dist/Flip";
+import randomIntegerInRange from "./randomIntegerInRange";
+import dynamicStyles from "./dynamicStyles";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
@@ -139,6 +141,30 @@ const applyCollageAnimation = (
       const galleryItemsInner = [...galleryItems]
         .map((item) => (item.children.length > 0 ? [...item.children] : []))
         .flat();
+
+      if (animationType === "cllg-fx2" && !isMobile()) {
+        const gridPos: string[] = [];
+        galleryItems.forEach((item: any, index: number) => {
+          let row: number = randomIntegerInRange(1, 4);
+          let col: number = randomIntegerInRange(1, 10);
+
+          while (!gridPos.includes(`${row}/${col}`)) {
+            row = randomIntegerInRange(1, 4);
+            col = randomIntegerInRange(1, 10);
+
+            gridPos.push(`${row}/${col}`);
+          }
+
+          dynamicStyles([
+            {
+              class: `.collage-block.grid.--cllg-fx2 .grid-wrap .grid-wrap__gallery--grid10:not(.gallery--switch) .pos-${
+                index + 1
+              }`,
+              css: `grid-area: ${row}/${col};`,
+            },
+          ]);
+        });
+      }
 
       // Temporarily add the final class to capture the final state
       grid.classList.add("gallery--switch");

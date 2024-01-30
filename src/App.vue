@@ -1,12 +1,13 @@
 <template>
-  <main class="app --locked" v-show="showApp">
+  <!-- <main class="app --locked" v-show="showApp"> -->
+  <main class="app" v-show="showApp">
     <share-button></share-button>
-    <highlight-tutorial
+    <!-- <highlight-tutorial
       :title="xpMarquee.indicator.title"
       :subtitle="xpMarquee.indicator.subtitle"
       :active="highlightActive"
       @onHighlightCompleted="initScroll"
-    ></highlight-tutorial>
+    ></highlight-tutorial> -->
 
     <section class="marquees-container">
       <marquee-block
