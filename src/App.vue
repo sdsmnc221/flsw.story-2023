@@ -14,6 +14,7 @@
         :key="`marquee-block-${index}`"
         :title="marquee.title"
         :cats="marquee.cats"
+        :cats-images="marquee.img"
       />
     </section>
     <title-block :title="xpTitle.title" :subtitle="xpTitle.subtitle" />
@@ -204,6 +205,7 @@ const initScroll = () => {
     ".grid__item-inner",
     ".grid__item",
     ".loader-block .circle",
+    ".marquee__img",
   ]).then(() => {
     setTimeout(() => {
       highlightActive.value = true;

@@ -16,6 +16,17 @@
                 "Gandalf",
                 "Crapule",
                 "Romi"
+            ],
+            "img": [
+                "mq-taijitu.jpg",
+                "mq-stark.jpg",
+                "mq-sky.jpg",
+                "mq-ruby.jpg",
+                "mq-roky.jpg",
+                "mq-isis.jpg",
+                "mq-gandalf.jpg",
+                "mq-crapule.jpg",
+                "mq-romi.jpg"
             ]
         },
         {
@@ -28,6 +39,15 @@
                 "Bob x Kikou",
                 "Arès x Mia",
                 "Grudu x Aga"
+            ],
+            "img": [
+                "mq-robin-ted.jpg",
+                "mq-minet-noisette.jpg",
+                "mq-okko-plume.jpg",
+                "mq-caline-milou.jpg",
+                "mq-bob-kikou.jpg",
+                "mq-ares-mia.jpg",
+                "mq-grudu-aga.jpg"
             ]
         },
         {
@@ -42,6 +62,17 @@
                 "Tagada",
                 "Melba",
                 "Cacaille"
+            ],
+            "img": [
+                "mq-seti.jpg",
+                "mq-ruben.jpg",
+                "mq-rufus.jpg",
+                "mq-nougat.jpg",
+                "mq-praline.jpg",
+                "mq-snoop.jpg",
+                "mq-tagada.jpg",
+                "mq-melba.jpg",
+                "mq-cacaille.jpg"
             ]
         }
     ]

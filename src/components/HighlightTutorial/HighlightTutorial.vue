@@ -93,10 +93,6 @@ watch(
   &:not(.--hidden) ~ .marquees-container {
     .marquee-block {
       transition: filter 0.64s ease-in-out;
-
-      &:hover {
-        filter: contrast(1.6);
-      }
     }
   }
 

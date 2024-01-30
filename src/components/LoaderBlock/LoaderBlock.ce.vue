@@ -36,6 +36,7 @@ onMounted(() => {
     ".grid__item-inner",
     ".grid__item",
     ".loader-block .circle",
+    ".marquee__img",
   ]).then((a) => {
     console.log(a);
     setTimeout(() => {
