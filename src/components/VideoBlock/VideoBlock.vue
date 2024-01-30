@@ -339,8 +339,9 @@ watch(
     &.--has-collage {
       .content {
         &__svg-wrapper {
-          left: 50vw;
+          left: 46vw;
           top: 20vh;
+          height: 24vh;
         }
       }
     }
