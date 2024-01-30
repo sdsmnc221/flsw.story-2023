@@ -67,8 +67,8 @@ watch(
     // opacity: 0;
     position: relative;
     padding: 0 10%;
-    font-size: clamp(3.2rem, 10vw, 4.4rem);
-    line-height: clamp(3.2rem, 10vw, 4.4rem);
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
+    line-height: clamp(2rem, 10vw, 3rem);
     text-transform: lowercase;
     transform: rotate(-3deg) translateY(72vh) translateX(2.4vw);
     text-align: center;
@@ -114,7 +114,6 @@ watch(
     }
 
     &__subtitle {
-      font-size: 3.2rem;
       line-height: clamp(1.2rem, 10vw, 2rem);
       transform: rotate(-3deg) translateY(60vh) translateX(-4%);
       text-align: left;
