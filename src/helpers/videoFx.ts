@@ -74,13 +74,15 @@ const applyVideoAnimation = (
             0
           );
 
-        ScrollTrigger.create({
-          trigger: element.parentNode,
-          start: hasCollage ? "top center-=24vh" : "top center+=12vh",
-          end: hasCollage ? "+=640%" : "+=120%",
-          scrub: true,
-          animation: flip,
-        });
+        if (!hasCollage) {
+          ScrollTrigger.create({
+            trigger: element,
+            start: "top center+=12vh",
+            end: "+=120%",
+            scrub: true,
+            animation: flip,
+          });
+        }
       }
 
       break;

@@ -175,6 +175,80 @@ const applyCollageAnimation = (
       // Remove the final class to revert to the initial state
       grid.classList.remove("gallery--switch");
 
+      // Animate video block if exists
+      const videoBlock: any = document.querySelector(
+        `.text-block.section--${sectionIndex.replace(
+          "section--",
+          ""
+        )} .video-block`
+      );
+
+      let doAnimateVideo = false;
+      let tlVideoBlock: any = gsap.timeline();
+
+      if (videoBlock) {
+        videoBlock.style.opacity = "0";
+
+        const videoBlockMask: any = videoBlock.querySelector(".mask");
+        const videoBlockImage: any = videoBlock
+          .querySelector(".content__img")
+          .querySelector("video");
+        const videoBlockContent = [...videoBlock.querySelectorAll(".content")];
+
+        const isCircle = videoBlockMask.tagName.toLowerCase() === "circle";
+
+        tlVideoBlock
+          .fromTo(
+            videoBlock,
+            {
+              opacity: 0,
+            },
+            {
+              opacity: 1,
+              duration: 3.2,
+            },
+            0
+          )
+          .fromTo(
+            videoBlockMask,
+            {
+              attr: isCircle
+                ? { r: videoBlockMask.getAttribute("r") }
+                : { d: videoBlockMask.getAttribute("d") },
+            },
+            {
+              duration: 3.2,
+              ease: "none",
+              attr: isCircle
+                ? { r: videoBlockMask.dataset.valueFinal }
+                : { d: videoBlockMask.dataset.valueFinal },
+            },
+            0
+          )
+          .fromTo(
+            videoBlockImage,
+            {
+              transformOrigin: "50% 50%",
+            },
+            {
+              duration: 3.2,
+              ease: "none",
+              scale: isCircle ? 1.2 : 1,
+            },
+            0
+          )
+          .fromTo(
+            videoBlockContent,
+            {
+              opacity: 0,
+              scale: 0,
+            },
+            { duration: 3.2, opacity: 1, scale: 1 },
+            0
+          )
+          .pause();
+      }
+
       // Create the Flip animation timeline
       const tl = Flip.to(flipstate, {
         ease: "none",
@@ -195,34 +269,21 @@ const applyCollageAnimation = (
                 onUpdate: (self) => {
                   const { progress } = self;
 
-                  if (
-                    progress === 1 &&
-                    grid.parentNode.parentNode.parentNode.classList.contains(
-                      "section--2"
-                    )
-                  ) {
-                    grid.parentNode.parentNode.parentNode.style.position =
-                      "fixed";
-                  }
-
-                  console.log(
-                    progress,
-                    grid.parentNode.parentNode.parentNode.style.position
-                  );
-                },
-                onLeave: (self) => {
-                  setTimeout(() => {
-                    if (
-                      grid.parentNode.parentNode.parentNode.classList.contains(
-                        "section--2"
-                      )
-                    ) {
-                      grid.parentNode.parentNode.parentNode.style.top = "-32vh";
-                      grid.parentNode.parentNode.parentNode.style.position = "";
+                  if (parseFloat(progress.toFixed(2)) === 0.72) {
+                    console.log(doAnimateVideo, videoBlock);
+                    if (!doAnimateVideo) {
+                      doAnimateVideo = true;
                     }
-                  }, 100);
 
-                  setTimeout(() => {}, 1200);
+                    if (doAnimateVideo) {
+                      tlVideoBlock.play();
+                    }
+                  } else if (progress < 0.72) {
+                    if (doAnimateVideo) {
+                      tlVideoBlock.reverse();
+                      doAnimateVideo = false;
+                    }
+                  }
                 },
               }
             : {}),

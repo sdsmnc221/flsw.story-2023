@@ -206,6 +206,7 @@ watch(
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
+    overflow: hidden;
 
     .content {
       position: relative;
@@ -335,6 +336,14 @@ watch(
   }
 
   @media (max-width: 768px) {
+    &.--has-collage {
+      .content {
+        &__svg-wrapper {
+          left: 50vw;
+          top: 20vh;
+        }
+      }
+    }
     .content {
       transform: translate(4vw, 0);
       &__svg-wrapper {

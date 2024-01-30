@@ -238,22 +238,11 @@ const initScroll = () => {
       scrollGrid(collage6);
       scrollGrid(collage7);
       scrollGrid(video1);
-      scrollGrid(video2);
+      // scrollGrid(video2);
 
       scroll(fx1);
       scroll(fx2);
       scroll(fx3);
-
-      setTimeout(() => {
-        const pinSpacers = [...document.querySelectorAll(".pin-spacer")];
-        console.log(pinSpacers);
-        pinSpacers.forEach((pinNode: any) => {
-          console.log(pinNode.children);
-          if (pinNode.children[0].classList.contains("section--2")) {
-            pinNode.style.backgroundColor = "var(  --goose-down-beige)";
-          }
-        });
-      }, 1600);
 
       setTimeout(() => {
         unlock(document.querySelector("main.app") as HTMLElement);

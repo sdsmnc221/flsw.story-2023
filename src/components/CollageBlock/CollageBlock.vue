@@ -459,6 +459,17 @@ const computedCollage = computed<string[]>(() => {
           z-index: 1;
         }
       }
+
+      &.--cllg-fx2 {
+        .grid-wrap {
+          .grid-wrap__gallery--grid10.gallery--switch {
+            grid-template-columns: 1fr 96vw 1fr;
+            grid-template-rows: calc(96vw * 9 / 16) 1fr 1fr;
+            grid-gap: 0;
+            margin-bottom: 48vh;
+          }
+        }
+      }
     }
   }
 
