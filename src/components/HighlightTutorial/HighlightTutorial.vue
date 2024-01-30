@@ -114,8 +114,8 @@ watch(
     }
 
     &__subtitle {
-      line-height: clamp(1.2rem, 10vw, 2rem);
-      transform: rotate(-3deg) translateY(58vh) translateX(-4%);
+      line-height: clamp(0.8rem, 10vw, 1.6rem);
+      transform: rotate(-3deg) translateY(60vh) translateX(-4%);
       text-align: left;
 
       .word {
