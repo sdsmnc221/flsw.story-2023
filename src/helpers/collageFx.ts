@@ -169,7 +169,7 @@ const applyCollageAnimation = (
       // Temporarily add the final class to capture the final state
       grid.classList.add("gallery--switch");
       const flipstate = Flip.getState([galleryItems], {
-        props: "filter, opacity",
+        props: "filter, opacity, width, height",
       });
 
       // Remove the final class to revert to the initial state
@@ -269,8 +269,7 @@ const applyCollageAnimation = (
                 onUpdate: (self) => {
                   const { progress } = self;
 
-                  if (parseFloat(progress.toFixed(2)) === 0.72) {
-                    console.log(doAnimateVideo, videoBlock);
+                  if (parseFloat(progress.toFixed(2)) === 0.64) {
                     if (!doAnimateVideo) {
                       doAnimateVideo = true;
                     }
@@ -278,7 +277,7 @@ const applyCollageAnimation = (
                     if (doAnimateVideo) {
                       tlVideoBlock.play();
                     }
-                  } else if (progress < 0.72) {
+                  } else if (progress < 0.64) {
                     if (doAnimateVideo) {
                       tlVideoBlock.reverse();
                       doAnimateVideo = false;

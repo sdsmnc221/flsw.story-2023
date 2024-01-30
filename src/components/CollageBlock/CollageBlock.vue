@@ -213,6 +213,8 @@ const computedCollage = computed<string[]>(() => {
 
           .grid__item {
             grid-area: 2 / 2 / 3 / 3;
+            opacity: 0;
+            filter: blur(2px);
           }
         }
       }
