@@ -521,6 +521,24 @@ const computedCollage = computed<string[]>(() => {
           }
         }
       }
+
+      &.--cllg-fx4 {
+        .grid-wrap__gallery--stack-inverse .grid__item:nth-child(5) {
+          z-index: 6;
+        }
+        .grid-wrap__gallery--stack-inverse .grid__item:nth-child(4) {
+          z-index: 5;
+        }
+        .grid-wrap__gallery--stack-inverse .grid__item:nth-child(3) {
+          z-index: 4;
+        }
+        .grid-wrap__gallery--stack-inverse .grid__item:nth-child(2) {
+          z-index: 3;
+        }
+        .grid-wrap__gallery--stack-inverse .grid__item:nth-child(1) {
+          z-index: 2;
+        }
+      }
     }
   }
 }

@@ -177,8 +177,8 @@ const initScroll = () => {
   };
 
   const collage5 = {
-    id: "cllg-fx1",
-    node: document.querySelector(".section--6.grid"),
+    id: "cllg-fx2",
+    node: document.querySelector(".section--6.grid-wrap__gallery"),
     type: "collage",
   };
 
