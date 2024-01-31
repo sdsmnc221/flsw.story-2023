@@ -78,7 +78,18 @@
         "backgroundColor": "goose-down-beige",
         "textColor": "dallas-brown",
         "pseudoBackgroundColor": "sandy-clay-beige",
-        "spacing": "normal"
+        "spacing": "normal",
+        "collage": [
+            "c3-1.jpg",
+            "c3-2.jpg",
+            "c3-3.jpg",
+            "c3-4.jpg",
+            "c3-5.jpg",
+            "c3-6.jpg",
+            "c3-7.jpg",
+            "c3-8.jpg",
+            "c3-9.jpg"
+        ]
     },
     {
         "subtitle": "chapitre 4.",

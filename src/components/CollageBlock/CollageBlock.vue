@@ -46,12 +46,14 @@
       >
         <div
           class="grid__item grid__item-cut"
-          v-for="index in 9"
+          v-for="(img, index) in computedCollage"
           :key="`${sectionId}-grid-item-${index}`"
         >
           <div
             class="grid__item-inner"
-            style="background-image: url(img/3.jpg)"
+            :style="`${
+              img.includes('jpg') ? `background-image: url(${img})` : ''
+            }`"
           ></div>
         </div>
       </div>
@@ -89,8 +91,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import shuffleArray from "../../helpers/shuffleArray";
+import isMobile from "../../helpers/isMobile";
 
 interface Props {
   collageFx?: string;
@@ -102,6 +105,8 @@ const props = withDefaults(defineProps<Props>(), {
   collageFx: "fx0",
   collage: null,
 });
+
+const mob = ref<boolean>(isMobile());
 
 const computedCollage = computed<string[]>(() => {
   let collageArray: string[] = [];
@@ -116,10 +121,14 @@ const computedCollage = computed<string[]>(() => {
         ];
       }
     }
-    if (props.collageFx !== "fx4") {
+    if (props.collageFx !== "fx4" && props.collageFx !== "fx3") {
       return shuffleArray(collageArray).map((img: string) => `/img/${img}`);
     } else {
-      return collageArray.map((img: string) => `/img/${img}`);
+      return collageArray.map((img: string) =>
+        props.collageFx === "fx3" && mob.value
+          ? `/img/${img.replace(".jpg", "-mob.jpg")}`
+          : `/img/${img}`
+      );
     }
   }
   return Array(24).fill("1.jpg");
@@ -163,7 +172,7 @@ const computedCollage = computed<string[]>(() => {
         width: calc(1 / var(--grid-inner-scale) * 100%);
         height: calc(1 / var(--grid-inner-scale) * 100%);
         background-size: cover;
-        background-position: 50% 50%;
+        background-position: center top;
       }
     }
   }
@@ -273,9 +282,13 @@ const computedCollage = computed<string[]>(() => {
               row-gap: 2.5vw;
               column-gap: 3vw;
 
-              grid__item {
+              .grid__item {
                 height: 33vh;
                 width: 33vw;
+
+                &__inner {
+                  background-position: center bottom;
+                }
               }
             }
           }
