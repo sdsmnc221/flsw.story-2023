@@ -10,6 +10,14 @@
 import { onMounted, ref } from "vue";
 import isMobile from "../../helpers/isMobile";
 
+interface Props {
+  doLerp?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  doLerp: false,
+});
+
 const mobile = ref<boolean>(isMobile());
 
 const LERP_FACTOR = 0.1;
@@ -18,8 +26,13 @@ const mouse = ref<{ x: number; y: number }>({ x: 0, y: 0 });
 const target = ref<{ x: number; y: number }>({ x: 0, y: 0 });
 
 const updateCursorPosition = (event: any) => {
-  target.value.x = event.clientX;
-  target.value.y = event.clientY;
+  if (props.doLerp) {
+    target.value.x = event.clientX;
+    target.value.y = event.clientY;
+  } else {
+    mouse.value.x = event.clientX;
+    mouse.value.y = event.clientY;
+  }
 };
 const updateCursor = () => {
   const dx = target.value.x - mouse.value.x;
@@ -37,7 +50,9 @@ onMounted(() => {
 
   window.addEventListener("mousemove", updateCursorPosition);
 
-  setInterval(updateCursor, 1000 / 60);
+  if (props.doLerp) {
+    setInterval(updateCursor, 1000 / 60);
+  }
 });
 </script>
 
