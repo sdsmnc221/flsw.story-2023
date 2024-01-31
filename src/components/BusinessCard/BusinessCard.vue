@@ -101,6 +101,7 @@
   position: relative;
   z-index: 2;
   animation: float 3.2s ease-in-out infinite;
+  pointer-events: all;
 
   &.parent {
     width: 290px;
