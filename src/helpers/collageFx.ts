@@ -269,7 +269,7 @@ const applyCollageAnimation = (
                 onUpdate: (self) => {
                   const { progress } = self;
 
-                  if (parseFloat(progress.toFixed(2)) === 0.64) {
+                  if (parseFloat(progress.toFixed(2)) === 0.84) {
                     if (!doAnimateVideo) {
                       doAnimateVideo = true;
                     }
@@ -277,7 +277,7 @@ const applyCollageAnimation = (
                     if (doAnimateVideo) {
                       tlVideoBlock.play();
                     }
-                  } else if (progress < 0.64) {
+                  } else if (progress < 0.84) {
                     if (doAnimateVideo) {
                       tlVideoBlock.reverse();
                       doAnimateVideo = false;
