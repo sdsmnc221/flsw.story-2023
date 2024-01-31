@@ -46,16 +46,16 @@ watch(
   position: fixed;
   width: 100%;
   height: 100dvh;
-  // background-color: rgba(0, 0, 0, 0.12);
-  backdrop-filter: brightness(0.8);
+  background-color: rgba(0, 0, 0, 0.12);
+  // backdrop-filter: brightness(0.8);
   z-index: 10;
   pointer-events: none;
   overflow: hidden;
   transition: all 0.64s ease-in-out;
 
   &.--hidden {
-    // background-color: rgba(0, 0, 0, 0);
-    backdrop-filter: brightness(1);
+    background-color: rgba(0, 0, 0, 0);
+    // backdrop-filter: brightness(1);
     opacity: 0;
   }
 
