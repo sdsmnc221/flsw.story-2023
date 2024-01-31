@@ -1,5 +1,5 @@
 <template>
-  <main class="app --locked" v-show="showApp" v-if="!isDevMode">
+  <main class="app --locked" v-show="showApp" v-if="isDevMode">
     <share-button></share-button>
 
     <highlight-tutorial
