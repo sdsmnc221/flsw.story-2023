@@ -38,7 +38,7 @@ onMounted(() => {
   window.addEventListener("scroll", () => {
     if (isMobile()) {
       const scrollOffset = window.scrollY;
-      nodeRef.value?.setProperty("--scroll-offset", `${scrollOffset}px`);
+      nodeRef.value?.setProperty("--scroll-offset", `${-scrollOffset}px`);
     }
   });
 });
