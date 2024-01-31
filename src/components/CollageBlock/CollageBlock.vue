@@ -25,11 +25,17 @@
         :class="sectionId"
       >
         <div
-          v-for="index in 16"
+          v-for="(img, index) in computedCollage"
           :key="`${sectionId}-grid-item-${index}`"
           :class="`grid__item pos-${index}`"
-          style="background-image: url(img/2.jpg)"
-        ></div>
+          :style="`${
+            img.includes('jpg') ? `background-image: url(${img})` : ''
+          }`"
+        >
+          <video v-if="img.includes('mp4')" autoplay muted loop>
+            <source :src="img" type="video/mp4" />
+          </video>
+        </div>
       </div>
     </div>
 
@@ -96,18 +102,21 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const computedCollage = computed<string[]>(() => {
+  let collageArray: string[] = [];
+
   if (props.collage) {
-    let collageArray = [...props.collage];
-    if (collageArray.length < 24) {
-      collageArray = [
-        ...collageArray,
-        ...Array(24 - collageArray.length).fill("1.jpg"),
-      ];
+    collageArray = [...props.collage];
+    if (props.collageFx !== "fx2") {
+      if (collageArray.length < 24) {
+        collageArray = [
+          ...collageArray,
+          ...Array(24 - collageArray.length).fill("1.jpg"),
+        ];
+      }
     }
     return shuffleArray(collageArray).map((img: string) => `/img/${img}`);
-  } else {
-    return Array(24).fill("/img/1.jpg");
   }
+  return Array(24).fill("1.jpg");
 });
 </script>
 
@@ -120,6 +129,38 @@ const computedCollage = computed<string[]>(() => {
   --grid-gap: 2vw;
   --grid-columns: 4;
   --grid-inner-scale: 1;
+
+  .grid {
+    &-wrap {
+      height: var(--grid-height);
+      width: var(--grid-width);
+      display: grid;
+      grid-template-columns: repeat(var(--grid-columns), 1fr);
+      gap: var(--grid-gap);
+      transform-style: preserve-3d;
+      place-items: center;
+      overflow-y: visible;
+    }
+
+    &__item {
+      aspect-ratio: var(--grid-item-ratio);
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      position: relative;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+
+      &-inner {
+        position: relative;
+        width: calc(1 / var(--grid-inner-scale) * 100%);
+        height: calc(1 / var(--grid-inner-scale) * 100%);
+        background-size: cover;
+        background-position: 50% 50%;
+      }
+    }
+  }
 
   &.grid {
     position: relative;
@@ -143,38 +184,6 @@ const computedCollage = computed<string[]>(() => {
       perspective: var(--perspective);
 
       transform: translateY(-16vh);
-
-      .grid {
-        &-wrap {
-          height: var(--grid-height);
-          width: var(--grid-width);
-          display: grid;
-          grid-template-columns: repeat(var(--grid-columns), 1fr);
-          gap: var(--grid-gap);
-          transform-style: preserve-3d;
-          place-items: center;
-          overflow-y: visible;
-        }
-
-        &__item {
-          aspect-ratio: var(--grid-item-ratio);
-          width: 100%;
-          height: auto;
-          overflow: hidden;
-          position: relative;
-          border-radius: 16px;
-          display: grid;
-          place-items: center;
-
-          &-inner {
-            position: relative;
-            width: calc(1 / var(--grid-inner-scale) * 100%);
-            height: calc(1 / var(--grid-inner-scale) * 100%);
-            background-size: cover;
-            background-position: 50% 50%;
-          }
-        }
-      }
     }
 
     &.--cllg-fx2 {
@@ -212,7 +221,6 @@ const computedCollage = computed<string[]>(() => {
           .grid__item {
             grid-area: 2 / 2 / 3 / 3;
             opacity: 0;
-            filter: blur(2px);
           }
         }
       }

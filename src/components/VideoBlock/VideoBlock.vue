@@ -51,7 +51,7 @@
 
           <foreignObject mask="url(#circleMask2)">
             <video ref="videoRef">
-              <source src="/img/sushi.mp4" type="video/mp4" />
+              <source :src="`/img/${video || 'sushi.mp4'}`" type="video/mp4" />
             </video>
           </foreignObject>
         </svg>
@@ -159,6 +159,7 @@ interface Props {
   sectionId: string;
   videoFx: string;
   hasCollage: boolean;
+  video?: string;
 }
 
 defineProps<Props>();

@@ -18,6 +18,7 @@
       :section-id="id"
       :video-fx="videoFx"
       :has-collage="!!cllgFx"
+      :video="video"
     ></video-block>
 
     <div
@@ -69,6 +70,7 @@ interface Props {
   id: string;
   spacing?: string | null;
   collage?: string[] | null;
+  video?: string | null;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -82,6 +84,7 @@ withDefaults(defineProps<Props>(), {
   videoFx: null,
   spacing: null,
   collage: null,
+  video: null,
 });
 </script>
 
