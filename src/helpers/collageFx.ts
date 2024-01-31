@@ -146,14 +146,14 @@ const applyCollageAnimation = (
         const gridPos: string[] = [];
         galleryItems.forEach((_item: any, index: number) => {
           let row: number = randomIntegerInRange(1, 4);
-          let col: number = randomIntegerInRange(1, 10);
+          let col: number = randomIntegerInRange(1, 6);
 
-          while (!gridPos.includes(`${row}/${col}`)) {
+          while (gridPos.includes(`${row}/${col}`)) {
             row = randomIntegerInRange(1, 4);
-            col = randomIntegerInRange(1, 10);
-
-            gridPos.push(`${row}/${col}`);
+            col = randomIntegerInRange(1, 6);
           }
+
+          gridPos.push(`${row}/${col}`);
 
           dynamicStyles([
             {

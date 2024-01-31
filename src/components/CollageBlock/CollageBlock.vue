@@ -494,7 +494,7 @@ const computedCollage = computed<string[]>(() => {
       &.--cllg-fx2 {
         .grid-wrap {
           .grid-wrap__gallery--grid10 {
-            grid-template-columns: repeat(10, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             grid-template-rows: repeat(4, 1fr);
 
             .grid__item {
