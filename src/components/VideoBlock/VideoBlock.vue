@@ -14,7 +14,7 @@
           viewBox="0 0 1000 450"
         >
           <defs>
-            <filter id="displacementFilter2">
+            <filter :id="`displacementFilter-${id}`">
               <feTurbulence
                 type="fractalNoise"
                 baseFrequency="0.1"
@@ -36,7 +36,7 @@
                 in="displacement"
               />
             </filter>
-            <mask id="circleMask2">
+            <mask :id="`circleMask-${id}`">
               <circle
                 cx="50%"
                 cy="50%"
@@ -44,12 +44,12 @@
                 data-value-final="950"
                 fill="white"
                 class="mask"
-                style="filter: url(#displacementFilter2)"
+                :style="`filter: url(#displacementFilter-${id})`"
               />
             </mask>
           </defs>
 
-          <foreignObject mask="url(#circleMask2)">
+          <foreignObject :mask="`url(#circleMask-${id})`">
             <video ref="videoRef">
               <source :src="`/img/${video || 'sushi.mp4'}`" type="video/mp4" />
             </video>
@@ -154,7 +154,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
+
+import { randomAlphaNumeric } from "../../helpers/randomAlphaNumeric";
+
 interface Props {
   sectionId: string;
   videoFx: string;
@@ -175,6 +178,8 @@ const playVideo = () => {
 const pauseVideo = () => {
   videoPlayState.value = false;
 };
+
+const id = computed<string>(() => randomAlphaNumeric());
 
 watch(
   () => videoPlayState.value,
