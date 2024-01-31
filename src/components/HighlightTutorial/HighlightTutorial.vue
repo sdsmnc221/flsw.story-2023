@@ -1,6 +1,6 @@
 i
 <template>
-  <section class="highlight-tutorial" ref="nodeRef">
+  <section class="highlight-tutorial">
     <p
       class="highlight-tutorial__title josefin-sans-600 --stroked"
       data-splitting
@@ -17,9 +17,8 @@ i
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from "vue";
+import { watch } from "vue";
 import initHighlight from "../../helpers/hightlightFx";
-import isMobile from "../../helpers/isMobile";
 interface Props {
   title: string;
   subtitle: string;
@@ -28,20 +27,9 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const nodeRef = ref<any>(null);
-
 // const emits = defineEmits(["onHighlightCompleted"]);
 
 // const emitEvent = () => emits("onHighlightCompleted");
-
-onMounted(() => {
-  window.addEventListener("scroll", () => {
-    if (isMobile()) {
-      const scrollOffset = window.scrollY;
-      nodeRef.value?.setProperty("--scroll-offset", `${-scrollOffset}px`);
-    }
-  });
-});
 
 watch(
   () => props.active,
@@ -55,11 +43,9 @@ watch(
 
 <style lang="scss">
 .highlight-tutorial {
-  --scroll-offset: 0;
-
   position: fixed;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   // background-color: rgba(0, 0, 0, 0.12);
   backdrop-filter: brightness(0.8);
   z-index: 10;
@@ -124,7 +110,6 @@ watch(
     }
 
     &__subtitle {
-      top: var(--scroll-offset);
       line-height: clamp(0.8rem, 10vw, 1.6rem);
       transform: rotate(-3deg) translateY(60vh) translateX(-4%);
       text-align: left;
