@@ -40,10 +40,12 @@ const intervalId = ref<number>(0);
 const showPrompt = ref<boolean>(true);
 const endOfPrompt = ref<boolean>(false);
 
-const changePrompt = (interval = 1320) => {
+const changePrompt = (restart = false, interval = 1320) => {
   let i = 0;
   const prompts = firstLoading.value
-    ? xpLoader.firstLoadingPrompts
+    ? restart
+      ? xpLoader.firstLoadingPrompts.slice(3)
+      : xpLoader.firstLoadingPrompts
     : xpLoader.loadingPrompts;
 
   const intervalId = setInterval(() => {
@@ -103,8 +105,12 @@ onUnmounted(() => {
 watch(
   [() => endOfPrompt.value, () => assetsReady.value],
   ([isAtEndOfPrompt, isAssetReady]) => {
-    console.log({ isAtEndOfPrompt, isAssetReady });
-    if (isAtEndOfPrompt && isAssetReady) {
+    if (isAtEndOfPrompt) {
+      cancelPrompt(intervalId.value);
+      intervalId.value = changePrompt(true);
+    }
+
+    if (isAssetReady) {
       setTimeout(() => {
         loading.value = false;
 
