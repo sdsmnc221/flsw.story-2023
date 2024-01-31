@@ -167,6 +167,8 @@ onMounted(() => {
       font-size: 4rem;
       line-height: 3.6rem;
       text-transform: lowercase;
+      margin-top: 0;
+      letter-spacing: 0;
     }
   }
 }
