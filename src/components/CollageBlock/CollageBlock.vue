@@ -125,7 +125,9 @@ const computedCollage = computed<string[]>(() => {
       return shuffleArray(collageArray).map((img: string) => {
         if (mob.value) {
           if (props.collageFx === "fx2") {
-            return `/img/${img.replace(".jpg", "-mob.jpg")}`;
+            return `/img/${
+              img.includes("mp4") ? img : img.replace(".jpg", "-mob.jpg")
+            }`;
           }
         }
         return `/img/${img}`;
