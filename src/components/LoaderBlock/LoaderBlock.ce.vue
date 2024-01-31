@@ -1,13 +1,10 @@
 <template>
   <transition name="fade" mode="out-in">
     <div class="loader-block" v-show="loading">
-      <div class="wrapper">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="shadow"></div>
-        <div class="shadow"></div>
-        <div class="shadow"></div>
+      <div class="three-body">
+        <div class="three-body__dot"></div>
+        <div class="three-body__dot"></div>
+        <div class="three-body__dot"></div>
       </div>
       <div class="loader-block__status yeseva-one-regular">
         <span v-if="firstLoading === true"
@@ -102,118 +99,115 @@ onMounted(() => {
     letter-spacing: 2px;
   }
 
-  .wrapper {
-    width: 200px;
-    height: 60px;
-    position: relative;
-    z-index: 1;
-    transform: scale(3.2);
-    transform-origin: left;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: scale(3.2) translate(-50%, -50%);
+  .three-body {
+    --loader-size: 240px;
+    --loader-speed: 1.2s;
+    position: fixed;
+    display: inline-block;
+    height: var(--loader-size);
+    width: var(--loader-size);
+    animation: spin calc(var(--loader-speed) * 2.5) infinite linear;
+    top: calc(50vh - var(--loader-size) / 1.5);
   }
 
-  .circle {
-    width: 32px;
-    height: 32px;
+  .three-body__dot {
     position: absolute;
-    border-radius: 0;
-    background-color: transparent;
+    height: 100%;
+    width: 30%;
+  }
+
+  .three-body__dot:after {
+    content: "";
+    position: absolute;
+    height: 0%;
+    width: 100%;
+    padding-bottom: 100%;
+    //  background-color: var(--loader-color);
+
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
-    left: 10%;
-    transform-origin: 50%;
-    animation: circle7124 0.72s alternate infinite ease;
-
-    &:nth-child(1) {
-      background-image: url(/img/cat1.svg);
-    }
-    &:nth-child(2) {
-      background-image: url(/img/cat2.svg);
-    }
-    &:nth-child(3) {
-      background-image: url(/img/cat3.svg);
-    }
   }
 
-  @keyframes circle7124 {
-    0% {
-      top: 60px;
-      height: 8px;
-      border-radius: 0;
-      transform: scaleX(1.7);
-    }
+  .three-body__dot:nth-child(1) {
+    bottom: 5%;
+    left: 0;
+    transform: rotate(60deg);
+    transform-origin: 50% 85%;
+  }
 
-    40% {
-      height: 32px;
-      border-radius: 0;
-      transform: scaleX(1);
+  .three-body__dot:nth-child(1)::after {
+    bottom: 0;
+    left: 0;
+    animation: wobble1 var(--loader-speed) infinite ease-in-out;
+    animation-delay: calc(var(--loader-speed) * -0.3);
+    background-image: url(/img/cat1.svg);
+  }
+
+  .three-body__dot:nth-child(2) {
+    bottom: 5%;
+    right: 0;
+    transform: rotate(-60deg);
+    transform-origin: 50% 85%;
+  }
+
+  .three-body__dot:nth-child(2)::after {
+    bottom: 0;
+    left: 0;
+    animation: wobble1 var(--loader-speed) infinite
+      calc(var(--loader-speed) * -0.15) ease-in-out;
+    background-image: url(/img/cat2.svg);
+  }
+
+  .three-body__dot:nth-child(3) {
+    bottom: -5%;
+    left: 0;
+    transform: translateX(116.666%);
+  }
+
+  .three-body__dot:nth-child(3)::after {
+    top: 0;
+    left: 0;
+    animation: wobble2 var(--loader-speed) infinite ease-in-out;
+    background-image: url(/img/cat3.svg);
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
     }
 
     100% {
-      top: 0%;
+      transform: rotate(360deg);
     }
   }
 
-  .circle:nth-child(2) {
-    left: 42%;
-    animation-delay: 0.2s;
-  }
-
-  .circle:nth-child(3) {
-    left: auto;
-    right: 11%;
-    animation-delay: 0.3s;
-  }
-
-  .shadow {
-    width: 16px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.48);
-    position: absolute;
-    top: 62px;
-    transform-origin: 50%;
-    z-index: -1;
-    left: 15%;
-    filter: blur(1px);
-    animation: shadow046 0.5s alternate infinite ease;
-  }
-
-  @keyframes shadow046 {
-    0% {
-      transform: scaleX(1.5);
-    }
-
-    40% {
-      transform: scaleX(1);
-      opacity: 0.7;
-    }
-
+  @keyframes wobble1 {
+    0%,
     100% {
-      transform: scaleX(0.2);
-      opacity: 0.4;
+      transform: translateY(0%) scale(1);
+      opacity: 1;
+    }
+
+    50% {
+      transform: translateY(-66%) scale(0.65);
+      opacity: 0.8;
     }
   }
 
-  .shadow:nth-child(4) {
-    left: 45%;
-    animation-delay: 0.2s;
-  }
+  @keyframes wobble2 {
+    0%,
+    100% {
+      transform: translateY(0%) scale(1);
+      opacity: 1;
+    }
 
-  .shadow:nth-child(5) {
-    left: auto;
-    right: 15%;
-    animation-delay: 0.3s;
+    50% {
+      transform: translateY(66%) scale(0.65);
+      opacity: 0.8;
+    }
   }
 
   @media (max-width: 768px) {
-    .wrapper {
-      transform: scale(1.8) translate(-50%, -50%);
-    }
   }
 }
 </style>

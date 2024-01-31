@@ -400,7 +400,7 @@ onMounted(() => {
 
     & > .marquee-block {
       transform-origin: "left";
-      animation: blink ease-in-out 1.6s infinite;
+      // animation: blink ease-in-out 1.6s infinite;
       &:first-child {
         transform: rotate(6deg) translateY(20vh);
         width: 110%;
