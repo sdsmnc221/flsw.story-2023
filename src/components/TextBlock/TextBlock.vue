@@ -136,13 +136,13 @@ withDefaults(defineProps<Props>(), {
   &__title {
     width: 100%;
     font-size: 2.4rem;
-    line-height: 2rem;
+    line-height: 2.4rem;
   }
 
   &__subtitle {
     align-self: flex-start;
     font-size: 1.2rem;
-    line-height: 1.2rem;
+    line-height: 1.6rem;
     text-transform: lowercase;
   }
 
@@ -307,6 +307,7 @@ withDefaults(defineProps<Props>(), {
 
     &__title {
       font-size: 2.8rem;
+      line-height: 2.8rem;
     }
 
     &__content {
