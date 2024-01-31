@@ -6,20 +6,22 @@
         <div class="three-body__dot"></div>
         <div class="three-body__dot"></div>
       </div>
+
       <div class="loader-block__status yeseva-one-regular">
-        <span v-if="firstLoading === true"
-          >En cours d'appeler les Chachouilles !</span
-        >
-        <span v-else>Un instant de réparation !</span>
+        <transition name="fade" mode="out-in">
+          <span v-show="showPrompt">{{ prompt }}</span>
+        </transition>
       </div>
     </div>
   </transition>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
 import isMobile from "../../helpers/isMobile";
 import { preloadImages } from "../../helpers/preloadAssets";
+
+import xpLoader from "../../configs/xpLoader.json";
 
 interface Props {}
 
@@ -27,21 +29,53 @@ defineProps<Props>();
 
 const loading = ref<boolean>(false);
 const firstLoading = ref<boolean>(true);
+const assetsReady = ref<boolean>(false);
+
+const prompt = ref<string>(
+  firstLoading.value
+    ? xpLoader.firstLoadingPrompts[0]
+    : xpLoader.loadingPrompts[0]
+);
+const intervalId = ref<number>(0);
+const showPrompt = ref<boolean>(true);
+const endOfPrompt = ref<boolean>(false);
+
+const changePrompt = (interval = 1320) => {
+  let i = 0;
+  const prompts = firstLoading.value
+    ? xpLoader.firstLoadingPrompts
+    : xpLoader.loadingPrompts;
+
+  const intervalId = setInterval(() => {
+    showPrompt.value = false;
+    setTimeout(() => {
+      showPrompt.value = true;
+      i++;
+      if (i >= prompts.length) {
+        i = 0;
+        endOfPrompt.value = true;
+      }
+
+      prompt.value = prompts[i];
+    }, interval);
+  }, interval * 2);
+
+  return intervalId;
+};
+
+const cancelPrompt = (intervalId: number) => {
+  clearInterval(intervalId);
+};
 
 onMounted(() => {
-  preloadImages([".loader-block .circle"]).then(() => {
+  preloadImages([".loader-block .three-body__dot::after"]).then(() => {
     loading.value = true;
+    intervalId.value = changePrompt();
   });
 
   preloadImages([".grid__item-inner", ".grid__item", ".marquee__img"]).then(
-    (a) => {
-      console.log(a);
-      setTimeout(() => {
-        loading.value = false;
-        setTimeout(() => {
-          firstLoading.value = false;
-        }, 1000);
-      }, 1600);
+    () => {
+      assetsReady.value = true;
     }
   );
 
@@ -51,6 +85,9 @@ onMounted(() => {
       (isMobile() && window.innerWidth !== e.currentTarget.outerWidth)
     ) {
       loading.value = true;
+      firstLoading.value = false;
+      endOfPrompt.value = false;
+      intervalId.value = changePrompt();
 
       setTimeout(() => {
         loading.value = false;
@@ -58,6 +95,28 @@ onMounted(() => {
     }
   });
 });
+
+onUnmounted(() => {
+  cancelPrompt(intervalId.value);
+});
+
+watch(
+  [() => endOfPrompt.value, () => assetsReady.value],
+  ([isAtEndOfPrompt, isAssetReady]) => {
+    console.log({ isAtEndOfPrompt, isAssetReady });
+    if (isAtEndOfPrompt && isAssetReady) {
+      setTimeout(() => {
+        loading.value = false;
+
+        if (firstLoading.value) {
+          setTimeout(() => {
+            firstLoading.value = false;
+          }, 1000);
+        }
+      }, 1200);
+    }
+  }
+);
 </script>
 
 <style lang="scss" scoped>
@@ -97,6 +156,8 @@ onMounted(() => {
     transform: translateY(12vh);
     font-size: 0.9rem;
     letter-spacing: 2px;
+    padding: 16px 12vw;
+    text-align: center;
   }
 
   .three-body {
@@ -208,6 +269,7 @@ onMounted(() => {
   }
 
   @media (max-width: 768px) {
+    --loader-size: 160px;
   }
 }
 </style>
