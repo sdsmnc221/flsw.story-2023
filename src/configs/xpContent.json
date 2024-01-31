@@ -137,7 +137,14 @@
         "fx": "fx1",
         "cllgFx": "fx4",
         "backgroundColor": "shakespear-blue",
-        "textPosition": "bottom"
+        "textPosition": "bottom",
+        "collage": [
+            "c7-1.jpg",
+            "c7-2.jpg",
+            "c7-3.jpg",
+            "c7-4.jpg",
+            "c7-5.jpg"
+        ]
     },
     {
         "subtitle": "chapitre 8.",
