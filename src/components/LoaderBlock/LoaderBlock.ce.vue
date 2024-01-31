@@ -28,24 +28,25 @@ interface Props {}
 
 defineProps<Props>();
 
-const loading = ref<boolean>(true);
+const loading = ref<boolean>(false);
 const firstLoading = ref<boolean>(true);
 
 onMounted(() => {
-  preloadImages([
-    ".grid__item-inner",
-    ".grid__item",
-    ".loader-block .circle",
-    ".marquee__img",
-  ]).then((a) => {
-    console.log(a);
-    setTimeout(() => {
-      loading.value = false;
-      setTimeout(() => {
-        firstLoading.value = false;
-      }, 1000);
-    }, 1600);
+  preloadImages([".loader-block .circle"]).then(() => {
+    loading.value = true;
   });
+
+  preloadImages([".grid__item-inner", ".grid__item", ".marquee__img"]).then(
+    (a) => {
+      console.log(a);
+      setTimeout(() => {
+        loading.value = false;
+        setTimeout(() => {
+          firstLoading.value = false;
+        }, 1000);
+      }, 1600);
+    }
+  );
 
   window.addEventListener("resize", (e: any) => {
     if (

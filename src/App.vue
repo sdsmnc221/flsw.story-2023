@@ -1,13 +1,59 @@
 <template>
- <main class="app --locked" v-show="showApp"> 
-  
+  <main class="app --locked" v-show="showApp" v-if="!isDevMode">
     <share-button></share-button>
+
     <highlight-tutorial
       :title="xpMarquee.indicator.title"
       :subtitle="xpMarquee.indicator.subtitle"
       :active="highlightActive"
       @onHighlightCompleted="initScroll"
     ></highlight-tutorial>
+
+    <section class="marquees-container">
+      <marquee-block
+        v-for="(marquee, index) in xpMarquee.marquees"
+        :key="`marquee-block-${index}`"
+        :title="marquee.title"
+        :cats="marquee.cats"
+        :cats-images="marquee.img"
+      />
+    </section>
+    <title-block :title="xpTitle.title" :subtitle="xpTitle.subtitle" />
+
+    <text-block
+      v-for="(section, index) of xpContent"
+      :key="`section--${index}`"
+      :id="`section--${index}`"
+      :subtitle="section.subtitle"
+      :title="section.title"
+      :background="
+        section.backgroundColor
+          ? section.backgroundColor
+          : index % 2 === 0
+          ? 'clear-day-white'
+          : 'shakespear-blue'
+      "
+      :text-color="section.textColor ? section.textColor : 'tuscany-blue'"
+      :pseudo-background="
+        section.pseudoBackgroundColor
+          ? section.pseudoBackgroundColor
+          : 'clear-day-white'
+      "
+      v-bind="computedBindedProps(section, index)"
+      :fx="section.fx"
+    >
+      {{ section.text }}
+      <business-card v-if="section.socialMedia"></business-card>
+    </text-block>
+  </main>
+  <main class="app" v-show="showApp" v-else>
+    <share-button></share-button>
+    <!-- <highlight-tutorial
+      :title="xpMarquee.indicator.title"
+      :subtitle="xpMarquee.indicator.subtitle"
+      :active="highlightActive"
+      @onHighlightCompleted="initScroll"
+    ></highlight-tutorial> -->
 
     <section class="marquees-container">
       <marquee-block
@@ -72,6 +118,8 @@ import xpContent from "./configs/xpContent.json";
 import xpMarquee from "./configs/xpMarquee.json";
 
 const showApp = ref<boolean>(false);
+
+const isDevMode = ref<boolean>(import.meta.env.DEV);
 
 const highlightActive = ref<boolean>(false);
 
@@ -290,15 +338,6 @@ onMounted(() => {
       }
     });
 
-    const pinSpacer = document.querySelector(
-      ".app > .pin-spacer:last-of-type"
-    ) as HTMLElement;
-    if (pinSpacer) {
-      pinSpacer.style.backgroundColor = `var(--${
-        xpContent.length % 2 !== 0 ? "clear-day-white" : "shakespear-blue"
-      })`;
-    }
-
     setTimeout(() => {
       const textBlocks = [...document.querySelectorAll(".text-block")];
       const BASE_INDEX = 16;
@@ -313,6 +352,17 @@ onMounted(() => {
         }
       });
     }, 640);
+
+    setTimeout(() => {
+      const pinSpacer = document.querySelector(
+        ".app > .pin-spacer:last-of-type"
+      ) as HTMLElement;
+      if (pinSpacer) {
+        pinSpacer.style.backgroundColor = `var(--${
+          xpContent.length % 2 !== 0 ? "clear-day-white" : "shakespear-blue"
+        })`;
+      }
+    }, 1280);
   });
 });
 </script>
