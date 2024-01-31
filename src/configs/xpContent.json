@@ -87,7 +87,14 @@
         "fx": "fx1",
         "cllgFx": "fx4",
         "backgroundColor": "light-blue",
-        "textPosition": "bottom"
+        "textPosition": "bottom",
+        "collage": [
+            "c4-1.jpg",
+            "c4-2.jpg",
+            "c4-3.jpg",
+            "c4-4.jpg",
+            "c4-5.jpg"
+        ]
     },
     {
         "subtitle": "chapitre 5.",

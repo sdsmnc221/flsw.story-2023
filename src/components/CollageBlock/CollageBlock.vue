@@ -64,9 +64,11 @@
       >
         <div
           class="grid__item"
-          v-for="index in 5"
+          v-for="(img, index) in computedCollage"
           :key="`${sectionId}-grid-item-${index}`"
-          style="background-image: url(img/4.jpg)"
+          :style="`${
+            img.includes('jpg') ? `background-image: url(${img})` : ''
+          }`"
         ></div>
       </div>
     </div>
@@ -106,7 +108,7 @@ const computedCollage = computed<string[]>(() => {
 
   if (props.collage) {
     collageArray = [...props.collage];
-    if (props.collageFx !== "fx2") {
+    if (props.collageFx === "fx1") {
       if (collageArray.length < 24) {
         collageArray = [
           ...collageArray,
@@ -114,7 +116,11 @@ const computedCollage = computed<string[]>(() => {
         ];
       }
     }
-    return shuffleArray(collageArray).map((img: string) => `/img/${img}`);
+    if (props.collageFx !== "fx4") {
+      return shuffleArray(collageArray).map((img: string) => `/img/${img}`);
+    } else {
+      return collageArray.map((img: string) => `/img/${img}`);
+    }
   }
   return Array(24).fill("1.jpg");
 });
@@ -383,23 +389,23 @@ const computedCollage = computed<string[]>(() => {
       }
 
       .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(2) {
-        filter: brightness(0.8);
+        // filter: brightness(0.8);
       }
 
       .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(3) {
-        filter: brightness(0.7);
+        // filter: brightness(0.7);
       }
 
       .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(4) {
-        filter: brightness(0.6);
+        // filter: brightness(0.6);
       }
 
       .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(5) {
-        filter: brightness(0.5);
+        // filter: brightness(0.5);
       }
 
       .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(6) {
-        filter: brightness(0.4);
+        // filter: brightness(0.4);
       }
 
       .gallery--switch.grid-wrap__gallery--stack-glass .grid__item {
