@@ -122,13 +122,23 @@ const computedCollage = computed<string[]>(() => {
       }
     }
     if (props.collageFx !== "fx4" && props.collageFx !== "fx3") {
-      return shuffleArray(collageArray).map((img: string) => `/img/${img}`);
+      return shuffleArray(collageArray).map((img: string) => {
+        if (mob.value) {
+          if (props.collageFx === "fx2") {
+            return `/img/${img.replace(".jpg", "-mob.jpg")}`;
+          }
+        }
+        return `/img/${img}`;
+      });
     } else {
-      return collageArray.map((img: string) =>
-        props.collageFx === "fx3" && mob.value
-          ? `/img/${img.replace(".jpg", "-mob.jpg")}`
-          : `/img/${img}`
-      );
+      return collageArray.map((img: string) => {
+        if (mob.value) {
+          if (props.collageFx === "fx3") {
+            return `/img/${img.replace(".jpg", "-mob.jpg")}`;
+          }
+        }
+        return `/img/${img}`;
+      });
     }
   }
   return Array(24).fill("1.jpg");
