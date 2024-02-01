@@ -41,7 +41,7 @@ const applyCollageAnimation = (
       // Set some CSS related style values
       grid.style.setProperty("--grid-width", isMobile() ? "320%" : "100%");
       grid.style.setProperty("--grid-height", "auto");
-      grid.style.setProperty("--grid-columns", isMobile() ? "4" : "6");
+      grid.style.setProperty("--grid-columns", isMobile() ? "3" : "6");
       grid.style.setProperty("--grid-gap", isMobile() ? "10%" : "2vw");
 
       const gridObj = getGrid(gridItems);
