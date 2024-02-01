@@ -38,7 +38,7 @@ const cancelSmoothScrolling = () => {
 };
 
 // GSAP Scroll Triggers
-const scroll = (fx: { id: string; nodes: any[] }) => {
+const scroll = (fx: { id: string; nodes: any[]; delayContent?: boolean }) => {
   switch (fx.id) {
     case "fx1":
       fx.nodes.forEach((title) => {
@@ -53,28 +53,43 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
             rotate: 0,
             scrollTrigger: {
               trigger: title,
-              start: "top bottom",
-              end: "top top",
+              start: fx.delayContent ? "top bottom-=24vh" : "top bottom",
+              end: fx.delayContent ? "top bottom" : "top top",
               scrub: true,
-              onUpdate: (self) => {
-                const { progress } = self;
+              ...(!fx.delayContent
+                ? {
+                    onUpdate: (self) => {
+                      const { progress } = self;
 
-                if (progress > 0.2 && progress < 0.8) {
-                  if (!title.classList.contains("--background")) {
-                    title.classList.add("--background");
+                      if (progress > 0.6 && progress < 0.9) {
+                        if (!title.classList.contains("--background")) {
+                          title.classList.add("--background");
+                        }
+                      }
+
+                      if (progress > 0.99) {
+                        if (title.classList.contains("--background")) {
+                          title.classList.remove("--background");
+                        }
+                      }
+
+                      if (progress === 1) {
+                        title.classList.add("--background");
+                      }
+                    },
+                    onEnterBack: () => {
+                      title.classList.remove("--background");
+                    },
                   }
-                }
-
-                if (progress > 0.99) {
-                  if (title.classList.contains("--background")) {
-                    title.classList.remove("--background");
-                  }
-                }
-
-                if (progress === 1) {
-                  title.classList.add("--background");
-                }
-              },
+                : {}),
+              // onLeave: () => {
+              //   setTimeout(() => {
+              //     title.classList.add("--background");
+              //   }, 1200);
+              // },
+              // onEnterBack: () => {
+              //   title.classList.remove("--background");
+              // },
             },
           }
         );
@@ -92,9 +107,37 @@ const scroll = (fx: { id: string; nodes: any[] }) => {
             delay: () => gsap.utils.random(0.2, 0.4),
             scrollTrigger: {
               trigger: title,
-              start: "top bottom-=4vh",
-              end: "center center+=4vh",
+              start: fx.delayContent
+                ? "center center+=24vh"
+                : "top bottom-=4vh",
+              end: fx.delayContent ? "+=240%" : "center center+=4vh",
               scrub: true,
+              ...(fx.delayContent
+                ? {
+                    onUpdate: (self) => {
+                      const { progress } = self;
+
+                      if (progress > 0.6 && progress < 0.9) {
+                        if (!title.classList.contains("--background")) {
+                          title.classList.add("--background");
+                        }
+                      }
+
+                      if (progress > 0.99) {
+                        if (title.classList.contains("--background")) {
+                          title.classList.remove("--background");
+                        }
+                      }
+
+                      if (progress === 1) {
+                        title.classList.add("--background");
+                      }
+                    },
+                    onEnterBack: () => {
+                      title.classList.remove("--background");
+                    },
+                  }
+                : {}),
             },
           }
         );

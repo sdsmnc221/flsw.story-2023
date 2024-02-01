@@ -233,6 +233,13 @@ withDefaults(defineProps<Props>(), {
       transform: translateY(-50%);
     }
 
+    &--center-special {
+      left: 50%;
+      top: 50%;
+      transform: translateY(-50vh) translateX(-32vw);
+      padding: 0 24vw;
+    }
+
     &--left {
       padding-right: 48%;
     }
@@ -272,6 +279,12 @@ withDefaults(defineProps<Props>(), {
 
       &--center {
         transform: translateY(-50%);
+      }
+
+      &--center-special {
+        left: 50%;
+        top: 50%;
+        transform: translateY(-50vh) translateX(-50vw);
       }
 
       &--bottom {

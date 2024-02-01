@@ -162,7 +162,7 @@ const initScroll = () => {
     id: "fx1",
     nodes: [
       ...document.querySelectorAll(
-        ".text-block:not(.section--2) .text-block__content.fx1[data-splitting]"
+        ".text-block:not(.section--2):not(.section--3) .text-block__content.fx1[data-splitting]"
       ),
     ],
   };
@@ -174,6 +174,17 @@ const initScroll = () => {
         ".section--2 .text-block__content.fx1[data-splitting]"
       ),
     ],
+    delayContent: true,
+  };
+
+  const fx1Section3 = {
+    id: "fx1",
+    nodes: [
+      ...document.querySelectorAll(
+        ".section--3 .text-block__content.fx1[data-splitting]"
+      ),
+    ],
+    delayContent: true,
   };
 
   const fx2 = {
@@ -285,6 +296,7 @@ const initScroll = () => {
       scrollGrid(video1);
 
       scroll(fx1);
+      scroll(fx1Section3);
       scroll(fx2);
       scroll(fx3);
 
