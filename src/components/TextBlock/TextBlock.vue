@@ -228,6 +228,13 @@ withDefaults(defineProps<Props>(), {
       bottom: -12vh;
     }
 
+    &--bottom-special {
+      bottom: -24vh;
+      &.text--left {
+        padding-right: 20%;
+      }
+    }
+
     &--center {
       top: 50%;
       transform: translateY(-50%);
@@ -289,6 +296,14 @@ withDefaults(defineProps<Props>(), {
 
       &--bottom {
         bottom: 4vh;
+      }
+
+      &--bottom-special {
+        bottom: 0;
+        &.text--left {
+          padding-right: 24px;
+          padding-left: 24px;
+        }
       }
     }
 

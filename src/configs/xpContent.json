@@ -99,7 +99,7 @@
         "fx": "fx1",
         "cllgFx": "fx4",
         "backgroundColor": "light-blue",
-        "textPosition": "bottom",
+        "textPosition": "bottom-special",
         "collage": [
             "c4-1.jpg",
             "c4-2.jpg",
@@ -153,7 +153,7 @@
         "fx": "fx1",
         "cllgFx": "fx4",
         "backgroundColor": "shakespear-blue",
-        "textPosition": "bottom",
+        "textPosition": "bottom-special",
         "collage": [
             "c7-1.jpg",
             "c7-2.jpg",
