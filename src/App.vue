@@ -374,7 +374,7 @@ onMounted(() => {
           xpContent.length % 2 !== 0 ? "clear-day-white" : "shakespear-blue"
         })`;
       }
-    }, 1280);
+    }, 3200);
   });
 });
 </script>
