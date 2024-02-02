@@ -113,14 +113,7 @@ const computedCollage = computed<string[]>(() => {
 
   if (props.collage) {
     collageArray = [...props.collage];
-    if (props.collageFx === "fx1") {
-      if (collageArray.length < 24) {
-        collageArray = [
-          ...collageArray,
-          ...Array(24 - collageArray.length).fill("1.jpg"),
-        ];
-      }
-    }
+
     if (props.collageFx !== "fx4" && props.collageFx !== "fx3") {
       return shuffleArray(collageArray).map((img: string) => {
         if (mob.value) {
