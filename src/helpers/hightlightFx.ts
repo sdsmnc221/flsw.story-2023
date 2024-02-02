@@ -68,6 +68,14 @@ const initHighlight = (cbOnComplete?: () => void) => {
         duration: 1.2,
       },
       ">"
+    )
+    .to(
+      document.querySelector(".highlight-tutorial"),
+      {
+        backgroundColor: "rgba(0, 0, 0, 0.0)",
+        duration: 0.6,
+      },
+      ">"
     );
 };
 

@@ -54,7 +54,7 @@ watch(
   transition: all 0.64s ease-in-out;
 
   &.--hidden {
-    background-color: rgba(0, 0, 0, 0);
+    // background-color: rgba(0, 0, 0, 0);
     // backdrop-filter: brightness(1);
     opacity: 0;
   }

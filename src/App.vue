@@ -281,8 +281,6 @@ const initScroll = () => {
     ".marquee__img",
   ]).then(() => {
     setTimeout(() => {
-      highlightActive.value = true;
-
       scroll(fx1Section2);
       scroll(fx2Section2);
 
@@ -333,6 +331,12 @@ onMounted(() => {
       // }, 2000);
 
       refreshScroll();
+    });
+
+    document.addEventListener("assetsLoaded", () => {
+      setTimeout(() => {
+        highlightActive.value = true;
+      }, 640);
     });
 
     window.addEventListener("scroll", () => {
