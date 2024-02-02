@@ -26,8 +26,10 @@
     "vue": "^3.3.11"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.202",
     "@types/splitting": "^1.0.5",
     "@vitejs/plugin-vue": "^4.5.2",
+    "lodash": "^4.17.21",
     "sass": "^1.70.0",
     "typescript": "^5.2.2",
     "unplugin-vue-components": "^0.26.0",

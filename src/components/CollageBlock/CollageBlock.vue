@@ -6,15 +6,8 @@
         v-for="(img, index) in computedCollage"
         :key="`${sectionId}-grid-item-${index}`"
       >
-        <div
-          class="grid__item-inner"
-          :style="`${
-            img.includes('jpg') ? `background-image: url(${img})` : ''
-          }`"
-        >
-          <video v-if="img.includes('mp4')" autoplay muted loop>
-            <source :src="img" type="video/mp4" />
-          </video>
+        <div class="grid__item-inner" :data-src="img">
+          <video v-if="img.includes('mp4')" autoplay muted loop></video>
         </div>
       </div>
     </div>
@@ -28,13 +21,9 @@
           v-for="(img, index) in computedCollage"
           :key="`${sectionId}-grid-item-${index}`"
           :class="`grid__item pos-${index}`"
-          :style="`${
-            img.includes('jpg') ? `background-image: url(${img})` : ''
-          }`"
+          :data-src="img"
         >
-          <video v-if="img.includes('mp4')" autoplay muted loop>
-            <source :src="img" type="video/mp4" />
-          </video>
+          <video v-if="img.includes('mp4')" autoplay muted loop></video>
         </div>
       </div>
     </div>
