@@ -186,6 +186,13 @@ const computedCollage = computed<string[]>(() => {
         background-size: cover;
         background-position: center top;
       }
+
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center bottom;
+      }
     }
   }
 
@@ -485,13 +492,6 @@ const computedCollage = computed<string[]>(() => {
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
-
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center bottom;
-    }
   }
 
   @media (max-width: 768px) {
