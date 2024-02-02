@@ -23,6 +23,8 @@ import { preloadImages } from "../../helpers/preloadAssets";
 
 import xpLoader from "../../configs/xpLoader.json";
 
+import onLoaderLoaded from "../../helpers/customEvents/loaderLoaded";
+
 interface Props {}
 
 defineProps<Props>();
@@ -31,7 +33,7 @@ const loading = ref<boolean>(true);
 const firstLoading = ref<boolean>(true);
 const assetsReady = ref<boolean>(false);
 
-const END_OF_PROMPT_DEFAULT_INDEX = 6;
+const END_OF_PROMPT_DEFAULT_INDEX = 4;
 
 const prompt = ref<string>(
   firstLoading.value
@@ -128,15 +130,15 @@ watch(
     }
 
     if (isAssetReady && isAtEndOfDefaultPrompt) {
-      setTimeout(() => {
-        loading.value = false;
+      loading.value = false;
 
-        if (firstLoading.value) {
-          setTimeout(() => {
-            firstLoading.value = false;
-          }, 1000);
-        }
-      }, 1200);
+      document.dispatchEvent(onLoaderLoaded);
+
+      if (firstLoading.value) {
+        setTimeout(() => {
+          firstLoading.value = false;
+        }, 1000);
+      }
     }
   }
 );
@@ -296,3 +298,4 @@ watch(
   }
 }
 </style>
+../../helpers/customEvents/loaderLoaded

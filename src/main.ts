@@ -10,7 +10,7 @@ import App from "./App.vue";
 createApp(App).mount("#app");
 
 // Create a custom event
-const onAssetsLoaded = new CustomEvent("assetsLoaded", {});
+import onAssetsLoaded from "./helpers/customEvents/assetsLoaded";
 
 const worker = new Worker(
   new URL("/worker/image-worker.js?type=classic&worker_file", import.meta.url)

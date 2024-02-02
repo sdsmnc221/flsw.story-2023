@@ -99,7 +99,7 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onBeforeMount, onMounted, ref } from "vue";
+import { nextTick, onBeforeMount, onMounted, ref, watch } from "vue";
 import { lock, unlock } from "tua-body-scroll-lock";
 import {
   initSmoothScrolling,
@@ -122,6 +122,9 @@ const showApp = ref<boolean>(false);
 const isDevMode = ref<boolean>(import.meta.env.DEV);
 
 const highlightActive = ref<boolean>(false);
+
+const assetsLoaded = ref<boolean>(false);
+const loaderLoaded = ref<boolean>(false);
 
 const computedBindedProps = (section: any, index: number) => {
   const bindedProps: any = {};
@@ -334,9 +337,11 @@ onMounted(() => {
     });
 
     document.addEventListener("assetsLoaded", () => {
-      setTimeout(() => {
-        highlightActive.value = true;
-      }, 640);
+      assetsLoaded.value = true;
+    });
+
+    document.addEventListener("loaderLoaded", () => {
+      loaderLoaded.value = true;
     });
 
     window.addEventListener("scroll", () => {
@@ -381,6 +386,15 @@ onMounted(() => {
     }, 3200);
   });
 });
+
+watch(
+  [() => assetsLoaded.value, () => loaderLoaded.value],
+  ([assets, loader]) => {
+    if (assets && loader) {
+      highlightActive.value = true;
+    }
+  }
+);
 </script>
 
 <style lang="scss">
