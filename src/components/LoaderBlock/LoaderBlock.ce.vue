@@ -151,7 +151,7 @@ watch(
 .loader-block {
   position: fixed;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   top: 0;
   left: 0;
   background-color: var(--light-blue);
