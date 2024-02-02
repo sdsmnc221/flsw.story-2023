@@ -27,9 +27,11 @@ interface Props {}
 
 defineProps<Props>();
 
-const loading = ref<boolean>(false);
+const loading = ref<boolean>(true);
 const firstLoading = ref<boolean>(true);
 const assetsReady = ref<boolean>(false);
+
+const END_OF_PROMPT_DEFAULT_INDEX = 6;
 
 const prompt = ref<string>(
   firstLoading.value
@@ -39,6 +41,7 @@ const prompt = ref<string>(
 const intervalId = ref<number>(0);
 const showPrompt = ref<boolean>(true);
 const endOfPrompt = ref<boolean>(false);
+const endOfDefaultPrompt = ref<boolean>(false);
 
 const changePrompt = (restart = false, interval = 1320) => {
   let i = 0;
@@ -53,6 +56,11 @@ const changePrompt = (restart = false, interval = 1320) => {
     setTimeout(() => {
       showPrompt.value = true;
       i++;
+
+      if (i >= END_OF_PROMPT_DEFAULT_INDEX) {
+        endOfDefaultPrompt.value = true;
+      }
+
       if (i >= prompts.length) {
         i = 0;
         endOfPrompt.value = true;
@@ -103,14 +111,18 @@ onUnmounted(() => {
 });
 
 watch(
-  [() => endOfPrompt.value, () => assetsReady.value],
-  ([isAtEndOfPrompt, isAssetReady]) => {
+  [
+    () => endOfPrompt.value,
+    () => assetsReady.value,
+    () => endOfDefaultPrompt.value,
+  ],
+  ([isAtEndOfPrompt, isAssetReady, isAtEndOfDefaultPrompt]) => {
     if (isAtEndOfPrompt) {
       cancelPrompt(intervalId.value);
       intervalId.value = changePrompt(true);
     }
 
-    if (isAssetReady) {
+    if (isAssetReady && isAtEndOfDefaultPrompt) {
       setTimeout(() => {
         loading.value = false;
 

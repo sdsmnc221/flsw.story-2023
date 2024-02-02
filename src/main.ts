@@ -31,7 +31,7 @@ worker.addEventListener("message", (event) => {
     `div[data-src='${imageData.imageURL}']`
   );
 
-  console.log(imageElement);
+  // console.log(imageElement);
 
   // We can use the `Blob` as an image source! We just need to convert it
   // to an object URL first
