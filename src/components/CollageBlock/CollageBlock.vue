@@ -6,7 +6,7 @@
         v-for="(img, index) in computedCollage"
         :key="`${sectionId}-grid-item-${index}`"
       >
-        <div class="grid__item-inner" :data-src="img">
+        <div class="grid__item-inner" :data-src="img" :data-section="sectionId">
           <video v-if="img.includes('mp4')" autoplay muted loop></video>
         </div>
       </div>
@@ -22,6 +22,7 @@
           :key="`${sectionId}-grid-item-${index}`"
           :class="`grid__item pos-${index}`"
           :data-src="img"
+          :data-section="sectionId"
         >
           <video v-if="img.includes('mp4')" autoplay muted loop></video>
         </div>

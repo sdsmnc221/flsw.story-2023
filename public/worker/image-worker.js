@@ -9,7 +9,7 @@ self.addEventListener("message", async (event) => {
   const blob = await response.blob();
   countImg++;
 
-  // console.log({ imgCount, imgIndex, countImg });
+  console.log({ imgCount, imgIndex, countImg });
   const isLoadingFinished = imgCount === countImg;
 
   // Send the image data to the UI thread!

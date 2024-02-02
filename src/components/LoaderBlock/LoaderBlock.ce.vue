@@ -90,7 +90,7 @@ onMounted(() => {
   // );
 
   document.addEventListener("assetsLoaded", () => {
-    // console.log("assetsLoaded", event);
+    console.log("assetsLoaded");
     assetsReady.value = true;
   });
 
