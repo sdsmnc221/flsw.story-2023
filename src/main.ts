@@ -19,16 +19,38 @@ const worker = new Worker(
 // Get all of the `<img>` elements that have a `data-src` property
 const imgElements = document.querySelectorAll("div[data-src]");
 
+// Use reduce to count the number of images in each section
+const sectionImageCount = Array.from(imgElements).reduce(
+  (acc: any, imageElement) => {
+    const sectionIndex: string =
+      imageElement.getAttribute("data-section")?.replace("section--", "") ??
+      "unknown";
+
+    // Initialize the count for the section if it doesn't exist
+    acc[sectionIndex] = (acc[sectionIndex] || 0) + 1;
+
+    return acc;
+  },
+  {}
+);
+
 // Loop over the image elements and pass their URLs to the web worker
 imgElements.forEach((imageElement, index) => {
   const imageURL = imageElement.getAttribute("data-src");
+  const sectionIndex =
+    imageElement.getAttribute("data-section")?.replace("section--", "") ??
+    "unknown";
+  const imgCountInCurrentSection = sectionImageCount[sectionIndex] || 0;
+
   worker.postMessage({
     imageURL,
     imgCount: imgElements.length,
     imgIndex: index,
+    sectionIndex,
+    imgCountInCurrentSection,
+    imgCountInFirstSections: sectionImageCount["1"] + sectionImageCount["2"],
   });
 });
-
 worker.addEventListener("message", (event) => {
   // Grab the message data from the event
   const imageData = event.data;
