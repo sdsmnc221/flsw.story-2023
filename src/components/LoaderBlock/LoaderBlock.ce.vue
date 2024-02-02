@@ -83,11 +83,16 @@ onMounted(() => {
     intervalId.value = changePrompt();
   });
 
-  preloadImages([".grid__item-inner", ".grid__item", ".marquee__img"]).then(
-    () => {
-      assetsReady.value = true;
-    }
-  );
+  // preloadImages([".grid__item-inner", ".grid__item", ".marquee__img"]).then(
+  //   () => {
+  //     assetsReady.value = true;
+  //   }
+  // );
+
+  document.addEventListener("assetsLoaded", () => {
+    // console.log("assetsLoaded", event);
+    assetsReady.value = true;
+  });
 
   window.addEventListener("resize", (e: any) => {
     if (

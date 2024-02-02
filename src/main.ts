@@ -9,6 +9,9 @@ import App from "./App.vue";
 
 createApp(App).mount("#app");
 
+// Create a custom event
+const onAssetsLoaded = new CustomEvent("assetsLoaded", {});
+
 const worker = new Worker(
   new URL("/worker/image-worker.js?type=classic&worker_file", import.meta.url)
 );
@@ -17,9 +20,13 @@ const worker = new Worker(
 const imgElements = document.querySelectorAll("div[data-src]");
 
 // Loop over the image elements and pass their URLs to the web worker
-imgElements.forEach((imageElement) => {
+imgElements.forEach((imageElement, index) => {
   const imageURL = imageElement.getAttribute("data-src");
-  worker.postMessage(imageURL);
+  worker.postMessage({
+    imageURL,
+    imgCount: imgElements.length,
+    imgIndex: index,
+  });
 });
 
 worker.addEventListener("message", (event) => {
@@ -46,4 +53,13 @@ worker.addEventListener("message", (event) => {
   // Let's remove the original `data-src` attribute to make sure we don't
   // accidentally pass this image to the worker again in the future
   imageElement.removeAttribute("data-src");
+
+  // Check if all images have been loaded
+  // If they have, dispatch the custom event
+  const { isLoadingFinished } = imageData;
+  // console.log(isLoadingFinished);
+  if (isLoadingFinished) {
+    // Dispatch the custom event
+    document.dispatchEvent(onAssetsLoaded);
+  }
 });
