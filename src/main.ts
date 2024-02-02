@@ -1,6 +1,3 @@
-import { imageWorker } from "./helpers/imgWorker/imageWorker";
-import imgUrls from "./helpers/imgWorker/resolveImages";
-
 import { createApp } from "vue";
 
 import "the-new-css-reset/css/reset.css";
