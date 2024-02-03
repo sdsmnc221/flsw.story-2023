@@ -188,12 +188,13 @@ watch(
   .three-body {
     --loader-size: 240px;
     --loader-speed: 1.2s;
+    --loader-gap-text: 24px;
     position: fixed;
     display: inline-block;
     height: var(--loader-size);
     width: var(--loader-size);
     animation: spin calc(var(--loader-speed) * 2.5) infinite linear;
-    top: calc(50vh - var(--loader-size) / 1.5);
+    top: calc(50vh - var(--loader-size) - var(--loader-gap-text));
   }
 
   .three-body__dot {
