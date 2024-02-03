@@ -3,7 +3,6 @@ import { gsap } from "gsap";
 const initHighlight = (cbOnComplete?: () => void) => {
   gsap
     .timeline({
-      delay: 0.64,
       onComplete: () => {
         document.querySelector("main.app")?.classList.remove("--locked");
         if (cbOnComplete) {
@@ -41,7 +40,7 @@ const initHighlight = (cbOnComplete?: () => void) => {
         scale: 1,
         filter: "blur(0px)",
         duration: 1.2,
-        delay: 0.72,
+        delay: 0.36,
       },
       ">"
     )
