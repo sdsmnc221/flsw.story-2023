@@ -68,12 +68,11 @@
 
 .fadeY-enter-active,
 .fadeY-leave-active {
-  transition: opacity 0.8s ease, transform 1.2s ease-in-out;
+  transition: transform 1.2s ease-in-out;
   transition-delay: 0.8s;
 }
 
 .fadeY-enter-from,
 .fadeY-leave-to {
-  opacity: 0;
   transform: translateY(-100vh);
 }
