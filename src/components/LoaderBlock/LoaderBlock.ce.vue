@@ -24,6 +24,7 @@ import { preloadImages } from "../../helpers/preloadAssets";
 import xpLoader from "../../configs/xpLoader.json";
 
 import onLoaderLoaded from "../../helpers/customEvents/loaderLoaded";
+import onAssetsLoaded from "../../helpers/customEvents/assetsLoaded";
 
 interface Props {}
 
@@ -34,6 +35,8 @@ const firstLoading = ref<boolean>(true);
 const assetsReady = ref<boolean>(false);
 
 const END_OF_PROMPT_DEFAULT_INDEX = 3;
+
+const REMOVE_LOADER_AFTER = 3200;
 
 const prompt = ref<string>(
   firstLoading.value
@@ -81,6 +84,12 @@ const cancelPrompt = (intervalId: number) => {
 };
 
 onMounted(() => {
+  setTimeout(() => {
+    if (!assetsReady.value) {
+      document.dispatchEvent(onAssetsLoaded);
+    }
+  }, REMOVE_LOADER_AFTER);
+
   if (nodeRef.value) {
     const dblclickEvent = new MouseEvent("dblclick", {
       view: window,
