@@ -1,5 +1,6 @@
 let countImg = 0;
 let countImgFirstSections = 0;
+let isLoadingFinished = false;
 self.addEventListener("message", async (event) => {
   // Grab the imageURL from the event - we'll use this both to download
   // the image and to identify which image elements to update back in the
@@ -28,8 +29,11 @@ self.addEventListener("message", async (event) => {
     sectionIndex,
     imgCountInCurrentSection,
   });
-  const isLoadingFinished =
-    countImg === imgCountInFirstSections || countImg === imgCount / 2;
+
+  if (!isLoadingFinished) {
+    isLoadingFinished =
+      countImg === imgCountInFirstSections || countImg === imgCount / 2;
+  }
 
   // Send the image data to the UI thread!
   self.postMessage({

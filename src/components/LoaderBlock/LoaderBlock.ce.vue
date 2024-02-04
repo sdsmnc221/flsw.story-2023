@@ -93,7 +93,9 @@ onMounted(() => {
 
   document.addEventListener("assetsLoaded", () => {
     console.log("assetsLoaded");
-    assetsReady.value = true;
+    if (!assetsReady.value) {
+      assetsReady.value = true;
+    }
   });
 
   window.addEventListener("resize", (e: any) => {

@@ -9,8 +9,6 @@ import App from "./App.vue";
 
 createApp(App).mount("#app");
 
-let eventDispatched: boolean = false;
-
 // Create a custom event
 import onAssetsLoaded from "./helpers/customEvents/assetsLoaded";
 
@@ -84,12 +82,6 @@ worker.addEventListener("message", (event) => {
   console.log({ isLoadingFinished });
   if (isLoadingFinished) {
     // Dispatch the custom event
-    if (!eventDispatched) {
-      eventDispatched = true;
-
-      if (eventDispatched) {
-        document.dispatchEvent(onAssetsLoaded);
-      }
-    }
+    document.dispatchEvent(onAssetsLoaded);
   }
 });
