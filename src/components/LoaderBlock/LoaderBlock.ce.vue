@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from "vue";
+import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import isMobile from "../../helpers/isMobile";
 import { preloadImages } from "../../helpers/preloadAssets";
 
@@ -87,17 +87,20 @@ onMounted(() => {
   setTimeout(() => {
     if (!assetsReady.value) {
       document.dispatchEvent(onAssetsLoaded);
+      g;
     }
   }, REMOVE_LOADER_AFTER);
 
   if (nodeRef.value) {
-    const dblclickEvent = new MouseEvent("dblclick", {
-      view: window,
-      bubbles: true,
-      cancelable: true,
-    });
+    nextTick(() => {
+      const dblclickEvent = new MouseEvent("dblclick", {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+      });
 
-    nodeRef.value.dispatchEvent(dblclickEvent);
+      nodeRef.value.dispatchEvent(dblclickEvent);
+    });
   }
 
   preloadImages([".loader-block .three-body__dot::after"]).then(() => {
