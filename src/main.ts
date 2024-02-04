@@ -79,7 +79,7 @@ worker.addEventListener("message", (event) => {
   // Check if all images have been loaded
   // If they have, dispatch the custom event
   const { isLoadingFinished } = imageData;
-  console.log({ isLoadingFinished });
+
   if (isLoadingFinished) {
     // Dispatch the custom event
     document.dispatchEvent(onAssetsLoaded);

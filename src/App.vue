@@ -100,7 +100,7 @@
 
 <script setup lang="ts">
 import { nextTick, onBeforeMount, onMounted, ref, watch } from "vue";
-import { lock, unlock } from "tua-body-scroll-lock";
+
 import {
   initSmoothScrolling,
   scroll,
@@ -302,7 +302,6 @@ const initScroll = () => {
       scroll(fx3);
 
       setTimeout(() => {
-        unlock(document.querySelector("main.app") as HTMLElement);
         scrollTo(0);
       }, 200);
     }, 1000);
@@ -319,8 +318,6 @@ onBeforeMount(() => {
 
 onMounted(() => {
   nextTick(() => {
-    lock(document.querySelector("main.app") as HTMLElement);
-
     Splitting();
 
     initScroll();
