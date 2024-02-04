@@ -1,6 +1,6 @@
 <template>
   <transition name="fadeY" mode="out-in">
-    <div class="loader-block" v-show="loading">
+    <div class="loader-block" v-show="loading" ref="nodeRef">
       <div class="three-body">
         <div class="three-body__dot"></div>
         <div class="three-body__dot"></div>
@@ -44,6 +44,7 @@ const intervalId = ref<number>(0);
 const showPrompt = ref<boolean>(true);
 const endOfPrompt = ref<boolean>(false);
 const endOfDefaultPrompt = ref<boolean>(false);
+const nodeRef = ref<any>(null);
 
 const changePrompt = (restart = false, interval = 1320) => {
   let i = 0;
@@ -80,6 +81,16 @@ const cancelPrompt = (intervalId: number) => {
 };
 
 onMounted(() => {
+  if (nodeRef.value) {
+    const dblclickEvent = new MouseEvent("dblclick", {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    });
+
+    nodeRef.value.dispatchEvent(dblclickEvent);
+  }
+
   preloadImages([".loader-block .three-body__dot::after"]).then(() => {
     loading.value = true;
     intervalId.value = changePrompt();
@@ -118,13 +129,6 @@ onMounted(() => {
 onUnmounted(() => {
   cancelPrompt(intervalId.value);
 });
-
-watch(
-  () => intervalId.value,
-  (id) => {
-    console.log("id", id);
-  }
-);
 
 watch(
   [
