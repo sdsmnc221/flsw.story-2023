@@ -28,7 +28,8 @@ self.addEventListener("message", async (event) => {
     sectionIndex,
     imgCountInCurrentSection,
   });
-  const isLoadingFinished = countImg === imgCountInFirstSections;
+  const isLoadingFinished =
+    countImg === imgCountInFirstSections || countImg === imgCount / 2;
 
   // Send the image data to the UI thread!
   self.postMessage({

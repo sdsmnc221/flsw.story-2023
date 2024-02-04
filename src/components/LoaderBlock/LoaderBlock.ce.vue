@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade" mode="out-in">
+  <transition name="fadeY" mode="out-in">
     <div class="loader-block" v-show="loading">
       <div class="three-body">
         <div class="three-body__dot"></div>
@@ -33,7 +33,7 @@ const loading = ref<boolean>(true);
 const firstLoading = ref<boolean>(true);
 const assetsReady = ref<boolean>(false);
 
-const END_OF_PROMPT_DEFAULT_INDEX = 4;
+const END_OF_PROMPT_DEFAULT_INDEX = 3;
 
 const prompt = ref<string>(
   firstLoading.value

@@ -65,3 +65,14 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+.fadeY-enter-active,
+.fadeY-leave-active {
+  transition: opacity 0.5s ease, transform 0.62s ease-in-out;
+}
+
+.fadeY-enter-from,
+.fadeY-leave-to {
+  opacity: 0;
+  transform: translateY(-32vh);
+}
