@@ -118,6 +118,13 @@ onUnmounted(() => {
 });
 
 watch(
+  () => intervalId.value,
+  (id) => {
+    console.log("id", id);
+  }
+);
+
+watch(
   [
     () => endOfPrompt.value,
     () => assetsReady.value,
@@ -188,7 +195,7 @@ watch(
   .three-body {
     --loader-size: 240px;
     --loader-speed: 1.2s;
-    --loader-gap-text: 24px;
+    --loader-gap-text: 8px;
     position: fixed;
     display: inline-block;
     height: var(--loader-size);
