@@ -378,15 +378,6 @@ watch(
     }
   }
 );
-
-watch(
-  () => showApp.value,
-  (appShow) => {
-    if (appShow) {
-      document.dispatchEvent(onAppLoaded);
-    }
-  }
-);
 </script>
 
 <style lang="scss">

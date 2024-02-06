@@ -16,7 +16,7 @@ const worker = new Worker(
   new URL("/worker/image-worker.js?type=classic&worker_file", import.meta.url)
 );
 
-document.addEventListener("appLoaded", () => {
+setTimeout(() => {
   // Get all of the `<img>` elements that have a `data-src` property
   const imgElements = document.querySelectorAll("div[data-src]");
 
@@ -86,4 +86,4 @@ document.addEventListener("appLoaded", () => {
       document.dispatchEvent(onAssetsLoaded);
     }
   });
-});
+}, 1000);
