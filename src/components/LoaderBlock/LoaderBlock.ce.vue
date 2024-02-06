@@ -112,7 +112,7 @@ onMounted(() => {
   // );
 
   document.addEventListener("assetsLoaded", () => {
-    console.log("assetsLoaded");
+    // console.log("assetsLoaded");
     if (!assetsReady.value) {
       assetsReady.value = true;
     }

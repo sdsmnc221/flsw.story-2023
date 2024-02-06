@@ -8,9 +8,9 @@ self.addEventListener("message", async (event) => {
   const {
     imageURL,
     imgCount,
-    imgIndex,
+    // imgIndex,
     sectionIndex,
-    imgCountInCurrentSection,
+    // imgCountInCurrentSection,
     imgCountInFirstSections,
   } = event.data;
 
@@ -22,13 +22,13 @@ self.addEventListener("message", async (event) => {
     countImgFirstSections++;
   }
 
-  console.log({
-    imgCount,
-    imgIndex,
-    countImg,
-    sectionIndex,
-    imgCountInCurrentSection,
-  });
+  // console.log({
+  //   imgCount,
+  //   imgIndex,
+  //   countImg,
+  //   sectionIndex,
+  //   imgCountInCurrentSection,
+  // });
 
   if (!isLoadingFinished) {
     isLoadingFinished =
