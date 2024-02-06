@@ -91,13 +91,21 @@ onMounted(() => {
   }, REMOVE_LOADER_AFTER);
 
   if (nodeRef.value) {
-    const dblclickEvent = new MouseEvent("dblclick", {
+    const clickEvent = new MouseEvent("click", {
       view: window,
       bubbles: true,
       cancelable: true,
     });
 
-    nodeRef.value.dispatchEvent(dblclickEvent);
+    setTimeout(() => {
+      // Dispatch first click event
+      nodeRef.value.dispatchEvent(clickEvent);
+
+      // Dispatch second click event after a delay
+      setTimeout(() => {
+        nodeRef.value.dispatchEvent(clickEvent);
+      }, 100); // Adjust the delay as needed
+    }, 1000);
   }
 
   preloadImages([".loader-block .three-body__dot::after"]).then(() => {
