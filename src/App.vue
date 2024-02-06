@@ -9,15 +9,7 @@
       @onHighlightCompleted="initScroll"
     ></highlight-tutorial>
 
-    <section class="marquees-container">
-      <marquee-block
-        v-for="(marquee, index) in xpMarquee.marquees"
-        :key="`marquee-block-${index}`"
-        :title="marquee.title"
-        :cats="marquee.cats"
-        :cats-images="marquee.img"
-      />
-    </section>
+    <marquees-container :xp-marquee="xpMarquee"></marquees-container>
     <title-block :title="xpTitle.title" :subtitle="xpTitle.subtitle" />
 
     <text-block
@@ -55,15 +47,7 @@
       @onHighlightCompleted="initScroll"
     ></highlight-tutorial> -->
 
-    <section class="marquees-container">
-      <marquee-block
-        v-for="(marquee, index) in xpMarquee.marquees"
-        :key="`marquee-block-${index}`"
-        :title="marquee.title"
-        :cats="marquee.cats"
-        :cats-images="marquee.img"
-      />
-    </section>
+    <marquees-container></marquees-container>
     <title-block :title="xpTitle.title" :subtitle="xpTitle.subtitle" />
 
     <text-block
@@ -116,6 +100,8 @@ import "splitting/dist/splitting-cells.css";
 import xpTitle from "./configs/xpTitle.json";
 import xpContent from "./configs/xpContent.json";
 import xpMarquee from "./configs/xpMarquee.json";
+
+import onAppLoaded from "./helpers/customEvents/appLoaded";
 
 const showApp = ref<boolean>(false);
 
@@ -392,6 +378,15 @@ watch(
     }
   }
 );
+
+watch(
+  () => showApp.value,
+  (appShow) => {
+    if (appShow) {
+      document.dispatchEvent(onAppLoaded);
+    }
+  }
+);
 </script>
 
 <style lang="scss">
@@ -429,16 +424,16 @@ watch(
       transform-origin: "left";
       // animation: blink ease-in-out 1.6s infinite;
       &:first-child {
-        transform: rotate(6deg) translateY(20vh);
+        //transform: rotate(6deg) translateY(20vh);
         width: 110%;
       }
       &:nth-child(2) {
-        transform: rotate(0deg) translateY(22vh);
+        //transform: rotate(0deg) translateY(22vh);
         width: 110%;
         text-align: center;
       }
       &:last-child {
-        transform: rotate(-3deg) translateY(20vh) translateX(-10vw);
+        //transform: rotate(-3deg) translateY(20vh) translateX(-10vw);
         width: 110%;
       }
     }

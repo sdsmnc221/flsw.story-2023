@@ -91,17 +91,11 @@ onMounted(() => {
     }
   }, REMOVE_LOADER_AFTER);
 
-  if (nodeRef.value) {
-    nextTick(() => {
-      const dblclickEvent = new MouseEvent("dblclick", {
-        view: window,
-        bubbles: true,
-        cancelable: true,
-      });
+  document.documentElement.click();
 
-      nodeRef.value.dispatchEvent(dblclickEvent);
-    });
-  }
+  setTimeout(() => {
+    document.documentElement.click();
+  }, 120);
 
   preloadImages([".loader-block .three-body__dot::after"]).then(() => {
     loading.value = true;
@@ -115,7 +109,7 @@ onMounted(() => {
   // );
 
   document.addEventListener("assetsLoaded", () => {
-    console.log("assetsLoaded");
+    // console.log("assetsLoaded");
     if (!assetsReady.value) {
       assetsReady.value = true;
     }

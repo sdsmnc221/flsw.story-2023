@@ -367,6 +367,10 @@ const computedCollage = computed<string[]>(() => {
         grid-area: 1 / 1 / 2 / 2;
       }
 
+      .grid-wrap__gallery--stack-inverse .grid__item:nth-child(6) {
+        z-index: 1;
+      }
+
       .grid-wrap__gallery--stack-inverse .grid__item:nth-child(5) {
         z-index: 2;
       }
@@ -519,6 +523,9 @@ const computedCollage = computed<string[]>(() => {
       }
 
       &.--cllg-fx4 {
+        .grid-wrap__gallery--stack-inverse .grid__item:nth-child(6) {
+          z-index: 7;
+        }
         .grid-wrap__gallery--stack-inverse .grid__item:nth-child(5) {
           z-index: 6;
         }
