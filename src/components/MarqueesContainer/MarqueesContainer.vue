@@ -47,8 +47,8 @@ const options = {
 };
 
 // Callback function to handle intersection changes
-const handleIntersection = (entries, observer) => {
-  entries.forEach((entry) => {
+const handleIntersection = (entries: any, _observer: any) => {
+  entries.forEach((entry: any) => {
     if (entry.isIntersecting) {
       // Element is inside the viewport
       automataOn();
