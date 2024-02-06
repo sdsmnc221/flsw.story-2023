@@ -55,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, onMounted, ref } from "vue";
+import { Ref, onMounted, ref, watch } from "vue";
 import { closestEdge } from "../../helpers/marqueeCalculs";
 import { gsap } from "gsap";
 
@@ -63,9 +63,13 @@ interface Props {
   title: string;
   cats: string[];
   catsImages: string[];
+  autoExpanded: boolean;
+  rotate: string;
+  translateY: string | number;
+  translateX: string | number;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 interface iDOM {
   el: HTMLElement;
@@ -86,14 +90,14 @@ const elRef: Ref<any> = ref(null);
 const animationDefaults: Ref<any> = ref({});
 
 const initEvents = () => {
-  const onMouseEnterFn = (ev: any) => mouseEnter(ev);
+  const onMouseEnterFn = (ev: any) => !props.autoExpanded && mouseEnter(ev);
   DOM.value.link.addEventListener("mouseenter", onMouseEnterFn);
-  const onMouseLeaveFn = (ev: any) => mouseLeave(ev);
+  const onMouseLeaveFn = (ev: any) => !props.autoExpanded && mouseLeave(ev);
   DOM.value.link.addEventListener("mouseleave", onMouseLeaveFn);
 };
-const mouseEnter = (ev: any) => {
+const mouseEnter = (ev: any, autoMode = false) => {
   // find closest side to the mouse
-  const edge = findClosestEdge(ev);
+  const edge = findClosestEdge(ev, autoMode);
 
   // set the initial y position for both the marquee and marqueeInner elements
   // for the reveal effect to happen, both start at opposite positions
@@ -105,9 +109,9 @@ const mouseEnter = (ev: any) => {
     .to(DOM.value.el, { scale: 2, duration: 3.2 }, 0)
     .to([DOM.value.marquee, DOM.value.marqueeInner], { y: "0%" }, 0);
 };
-const mouseLeave = (ev: any) => {
+const mouseLeave = (ev: any, autoMode = false) => {
   // find closest side to the mouse
-  const edge = findClosestEdge(ev);
+  const edge = findClosestEdge(ev, autoMode);
 
   gsap
     .timeline({ defaults: animationDefaults.value })
@@ -116,10 +120,12 @@ const mouseLeave = (ev: any) => {
     .to(DOM.value.el, { scale: 1, duration: 3.2 }, 0);
 };
 // find closest side to the mouse when entering/leaving
-const findClosestEdge = (ev: any) => {
+const findClosestEdge = (ev: any, autoMode = false) => {
   const { left, top, width, height } = DOM.value.el.getBoundingClientRect();
-  const x = ev.pageX - left;
-  const y = ev.pageY - top;
+
+  const x = autoMode ? left : ev.pageX - left;
+  const y = autoMode ? top : ev.pageY - top;
+
   return closestEdge(x, y, width, height);
 };
 
@@ -136,9 +142,29 @@ onMounted(() => {
   );
   // some default options for the animation's speed and easing
   animationDefaults.value = { duration: 1.2, ease: "expo" };
+
+  // init style
+  gsap.set(DOM.value.el, {
+    transformOrigin: "left",
+    rotate: props.rotate,
+    y: props.translateY,
+    x: props.translateX,
+  });
+
   // events initialization
   initEvents();
 });
+
+watch(
+  () => props.autoExpanded,
+  (expanded) => {
+    if (expanded) {
+      mouseEnter({ pageX: 0, pageY: 0 }, true);
+    } else {
+      mouseLeave({ pageX: 0, pageY: 0 }, true);
+    }
+  }
+);
 </script>
 
 <style lang="scss">

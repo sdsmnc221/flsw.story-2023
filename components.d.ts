@@ -13,6 +13,7 @@ declare module 'vue' {
     LoaderBlock: typeof import('./src/components/LoaderBlock/LoaderBlock.vue')['default']
     'LoaderBlock.ce': typeof import('./src/components/LoaderBlock/LoaderBlock.ce.vue')['default']
     MarqueeBlock: typeof import('./src/components/MarqueeBlock/MarqueeBlock.vue')['default']
+    MarqueesContainer: typeof import('./src/components/MarqueesContainer/MarqueesContainer.vue')['default']
     PawCursor: typeof import('./src/components/PawCursor/PawCursor.vue')['default']
     ShareButton: typeof import('./src/components/ShareButton/ShareButton.vue')['default']
     TextBlock: typeof import('./src/components/TextBlock/TextBlock.vue')['default']

@@ -27,7 +27,10 @@
                 "mq-gandalf.jpg",
                 "mq-crapule.jpg",
                 "mq-romi.jpg"
-            ]
+            ],
+            "rotate": "6deg",
+            "translateY": "10vh",
+            "translateX": 0
         },
         {
             "title": "Duos Harmonieux",
@@ -48,7 +51,10 @@
                 "mq-bob-kikou.jpg",
                 "mq-ares-mia.jpg",
                 "mq-grudu-aga.jpg"
-            ]
+            ],
+            "rotate": "0deg",
+            "translateY": "22vh",
+            "translateX": "0"
         },
         {
             "title": "Éclat du Foyer des Petits Clochards",
@@ -73,7 +79,10 @@
                 "mq-tagada.jpg",
                 "mq-melba.jpg",
                 "mq-cacaille.jpg"
-            ]
+            ],
+            "rotate": "-3deg",
+            "translateY": "30vh",
+            "translateX": "-10vw"
         }
     ]
 }
