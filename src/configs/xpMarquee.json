@@ -29,8 +29,8 @@
                 "mq-romi.jpg"
             ],
             "rotate": "6deg",
-            "translateY": "10vh",
-            "translateX": 0
+            "translateY": "6vh",
+            "translateX": "-5vw"
         },
         {
             "title": "Duos Harmonieux",
