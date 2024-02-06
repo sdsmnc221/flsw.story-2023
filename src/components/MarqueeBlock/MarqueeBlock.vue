@@ -141,7 +141,7 @@ onMounted(() => {
     ".marquee__inner-wrap"
   );
   // some default options for the animation's speed and easing
-  animationDefaults.value = { duration: 1.2, ease: "expo" };
+  animationDefaults.value = { duration: 3.2, ease: "expo" };
 
   // init style
   gsap.set(DOM.value.el, {
