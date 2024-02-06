@@ -90,23 +90,11 @@ onMounted(() => {
     }
   }, REMOVE_LOADER_AFTER);
 
-  if (nodeRef.value) {
-    const clickEvent = new MouseEvent("click", {
-      view: window,
-      bubbles: true,
-      cancelable: true,
-    });
+  document.documentElement.click();
 
-    setTimeout(() => {
-      // Dispatch first click event
-      nodeRef.value.dispatchEvent(clickEvent);
-
-      // Dispatch second click event after a delay
-      setTimeout(() => {
-        nodeRef.value.dispatchEvent(clickEvent);
-      }, 100); // Adjust the delay as needed
-    }, 1000);
-  }
+  setTimeout(() => {
+    document.documentElement.click();
+  }, 120);
 
   preloadImages([".loader-block .three-body__dot::after"]).then(() => {
     loading.value = true;
