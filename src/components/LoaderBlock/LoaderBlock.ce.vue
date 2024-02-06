@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
 import isMobile from "../../helpers/isMobile";
 import { preloadImages } from "../../helpers/preloadAssets";
 
@@ -87,7 +87,6 @@ onMounted(() => {
   setTimeout(() => {
     if (!assetsReady.value) {
       document.dispatchEvent(onAssetsLoaded);
-      g;
     }
   }, REMOVE_LOADER_AFTER);
 

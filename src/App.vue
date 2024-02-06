@@ -101,8 +101,6 @@ import xpTitle from "./configs/xpTitle.json";
 import xpContent from "./configs/xpContent.json";
 import xpMarquee from "./configs/xpMarquee.json";
 
-import onAppLoaded from "./helpers/customEvents/appLoaded";
-
 const showApp = ref<boolean>(false);
 
 const isDevMode = ref<boolean>(import.meta.env.DEV);
