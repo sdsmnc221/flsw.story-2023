@@ -84,17 +84,17 @@ const cancelPrompt = (intervalId: number) => {
 };
 
 onMounted(() => {
-  setTimeout(() => {
-    if (!assetsReady.value) {
-      document.dispatchEvent(onAssetsLoaded);
-    }
-  }, REMOVE_LOADER_AFTER);
-
   document.documentElement.click();
 
   setTimeout(() => {
     document.documentElement.click();
   }, 120);
+
+  setTimeout(() => {
+    if (!assetsReady.value) {
+      document.dispatchEvent(onAssetsLoaded);
+    }
+  }, REMOVE_LOADER_AFTER);
 
   preloadImages([".loader-block .three-body__dot::after"]).then(() => {
     loading.value = true;
