@@ -74,4 +74,36 @@ onUnmounted(() => {
 });
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.marquees-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12vh;
+
+  & > .marquee-block {
+    transform-origin: "left";
+    // animation: blink ease-in-out 1.6s infinite;
+    &:first-child {
+      //transform: rotate(6deg) translateY(20vh);
+      width: 110%;
+    }
+    &:nth-child(2) {
+      //transform: rotate(0deg) translateY(22vh);
+      width: 110%;
+      text-align: center;
+    }
+    &:last-child {
+      //transform: rotate(-3deg) translateY(20vh) translateX(-10vw);
+      width: 110%;
+    }
+  }
+}
+</style>

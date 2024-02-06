@@ -295,6 +295,14 @@ watch(
     }
   }
 
+  @media screen and (min-width: 53em) {
+    .marquee {
+      &__img {
+        border-radius: 100%;
+      }
+    }
+  }
+
   @keyframes marquee {
     0% {
       transform: translate3d(var(--move-initial), 0, 0);
