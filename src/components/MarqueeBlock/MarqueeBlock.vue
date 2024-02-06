@@ -299,6 +299,7 @@ watch(
     .marquee {
       &__img {
         border-radius: 100%;
+        height: 80%;
       }
     }
   }

@@ -261,35 +261,32 @@ const initScroll = () => {
     sectionId: 5,
   };
 
-  preloadImages([
-    ".grid__item-inner",
-    ".grid__item",
-    ".loader-block .circle",
-    ".marquee__img",
-  ]).then(() => {
-    setTimeout(() => {
-      scroll(fx1Section2);
-      scroll(fx2Section2);
-
-      scrollGrid(collage1);
-      scrollGrid(collage2);
-      scrollGrid(collage3);
-      scrollGrid(collage4);
-      scrollGrid(collage5);
-      scrollGrid(collage6);
-      scrollGrid(collage7);
-      scrollGrid(video1);
-
-      scroll(fx1);
-      scroll(fx1Section3);
-      scroll(fx2);
-      scroll(fx3);
-
+  preloadImages([".grid__item-inner", ".grid__item", ".marquee__img"]).then(
+    () => {
       setTimeout(() => {
-        scrollTo(0);
-      }, 200);
-    }, 1000);
-  });
+        scroll(fx1Section2);
+        scroll(fx2Section2);
+
+        scrollGrid(collage1);
+        scrollGrid(collage2);
+        scrollGrid(collage3);
+        scrollGrid(collage4);
+        scrollGrid(collage5);
+        scrollGrid(collage6);
+        scrollGrid(collage7);
+        scrollGrid(video1);
+
+        scroll(fx1);
+        scroll(fx1Section3);
+        scroll(fx2);
+        scroll(fx3);
+
+        setTimeout(() => {
+          scrollTo(0);
+        }, 200);
+      }, 1000);
+    }
+  );
 };
 
 onBeforeMount(() => {
