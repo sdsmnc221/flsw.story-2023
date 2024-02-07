@@ -318,10 +318,10 @@ const applyCollageAnimation = (
       break;
     case "cllg-fx5":
       // Set some CSS related style values
-      grid.style.setProperty("--grid-width", "105%");
+      grid.style.setProperty("--grid-width", "100%");
       grid.style.setProperty("--grid-columns", isMobile() ? "4" : "8");
       grid.style.setProperty("--perspective", "1500px");
-      grid.style.setProperty("--grid-inner-scale", "0.5");
+      grid.style.setProperty("--grid-inner-scale", "1");
 
       if (timeline && gridItemsInner) {
         timeline
@@ -345,16 +345,6 @@ const applyCollageAnimation = (
             gridWrap,
             {
               z: 6500,
-            },
-            0
-          )
-          .fromTo(
-            gridItemsInner,
-            {
-              scale: isMobile() ? 4 : 2,
-            },
-            {
-              scale: isMobile() ? 1 : 0.5,
             },
             0
           );

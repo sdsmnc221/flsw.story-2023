@@ -161,9 +161,9 @@ const computedCollage = computed<string[]>(() => {
 
       &-inner {
         position: relative;
-        width: calc(1 / var(--grid-inner-scale) * 100%);
-        height: calc(1 / var(--grid-inner-scale) * 100%);
-        background-size: cover;
+        width: calc(1 / var(--grid-inner-scale) * 100%) !important;
+        height: calc(1 / var(--grid-inner-scale) * 100%) !important;
+        background-size: contain;
         background-position: center top;
       }
 
