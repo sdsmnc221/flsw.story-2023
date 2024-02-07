@@ -17,10 +17,12 @@ body {
 
   #app {
     background-color: var(--shakespear-blue);
+    overflow-x: hidden;
   }
 
   .app {
     width: 100%;
+    overflow-x: hidden;
 
     &::before {
       animation: grain 8s steps(10) infinite;

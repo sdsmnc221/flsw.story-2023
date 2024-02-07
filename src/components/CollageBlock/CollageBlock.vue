@@ -61,6 +61,10 @@
           :data-section="sectionId"
         ></div>
       </div>
+      <highlight-carousel
+        active
+        :collage="computedCollage"
+      ></highlight-carousel>
     </div>
 
     <div class="grid-wrap" v-if="collageFx.includes('5')">
@@ -314,13 +318,14 @@ const computedCollage = computed<string[]>(() => {
 
     &.--cllg-fx4 {
       position: relative;
-      width: 100%;
+      width: 100vw;
       height: 100%;
+      overflow-x: hidden;
 
       .grid {
         &-wrap {
           position: relative;
-          width: 100%;
+          width: 100vw;
           height: 100vh;
           display: flex;
           align-items: center;
