@@ -57,7 +57,7 @@ watch(
 .highlight-tutorial {
   position: fixed;
   width: 100%;
-  height: 100dvh;
+  height: 100svh;
   background-color: rgba(0, 0, 0, 0.32);
   // backdrop-filter: brightness(0.8);
   z-index: 10;
