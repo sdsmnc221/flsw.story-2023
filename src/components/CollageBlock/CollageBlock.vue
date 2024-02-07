@@ -188,7 +188,7 @@ const computedCollage = computed<string[]>(() => {
     }
 
     &.--cllg-fx5 {
-      --grid-item-ratio: 1.5;
+      --grid-item-ratio: 1;
     }
 
     &.--cllg-fx1,
