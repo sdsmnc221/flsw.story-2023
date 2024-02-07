@@ -59,8 +59,16 @@
           :key="`${sectionId}-grid-item-${index}`"
           :data-src="img"
           :data-section="sectionId"
+          @click="() => openCarousel(index)"
         ></div>
       </div>
+      <highlight-carousel
+        :active="carouselActive"
+        :collage="computedCollage"
+        :active-image-index="carouselImageActiveIndex"
+        @onCloseCarousel="carouselActive = false"
+        v-if="mob"
+      ></highlight-carousel>
     </div>
 
     <div class="grid-wrap" v-if="collageFx.includes('5')">
@@ -94,6 +102,15 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const mob = ref<boolean>(isMobile());
+
+const carouselActive = ref<boolean>(false);
+
+const carouselImageActiveIndex = ref<number>(0);
+
+const openCarousel = (index: number) => {
+  carouselActive.value = true;
+  carouselImageActiveIndex.value = index;
+};
 
 const computedCollage = computed<string[]>(() => {
   let collageArray: string[] = [];
@@ -314,13 +331,14 @@ const computedCollage = computed<string[]>(() => {
 
     &.--cllg-fx4 {
       position: relative;
-      width: 100%;
+      width: 100vw;
       height: 100%;
+      overflow-x: hidden;
 
       .grid {
         &-wrap {
           position: relative;
-          width: 100%;
+          width: 100vw;
           height: 100vh;
           display: flex;
           align-items: center;
