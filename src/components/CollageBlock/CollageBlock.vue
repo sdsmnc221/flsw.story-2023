@@ -68,13 +68,12 @@
     <div class="grid-wrap" v-if="collageFx.includes('5')">
       <div
         class="grid__item"
-        v-for="index in 48"
+        v-for="(img, index) in computedCollage"
         :key="`${sectionId}-grid-item-${index}`"
       >
-        <div
-          class="grid__item-inner"
-          style="background-image: url(img/1.jpg)"
-        ></div>
+        <div class="grid__item-inner" :data-src="img" :data-section="sectionId">
+          <video v-if="img.includes('mp4')" autoplay muted loop></video>
+        </div>
       </div>
     </div>
   </div>
