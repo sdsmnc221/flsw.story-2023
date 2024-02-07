@@ -9,6 +9,27 @@ import dynamicStyles from "./dynamicStyles";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
 
+const changeAppBackground = (self: any) => {
+  const { pin } = self;
+  const app = document.querySelector("#app");
+
+  if (pin && app) {
+    const backgroundString = window
+      .getComputedStyle(pin, null)
+      .getPropertyValue("background");
+
+    const linearGradientRegex = /linear-gradient\(.*?100%\)/;
+    const match = backgroundString.match(linearGradientRegex);
+
+    if (match) {
+      const linearGradientString = match[0];
+      (app as any).style.background = linearGradientString;
+    } else {
+      console.log("No linear-gradient found in the string.");
+    }
+  }
+};
+
 const applyCollageAnimation = (
   grid: any,
   animationType: string,
@@ -32,6 +53,8 @@ const applyCollageAnimation = (
         start: "top bottom+=5%",
         end: "bottom top-=5%",
         scrub: true,
+        onEnter: changeAppBackground,
+        onEnterBack: changeAppBackground,
       },
     });
   }
@@ -264,6 +287,8 @@ const applyCollageAnimation = (
             `.text-block.section--${sectionIndex.replace("section--", "")}`
           ),
           scrub: true,
+          onEnter: changeAppBackground,
+          onEnterBack: changeAppBackground,
           ...(animationType === "cllg-fx2"
             ? {
                 onUpdate: (self) => {

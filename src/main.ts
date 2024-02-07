@@ -86,4 +86,4 @@ setTimeout(() => {
       document.dispatchEvent(onAssetsLoaded);
     }
   });
-}, 1000);
+}, 500);
