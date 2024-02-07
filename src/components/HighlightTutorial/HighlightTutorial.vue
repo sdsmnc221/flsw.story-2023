@@ -126,7 +126,7 @@ watch(
       padding: 0 3.2%;
       font-size: 2rem;
       line-height: 1.6rem;
-      transform: rotate(-3deg) translateY(42svh) translateX(-4%);
+      transform: rotate(-3deg) translateY(43svh) translateX(-4%);
       text-align: left;
 
       .word {
