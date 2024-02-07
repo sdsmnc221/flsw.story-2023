@@ -1,6 +1,8 @@
 <template>
   <main class="app --locked" v-show="showApp" v-if="!isDevMode">
-    <share-button></share-button>
+    <transition name="fade" mode="out-in">
+      <share-button v-show="!carouselActive"></share-button>
+    </transition>
 
     <highlight-tutorial
       :title="xpMarquee.indicator.title"
@@ -33,13 +35,17 @@
       "
       v-bind="computedBindedProps(section, index)"
       :fx="section.fx"
+      @onOpenCarousel="carouselActive = true"
+      @onCloseCarousel="carouselActive = false"
     >
       {{ section.text }}
       <business-card v-if="section.socialMedia"></business-card>
     </text-block>
   </main>
   <main class="app" v-show="showApp" v-else>
-    <share-button></share-button>
+    <transition name="fade" mode="out-in">
+      <share-button v-show="!carouselActive"></share-button>
+    </transition>
     <!-- <highlight-tutorial
       :title="xpMarquee.indicator.title"
       :subtitle="xpMarquee.indicator.subtitle"
@@ -71,6 +77,8 @@
       "
       v-bind="computedBindedProps(section, index)"
       :fx="section.fx"
+      @onOpenCarousel="carouselActive = true"
+      @onCloseCarousel="carouselActive = false"
     >
       {{ section.text }}
       <business-card v-if="section.socialMedia"></business-card>
@@ -105,8 +113,12 @@ const isDevMode = ref<boolean>(import.meta.env.DEV);
 
 const highlightActive = ref<boolean>(false);
 
+const carouselActive = ref<boolean>(false);
+
 const assetsLoaded = ref<boolean>(false);
 const loaderLoaded = ref<boolean>(false);
+
+const tlCarouselSection4 = ref<any>(null);
 
 const computedBindedProps = (section: any, index: number) => {
   const bindedProps: any = {};
@@ -140,6 +152,11 @@ const computedBindedProps = (section: any, index: number) => {
   }
 
   return bindedProps;
+};
+
+const lockScroll = (e: any) => {
+  e.preventDefault();
+  scrollTo(window.scrollY + window.innerHeight);
 };
 
 const initScroll = () => {
@@ -266,7 +283,7 @@ const initScroll = () => {
     scrollGrid(collage1);
     scrollGrid(collage2);
     scrollGrid(collage3);
-    scrollGrid(collage4);
+    tlCarouselSection4.value = scrollGrid(collage4);
     scrollGrid(collage5);
     scrollGrid(collage6);
     scrollGrid(collage7);
@@ -277,6 +294,20 @@ const initScroll = () => {
     scroll(fx2);
     scroll(fx3);
   }, 1000);
+};
+
+const carouselLockApp = () => {
+  (document.querySelector("main.app") as any)?.style?.setProperty(
+    "--height-locked",
+    window.scrollY + window.innerHeight + "px"
+  );
+  document.querySelector("main.app")?.classList.add("--carousel-locked");
+  window.addEventListener("scroll", lockScroll);
+};
+
+const carouselUnlockApp = () => {
+  document.querySelector("main.app")?.classList.remove("--carousel-locked");
+  window.removeEventListener("scroll", lockScroll);
 };
 
 onBeforeMount(() => {
@@ -318,13 +349,6 @@ onMounted(() => {
           .querySelector(".highlight-tutorial")
           ?.classList.add("--hidden");
       }
-
-      if (window.scrollY <= 240) {
-        // document
-        //   .querySelector(".highlight-tutorial")
-        //   ?.classList.remove("--hidden");
-        // document.querySelector("main.app")?.classList.add("--locked");
-      }
     });
 
     setTimeout(() => {
@@ -364,6 +388,17 @@ watch(
     }
   }
 );
+
+watch(
+  () => carouselActive.value,
+  (active) => {
+    if (active) {
+      carouselLockApp();
+    } else {
+      carouselUnlockApp();
+    }
+  }
+);
 </script>
 
 <style lang="scss">
@@ -371,6 +406,11 @@ watch(
   overflow: hidden;
   position: relative;
   width: 100%;
+
+  &.--carousel-locked {
+    overflow: hidden;
+    height: var(--height-locked, 100vh);
+  }
 
   &.--locked {
     width: 100%;

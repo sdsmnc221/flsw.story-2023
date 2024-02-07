@@ -93,7 +93,7 @@ watch(
 .highlight-carousel {
   position: fixed;
   width: 100%;
-  height: 100svh;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.32);
   backdrop-filter: blur(3.2px);
   z-index: 10;

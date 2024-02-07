@@ -11,6 +11,8 @@
       :section-id="id"
       :collage-fx="cllgFx"
       :collage="collage"
+      @onOpenCarousel="emits('onOpenCarousel')"
+      @onCloseCarousel="emits('onCloseCarousel')"
     ></collage-block>
 
     <video-block
@@ -86,6 +88,8 @@ withDefaults(defineProps<Props>(), {
   collage: null,
   video: null,
 });
+
+const emits = defineEmits(["onOpenCarousel", "onCloseCarousel"]);
 </script>
 
 <style lang="scss">

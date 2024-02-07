@@ -86,7 +86,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import shuffleArray from "../../helpers/shuffleArray";
 import isMobile from "../../helpers/isMobile";
 
@@ -100,6 +100,8 @@ const props = withDefaults(defineProps<Props>(), {
   collageFx: "fx0",
   collage: null,
 });
+
+const emits = defineEmits(["onOpenCarousel", "onCloseCarousel"]);
 
 const mob = ref<boolean>(isMobile());
 
@@ -142,6 +144,17 @@ const computedCollage = computed<string[]>(() => {
   }
   return Array(24).fill("1.jpg");
 });
+
+watch(
+  () => carouselActive.value,
+  (active) => {
+    if (active) {
+      emits("onOpenCarousel");
+    } else {
+      emits("onCloseCarousel");
+    }
+  }
+);
 </script>
 
 <style lang="scss" scoped>
