@@ -5,6 +5,7 @@ import { Flip } from "gsap/dist/Flip";
 
 import { applyCollageAnimation } from "./collageFx";
 import { applyVideoAnimation } from "./videoFx";
+import { changeAppBackground } from "./changeAppBackground";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
@@ -56,6 +57,7 @@ const scroll = (fx: { id: string; nodes: any[]; delayContent?: boolean }) => {
               start: fx.delayContent ? "top bottom-=24vh" : "top bottom",
               end: fx.delayContent ? "top bottom" : "top top",
               scrub: true,
+
               ...(!fx.delayContent
                 ? {
                     onUpdate: (self) => {
@@ -216,6 +218,8 @@ const scroll = (fx: { id: string; nodes: any[]; delayContent?: boolean }) => {
               end: "+=300%",
               scrub: true,
               pin: title.parentNode,
+              onEnter: changeAppBackground,
+              onEnterBack: changeAppBackground,
             },
             stagger: {
               each: 0.006,

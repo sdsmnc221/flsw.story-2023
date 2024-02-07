@@ -6,29 +6,10 @@ import { Flip } from "gsap/dist/Flip";
 import randomIntegerInRange from "./randomIntegerInRange";
 import dynamicStyles from "./dynamicStyles";
 
+import { changeAppBackground } from "./changeAppBackground";
+
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
-
-const changeAppBackground = (self: any) => {
-  const { pin } = self;
-  const app = document.querySelector("#app");
-
-  if (pin && app) {
-    const backgroundString = window
-      .getComputedStyle(pin, null)
-      .getPropertyValue("background");
-
-    const linearGradientRegex = /linear-gradient\(.*?100%\)/;
-    const match = backgroundString.match(linearGradientRegex);
-
-    if (match) {
-      const linearGradientString = match[0];
-      (app as any).style.background = linearGradientString;
-    } else {
-      console.log("No linear-gradient found in the string.");
-    }
-  }
-};
 
 const applyCollageAnimation = (
   grid: any,
