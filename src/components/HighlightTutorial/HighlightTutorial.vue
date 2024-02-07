@@ -46,7 +46,7 @@ watch(
   position: fixed;
   width: 100%;
   height: 100dvh;
-  background-color: rgba(0, 0, 0, 0.12);
+  background-color: rgba(0, 0, 0, 0.32);
   // backdrop-filter: brightness(0.8);
   z-index: 10;
   pointer-events: none;
@@ -70,7 +70,7 @@ watch(
     font-size: clamp(2.4rem, 10vw, 3.2rem);
     line-height: clamp(2rem, 10vw, 3rem);
     text-transform: lowercase;
-    transform: rotate(-3deg) translateY(72vh) translateX(2.4vw);
+    transform: rotate(-3deg) translateY(80vh) translateX(2.4vw);
     text-align: center;
   }
 
@@ -99,9 +99,10 @@ watch(
   @media (max-width: 768px) {
     &__title {
       position: relative;
-      font-size: 2.4rem;
+      font-size: 2.8rem;
+      line-height: 2.2rem;
       left: 0;
-      transform: rotate(6deg) translateX(6vw) translateY(8vh);
+      transform: rotate(6deg) translateX(4vw) translateY(22vh);
       text-align: center;
 
       .word {
@@ -110,8 +111,10 @@ watch(
     }
 
     &__subtitle {
-      line-height: clamp(0.8rem, 10vw, 1.6rem);
-      transform: rotate(-3deg) translateY(60vh) translateX(-4%);
+      padding: 0 3.2%;
+      font-size: 2.2rem;
+      line-height: 1.2rem;
+      transform: rotate(-3deg) translateY(40vh) translateX(-4%);
       text-align: left;
 
       .word {

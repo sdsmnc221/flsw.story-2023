@@ -1,5 +1,5 @@
 <template>
-  <main class="app --locked" v-show="showApp" v-if="!isDevMode">
+  <main class="app --locked" v-show="showApp" v-if="isDevMode">
     <share-button></share-button>
 
     <highlight-tutorial
@@ -76,9 +76,7 @@
       <business-card v-if="section.socialMedia"></business-card>
     </text-block>
   </main>
-  <!-- <transition name="fade" mode="out-in">
-    <loader-block v-if="loading" :first-loading="firstLoading"></loader-block>
-  </transition> -->
+
   <paw-cursor></paw-cursor>
 </template>
 
@@ -402,10 +400,10 @@ watch(
     @media (min-width: 1440px) {
       .highlight-tutorial {
         &__title {
-          transform: rotate(6deg) translateX(-28vw) translateY(22vh);
+          transform: rotate(6deg) translateX(-28vw) translateY(20vh);
         }
         &__subtitle {
-          transform: rotate(-3deg) translateY(72vh) translateX(2.4vw);
+          transform: rotate(-3deg) translateY(80vh) translateX(2.4vw);
         }
       }
     }
