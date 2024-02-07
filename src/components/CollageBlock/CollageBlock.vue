@@ -59,11 +59,15 @@
           :key="`${sectionId}-grid-item-${index}`"
           :data-src="img"
           :data-section="sectionId"
+          @click="() => openCarousel(index)"
         ></div>
       </div>
       <highlight-carousel
-        active
+        :active="carouselActive"
         :collage="computedCollage"
+        :active-image-index="carouselImageActiveIndex"
+        @onCloseCarousel="carouselActive = false"
+        v-if="mob"
       ></highlight-carousel>
     </div>
 
@@ -98,6 +102,15 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const mob = ref<boolean>(isMobile());
+
+const carouselActive = ref<boolean>(false);
+
+const carouselImageActiveIndex = ref<number>(0);
+
+const openCarousel = (index: number) => {
+  carouselActive.value = true;
+  carouselImageActiveIndex.value = index;
+};
 
 const computedCollage = computed<string[]>(() => {
   let collageArray: string[] = [];
