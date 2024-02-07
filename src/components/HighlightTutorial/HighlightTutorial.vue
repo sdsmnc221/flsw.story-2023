@@ -1,6 +1,6 @@
 i
 <template>
-  <section class="highlight-tutorial">
+  <section class="highlight-tutorial" ref="nodeRef">
     <p
       class="highlight-tutorial__title josefin-sans-600 --stroked"
       data-splitting
@@ -17,7 +17,7 @@ i
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
+import { watch, ref, onMounted } from "vue";
 import initHighlight from "../../helpers/hightlightFx";
 interface Props {
   title: string;
@@ -27,9 +27,21 @@ interface Props {
 
 const props = defineProps<Props>();
 
+const nodeRef = ref<any>(null);
+
 // const emits = defineEmits(["onHighlightCompleted"]);
 
 // const emitEvent = () => emits("onHighlightCompleted");
+
+onMounted(() => {
+  if (nodeRef.value) {
+    nodeRef.value.click();
+
+    setTimeout(() => {
+      nodeRef.value.click();
+    }, 120);
+  }
+});
 
 watch(
   () => props.active,
@@ -112,9 +124,9 @@ watch(
 
     &__subtitle {
       padding: 0 3.2%;
-      font-size: 1.6rem;
-      line-height: 1.2rem;
-      transform: rotate(-3deg) translateY(40dvh) translateX(-4%);
+      font-size: 2rem;
+      line-height: 1.6rem;
+      transform: rotate(-3deg) translateY(42dvh) translateX(-4%);
       text-align: left;
 
       .word {
