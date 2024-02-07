@@ -276,24 +276,22 @@ const initScroll = () => {
     sectionId: 5,
   };
 
-  setTimeout(() => {
-    scroll(fx1Section2);
-    scroll(fx2Section2);
+  scroll(fx1Section2);
+  scroll(fx2Section2);
 
-    scrollGrid(collage1);
-    scrollGrid(collage2);
-    scrollGrid(collage3);
-    tlCarouselSection4.value = scrollGrid(collage4);
-    scrollGrid(collage5);
-    scrollGrid(collage6);
-    scrollGrid(collage7);
-    scrollGrid(video1);
+  scrollGrid(collage1);
+  scrollGrid(collage2);
+  scrollGrid(collage3);
+  tlCarouselSection4.value = scrollGrid(collage4);
+  scrollGrid(collage5);
+  scrollGrid(collage6);
+  scrollGrid(collage7);
+  scrollGrid(video1);
 
-    scroll(fx1);
-    scroll(fx1Section3);
-    scroll(fx2);
-    scroll(fx3);
-  }, 1000);
+  scroll(fx1);
+  scroll(fx1Section3);
+  scroll(fx2);
+  scroll(fx3);
 };
 
 const carouselLockApp = () => {
@@ -313,9 +311,7 @@ const carouselUnlockApp = () => {
 onBeforeMount(() => {
   initSmoothScrolling();
 
-  setTimeout(() => {
-    showApp.value = true;
-  }, 1000);
+  showApp.value = true;
 });
 
 onMounted(() => {

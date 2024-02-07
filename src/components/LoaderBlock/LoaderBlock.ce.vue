@@ -17,9 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from "vue";
+import { onMounted, onUnmounted, onBeforeMount, ref, watch } from "vue";
 import isMobile from "../../helpers/isMobile";
-import { preloadImages } from "../../helpers/preloadAssets";
 
 import xpLoader from "../../configs/xpLoader.json";
 
@@ -49,7 +48,7 @@ const endOfPrompt = ref<boolean>(false);
 const endOfDefaultPrompt = ref<boolean>(false);
 const nodeRef = ref<any>(null);
 
-const changePrompt = (restart = false, interval = 1320) => {
+const changePrompt = (restart = false, interval = 1200) => {
   let i = 0;
   const prompts = firstLoading.value
     ? restart
@@ -83,6 +82,10 @@ const cancelPrompt = (intervalId: number) => {
   clearInterval(intervalId);
 };
 
+onBeforeMount(() => {
+  intervalId.value = changePrompt();
+});
+
 onMounted(() => {
   document.documentElement.click();
 
@@ -95,11 +98,6 @@ onMounted(() => {
       document.dispatchEvent(onAssetsLoaded);
     }
   }, REMOVE_LOADER_AFTER);
-
-  preloadImages([".loader-block .three-body__dot::after"]).then(() => {
-    loading.value = true;
-    intervalId.value = changePrompt();
-  });
 
   // preloadImages([".grid__item-inner", ".grid__item", ".marquee__img"]).then(
   //   () => {
