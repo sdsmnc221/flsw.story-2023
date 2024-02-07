@@ -278,10 +278,6 @@ const initScroll = () => {
     scroll(fx1Section3);
     scroll(fx2);
     scroll(fx3);
-
-    setTimeout(() => {
-      scrollTo(0);
-    }, 200);
   }, 1000);
 };
 
@@ -366,6 +362,7 @@ watch(
   ([assets, loader]) => {
     if (assets && loader) {
       highlightActive.value = true;
+      scrollTo(0);
     }
   }
 );
