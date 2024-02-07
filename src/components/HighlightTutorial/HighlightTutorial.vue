@@ -99,10 +99,10 @@ watch(
   @media (max-width: 768px) {
     &__title {
       position: relative;
-      font-size: 2.8rem;
-      line-height: 2.2rem;
+      font-size: 2rem;
+      line-height: 1.6rem;
       left: 0;
-      transform: rotate(6deg) translateX(4vw) translateY(22vh);
+      transform: rotate(6deg) translateX(4vw) translateY(22dvh);
       text-align: center;
 
       .word {
@@ -112,9 +112,9 @@ watch(
 
     &__subtitle {
       padding: 0 3.2%;
-      font-size: 2.2rem;
+      font-size: 1.6rem;
       line-height: 1.2rem;
-      transform: rotate(-3deg) translateY(40vh) translateX(-4%);
+      transform: rotate(-3deg) translateY(40dvh) translateX(-4%);
       text-align: left;
 
       .word {

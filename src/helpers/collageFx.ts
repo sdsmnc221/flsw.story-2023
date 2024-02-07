@@ -319,7 +319,7 @@ const applyCollageAnimation = (
     case "cllg-fx5":
       // Set some CSS related style values
       grid.style.setProperty("--grid-width", "100%");
-      grid.style.setProperty("--grid-columns", isMobile() ? "3" : "6");
+      grid.style.setProperty("--grid-columns", isMobile() ? "4" : "6");
       grid.style.setProperty("--perspective", "1500px");
       grid.style.setProperty("--grid-inner-scale", "1");
 
