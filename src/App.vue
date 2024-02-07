@@ -92,7 +92,7 @@ import {
   refreshScroll,
   scrollTo,
 } from "./helpers/scrollFx";
-import { preloadImages } from "./helpers/preloadAssets";
+
 import Splitting from "splitting";
 import "splitting/dist/splitting.css";
 import "splitting/dist/splitting-cells.css";
@@ -261,32 +261,28 @@ const initScroll = () => {
     sectionId: 5,
   };
 
-  preloadImages([".grid__item-inner", ".grid__item", ".marquee__img"]).then(
-    () => {
-      setTimeout(() => {
-        scroll(fx1Section2);
-        scroll(fx2Section2);
+  setTimeout(() => {
+    scroll(fx1Section2);
+    scroll(fx2Section2);
 
-        scrollGrid(collage1);
-        scrollGrid(collage2);
-        scrollGrid(collage3);
-        scrollGrid(collage4);
-        scrollGrid(collage5);
-        scrollGrid(collage6);
-        scrollGrid(collage7);
-        scrollGrid(video1);
+    scrollGrid(collage1);
+    scrollGrid(collage2);
+    scrollGrid(collage3);
+    scrollGrid(collage4);
+    scrollGrid(collage5);
+    scrollGrid(collage6);
+    scrollGrid(collage7);
+    scrollGrid(video1);
 
-        scroll(fx1);
-        scroll(fx1Section3);
-        scroll(fx2);
-        scroll(fx3);
+    scroll(fx1);
+    scroll(fx1Section3);
+    scroll(fx2);
+    scroll(fx3);
 
-        setTimeout(() => {
-          scrollTo(0);
-        }, 200);
-      }, 1000);
-    }
-  );
+    setTimeout(() => {
+      scrollTo(0);
+    }, 200);
+  }, 1000);
 };
 
 onBeforeMount(() => {

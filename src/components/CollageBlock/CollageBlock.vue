@@ -41,9 +41,8 @@
         >
           <div
             class="grid__item-inner"
-            :style="`${
-              img.includes('jpg') ? `background-image: url(${img})` : ''
-            }`"
+            :data-src="img"
+            :data-section="sectionId"
           ></div>
         </div>
       </div>
@@ -58,9 +57,8 @@
           class="grid__item"
           v-for="(img, index) in computedCollage"
           :key="`${sectionId}-grid-item-${index}`"
-          :style="`${
-            img.includes('jpg') ? `background-image: url(${img})` : ''
-          }`"
+          :data-src="img"
+          :data-section="sectionId"
         ></div>
       </div>
     </div>
