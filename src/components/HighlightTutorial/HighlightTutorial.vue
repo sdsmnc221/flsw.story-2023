@@ -114,7 +114,7 @@ watch(
       font-size: 2rem;
       line-height: 1.6rem;
       left: 0;
-      transform: rotate(6deg) translateX(4vw) translateY(22dvh);
+      transform: rotate(6deg) translateX(4vw) translateY(22svh);
       text-align: center;
 
       .word {
@@ -126,7 +126,7 @@ watch(
       padding: 0 3.2%;
       font-size: 2rem;
       line-height: 1.6rem;
-      transform: rotate(-3deg) translateY(42dvh) translateX(-4%);
+      transform: rotate(-3deg) translateY(42svh) translateX(-4%);
       text-align: left;
 
       .word {
