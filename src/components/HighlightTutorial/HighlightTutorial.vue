@@ -234,7 +234,7 @@ watch(
       img {
         height: 8svh;
         width: auto;
-        bottom: 24px;
+        bottom: 48px;
         left: 50%;
         transform: translate(-50%, 0);
       }
@@ -284,7 +284,6 @@ watch(
     padding: 12px 24px;
 
     position: fixed;
-    bottom: 24vh;
     left: 50%;
     transform: translateX(-50%);
 
@@ -301,7 +300,7 @@ watch(
       position: absolute;
       min-width: calc(0.84rem * 8);
       text-align: center;
-      top: 0;
+      top: auto;
       left: 50%;
       transform: translateX(-50%);
       padding: 0.3em 0.6em;
