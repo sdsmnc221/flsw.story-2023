@@ -3,6 +3,8 @@ import { createApp } from "vue";
 import "the-new-css-reset/css/reset.css";
 import "./styles/index.scss";
 
+import CACHE_NAME from "../public/worker/CACHE_NAME.json";
+
 import "./components/LoaderBlock/LoaderBlock.ce";
 
 import App from "./App.vue";
@@ -27,7 +29,7 @@ function fetchAndCacheBlobAsset(
     .then((blob) => {
       // Cache the blob asset
       caches
-        .open("assets-cache-v1")
+        .open(CACHE_NAME)
         .then((cache) => cache.put(imageURL, new Response(blob)))
         .catch((error) => console.error("Error caching blob:", error));
 

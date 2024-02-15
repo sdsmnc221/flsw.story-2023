@@ -1,8 +1,8 @@
+import CACHE_NAME from "./CACHE_NAME.json";
+
 let countImg = 0;
 let countImgFirstSections = 0;
 let isLoadingFinished = false;
-
-const CACHE_NAME = "assets-cache-v1";
 
 self.addEventListener("message", async (event) => {
   // Grab the imageURL from the event - we'll use this both to download
