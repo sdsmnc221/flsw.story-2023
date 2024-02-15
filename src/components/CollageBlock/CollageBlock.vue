@@ -568,13 +568,13 @@ watch(
 
         .grid-wrap__gallery--stack-inverse .grid__item--href.grid__item {
           transform: scale(1);
-          bottom: 72vh !important;
+          bottom: 64vh !important;
           left: 100vw !important;
         }
 
         .gallery--switch.grid-wrap__gallery--stack-inverse
           .grid__item--href.grid__item {
-          bottom: 72vh !important;
+          bottom: 64vh !important;
           left: -10vw !important;
           opacity: 1;
           transform: scale(0.72);
