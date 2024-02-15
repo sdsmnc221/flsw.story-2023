@@ -36,6 +36,15 @@ const sectionImageCount = Array.from(imgElements).reduce(
 );
 
 // Loop over the image elements and pass their URLs to the web worker
+videoElements.forEach((videoElement) => {
+  const imageURL = videoElement.getAttribute("data-src");
+
+  worker.postMessage({
+    imageURL,
+    isVideoBlock: true,
+  });
+});
+
 imgElements.forEach((imageElement, index) => {
   const imageURL = imageElement.getAttribute("data-src");
   const sectionIndex =
@@ -50,15 +59,6 @@ imgElements.forEach((imageElement, index) => {
     sectionIndex,
     imgCountInCurrentSection,
     imgCountInFirstSections: sectionImageCount["1"] + sectionImageCount["2"],
-  });
-});
-
-videoElements.forEach((videoElement) => {
-  const imageURL = videoElement.getAttribute("data-src");
-
-  worker.postMessage({
-    imageURL,
-    isVideoBlock: true,
   });
 });
 
