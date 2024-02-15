@@ -131,6 +131,16 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
         },
         ">"
       );
+  } else if (sectionIndex === "end" || sectionIndex === "4") {
+    tl.from(
+      document.querySelector(".highlight-tutorial .tooltip"),
+      {
+        opacity: 0,
+        y: "100%",
+        duration: 1.2,
+      },
+      0
+    );
   }
 
   tl.to(

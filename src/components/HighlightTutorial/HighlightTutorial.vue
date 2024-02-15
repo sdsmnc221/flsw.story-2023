@@ -29,6 +29,7 @@ i
 
     <figure class="highlight-tutorial__illus">
       <svg
+        v-if="index !== 'end'"
         class="highlight-tutorial__illus__arrow"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 300 300"
@@ -54,10 +55,16 @@ i
         src="/img/cat2.svg"
       />
       <img
-        v-else
+        v-else-if="index === '4'"
         class="highlight-tutorial__illus__persona"
         alt=""
         src="/img/cat3.svg"
+      />
+      <img
+        v-else
+        class="highlight-tutorial__illus__persona"
+        alt=""
+        src="/img/cat1.svg"
       />
     </figure>
   </section>
@@ -170,6 +177,19 @@ watch(
     }
   }
 
+  &.--end {
+    img {
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+    .tooltip-container {
+      bottom: 18vh;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+
   .--stroked {
     letter-spacing: -0.2px;
     @supports (-webkit-text-stroke: 1px black) {
@@ -243,6 +263,12 @@ watch(
         height: 24svh;
       }
     }
+
+    &.--end {
+      .tooltip-container {
+        bottom: 20vh;
+      }
+    }
   }
 
   .tooltip-container {
@@ -275,7 +301,7 @@ watch(
       left: 50%;
       transform: translateX(-50%);
       padding: 0.3em 0.6em;
-      opacity: 0;
+      opacity: 1;
       pointer-events: none;
       transition: all 0.3s;
       background-color: rgb(255, 255, 255);

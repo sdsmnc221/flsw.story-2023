@@ -10,5 +10,9 @@
     "4": {
         "title": "psssh!!!! Vous ne voyez pas assez bien ?",
         "subtitle": "Cliquez sur les images pour les découvrir en grand !"
+    },
+    "end": {
+        "title": "L'expérience vous a plu ? N'hésitez pas à la partager !",
+        "subtitle": ""
     }
 }

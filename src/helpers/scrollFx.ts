@@ -6,6 +6,7 @@ import { Flip } from "gsap/dist/Flip";
 import { applyCollageAnimation } from "./collageFx";
 import { applyVideoAnimation } from "./videoFx";
 import { changeAppBackground } from "./changeAppBackground";
+import onTutoActivated from "./customEvents/tutoActivated";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
@@ -36,6 +37,23 @@ const initSmoothScrolling = () => {
 const cancelSmoothScrolling = () => {
   cancelAnimationFrame(lenis.raf);
   lenis.destroy();
+};
+
+const cancelScroll = () => {
+  console.log(ScrollTrigger.getAll(), gsap.globalTimeline.getChildren());
+
+  ScrollTrigger.killAll();
+  gsap.globalTimeline.clear();
+
+  console.log(ScrollTrigger.getAll(), gsap.globalTimeline.getChildren());
+};
+
+const refreshScroll = () => {
+  ScrollTrigger.refresh();
+};
+
+const scrollTo = (value: number | string) => {
+  lenis.scrollTo(value, { lerp: 0.032 });
 };
 
 // GSAP Scroll Triggers
@@ -185,6 +203,8 @@ const scroll = (fx: { id: string; nodes: any[]; delayContent?: boolean }) => {
       });
       break;
     case "fx3":
+      let doAnimateOnce = false;
+
       fx.nodes.forEach((title) => {
         const words = [...title.querySelectorAll(".word")];
 
@@ -218,8 +238,23 @@ const scroll = (fx: { id: string; nodes: any[]; delayContent?: boolean }) => {
               end: "+=300%",
               scrub: true,
               pin: title.parentNode,
-              onEnter: changeAppBackground,
+              onEnter: (self: any) => {
+                doAnimateOnce = false;
+                changeAppBackground(self);
+              },
               onEnterBack: changeAppBackground,
+              onUpdate: (self) => {
+                const { progress } = self;
+
+                if (progress >= 0.5) {
+                  if (!doAnimateOnce) {
+                    document.dispatchEvent(
+                      onTutoActivated({ active: true, section: "end" })
+                    );
+                    doAnimateOnce = true;
+                  }
+                }
+              },
             },
             stagger: {
               each: 0.006,
@@ -254,23 +289,6 @@ const scrollGrid = (grid: {
       applyVideoAnimation(grid.node, grid.id, grid.sectionId);
     }
   }
-};
-
-const cancelScroll = () => {
-  console.log(ScrollTrigger.getAll(), gsap.globalTimeline.getChildren());
-
-  ScrollTrigger.killAll();
-  gsap.globalTimeline.clear();
-
-  console.log(ScrollTrigger.getAll(), gsap.globalTimeline.getChildren());
-};
-
-const refreshScroll = () => {
-  ScrollTrigger.refresh();
-};
-
-const scrollTo = (value: number | string) => {
-  lenis.scrollTo(value, { lerp: 0.032 });
 };
 
 export {
