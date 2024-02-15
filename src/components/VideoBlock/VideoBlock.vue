@@ -54,7 +54,7 @@
           <foreignObject :mask="`url(#circleMask-${id})`">
             <video
               ref="videoRef"
-              :data-src="`/img/${video}`"
+              :data-src="`/img/${video}${mob ? '-mob' : ''}`"
               type="video/mp4"
             ></video>
           </foreignObject>
@@ -161,6 +161,7 @@
 import { computed, ref, watch } from "vue";
 
 import { randomAlphaNumeric } from "../../helpers/randomAlphaNumeric";
+import isMobile from "../../helpers/isMobile";
 
 interface Props {
   sectionId: string;
@@ -175,6 +176,8 @@ defineProps<Props>();
 const videoRef = ref<HTMLVideoElement | null>(null);
 
 const videoPlayState = ref<boolean>(false);
+
+const mob = ref<boolean>(isMobile());
 
 const playVideo = () => {
   videoPlayState.value = true;
