@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import onTutoActivated from "./customEvents/tutoActivated";
+import { scrollTo } from "./scrollFx";
 
 const lockScroll = (e: any) => {
   e.preventDefault();

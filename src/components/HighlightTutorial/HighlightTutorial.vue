@@ -113,7 +113,7 @@ watch(
   width: 100%;
   height: 100svh;
   // backdrop-filter: brightness(0.8);
-  z-index: 6;
+  z-index: 72;
 
   overflow: hidden;
   transition: all 0.64s ease-in-out;

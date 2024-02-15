@@ -357,6 +357,7 @@ const applyCollageAnimation = (
             0
           );
       }
+
       break;
     default:
       console.error("Unknown animation type.");

@@ -1,5 +1,5 @@
 <template>
-  <div class="business-card parent">
+  <div class="business-card parent" ref="nodeRef">
     <div class="card">
       <div class="logo">
         <span class="circle circle1"></span>
