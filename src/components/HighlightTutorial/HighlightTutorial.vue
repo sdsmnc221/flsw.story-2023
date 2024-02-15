@@ -234,7 +234,7 @@ watch(
       img {
         height: 10svh;
         width: auto;
-        bottom: 2svh;
+        bottom: 0svh;
         left: 50%;
         transform: translate(-50%, 0);
       }
@@ -256,17 +256,16 @@ watch(
       }
     }
 
-    &.--4 {
+    &.--4,
+    &.--end {
+      .tooltip-container {
+        bottom: 32vh;
+      }
+
       svg {
         bottom: auto;
         top: 32%;
         height: 24svh;
-      }
-    }
-
-    &.--end {
-      .tooltip-container {
-        bottom: 20vh;
       }
     }
   }

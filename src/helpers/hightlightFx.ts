@@ -47,7 +47,7 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
     })
     .pause();
 
-  if (sectionIndex !== "end") {
+  if (sectionIndex === "0") {
     tl.to(
       document.querySelector(".highlight-tutorial"),
       {
@@ -69,6 +69,7 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
       },
       0
     );
+    g;
   }
 
   if (sectionIndex === "0") {
