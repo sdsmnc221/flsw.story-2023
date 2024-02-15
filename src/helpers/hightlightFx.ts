@@ -69,7 +69,6 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
       },
       0
     );
-    g;
   }
 
   if (sectionIndex === "0") {
