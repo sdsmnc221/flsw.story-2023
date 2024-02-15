@@ -9,16 +9,16 @@ const LoaderBlockCE = defineCustomElement(LoaderBlock);
 // register
 customElements.define("loader-block-ce", LoaderBlockCE);
 
-setTimeout(() => {
-  document.body.querySelector("#app")?.appendChild(
-    new LoaderBlockCE({
-      firstLoading: true,
-    })
-  );
-}, 100);
+// setTimeout(() => {
+//   document.body.querySelector("#app")?.appendChild(
+//     new LoaderBlockCE({
+//       firstLoading: true,
+//     })
+//   );
+// }, 100);
 
-// document.body.querySelector("#app").appendChild(
-//   new LoaderBlockCE({
-//     firstLoading: true,
-//   })
-// );
+document.body.appendChild(
+  new LoaderBlockCE({
+    firstLoading: true,
+  })
+);
