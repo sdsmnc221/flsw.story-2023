@@ -256,16 +256,15 @@ watch(
       }
     }
 
-  &.--end {
-   .tooltip-container{
-  bottom: 24svh;
-  }
-  }
-  
+    &.--end {
+      .tooltip-container {
+        bottom: 24svh;
+      }
+    }
 
     &.--4 {
       .tooltip-container {
-        bottom: 36svh;
+        bottom: 30svh;
       }
 
       svg {
