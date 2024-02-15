@@ -76,7 +76,7 @@ interface Props {
   collage?: string[] | null;
   video?: string | null;
   videoRatio?: string;
-  href: any;
+  href?: any;
 }
 
 withDefaults(defineProps<Props>(), {
