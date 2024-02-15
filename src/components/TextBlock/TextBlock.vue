@@ -101,7 +101,7 @@ const emits = defineEmits(["onOpenCarousel", "onCloseCarousel"]);
 <style lang="scss">
 .text-block {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   justify-content: center;
   align-items: center;

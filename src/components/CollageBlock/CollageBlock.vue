@@ -251,7 +251,7 @@ watch(
         &-wrap {
           position: relative;
           width: 100%;
-          height: 100vh;
+          height: 100svh;
           // display: flex;
           // align-items: center;
           // justify-content: center;
@@ -265,7 +265,7 @@ watch(
 
             &--grid10 {
               width: 100vw;
-              height: 100vh;
+              height: 100svh;
               display: grid;
               grid-template-columns: repeat(2, 1fr);
               grid-template-rows: repeat(8, 1fr);
@@ -302,7 +302,7 @@ watch(
         &-wrap {
           position: relative;
           width: 100%;
-          height: 100vh;
+          height: 100svh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -369,7 +369,7 @@ watch(
         &-wrap {
           position: relative;
           width: 100vw;
-          height: 100vh;
+          height: 100svh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -588,7 +588,7 @@ watch(
       &.--cllg-fx2 {
         .grid-wrap {
           width: 100vw;
-          height: 100vh;
+          height: 100svh;
 
           .grid-wrap__gallery--grid10.gallery--switch {
             grid-template-columns: 1fr 72vw 1fr;
