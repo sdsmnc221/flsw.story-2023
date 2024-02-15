@@ -1,5 +1,5 @@
 <template>
-  <main class="app --locked" v-show="showApp" v-if="!isDevMode">
+  <main class="app --locked" v-show="showApp" v-if="isDevMode">
     <transition name="fade" mode="out-in">
       <share-button v-show="!carouselActive"></share-button>
     </transition>

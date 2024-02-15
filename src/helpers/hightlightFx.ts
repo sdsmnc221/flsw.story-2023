@@ -10,6 +10,20 @@ const initHighlight = (cbOnComplete?: () => void) => {
         }
       },
     })
+    .from(
+      [
+        document.querySelector(".highlight-tutorial__illus__persona"),
+        document.querySelector(".highlight-tutorial__illus__arrow"),
+      ],
+      {
+        opacity: 0,
+        y: "100%",
+        duration: 1.6,
+        stagger: 1,
+        delay: 0.36,
+      },
+      0
+    )
     .to(
       [
         document.querySelector(".highlight-tutorial__title"),
