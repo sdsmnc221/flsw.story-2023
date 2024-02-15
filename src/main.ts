@@ -3,8 +3,6 @@ import { createApp } from "vue";
 import "the-new-css-reset/css/reset.css";
 import "./styles/index.scss";
 
-import CACHE_NAME from "../public/worker/CACHE_NAME.json";
-
 import "./components/LoaderBlock/LoaderBlock.ce";
 
 import App from "./App.vue";
@@ -13,6 +11,8 @@ createApp(App).mount("#app");
 
 // Create a custom event
 import onAssetsLoaded from "./helpers/customEvents/assetsLoaded";
+
+const CACHE_NAME = "assets-cache-v1";
 
 const worker = new Worker(
   new URL("/worker/image-worker.js?type=classic&worker_file", import.meta.url)

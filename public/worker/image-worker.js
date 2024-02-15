@@ -1,4 +1,4 @@
-import CACHE_NAME from "./CACHE_NAME.json";
+const CACHE_NAME = "assets-cache-v1";
 
 let countImg = 0;
 let countImgFirstSections = 0;
@@ -16,6 +16,7 @@ self.addEventListener("message", async (event) => {
     // imgCountInCurrentSection,
     imgCountInFirstSections,
     isVideoBlock,
+    blob: blob_,
   } = event.data;
 
   const response = await fetch(imageURL);
@@ -48,7 +49,7 @@ self.addEventListener("message", async (event) => {
   // Send the image data to the UI thread!
   self.postMessage({
     imageURL: imageURL,
-    blob: blob,
+    blob: blob_ || blob,
     ...(isLoadingFinished ? { isLoadingFinished } : {}),
     isVideoBlock,
   });
@@ -58,6 +59,7 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
+        console.log(cachedResponse.response);
         return cachedResponse;
       }
       return fetch(event.request);
