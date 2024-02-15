@@ -175,7 +175,16 @@
             "c7-4.jpg",
             "c7-5.jpg",
             "c7-6.jpg"
-        ]
+        ],
+        "href": {
+            "generic": "Découvrez mon parcours sur :",
+            "labels": [
+                "Mon site web FeliSweet.com"
+            ],
+            "links": [
+                "https://www.felisweet.com/about"
+            ]
+        }
     },
     {
         "subtitle": "chapitre 8.",
