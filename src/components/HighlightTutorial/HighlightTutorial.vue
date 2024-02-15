@@ -232,9 +232,9 @@ watch(
 
     &__illus {
       img {
-        height: 10svh;
+        height: 8svh;
         width: auto;
-        bottom: 0svh;
+        bottom: 4svh;
         left: 50%;
         transform: translate(-50%, 0);
       }
@@ -259,7 +259,7 @@ watch(
     &.--4,
     &.--end {
       .tooltip-container {
-        bottom: 32vh;
+        bottom: 24vh;
       }
 
       svg {
