@@ -52,9 +52,11 @@
           </defs>
 
           <foreignObject :mask="`url(#circleMask-${id})`">
-            <video ref="videoRef">
-              <source :src="`/img/${video}`" type="video/mp4" />
-            </video>
+            <video
+              ref="videoRef"
+              :data-src="`/img/${video}`"
+              type="video/mp4"
+            ></video>
           </foreignObject>
         </svg>
         <div class="video-block__controller">

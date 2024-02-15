@@ -18,6 +18,7 @@ const worker = new Worker(
 
 // Get all of the `<img>` elements that have a `data-src` property
 const imgElements = document.querySelectorAll("div[data-src]");
+const videoElements = document.querySelectorAll("video[data-src]");
 
 // Use reduce to count the number of images in each section
 const sectionImageCount = Array.from(imgElements).reduce(
@@ -51,13 +52,25 @@ imgElements.forEach((imageElement, index) => {
     imgCountInFirstSections: sectionImageCount["1"] + sectionImageCount["2"],
   });
 });
+
+videoElements.forEach((videoElement) => {
+  const imageURL = videoElement.getAttribute("data-src");
+
+  worker.postMessage({
+    imageURL,
+    isVideoBlock: true,
+  });
+});
+
 worker.addEventListener("message", (event) => {
   // Grab the message data from the event
   const imageData = event.data;
 
   // Get the original element for this image
   const imageElement: any = document.querySelector(
-    `div[data-src='${imageData.imageURL}']`
+    imageData.isVideoBlock
+      ? `video[data-src='${imageData.imageURL}']`
+      : `div[data-src='${imageData.imageURL}']`
   );
 
   // console.log(imageElement);
@@ -68,7 +81,9 @@ worker.addEventListener("message", (event) => {
   if (imageData.imageURL.includes("jpg")) {
     imageElement.style.backgroundImage = `url(${objectURL})`;
   } else {
-    const videoElement = imageElement.querySelector("video");
+    const videoElement = imageData.isVideoBlock
+      ? imageElement
+      : imageElement.querySelector("video");
     videoElement.src = objectURL;
   }
 

@@ -12,6 +12,7 @@ self.addEventListener("message", async (event) => {
     sectionIndex,
     // imgCountInCurrentSection,
     imgCountInFirstSections,
+    isVideoBlock,
   } = event.data;
 
   const response = await fetch(imageURL);
@@ -40,5 +41,6 @@ self.addEventListener("message", async (event) => {
     imageURL: imageURL,
     blob: blob,
     ...(isLoadingFinished ? { isLoadingFinished } : {}),
+    isVideoBlock,
   });
 });
