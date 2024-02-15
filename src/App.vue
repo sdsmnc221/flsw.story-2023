@@ -123,8 +123,6 @@ const carouselActive = ref<boolean>(false);
 const assetsLoaded = ref<boolean>(false);
 const loaderLoaded = ref<boolean>(false);
 
-const tlCarouselSection4 = ref<any>(null);
-
 const computedBindedProps = (section: any, index: number) => {
   const bindedProps: any = {};
 
