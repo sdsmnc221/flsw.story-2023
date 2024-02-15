@@ -263,7 +263,7 @@ watch(
   }
   
 
-    &.--4
+    &.--4 {
       .tooltip-container {
         bottom: 36svh;
       }
