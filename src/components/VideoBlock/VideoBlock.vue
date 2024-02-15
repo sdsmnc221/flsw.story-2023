@@ -1,8 +1,9 @@
 <template>
   <div
-    :class="`video-block content-wrap ${sectionId} ${
-      hasCollage ? '--has-collage' : ''
-    }`"
+    :class="`video-block content-wrap ${sectionId} --${ratio?.replace(
+      '/',
+      ''
+    )} ${hasCollage ? '--has-collage' : ''}`"
     :style="`--ratio:  ${ratio};`"
   >
     <div class="content content--layout content--layout-2">
@@ -345,6 +346,18 @@ watch(
     }
   }
 
+  &.--916 {
+    .content__svg-wrapper {
+      height: 72vh;
+    }
+
+    svg foreignObject {
+      width: 100vw;
+      height: 100vh;
+      transform: translateY(-72vh) translateX(-72vw) scale(2);
+    }
+  }
+
   @media (max-width: 768px) {
     &.--has-collage {
       .content {
@@ -359,6 +372,25 @@ watch(
       transform: translate(4vw, 0);
       &__svg-wrapper {
         height: 28vh;
+      }
+    }
+
+    &.--916 {
+      transform: translateY(60vh);
+
+      .content__svg-wrapper {
+        height: 48vh;
+      }
+
+      .content--layout {
+        justify-content: center;
+      }
+
+      svg foreignObject {
+        width: 100%;
+        height: 100vh;
+        transform-origin: top left;
+        transform: translateX(-60vh) translateY(-72vh) scale(2);
       }
     }
   }

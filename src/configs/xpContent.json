@@ -213,8 +213,7 @@
         "videoFx": "fx1",
         "video": "finale.mp4",
         "videoRatio": "9/16",
-        "spacing": "normal",
-        "textPosition": "top"
+        "spacing": "xl"
     },
     {
         "subtitle": "épilogue.",

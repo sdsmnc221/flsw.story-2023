@@ -285,17 +285,25 @@ const initScroll = () => {
     sectionId: 5,
   };
 
+  const video2 = {
+    id: "video-fx1",
+    node: document.querySelector(".section--9.video-block"),
+    type: "video",
+    sectionId: 9,
+  };
+
   scroll(fx1Section2);
   scroll(fx2Section2);
 
   scrollGrid(collage1);
   scrollGrid(collage2);
   scrollGrid(collage3);
-  tlCarouselSection4.value = scrollGrid(collage4);
+  scrollGrid(collage4);
   scrollGrid(collage5);
   scrollGrid(collage6);
   scrollGrid(collage7);
   scrollGrid(video1);
+  scrollGrid(video2);
 
   scroll(fx1);
   scroll(fx1Section3);
