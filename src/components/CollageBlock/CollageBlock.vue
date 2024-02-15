@@ -651,7 +651,7 @@ watch(
     background: var(--tuscany-blue);
     color: var(--light-blue);
     text-align: center;
-    font-size: 0.72rem;
+    font-size: 0.64rem;
     width: 120px;
     padding: 6px 12px;
     transition: all 0.4s;

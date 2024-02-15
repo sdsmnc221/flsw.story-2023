@@ -397,8 +397,12 @@ onMounted(() => {
 
 watch(
   [() => assetsLoaded.value, () => loaderLoaded.value],
-  ([assets, loader]) => {
-    if (assets && loader) {
+  ([assets, _loader]) => {
+    // if (assets && loader) {
+    //   document.dispatchEvent(onTutoActivated({ active: true, section: "0" }));
+    //   scrollTo(0);
+    // }
+    if (assets) {
       document.dispatchEvent(onTutoActivated({ active: true, section: "0" }));
       scrollTo(0);
     }
