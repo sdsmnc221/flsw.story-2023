@@ -5,9 +5,10 @@
     </transition>
 
     <highlight-tutorial
-      :title="xpMarquee.indicator.title"
-      :subtitle="xpMarquee.indicator.subtitle"
+      :title="xpTutorial[highlightActiveIndex as keyof typeof xpTutorial].title"
+      :subtitle="xpTutorial[highlightActiveIndex as keyof typeof xpTutorial].subtitle"
       :active="highlightActive"
+      :index="highlightActiveIndex"
       @onHighlightCompleted="initScroll"
     ></highlight-tutorial>
 
@@ -106,12 +107,16 @@ import "splitting/dist/splitting-cells.css";
 import xpTitle from "./configs/xpTitle.json";
 import xpContent from "./configs/xpContent.json";
 import xpMarquee from "./configs/xpMarquee.json";
+import xpTutorial from "./configs/xpTutorial.json";
+
+import onTutoActivated from "./helpers/customEvents/tutoActivated";
 
 const showApp = ref<boolean>(false);
 
 const isDevMode = ref<boolean>(import.meta.env.DEV);
 
 const highlightActive = ref<boolean>(false);
+const highlightActiveIndex = ref<string>("0");
 
 const carouselActive = ref<boolean>(false);
 
@@ -339,12 +344,13 @@ onMounted(() => {
       loaderLoaded.value = true;
     });
 
-    window.addEventListener("scroll", () => {
-      if (!document.querySelector("main.app")?.classList.contains("--locked")) {
-        document
-          .querySelector(".highlight-tutorial")
-          ?.classList.add("--hidden");
-      }
+    document.addEventListener("tutoActivated", (e: any) => {
+      const { active, section } = e.detail as unknown as {
+        active: boolean;
+        section: number;
+      };
+      highlightActive.value = active;
+      highlightActiveIndex.value = `${section}`;
     });
 
     setTimeout(() => {
@@ -379,7 +385,7 @@ watch(
   [() => assetsLoaded.value, () => loaderLoaded.value],
   ([assets, loader]) => {
     if (assets && loader) {
-      highlightActive.value = true;
+      document.dispatchEvent(onTutoActivated({ active: true, section: "0" }));
       scrollTo(0);
     }
   }

@@ -7,6 +7,7 @@ import randomIntegerInRange from "./randomIntegerInRange";
 import dynamicStyles from "./dynamicStyles";
 
 import { changeAppBackground } from "./changeAppBackground";
+import onTutoActivated from "./customEvents/tutoActivated";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
@@ -268,7 +269,14 @@ const applyCollageAnimation = (
             `.text-block.section--${sectionIndex.replace("section--", "")}`
           ),
           scrub: true,
-          onEnter: changeAppBackground,
+          onEnter: (self: any) => {
+            if (animationType === "cllg-fx4") {
+              document.dispatchEvent(
+                onTutoActivated({ active: true, section: "4" })
+              );
+            }
+            changeAppBackground(self);
+          },
           onEnterBack: changeAppBackground,
           ...(animationType === "cllg-fx2"
             ? {

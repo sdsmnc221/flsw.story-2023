@@ -1,18 +1,32 @@
 i
 <template>
-  <section class="highlight-tutorial" ref="nodeRef">
-    <p
-      class="highlight-tutorial__title josefin-sans-600 --stroked"
-      data-splitting
-    >
-      {{ title }}
-    </p>
-    <p
-      class="highlight-tutorial__subtitle josefin-sans-600 --stroked"
-      data-splitting
-    >
-      {{ subtitle }}
-    </p>
+  <section :class="`highlight-tutorial --${index}`" ref="nodeRef">
+    <div v-if="index === '0'">
+      <p
+        class="highlight-tutorial__title josefin-sans-600 --stroked"
+        data-splitting
+      >
+        {{ title }}
+      </p>
+      <p
+        class="highlight-tutorial__subtitle josefin-sans-600 --stroked"
+        data-splitting
+      >
+        {{ subtitle }}
+      </p>
+    </div>
+
+    <div class="tooltip-container --show" v-else>
+      <span class="tooltip">
+        <span class="highlight-tutorial__tooltip" data-splitting>{{
+          title
+        }}</span>
+        <span class="highlight-tutorial__tooltip" data-splitting>{{
+          subtitle
+        }}</span>
+      </span>
+    </div>
+
     <figure class="highlight-tutorial__illus">
       <svg
         class="highlight-tutorial__illus__arrow"
@@ -34,9 +48,16 @@ i
       </svg>
 
       <img
+        v-if="index === '0'"
         class="highlight-tutorial__illus__persona"
         alt=""
         src="/img/cat2.svg"
+      />
+      <img
+        v-else
+        class="highlight-tutorial__illus__persona"
+        alt=""
+        src="/img/cat3.svg"
       />
     </figure>
   </section>
@@ -49,6 +70,7 @@ interface Props {
   title: string;
   subtitle: string;
   active: boolean;
+  index: string;
 }
 
 const props = defineProps<Props>();
@@ -72,8 +94,12 @@ onMounted(() => {
 watch(
   () => props.active,
   (newVal) => {
-    if (newVal) {
-      initHighlight();
+    if (newVal === true) {
+      document
+        .querySelector(".highlight-tutorial")
+        ?.classList.remove("--hidden");
+
+      initHighlight(() => {}, props.index);
     }
   }
 );
@@ -82,14 +108,16 @@ watch(
 <style lang="scss">
 .highlight-tutorial {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100svh;
-  background-color: rgba(0, 0, 0, 0.32);
   // backdrop-filter: brightness(0.8);
-  z-index: 10;
-  pointer-events: none;
+  z-index: 6;
+
   overflow: hidden;
   transition: all 0.64s ease-in-out;
+  pointer-events: none;
 
   &.--hidden {
     // background-color: rgba(0, 0, 0, 0);
@@ -121,13 +149,12 @@ watch(
   }
 
   &__illus {
-    display: fixed;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100svh;
     overflow: hidden;
-    pointer-events: none;
 
     svg {
       opacity: 0;
@@ -194,12 +221,86 @@ watch(
 
       svg {
         display: block;
+        opacity: 1;
         height: 12svh;
         width: auto;
-        bottom: 12svh;
         left: 50%;
         transform: translate(-50%, 0) rotate(-20deg);
         position: absolute;
+      }
+    }
+
+    &.--0 {
+      svg {
+        bottom: 12svh;
+      }
+    }
+
+    &.--4 {
+      svg {
+        bottom: auto;
+        top: 32%;
+        height: 24svh;
+      }
+    }
+  }
+
+  .tooltip-container {
+    min-width: 72px;
+    max-width: 72vw;
+    min-height: 24px;
+    transition: all 0.3s;
+    cursor: pointer;
+    padding: 12px 24px;
+
+    position: fixed;
+    bottom: 24vh;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &.--show {
+      .tooltip {
+        top: -100%;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    .tooltip {
+      pointer-events: none;
+      position: absolute;
+      min-width: calc(0.84rem * 8);
+      text-align: center;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.3em 0.6em;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+      background-color: rgb(255, 255, 255);
+      border-radius: 12px;
+      color: rgb(34, 34, 34);
+      font-size: 0.84rem;
+      word-break: keep-all;
+
+      &::before {
+        position: absolute;
+        content: "";
+        height: 0.6em;
+        width: 0.6em;
+        bottom: -0.2em;
+        left: 50%;
+        transform: translate(-50%) rotate(45deg);
+        background-color: rgb(255, 255, 255);
+      }
+
+      & > span {
+        display: block;
+
+        span {
+          display: block;
+        }
       }
     }
   }
