@@ -156,6 +156,10 @@ const computedBindedProps = (section: any, index: number) => {
     bindedProps.video = section.video;
   }
 
+  if (section.videoRatio) {
+    bindedProps.videoRatio = section.videoRatio;
+  }
+
   return bindedProps;
 };
 

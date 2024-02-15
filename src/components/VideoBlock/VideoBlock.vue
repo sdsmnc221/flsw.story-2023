@@ -3,6 +3,7 @@
     :class="`video-block content-wrap ${sectionId} ${
       hasCollage ? '--has-collage' : ''
     }`"
+    :style="`--ratio:  ${ratio};`"
   >
     <div class="content content--layout content--layout-2">
       <div class="content__svg-wrapper --background">
@@ -51,7 +52,7 @@
 
           <foreignObject :mask="`url(#circleMask-${id})`">
             <video ref="videoRef">
-              <source :src="`/img/${video || 'sushi.mp4'}`" type="video/mp4" />
+              <source :src="`/img/${video}`" type="video/mp4" />
             </video>
           </foreignObject>
         </svg>
@@ -163,6 +164,7 @@ interface Props {
   videoFx: string;
   hasCollage: boolean;
   video?: string;
+  ratio?: string;
 }
 
 defineProps<Props>();
@@ -197,6 +199,8 @@ watch(
 
 <style lang="scss">
 .video-block {
+  --ratio: 16/9;
+
   position: relative;
   z-index: 13;
 
@@ -254,7 +258,7 @@ watch(
     position: relative;
     width: auto;
     height: 48vh;
-    aspect-ratio: 16/9;
+    aspect-ratio: var(--ratio);
 
     & > svg {
       width: 100%;

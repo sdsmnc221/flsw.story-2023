@@ -257,7 +257,8 @@ watch(
             }
 
             .grid__item {
-              background-size: contain;
+              background-size: cover;
+              background-repeat: no-repeat;
             }
           }
         }

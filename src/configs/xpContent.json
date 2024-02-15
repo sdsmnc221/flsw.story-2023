@@ -113,6 +113,7 @@
         "text": "L'histoire remarquable de Sushi s'étend sur deux ans de désensibilisation, culminant dans une adoption émouvante. Partageons le triomphe de sa transformation, de l'adulte sauvage à un compagnon aimant. Sushi a trouvé une nouvelle maison en devenant ami de Gamin, qui cherchait de la compagnie après avoir perdu son ami d'enfance, Pacha.",
         "fx": "fx1",
         "videoFx": "fx1",
+        "video": "sushi.mp4",
         "textPosition": "top",
         "backgroundColor": "peach-shortcake-orange",
         "pseudoBackgroundColor": "stone-blue",
@@ -208,7 +209,12 @@
         "title": "réflexions & recules.",
         "text": "En regardant en arrière sur cette année riche en expériences, je tire des leçons précieuses. La patience, l'amour inconditionnel et la persévérance ont été les clés de notre succès. Les défis ont été des tremplins vers la croissance, et chaque moment a contribué à façonner notre histoire.",
         "fx": "fx1",
-        "backgroundColor": "sandy-clay-beige"
+        "backgroundColor": "sandy-clay-beige",
+        "videoFx": "fx1",
+        "video": "finale.mp4",
+        "videoRatio": "9/16",
+        "spacing": "normal",
+        "textPosition": "top"
     },
     {
         "subtitle": "épilogue.",

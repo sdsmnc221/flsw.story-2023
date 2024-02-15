@@ -21,6 +21,7 @@
       :video-fx="videoFx"
       :has-collage="!!cllgFx"
       :video="video"
+      :ratio="videoRatio"
     ></video-block>
 
     <div
@@ -73,6 +74,7 @@ interface Props {
   spacing?: string | null;
   collage?: string[] | null;
   video?: string | null;
+  videoRatio?: string;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -87,6 +89,7 @@ withDefaults(defineProps<Props>(), {
   spacing: null,
   collage: null,
   video: null,
+  videoRatio: "16/9",
 });
 
 const emits = defineEmits(["onOpenCarousel", "onCloseCarousel"]);

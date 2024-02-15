@@ -234,7 +234,7 @@ watch(
       img {
         height: 8svh;
         width: auto;
-        bottom: 48px;
+        bottom: 24px;
         left: 50%;
         transform: translate(-50%, 0);
       }
