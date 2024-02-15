@@ -259,7 +259,7 @@ watch(
     &.--4,
     &.--end {
       .tooltip-container {
-        bottom: 24vh;
+        bottom: 24svh;
       }
 
       svg {
