@@ -573,12 +573,11 @@ watch(
         }
 
         .gallery--switch.grid-wrap__gallery--stack-inverse
-          .grid__item--href.grid__item
-          g {
+          .grid__item--href.grid__item {
           bottom: 72vh !important;
           left: -10vw !important;
           opacity: 1;
-          transform: scale(1);
+          transform: scale(0.72);
         }
 
         .gallery--switch.grid-wrap__gallery--stack .grid__item {
