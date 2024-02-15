@@ -94,6 +94,17 @@
         "subtitle": "chapitre 4.",
         "title": "défiant la peur - les rencontres avec les Timides.",
         "text": "La fierté d'approcher les chats craintifs est au cœur de ce chapitre. En tant que professionnelle passionnée des félins, j'ai surmonté les obstacles, résolvant des problèmes de comportement que même leurs humains trouvaient inaccessibles. Chaque moment a été une victoire sur la peur, illustrant la puissance de la patience et de la connexion.",
+        "href": {
+            "generic": "Consultez plus d'avis sur :",
+            "labels": [
+                "Ma fiche Google",
+                "Ma page Facebook"
+            ],
+            "links": [
+                "https://www.google.com/maps/place/Felisweet+Marie-B%C3%A9n%C3%A9dicte+SIRUGUET+Comportementaliste+f%C3%A9lin/@48.669717,2.1952931,12z/data=!4m18!1m9!3m8!1s0x390540f96c800cf:0x9a9b579fac51e890!2sFelisweet+Marie-B%C3%A9n%C3%A9dicte+SIRUGUET+Comportementaliste+f%C3%A9lin!8m2!3d48.6697464!4d2.2776933!9m1!1b1!16s%2Fg%2F11rysl01ld!3m7!1s0x390540f96c800cf:0x9a9b579fac51e890!8m2!3d48.6697464!4d2.2776933!9m1!1b1!16s%2Fg%2F11rysl01ld?entry=ttu",
+                "https://www.facebook.com/Felisweetcatsittingcomportementfelin/reviews"
+            ]
+        },
         "fx": "fx1",
         "cllgFx": "fx4",
         "backgroundColor": "light-blue",

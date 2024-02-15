@@ -11,6 +11,7 @@
       :section-id="id"
       :collage-fx="cllgFx"
       :collage="collage"
+      :href="href"
       @onOpenCarousel="emits('onOpenCarousel')"
       @onCloseCarousel="emits('onCloseCarousel')"
     ></collage-block>
@@ -75,6 +76,7 @@ interface Props {
   collage?: string[] | null;
   video?: string | null;
   videoRatio?: string;
+  href: any;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -90,6 +92,7 @@ withDefaults(defineProps<Props>(), {
   collage: null,
   video: null,
   videoRatio: "16/9",
+  href: null,
 });
 
 const emits = defineEmits(["onOpenCarousel", "onCloseCarousel"]);

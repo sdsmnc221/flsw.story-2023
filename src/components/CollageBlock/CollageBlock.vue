@@ -61,6 +61,21 @@
           :data-section="sectionId"
           @click="() => openCarousel(index)"
         ></div>
+        <div class="grid__item grid__item--href" v-if="href">
+          <p>{{ href.generic }}</p>
+          <div>
+            <a
+              v-for="(link, index) in href.links"
+              :key="`href-link-${sectionId}-${index}`"
+              :href="link"
+              :title="href.labels[index]"
+              target="_blank"
+              class="btn"
+            >
+              <span>{{ href.labels[index] }}</span>
+            </a>
+          </div>
+        </div>
       </div>
       <highlight-carousel
         :active="carouselActive"
@@ -94,6 +109,7 @@ interface Props {
   collageFx?: string;
   sectionId: string;
   collage?: string[] | null;
+  href?: any | null;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -386,6 +402,29 @@ watch(
             z-index: 1;
           }
         }
+
+        &__item {
+          &--href {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            div {
+              display: flex;
+              gap: 12px;
+            }
+
+            p {
+              font-size: 0.64rem;
+              text-transform: uppercase;
+              font-weight: 700;
+            }
+
+            a {
+              display: block;
+            }
+          }
+        }
       }
 
       .grid-wrap__gallery--stack-glass .grid__item {
@@ -394,6 +433,17 @@ watch(
 
       .gallery--switch.grid-wrap__gallery--stack .grid__item {
         grid-area: 1 / 1 / 2 / 2;
+      }
+
+      .grid-wrap__gallery--stack-inverse .grid__item:nth-child(7) {
+        position: absolute;
+        bottom: 25%;
+
+        left: 100vw;
+        width: 100vw;
+
+        opacity: 0;
+        z-index: 0;
       }
 
       .grid-wrap__gallery--stack-inverse .grid__item:nth-child(6) {
@@ -416,6 +466,10 @@ watch(
         z-index: 6;
       }
 
+      .grid-wrap__gallery--stack-inverse .grid__item:nth-child(1) {
+        z-index: 7;
+      }
+
       .gallery--switch.grid-wrap__gallery--stack .grid__item:nth-child(2) {
         margin-left: var(--offset);
       }
@@ -436,24 +490,9 @@ watch(
         margin-left: calc(var(--offset) * 5);
       }
 
-      .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(2) {
-        // filter: brightness(0.8);
-      }
-
-      .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(3) {
-        // filter: brightness(0.7);
-      }
-
-      .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(4) {
-        // filter: brightness(0.6);
-      }
-
-      .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(5) {
-        // filter: brightness(0.5);
-      }
-
-      .gallery--switch.grid-wrap__gallery--stack-dark .grid__item:nth-child(6) {
-        // filter: brightness(0.4);
+      .gallery--switch.grid-wrap__gallery--stack .grid__item:nth-child(7) {
+        left: 0;
+        opacity: 1;
       }
 
       .gallery--switch.grid-wrap__gallery--stack-glass .grid__item {
@@ -513,11 +552,18 @@ watch(
   @media (max-width: 768px) {
     &.grid {
       &.--cllg-fx4 {
-        .grid-wrap .grid-wrap__gallery--stack .grid__item {
+        .grid-wrap
+          .grid-wrap__gallery--stack
+          .grid__item:not(.grid__item--href) {
           border-radius: 1.5vw;
           width: 45.7vw;
           height: 64vw;
           z-index: 1;
+        }
+
+        .grid-wrap__gallery--stack-inverse .grid__item:nth-child(7) {
+          bottom: 53%;
+          left: 85%;
         }
       }
 
@@ -571,6 +617,36 @@ watch(
           z-index: 2;
         }
       }
+    }
+  }
+
+  .btn {
+    display: inline-block;
+    border-radius: 7px;
+    border: none;
+    background: var(--tuscany-blue);
+    color: var(--light-blue);
+    text-align: center;
+    font-size: 0.64rem;
+    width: 120px;
+    padding: 6px 12px;
+    transition: all 0.4s;
+    cursor: pointer;
+    border-bottom: 6px solid var(--tangora-dark-blue);
+    border-top: 3px solid var(--tuscany-blue);
+    // border-top: 6px solid transparent;
+    transition: all ease 0.64s;
+
+    &:hover {
+      background: var(--stone-blue);
+      border-bottom-color: var(--stone-blue);
+      border-top-color: transparent;
+    }
+
+    span {
+      display: inline-block;
+      position: relative;
+      transition: 0.4s;
     }
   }
 }

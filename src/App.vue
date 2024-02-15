@@ -158,6 +158,10 @@ const computedBindedProps = (section: any, index: number) => {
     bindedProps.videoRatio = section.videoRatio;
   }
 
+  if (section.href) {
+    bindedProps.href = section.href;
+  }
+
   return bindedProps;
 };
 
