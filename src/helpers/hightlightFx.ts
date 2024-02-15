@@ -46,27 +46,30 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
       },
     })
     .pause();
-  tl.to(
-    document.querySelector(".highlight-tutorial"),
-    {
-      backgroundColor: "rgba(0, 0, 0, 0.48)",
-      duration: 1.6,
-    },
-    0
-  ).from(
-    [
-      document.querySelector(".highlight-tutorial__illus__persona"),
-      document.querySelector(".highlight-tutorial__illus__arrow"),
-    ],
-    {
-      opacity: 0,
-      y: "100%",
-      duration: 1.6,
-      stagger: 1,
-      delay: 0.36,
-    },
-    0
-  );
+
+  if (sectionIndex !== "end") {
+    tl.to(
+      document.querySelector(".highlight-tutorial"),
+      {
+        backgroundColor: "rgba(0, 0, 0, 0.48)",
+        duration: 1.6,
+      },
+      0
+    ).from(
+      [
+        document.querySelector(".highlight-tutorial__illus__persona"),
+        document.querySelector(".highlight-tutorial__illus__arrow"),
+      ],
+      {
+        opacity: 0,
+        y: "100%",
+        duration: 1.6,
+        stagger: 1,
+        delay: 0.36,
+      },
+      0
+    );
+  }
 
   if (sectionIndex === "0") {
     tl.to(

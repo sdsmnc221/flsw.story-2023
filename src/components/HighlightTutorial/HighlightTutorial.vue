@@ -232,9 +232,9 @@ watch(
 
     &__illus {
       img {
-        height: 10vh;
+        height: 10svh;
         width: auto;
-        bottom: 4svh;
+        bottom: 2svh;
         left: 50%;
         transform: translate(-50%, 0);
       }
