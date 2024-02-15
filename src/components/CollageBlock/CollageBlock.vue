@@ -251,7 +251,7 @@ watch(
         &-wrap {
           position: relative;
           width: 100%;
-          height: 100svh;
+          height: 100vh;
           // display: flex;
           // align-items: center;
           // justify-content: center;
@@ -265,7 +265,7 @@ watch(
 
             &--grid10 {
               width: 100vw;
-              height: 100svh;
+              height: 100vh;
               display: grid;
               grid-template-columns: repeat(2, 1fr);
               grid-template-rows: repeat(8, 1fr);
@@ -302,7 +302,7 @@ watch(
         &-wrap {
           position: relative;
           width: 100%;
-          height: 100svh;
+          height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -369,7 +369,7 @@ watch(
         &-wrap {
           position: relative;
           width: 100vw;
-          height: 100svh;
+          height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -568,13 +568,14 @@ watch(
 
         .grid-wrap__gallery--stack-inverse .grid__item--href.grid__item {
           transform: scale(1);
-          bottom: 72svh !important;
+          bottom: 72vh !important;
           left: 100vw !important;
         }
 
         .gallery--switch.grid-wrap__gallery--stack-inverse
-          .grid__item--href.grid__item {
-          bottom: 72svh !important;
+          .grid__item--href.grid__item
+          g {
+          bottom: 72vh !important;
           left: -10vw !important;
           opacity: 1;
           transform: scale(1);
@@ -588,7 +589,7 @@ watch(
       &.--cllg-fx2 {
         .grid-wrap {
           width: 100vw;
-          height: 100svh;
+          height: 100vh;
 
           .grid-wrap__gallery--grid10.gallery--switch {
             grid-template-columns: 1fr 72vw 1fr;
