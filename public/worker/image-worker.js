@@ -1,6 +1,9 @@
 let countImg = 0;
 let countImgFirstSections = 0;
 let isLoadingFinished = false;
+
+const CACHE_NAME = "assets-cache-v1";
+
 self.addEventListener("message", async (event) => {
   // Grab the imageURL from the event - we'll use this both to download
   // the image and to identify which image elements to update back in the
@@ -36,6 +39,11 @@ self.addEventListener("message", async (event) => {
       countImg === imgCountInFirstSections || countImg === imgCount / 2;
   }
 
+  // Cache the blob asset
+  caches.open(CACHE_NAME).then((cache) => {
+    cache.put(imageURL, new Response(blob));
+  });
+
   // Send the image data to the UI thread!
   self.postMessage({
     imageURL: imageURL,
@@ -43,4 +51,15 @@ self.addEventListener("message", async (event) => {
     ...(isLoadingFinished ? { isLoadingFinished } : {}),
     isVideoBlock,
   });
+});
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      return fetch(event.request);
+    })
+  );
 });

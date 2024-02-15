@@ -16,6 +16,33 @@ const worker = new Worker(
   new URL("/worker/image-worker.js?type=classic&worker_file", import.meta.url)
 );
 
+// Function to fetch and cache blob assets
+function fetchAndCacheBlobAsset(
+  imageURL: any,
+  isVideoBlock: boolean,
+  otherData?: any
+) {
+  fetch(imageURL)
+    .then((response) => response.blob())
+    .then((blob) => {
+      // Cache the blob asset
+      caches
+        .open("assets-cache-v1")
+        .then((cache) => cache.put(imageURL, new Response(blob)))
+        .catch((error) => console.error("Error caching blob:", error));
+
+      worker.postMessage({
+        imageURL,
+        blob,
+        isVideoBlock,
+        ...otherData,
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching blob:", error);
+    });
+}
+
 // Get all of the `<img>` elements that have a `data-src` property
 const imgElements = document.querySelectorAll("div[data-src]");
 const videoElements = document.querySelectorAll("video[data-src]");
@@ -39,10 +66,11 @@ const sectionImageCount = Array.from(imgElements).reduce(
 videoElements.forEach((videoElement) => {
   const imageURL = videoElement.getAttribute("data-src");
 
-  worker.postMessage({
-    imageURL,
-    isVideoBlock: true,
-  });
+  // worker.postMessage({
+  //   imageURL,
+  //   isVideoBlock: true,
+  // });
+  fetchAndCacheBlobAsset(imageURL, true);
 });
 
 imgElements.forEach((imageElement, index) => {
@@ -52,14 +80,21 @@ imgElements.forEach((imageElement, index) => {
     "unknown";
   const imgCountInCurrentSection = sectionImageCount[sectionIndex] || 0;
 
-  worker.postMessage({
-    imageURL,
+  fetchAndCacheBlobAsset(imageURL, false, {
     imgCount: imgElements.length,
     imgIndex: index,
     sectionIndex,
     imgCountInCurrentSection,
     imgCountInFirstSections: sectionImageCount["1"] + sectionImageCount["2"],
   });
+  // worker.postMessage({
+  //   imageURL,
+  //   imgCount: imgElements.length,
+  //   imgIndex: index,
+  //   sectionIndex,
+  //   imgCountInCurrentSection,
+  //   imgCountInFirstSections: sectionImageCount["1"] + sectionImageCount["2"],
+  // });
 });
 
 worker.addEventListener("message", (event) => {
