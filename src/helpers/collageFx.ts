@@ -270,7 +270,7 @@ const applyCollageAnimation = (
           ),
           scrub: true,
           onEnter: (self: any) => {
-            if (animationType === "cllg-fx4") {
+            if (animationType === "cllg-fx4" && isMobile()) {
               document.dispatchEvent(
                 onTutoActivated({ active: true, section: "4" })
               );
