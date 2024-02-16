@@ -275,7 +275,7 @@ watch(
     }
 
     &.--4 {
-      g .tooltip-container {
+      .tooltip-container {
         bottom: 30svh;
       }
 
