@@ -139,13 +139,13 @@ watch(
     () => assetsReady.value,
     () => endOfDefaultPrompt.value,
   ],
-  ([isAtEndOfPrompt, isAssetReady, _isAtEndOfDefaultPrompt]) => {
+  ([isAtEndOfPrompt, isAssetReady, isAtEndOfDefaultPrompt]) => {
     if (isAtEndOfPrompt) {
       cancelPrompt(intervalId.value);
       intervalId.value = changePrompt(true);
     }
 
-    if (isAssetReady) {
+    if (isAssetReady && isAtEndOfDefaultPrompt) {
       loading.value = false;
 
       document.dispatchEvent(onLoaderLoaded);

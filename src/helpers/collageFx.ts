@@ -30,14 +30,14 @@ const applyCollageAnimation = (
     // Define GSAP timeline with ScrollTrigger
     timeline = gsap.timeline({
       defaults: { ease: "none" },
-      scrollTrigger: {
-        trigger: gridWrap,
-        start: "top bottom+=5%",
-        end: "bottom top-=5%",
-        scrub: true,
-        onEnter: changeAppBackground,
-        onEnterBack: changeAppBackground,
-      },
+      // scrollTrigger: {
+      //   trigger: gridWrap,
+      //   start: "top bottom+=5%",
+      //   end: "bottom top-=5%",
+      //   scrub: true,
+      //   onEnter: changeAppBackground,
+      //   onEnterBack: changeAppBackground,
+      // },
     });
   }
   // Apply different animations based on type
@@ -59,16 +59,6 @@ const applyCollageAnimation = (
           .to(gridWrap, {
             rotationX: 30,
           })
-          .fromTo(
-            gridItems,
-            {
-              filter: "brightness(72%) contrast(0.7)",
-            },
-            {
-              filter: "brightness(100%) contrast(1)",
-            },
-            0
-          )
           .to(
             gridObj.rows("even"),
             {
@@ -90,7 +80,7 @@ const applyCollageAnimation = (
             gridItems,
             {
               ease: "power1",
-              yPercent: () => gsap.utils.random(-100, 200),
+              yPercent: () => gsap.utils.random(10, 320),
             },
             "rowsEnd"
           );
@@ -331,32 +321,34 @@ const applyCollageAnimation = (
       grid.style.setProperty("--perspective", "1500px");
       grid.style.setProperty("--grid-inner-scale", "1");
 
-      if (timeline && gridItemsInner) {
-        timeline
-          .set(gridItems, {
-            transformOrigin: "50% 0%",
-            z: () => gsap.utils.random(-5000, -2000),
-            rotationX: () => gsap.utils.random(-65, -25),
-            opacity: 0,
-          })
-          .to(
-            gridItems,
-            {
-              xPercent: () => gsap.utils.random(-150, 150),
-              yPercent: () => gsap.utils.random(-300, 300),
-              rotationX: 0,
-              opacity: () => gsap.utils.random(0.64, 1),
-            },
-            0
-          )
-          .to(
-            gridWrap,
-            {
-              z: 6500,
-            },
-            0
-          );
-      }
+      // if (timeline && gridItemsInner) {
+      gsap
+        // .to(
+        //   gridItems,
+        //   {
+        //     xPercent: () => gsap.utils.random(-150, 150),
+        //     yPercent: () => gsap.utils.random(-300, 300),
+        //     rotationX: 0,
+        //     opacity: () => gsap.utils.random(0.64, 1),
+        //   },
+        //   0
+        // )
+        .set(gridItems, {
+          transformOrigin: "50% 0%",
+          z: () => gsap.utils.random(-320, 320),
+          rotationX: () => gsap.utils.random(-20, 20),
+          xPercent: () => gsap.utils.random(-32, 32),
+          yPercent: () => gsap.utils.random(-10, 480),
+          opacity: () => gsap.utils.random(0.64, 1),
+        });
+      // .to(
+      //   gridWrap,
+      //   {
+      //     z: 6500,
+      //   },
+      //   0
+      // );
+      // }
 
       break;
     default:
