@@ -12,6 +12,8 @@ import onTutoActivated from "./customEvents/tutoActivated";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
 
+const mob = isMobile();
+
 const applyCollageAnimation = (
   grid: any,
   animationType: string,
@@ -44,10 +46,10 @@ const applyCollageAnimation = (
   switch (animationType) {
     case "cllg-fx1":
       // Set some CSS related style values
-      grid.style.setProperty("--grid-width", isMobile() ? "320%" : "100%");
+      grid.style.setProperty("--grid-width", mob ? "240%" : "100%");
       grid.style.setProperty("--grid-height", "auto");
-      grid.style.setProperty("--grid-columns", isMobile() ? "3" : "6");
-      grid.style.setProperty("--grid-gap", isMobile() ? "10%" : "2vw");
+      grid.style.setProperty("--grid-columns", mob ? "3" : "6");
+      grid.style.setProperty("--grid-gap", mob ? "10%" : "2vw");
 
       const gridObj = getGrid(gridItems);
 
@@ -137,7 +139,7 @@ const applyCollageAnimation = (
         .map((item) => (item.children.length > 0 ? [...item.children] : []))
         .flat();
 
-      if (animationType === "cllg-fx2" && !isMobile()) {
+      if (animationType === "cllg-fx2" && !mob) {
         const gridPos: string[] = [];
         galleryItems.forEach((_item: any, index: number) => {
           let row: number = randomIntegerInRange(1, 4);
@@ -260,7 +262,7 @@ const applyCollageAnimation = (
           ),
           scrub: true,
           onEnter: (self: any) => {
-            if (animationType === "cllg-fx4" && isMobile()) {
+            if (animationType === "cllg-fx4" && mob) {
               document.dispatchEvent(
                 onTutoActivated({ active: true, section: "4" })
               );
@@ -316,8 +318,8 @@ const applyCollageAnimation = (
       break;
     case "cllg-fx5":
       // Set some CSS related style values
-      grid.style.setProperty("--grid-width", "100%");
-      grid.style.setProperty("--grid-columns", isMobile() ? "3" : "6");
+      grid.style.setProperty("--grid-width", mob ? "180%" : "100%");
+      grid.style.setProperty("--grid-columns", mob ? "3" : "6");
       grid.style.setProperty("--perspective", "1500px");
       grid.style.setProperty("--grid-inner-scale", "1");
 
@@ -338,7 +340,7 @@ const applyCollageAnimation = (
           z: () => gsap.utils.random(-320, 320),
           rotationX: () => gsap.utils.random(-20, 20),
           xPercent: () => gsap.utils.random(-32, 32),
-          yPercent: () => gsap.utils.random(-10, 480),
+          yPercent: () => gsap.utils.random(-10, 260),
           opacity: () => gsap.utils.random(0.64, 1),
         });
       // .to(
