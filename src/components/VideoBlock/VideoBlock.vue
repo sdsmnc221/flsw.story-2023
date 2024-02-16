@@ -268,6 +268,7 @@ watch(
     width: auto;
     height: 48vh;
     aspect-ratio: var(--ratio);
+    transform: translateY(10vh);
 
     & > svg {
       width: 100%;
