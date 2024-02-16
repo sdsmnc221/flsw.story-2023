@@ -11,9 +11,9 @@ self.addEventListener("message", async (event) => {
   const {
     imageURL,
     imgCount,
-    // imgIndex,
+    imgIndex,
     sectionIndex,
-    // imgCountInCurrentSection,
+    imgCountInCurrentSection,
     imgCountInFirstSections,
     isVideoBlock,
     blob: blob_,
