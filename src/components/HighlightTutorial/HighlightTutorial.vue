@@ -114,10 +114,12 @@ watch(
 
 <style lang="scss">
 .--safari {
-  .highlight-tutorial {
-    &__illus {
-      img {
-        bottom: 4px;
+  @media (max-width: 768px) {
+    .highlight-tutorial {
+      &__illus {
+        img {
+          bottom: 4px;
+        }
       }
     }
   }
