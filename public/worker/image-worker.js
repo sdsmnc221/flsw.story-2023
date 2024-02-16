@@ -27,13 +27,13 @@ self.addEventListener("message", async (event) => {
     countImgFirstSections++;
   }
 
-  // console.log({
-  //   imgCount,
-  //   imgIndex,
-  //   countImg,
-  //   sectionIndex,
-  //   imgCountInCurrentSection,
-  // });
+  console.log({
+    imgCount,
+    imgIndex,
+    countImg,
+    sectionIndex,
+    imgCountInCurrentSection,
+  });
 
   if (!isLoadingFinished) {
     isLoadingFinished =
