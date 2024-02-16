@@ -18,6 +18,7 @@ import Splitting from "splitting";
 import { gsap } from "gsap";
 import { onMounted } from "vue";
 import isRetina from "../../helpers/isRetina";
+import isSafari from "../../helpers/isSafari";
 
 interface Props {
   title: string[];
@@ -29,9 +30,13 @@ defineProps<Props>();
 onMounted(() => {
   Splitting({});
 
-  console.log("retina", isRetina());
+  // console.log("retina", isRetina());
   if (isRetina()) {
     document.querySelector("main.app")?.classList.add("--retina");
+  }
+
+  if (isSafari()) {
+    document.querySelector("main.app")?.classList.add("--safari");
   }
 
   [

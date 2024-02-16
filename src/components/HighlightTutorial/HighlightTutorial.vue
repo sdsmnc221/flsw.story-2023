@@ -113,6 +113,16 @@ watch(
 </script>
 
 <style lang="scss">
+.--safari {
+  .highlight-tutorial {
+    &__illus {
+      img {
+        bottom: 4px;
+      }
+    }
+  }
+}
+
 .highlight-tutorial {
   position: fixed;
   top: 0;
@@ -234,7 +244,7 @@ watch(
       img {
         height: 8svh;
         width: auto;
-        bottom: 12px;
+        bottom: 24px;
         left: 50%;
         transform: translate(-50%, 0);
       }
@@ -263,7 +273,7 @@ watch(
     }
 
     &.--4 {
-      .tooltip-container {
+      g .tooltip-container {
         bottom: 30svh;
       }
 
