@@ -118,7 +118,7 @@ watch(
     .highlight-tutorial {
       &__illus {
         img {
-          bottom: 4px;
+          bottom: 4px !important;
         }
       }
     }
