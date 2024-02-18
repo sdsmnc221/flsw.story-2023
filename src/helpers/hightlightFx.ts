@@ -46,9 +46,7 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
         window.removeEventListener("scroll", lockScroll);
 
         if (isSafari()) {
-          window.addEventListener("scroll", () => {
-            scrollTo(window.innerHeight);
-          });
+          scrollTo(window.innerHeight);
         }
       },
     })
