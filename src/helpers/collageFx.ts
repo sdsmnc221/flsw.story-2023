@@ -8,14 +8,15 @@ import dynamicStyles from "./dynamicStyles";
 
 import { changeAppBackground } from "./changeAppBackground";
 import onTutoActivated from "./customEvents/tutoActivated";
-import isSafari from "./isSafari";
+
+import isLowTech from "./isLowTech";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
 
 const mob = isMobile();
-const safari = isSafari();
-const isStatic = mob && safari;
+
+const isStatic = isLowTech();
 
 const applyCollageAnimation = (
   grid: any,
