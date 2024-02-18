@@ -39,9 +39,10 @@ const isLowNetworkSpeed = () => {
 
 const isLowTech = (): boolean => {
   if (
-    (isMobileDevice() && isLowNetworkSpeed()) ||
+    isLowNetworkSpeed() ||
     !supportsPerformanceAPI() ||
-    isSafari()
+    isSafari() ||
+    isMobileDevice()
   ) {
     console.log("Low RAM device or slow network");
     return true;
