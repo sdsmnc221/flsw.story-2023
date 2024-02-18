@@ -568,16 +568,16 @@ watch(
 
         .grid-wrap__gallery--stack-inverse .grid__item--href.grid__item {
           transform: scale(1);
-          bottom: 64vh !important;
+          bottom: 50vh !important;
           left: 100vw !important;
         }
 
         .gallery--switch.grid-wrap__gallery--stack-inverse
           .grid__item--href.grid__item {
-          bottom: 64vh !important;
+          bottom: 50vh !important;
           left: -10vw !important;
           opacity: 1;
-          transform: scale(0.72);
+          transform: scale(1);
         }
 
         .gallery--switch.grid-wrap__gallery--stack .grid__item {
@@ -651,8 +651,8 @@ watch(
     background: var(--tuscany-blue);
     color: var(--light-blue);
     text-align: center;
-    font-size: 0.64rem;
-    width: 120px;
+    font-size: 0.72rem;
+    width: 140px;
     padding: 6px 12px;
     transition: all 0.4s;
     cursor: pointer;
