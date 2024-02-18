@@ -3,7 +3,7 @@
     class="text-block"
     :class="`${id} ${spacing === 'normal' ? 'text-block--spacing' : ''} ${
       spacing === 'xl' ? 'text-block--spacing-xl' : ''
-    }`"
+    } ${spacing === 'xxl' ? 'text-block--spacing-xxl' : ''}`"
     :style="`background-color: var(--${background}); color: var(--${textColor}); --pseudo-background: var(--${pseudoBackground}); --background: var(--${background}); --next-background: var(--${nextSectionBackground});`"
   >
     <collage-block
@@ -128,6 +128,9 @@ const emits = defineEmits(["onOpenCarousel", "onCloseCarousel"]);
 
   &--spacing-xl.text-block {
     padding-bottom: 64vh !important;
+  }
+  &--spacing-xxl.text-block {
+    padding-bottom: 148vh !important;
   }
 
   &:has(.fx3) {

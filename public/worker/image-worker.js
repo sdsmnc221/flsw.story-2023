@@ -38,7 +38,7 @@ self.addEventListener("message", async (event) => {
   if (!isLoadingFinished) {
     isLoadingFinished =
       // countImg === imgCountInFirstSections || countImg === imgCount / 2;
-      countImg === imgCountInFirstSections && countImg !== 0;
+      countImg === imgCountInFirstSections && !!countImg;
   }
 
   // Cache the blob asset
