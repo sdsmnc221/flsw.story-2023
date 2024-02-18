@@ -116,6 +116,9 @@ watch(
 .--safari {
   @media (max-width: 768px) {
     .highlight-tutorial {
+      .tooltip-container {
+        bottom: 36svh !important;
+      }
       &__illus {
         img {
           bottom: 4px !important;
