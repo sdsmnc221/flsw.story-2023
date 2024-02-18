@@ -367,20 +367,20 @@ onMounted(() => {
       highlightActiveIndex.value = `${section}`;
     });
 
-    setTimeout(() => {
-      const textBlocks = [...document.querySelectorAll(".text-block")];
-      const BASE_INDEX = 16;
-      textBlocks.forEach((block: any, index: number) => {
-        if (
-          block.parentElement &&
-          block.parentElement.classList.contains("pin-spacer")
-        ) {
-          block.parentElement.style.zIndex = `${BASE_INDEX - index}`;
-        } else {
-          block.style.zIndex = `${BASE_INDEX - index} !important`;
-        }
-      });
-    }, 640);
+    // setTimeout(() => {
+    //   const textBlocks = [...document.querySelectorAll(".text-block")];
+    //   const BASE_INDEX = 16;
+    //   textBlocks.forEach((block: any, index: number) => {
+    //     if (
+    //       block.parentElement &&
+    //       block.parentElement.classList.contains("pin-spacer")
+    //     ) {
+    //       block.parentElement.style.zIndex = `${BASE_INDEX - index}`;
+    //     } else {
+    //       block.style.zIndex = `${BASE_INDEX - index} !important`;
+    //     }
+    //   });
+    // }, 640);
 
     setTimeout(() => {
       const pinSpacer = document.querySelector(
