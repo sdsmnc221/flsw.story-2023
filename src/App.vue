@@ -110,6 +110,7 @@ import xpMarquee from "./configs/xpMarquee.json";
 import xpTutorial from "./configs/xpTutorial.json";
 
 import onTutoActivated from "./helpers/customEvents/tutoActivated";
+import isSafari from "./helpers/isSafari";
 
 const showApp = ref<boolean>(false);
 
@@ -369,6 +370,9 @@ onMounted(() => {
 
     let lastScrollTop = 0;
     window.addEventListener("scroll", () => {
+      if (isSafari()) {
+        return;
+      }
       const currentScrollTop = document.documentElement.scrollTop;
 
       if (currentScrollTop > lastScrollTop) {

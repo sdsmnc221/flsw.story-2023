@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import onTutoActivated from "./customEvents/tutoActivated";
 import { scrollTo } from "./scrollFx";
+import isSafari from "./isSafari";
 
 const lockScroll = (e: any) => {
   e.preventDefault();
@@ -43,6 +44,12 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
           .querySelector("main.app")
           ?.classList.remove("--carousel-locked");
         window.removeEventListener("scroll", lockScroll);
+
+        if (isSafari()) {
+          window.addEventListener("scroll", () => {
+            scrollTo(window.innerHeight);
+          });
+        }
       },
     })
     .pause();
