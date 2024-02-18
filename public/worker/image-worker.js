@@ -10,10 +10,10 @@ self.addEventListener("message", async (event) => {
   // UI thread
   const {
     imageURL,
-    imgCount,
-    imgIndex,
+    // imgCount,
+    // imgIndex,
     sectionIndex,
-    imgCountInCurrentSection,
+    // imgCountInCurrentSection,
     imgCountInFirstSections,
     isVideoBlock,
     blob: blob_,
@@ -38,7 +38,8 @@ self.addEventListener("message", async (event) => {
   if (!isLoadingFinished) {
     isLoadingFinished =
       // countImg === imgCountInFirstSections || countImg === imgCount / 2;
-      countImg === imgCountInFirstSections && !!countImg;
+      countImgFirstSections === imgCountInFirstSections &&
+      !!countImgFirstSections;
   }
 
   // Cache the blob asset
