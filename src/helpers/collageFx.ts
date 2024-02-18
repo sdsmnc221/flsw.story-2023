@@ -8,11 +8,14 @@ import dynamicStyles from "./dynamicStyles";
 
 import { changeAppBackground } from "./changeAppBackground";
 import onTutoActivated from "./customEvents/tutoActivated";
+import isSafari from "./isSafari";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
 
 const mob = isMobile();
+const safari = isSafari();
+const isStatic = mob && safari;
 
 const applyCollageAnimation = (
   grid: any,
@@ -28,20 +31,26 @@ const applyCollageAnimation = (
     gridItemsInner = [...gridItems].map((item) =>
       item.querySelector(".grid__item-inner")
     );
-
-    // Define GSAP timeline with ScrollTrigger
-    timeline = gsap.timeline({
-      defaults: { ease: "none" },
-      // scrollTrigger: {
-      //   trigger: gridWrap,
-      //   start: "top bottom+=5%",
-      //   end: "bottom top-=5%",
-      //   scrub: true,
-      //   onEnter: changeAppBackground,
-      //   onEnterBack: changeAppBackground,
-      // },
-    });
   }
+
+  // Define GSAP timeline with ScrollTrigger
+  timeline = gsap.timeline({
+    defaults: { ease: "none" },
+    ...(isStatic &&
+    (animationType === "cllg-fx5" || animationType === "cllg-fx1")
+      ? {}
+      : {
+          scrollTrigger: {
+            trigger: gridWrap,
+            start: "top bottom+=5%",
+            end: "bottom top-=5%",
+            scrub: true,
+            onEnter: changeAppBackground,
+            onEnterBack: changeAppBackground,
+          },
+        }),
+  });
+
   // Apply different animations based on type
   switch (animationType) {
     case "cllg-fx1":
@@ -317,25 +326,14 @@ const applyCollageAnimation = (
       }
       break;
     case "cllg-fx5":
-      // Set some CSS related style values
-      grid.style.setProperty("--grid-width", mob ? "180%" : "100%");
-      grid.style.setProperty("--grid-columns", mob ? "3" : "6");
-      grid.style.setProperty("--perspective", "1500px");
-      grid.style.setProperty("--grid-inner-scale", "1");
+      if (isStatic) {
+        // Set some CSS related style values
+        grid.style.setProperty("--grid-width", mob ? "180%" : "100%");
+        grid.style.setProperty("--grid-columns", mob ? "3" : "6");
+        grid.style.setProperty("--perspective", "1500px");
+        grid.style.setProperty("--grid-inner-scale", "1");
 
-      // if (timeline && gridItemsInner) {
-      gsap
-        // .to(
-        //   gridItems,
-        //   {
-        //     xPercent: () => gsap.utils.random(-150, 150),
-        //     yPercent: () => gsap.utils.random(-300, 300),
-        //     rotationX: 0,
-        //     opacity: () => gsap.utils.random(0.64, 1),
-        //   },
-        //   0
-        // )
-        .set(gridItems, {
+        gsap.set(gridItems, {
           transformOrigin: "50% 0%",
           z: () => gsap.utils.random(-320, 320),
           rotationX: () => gsap.utils.random(-20, 20),
@@ -343,14 +341,40 @@ const applyCollageAnimation = (
           yPercent: () => gsap.utils.random(-10, 260),
           opacity: () => gsap.utils.random(0.64, 1),
         });
-      // .to(
-      //   gridWrap,
-      //   {
-      //     z: 6500,
-      //   },
-      //   0
-      // );
-      // }
+      } else {
+        // Set some CSS related style values
+        grid.style.setProperty("--grid-width", "100%");
+        grid.style.setProperty("--grid-columns", isMobile() ? "2" : "6");
+        grid.style.setProperty("--perspective", "1500px");
+        grid.style.setProperty("--grid-inner-scale", "1");
+
+        if (timeline && gridItemsInner) {
+          timeline
+            .set(gridItems, {
+              transformOrigin: "50% 0%",
+              z: () => gsap.utils.random(-5000, -2000),
+              rotationX: () => gsap.utils.random(-65, -25),
+              opacity: 0,
+            })
+            .to(
+              gridItems,
+              {
+                xPercent: () => gsap.utils.random(-150, 150),
+                yPercent: () => gsap.utils.random(-320, 640),
+                rotationX: 0,
+                opacity: () => gsap.utils.random(0.64, 1),
+              },
+              0
+            )
+            .to(
+              gridWrap,
+              {
+                z: 6500,
+              },
+              0
+            );
+        }
+      }
 
       break;
     default:

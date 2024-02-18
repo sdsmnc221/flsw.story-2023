@@ -135,7 +135,7 @@ watch(
   z-index: 72;
 
   overflow: hidden;
-  transition: all 0.64s ease-in-out;
+  // transition: all 0.64s ease-in-out;
   pointer-events: none;
 
   &.--hidden {
