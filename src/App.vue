@@ -367,6 +367,28 @@ onMounted(() => {
       highlightActiveIndex.value = `${section}`;
     });
 
+    let lastScrollTop = 0;
+    window.addEventListener("scroll", () => {
+      const currentScrollTop = document.documentElement.scrollTop;
+
+      if (currentScrollTop > lastScrollTop) {
+        // Downward scroll
+        if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
+          scrollTo(window.innerHeight + 10);
+        }
+      } else if (currentScrollTop < lastScrollTop) {
+        // Upward scroll
+        if (
+          window.scrollY >= window.innerHeight + 1 &&
+          window.scrollY <= window.innerHeight * 2
+        ) {
+          scrollTo(0);
+        }
+      }
+
+      lastScrollTop = currentScrollTop;
+    });
+
     // setTimeout(() => {
     //   const textBlocks = [...document.querySelectorAll(".text-block")];
     //   const BASE_INDEX = 16;
