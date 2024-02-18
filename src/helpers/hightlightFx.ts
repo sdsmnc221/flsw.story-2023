@@ -45,9 +45,11 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
           ?.classList.remove("--carousel-locked");
         window.removeEventListener("scroll", lockScroll);
 
-        if (isSafari()) {
-          scrollTo(window.innerHeight * 2);
-        }
+        setTimeout(() => {
+          if (isSafari()) {
+            scrollTo(window.innerHeight * 2);
+          }
+        }, 120);
       },
     })
     .pause();
