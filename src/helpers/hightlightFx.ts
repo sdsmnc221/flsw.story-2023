@@ -47,9 +47,9 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
 
         setTimeout(() => {
           if (isSafari()) {
-            scrollTo(window.innerHeight * 2);
+            scrollTo(window.innerHeight);
           }
-        }, 120);
+        }, 640);
       },
     })
     .pause();
