@@ -110,7 +110,7 @@ import xpMarquee from "./configs/xpMarquee.json";
 import xpTutorial from "./configs/xpTutorial.json";
 
 import onTutoActivated from "./helpers/customEvents/tutoActivated";
-import isSafari from "./helpers/isSafari";
+// import isSafari from "./helpers/isSafari";
 
 const showApp = ref<boolean>(false);
 
