@@ -121,7 +121,7 @@ watch(
       }
       &__illus {
         img {
-          bottom: 4px !important;
+          bottom: 24px !important;
         }
       }
     }

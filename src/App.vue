@@ -378,7 +378,7 @@ onMounted(() => {
       if (currentScrollTop > lastScrollTop) {
         // Downward scroll
         if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
-          // scrollTo(window.innerHeight + 10);
+          scrollTo(window.innerHeight + 10);
         }
       } else if (currentScrollTop < lastScrollTop) {
         // Upward scroll
@@ -386,7 +386,7 @@ onMounted(() => {
           window.scrollY >= window.innerHeight + 1 &&
           window.scrollY <= window.innerHeight * 2
         ) {
-          scrollTo(0);
+          // scrollTo(0);
         }
       }
 
