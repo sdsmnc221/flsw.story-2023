@@ -315,4 +315,3 @@ watch(
   }
 }
 </style>
-../../helpers/customEvents/loaderLoaded
