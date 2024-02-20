@@ -133,7 +133,7 @@ watch(
   top: 0;
   left: 0;
   width: 100%;
-  height: 100svh;
+  height: 100vh;
   // backdrop-filter: brightness(0.8);
   z-index: 72;
 
@@ -187,7 +187,7 @@ watch(
       position: absolute;
       height: 12vh;
       width: auto;
-      bottom: 6vh;
+      bottom: 24px;
       left: 8vw;
     }
   }
