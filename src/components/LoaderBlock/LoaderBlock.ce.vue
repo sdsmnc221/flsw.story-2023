@@ -35,7 +35,7 @@ const assetsReady = ref<boolean>(false);
 
 const END_OF_PROMPT_DEFAULT_INDEX = 3;
 
-const REMOVE_LOADER_AFTER = 3200;
+const REMOVE_LOADER_AFTER = 6400;
 
 const prompt = ref<string>(
   firstLoading.value

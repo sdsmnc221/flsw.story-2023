@@ -68,10 +68,10 @@ const sectionImageCount = Array.from(imgElements).reduce(
 videoElements.forEach((videoElement) => {
   const imageURL = videoElement.getAttribute("data-src");
 
-  // worker.postMessage({
-  //   imageURL,
-  //   isVideoBlock: true,
-  // });
+  worker.postMessage({
+    imageURL,
+    isVideoBlock: true,
+  });
   fetchAndCacheBlobAsset(imageURL, true);
 });
 
@@ -82,21 +82,21 @@ imgElements.forEach((imageElement, index) => {
     "unknown";
   const imgCountInCurrentSection = sectionImageCount[sectionIndex] || 0;
 
-  fetchAndCacheBlobAsset(imageURL, false, {
-    imgCount: imgElements.length,
-    imgIndex: index,
-    sectionIndex,
-    imgCountInCurrentSection,
-    imgCountInFirstSections: sectionImageCount["1"] + sectionImageCount["2"],
-  });
-  // worker.postMessage({
-  //   imageURL,
+  // fetchAndCacheBlobAsset(imageURL, false, {
   //   imgCount: imgElements.length,
   //   imgIndex: index,
   //   sectionIndex,
   //   imgCountInCurrentSection,
   //   imgCountInFirstSections: sectionImageCount["1"] + sectionImageCount["2"],
   // });
+  worker.postMessage({
+    imageURL,
+    imgCount: imgElements.length,
+    imgIndex: index,
+    sectionIndex,
+    imgCountInCurrentSection,
+    imgCountInFirstSections: sectionImageCount["1"] + sectionImageCount["2"],
+  });
 });
 
 worker.addEventListener("message", (event) => {
@@ -115,23 +115,26 @@ worker.addEventListener("message", (event) => {
   // We can use the `Blob` as an image source! We just need to convert it
   // to an object URL first
   const objectURL = URL.createObjectURL(imageData.blob);
-  if (imageData.imageURL.includes("jpg")) {
-    imageElement.style.backgroundImage = `url(${objectURL})`;
-  } else {
-    const videoElement = imageData.isVideoBlock
-      ? imageElement
-      : imageElement.querySelector("video");
-    videoElement.src = objectURL;
-  }
+  if (imageElement) {
+    if (imageData.imageURL.includes("jpg")) {
+      imageElement.style.backgroundImage = `url(${objectURL})`;
+    } else {
+      const videoElement = imageData.isVideoBlock
+        ? imageElement
+        : imageElement.querySelector("video");
+      videoElement.src = objectURL;
+    }
 
-  // Let's remove the original `data-src` attribute to make sure we don't
-  // accidentally pass this image to the worker again in the future
-  imageElement.removeAttribute("data-src");
+    // Let's remove the original `data-src` attribute to make sure we don't
+    // accidentally pass this image to the worker again in the future
+    imageElement.removeAttribute("data-src");
+  }
 
   // Check if all images have been loaded
   // If they have, dispatch the custom event
   const { isLoadingFinished } = imageData;
 
+  console.log("isLoadingFinished", isLoadingFinished);
   if (isLoadingFinished) {
     // Dispatch the custom event
     document.dispatchEvent(onAssetsLoaded);
