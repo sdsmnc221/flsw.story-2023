@@ -48,7 +48,7 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
         setTimeout(() => {
           if (
             isSafari() &&
-            (!sectionIndex || ["4", "7"].includes(sectionIndex as string))
+            ["4", "7"].some((id) => sectionIndex?.includes(id))
           ) {
             scrollTo(window.innerHeight);
           }
