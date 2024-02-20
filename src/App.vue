@@ -110,7 +110,7 @@ import xpMarquee from "./configs/xpMarquee.json";
 import xpTutorial from "./configs/xpTutorial.json";
 
 import onTutoActivated from "./helpers/customEvents/tutoActivated";
-// import isSafari from "./helpers/isSafari";
+import isSafari from "./helpers/isSafari";
 
 const showApp = ref<boolean>(false);
 
@@ -368,30 +368,30 @@ onMounted(() => {
       highlightActiveIndex.value = `${section}`;
     });
 
-    // let lastScrollTop = 0;
-    // window.addEventListener("scroll", () => {
-    //   if (isSafari()) {
-    //     return;
-    //   }
-    //   const currentScrollTop = document.documentElement.scrollTop;
+    let lastScrollTop = 0;
+    window.addEventListener("scroll", () => {
+      if (isSafari()) {
+        return;
+      }
+      const currentScrollTop = document.documentElement.scrollTop;
 
-    //   if (currentScrollTop > lastScrollTop) {
-    //     // Downward scroll
-    //     if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
-    //       scrollTo(window.innerHeight + 10);
-    //     }
-    //   } else if (currentScrollTop < lastScrollTop) {
-    //     // Upward scroll
-    //     if (
-    //       window.scrollY >= window.innerHeight + 1 &&
-    //       window.scrollY <= window.innerHeight * 2
-    //     ) {
-    //       scrollTo(0);
-    //     }
-    //   }
+      if (currentScrollTop > lastScrollTop) {
+        // Downward scroll
+        if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
+          // scrollTo(window.innerHeight + 10);
+        }
+      } else if (currentScrollTop < lastScrollTop) {
+        // Upward scroll
+        if (
+          window.scrollY >= window.innerHeight + 1 &&
+          window.scrollY <= window.innerHeight * 2
+        ) {
+          scrollTo(0);
+        }
+      }
 
-    //   lastScrollTop = currentScrollTop;
-    // });
+      lastScrollTop = currentScrollTop;
+    });
 
     // setTimeout(() => {
     //   const textBlocks = [...document.querySelectorAll(".text-block")];
