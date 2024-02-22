@@ -1,6 +1,9 @@
 i
 <template>
-  <section :class="`highlight-tutorial --${index}`" ref="nodeRef">
+  <section
+    :class="`highlight-tutorial --${index} ${isTablet() ? '--tablet' : ''}`"
+    ref="nodeRef"
+  >
     <div v-if="index === '0'">
       <p
         class="highlight-tutorial__title josefin-sans-600 --stroked"
@@ -73,6 +76,7 @@ i
 <script setup lang="ts">
 import { watch, ref, onMounted } from "vue";
 import initHighlight from "../../helpers/hightlightFx";
+import isTablet from "../../helpers/isTablet";
 interface Props {
   title: string;
   subtitle: string;
@@ -123,6 +127,21 @@ watch(
         img {
           bottom: 24px !important;
         }
+      }
+    }
+  }
+}
+
+.--tablet {
+  /* Tablets */
+  @media only screen and (orientation: landscape) {
+    .highlight-tutorial {
+      &__title {
+        transform: rotate(6deg) translateX(-32%) translateY(16vh) !important;
+      }
+
+      &__subtitle {
+        font-size: 4.8rem;
       }
     }
   }

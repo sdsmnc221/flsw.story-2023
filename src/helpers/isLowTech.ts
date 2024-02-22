@@ -12,6 +12,7 @@
 //   };
 
 import isSafari from "./isSafari";
+import isTablet from "./isTablet";
 
 //   const supportsWebAssembly = () => {
 //     return typeof WebAssembly === 'object' && typeof WebAssembly.instantiate === 'function';
@@ -42,7 +43,8 @@ const isLowTech = (): boolean => {
     isLowNetworkSpeed() ||
     !supportsPerformanceAPI() ||
     isSafari() ||
-    isMobileDevice()
+    isMobileDevice() ||
+    isTablet()
   ) {
     console.log("Low RAM device or slow network");
     return true;
