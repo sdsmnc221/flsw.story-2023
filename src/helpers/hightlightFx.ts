@@ -101,7 +101,6 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
           x: () => gsap.utils.random(-200, 200),
           top: () => gsap.utils.random(-200, 200),
           scale: () => gsap.utils.random(0.24, 2.4),
-          // filter: "blur(4px)",
         },
         {
           ease: "power1",
@@ -112,7 +111,7 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
           x: 0,
           top: 0,
           scale: 1,
-          // filter: "blur(0px)",
+
           duration: 1.2,
           delay: 0.36,
         },
@@ -127,7 +126,6 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
           x: () => gsap.utils.random(-200, 200),
           top: () => gsap.utils.random(-200, 200),
           scale: () => gsap.utils.random(0.24, 2.4),
-          filter: "blur(4px)",
         },
         {
           ease: "power1",
@@ -138,7 +136,7 @@ const initHighlight = (cbOnComplete?: () => void, sectionIndex?: string) => {
           x: 0,
           top: 0,
           scale: 1,
-          filter: "blur(0px)",
+
           duration: 1.2,
         },
         ">"
