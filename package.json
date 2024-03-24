@@ -22,7 +22,8 @@
     "imagesloaded": "^5.0.0",
     "splitting": "^1.0.6",
     "the-new-css-reset": "^1.11.2",
-    "vue": "^3.3.11"
+    "vue": "^3.3.11",
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.202",

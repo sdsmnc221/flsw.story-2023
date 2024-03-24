@@ -1,46 +1,40 @@
 <template>
-  <main class="app --locked" v-show="showApp" v-if="!isDevMode">
-    <transition name="fade" mode="out-in">
-      <share-button v-show="!carouselActive"></share-button>
-    </transition>
+  <section class="app__chapter">
+    <marquees-container :xp-marquee="xpMarquee"></marquees-container>
+    <title-block :title="xpTitle.title" :subtitle="xpTitle.subtitle" />
 
-    <highlight-tutorial
-      :title="xpTutorial[highlightActiveIndex as keyof typeof xpTutorial].title"
-      :subtitle="xpTutorial[highlightActiveIndex as keyof typeof xpTutorial].subtitle"
-      :active="highlightActive"
-      :index="highlightActiveIndex"
-      @onHighlightCompleted="initScroll"
-    ></highlight-tutorial>
-
-    <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-  </main>
-  <main class="app" v-show="showApp" v-else>
-    <transition name="fade" mode="out-in">
-      <share-button v-show="!carouselActive"></share-button>
-    </transition>
-    <!-- <highlight-tutorial
-      :title="xpMarquee.indicator.title"
-      :subtitle="xpMarquee.indicator.subtitle"
-      :active="highlightActive"
-      @onHighlightCompleted="initScroll"
-    ></highlight-tutorial> -->
-
-    <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-  </main>
-
-  <paw-cursor></paw-cursor>
+    <text-block
+      :id="`section--${index}`"
+      :subtitle="xpContentData.subtitle"
+      :title="xpContentData.title"
+      :background="
+        xpContentData.backgroundColor
+          ? xpContentData.backgroundColor
+          : index % 2 === 0
+          ? 'clear-day-white'
+          : 'shakespear-blue'
+      "
+      :text-color="
+        xpContentData.textColor ? xpContentData.textColor : 'tuscany-blue'
+      "
+      :pseudo-background="
+        xpContentData.pseudoBackgroundColor
+          ? xpContentData.pseudoBackgroundColor
+          : 'clear-day-white'
+      "
+      v-bind="computedBindedProps(xpContentData, index)"
+      :fx="xpContentData.fx"
+      @onOpenCarousel="carouselActive = true"
+      @onCloseCarousel="carouselActive = false"
+    >
+      {{ xpContentData.text }}
+    </text-block>
+  </section>
 </template>
 
 <script setup lang="ts">
-import { nextTick, onBeforeMount, onMounted, ref, watch } from "vue";
+import { nextTick, onBeforeMount, onMounted, ref, watch, computed } from "vue";
+import { useRouter } from "vue-router";
 
 import {
   initSmoothScrolling,
@@ -48,25 +42,24 @@ import {
   scrollGrid,
   refreshScroll,
   scrollTo,
-} from "./helpers/scrollFx";
+} from "../helpers/scrollFx";
 
 import Splitting from "splitting";
 import "splitting/dist/splitting.css";
 import "splitting/dist/splitting-cells.css";
 
-import { RouterView } from "vue-router";
+import xpTitle from "../configs/xpTitle.json";
+import xpContent from "../configs/xpContent.json";
+import xpMarquee from "../configs/xpMarquee.json";
 
-import xpTitle from "./configs/xpTitle.json";
-import xpContent from "./configs/xpContent.json";
-import xpMarquee from "./configs/xpMarquee.json";
-import xpTutorial from "./configs/xpTutorial.json";
+import onTutoActivated from "../helpers/customEvents/tutoActivated";
+import onPageSwitched from "../helpers/customEvents/pageSwitched";
+import isSafari from "../helpers/isSafari";
+const router = useRouter();
 
-import onTutoActivated from "./helpers/customEvents/tutoActivated";
-import isSafari from "./helpers/isSafari";
+const xpContentData = computed(() => xpContent[0]);
 
-const showApp = ref<boolean>(false);
-
-const isDevMode = ref<boolean>(import.meta.env.DEV);
+const index = ref<number>(0);
 
 const highlightActive = ref<boolean>(false);
 const highlightActiveIndex = ref<string>("0");
@@ -124,35 +117,6 @@ const lockScroll = (e: any) => {
 };
 
 const initScroll = () => {
-  const fx1 = {
-    id: "fx1",
-    nodes: [
-      ...document.querySelectorAll(
-        ".text-block:not(.section--2):not(.section--3) .text-block__content.fx1[data-splitting]"
-      ),
-    ],
-  };
-
-  const fx1Section2 = {
-    id: "fx1",
-    nodes: [
-      ...document.querySelectorAll(
-        ".section--2 .text-block__content.fx1[data-splitting]"
-      ),
-    ],
-    delayContent: true,
-  };
-
-  const fx1Section3 = {
-    id: "fx1",
-    nodes: [
-      ...document.querySelectorAll(
-        ".section--3 .text-block__content.fx1[data-splitting]"
-      ),
-    ],
-    delayContent: true,
-  };
-
   const fx2 = {
     id: "fx2",
     nodes: [
@@ -161,18 +125,6 @@ const initScroll = () => {
       ),
       ...document.querySelectorAll(
         ".text-block:not(.section--2) .text-block__subtitle.fx2[data-splitting]"
-      ),
-    ],
-  };
-
-  const fx2Section2 = {
-    id: "fx2",
-    nodes: [
-      ...document.querySelectorAll(
-        ".section--2 .text-block__title.fx2[data-splitting]"
-      ),
-      ...document.querySelectorAll(
-        ".section--2 .text-block__subtitle.fx2[data-splitting]"
       ),
     ],
   };
@@ -282,8 +234,6 @@ const carouselUnlockApp = () => {
 
 onBeforeMount(() => {
   initSmoothScrolling();
-
-  showApp.value = true;
 });
 
 onMounted(() => {
@@ -320,28 +270,30 @@ onMounted(() => {
       highlightActiveIndex.value = `${section}`;
     });
 
-    let lastScrollTop = 0;
     window.addEventListener("scroll", () => {
-      if (isSafari()) {
-        return;
-      }
-      const currentScrollTop = document.documentElement.scrollTop;
-
-      if (currentScrollTop > lastScrollTop) {
-        // Downward scroll
-        if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
-          scrollTo(window.innerHeight + 10);
-        }
-      } else if (currentScrollTop < lastScrollTop) {
-        // Upward scroll
-        if (
-          window.scrollY >= window.innerHeight + 1 &&
-          window.scrollY <= window.innerHeight * 2
-        ) {
-          // scrollTo(0);
-        }
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - 1
+      ) {
+        router.push("/c1");
+        window.dispatchEvent(onPageSwitched);
       }
     });
+
+    // setTimeout(() => {
+    //   const textBlocks = [...document.querySelectorAll(".text-block")];
+    //   const BASE_INDEX = 16;
+    //   textBlocks.forEach((block: any, index: number) => {
+    //     if (
+    //       block.parentElement &&
+    //       block.parentElement.classList.contains("pin-spacer")
+    //     ) {
+    //       block.parentElement.style.zIndex = `${BASE_INDEX - index}`;
+    //     } else {
+    //       block.style.zIndex = `${BASE_INDEX - index} !important`;
+    //     }
+    //   });
+    // }, 640);
 
     setTimeout(() => {
       const pinSpacer = document.querySelector(
@@ -355,20 +307,6 @@ onMounted(() => {
     }, 3200);
   });
 });
-
-watch(
-  [() => assetsLoaded.value, () => loaderLoaded.value],
-  ([assets, loader]) => {
-    if (assets && loader) {
-      document.dispatchEvent(onTutoActivated({ active: true, section: "0" }));
-      scrollTo(0);
-    }
-    // if (assets) {
-    //   document.dispatchEvent(onTutoActivated({ active: true, section: "0" }));
-    //   scrollTo(0);
-    // }
-  }
-);
 
 watch(
   () => carouselActive.value,

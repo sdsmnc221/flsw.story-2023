@@ -1,46 +1,36 @@
 <template>
-  <main class="app --locked" v-show="showApp" v-if="!isDevMode">
-    <transition name="fade" mode="out-in">
-      <share-button v-show="!carouselActive"></share-button>
-    </transition>
-
-    <highlight-tutorial
-      :title="xpTutorial[highlightActiveIndex as keyof typeof xpTutorial].title"
-      :subtitle="xpTutorial[highlightActiveIndex as keyof typeof xpTutorial].subtitle"
-      :active="highlightActive"
-      :index="highlightActiveIndex"
-      @onHighlightCompleted="initScroll"
-    ></highlight-tutorial>
-
-    <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-  </main>
-  <main class="app" v-show="showApp" v-else>
-    <transition name="fade" mode="out-in">
-      <share-button v-show="!carouselActive"></share-button>
-    </transition>
-    <!-- <highlight-tutorial
-      :title="xpMarquee.indicator.title"
-      :subtitle="xpMarquee.indicator.subtitle"
-      :active="highlightActive"
-      @onHighlightCompleted="initScroll"
-    ></highlight-tutorial> -->
-
-    <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-  </main>
-
-  <paw-cursor></paw-cursor>
+  <section class="app__chapter">
+    <text-block
+      :id="`section--${index}`"
+      :subtitle="xpContentData.subtitle"
+      :title="xpContentData.title"
+      :background="
+        xpContentData.backgroundColor
+          ? xpContentData.backgroundColor
+          : index % 2 === 0
+          ? 'clear-day-white'
+          : 'shakespear-blue'
+      "
+      :text-color="
+        xpContentData.textColor ? xpContentData.textColor : 'tuscany-blue'
+      "
+      :pseudo-background="
+        xpContentData.pseudoBackgroundColor
+          ? xpContentData.pseudoBackgroundColor
+          : 'clear-day-white'
+      "
+      v-bind="computedBindedProps(xpContentData, index)"
+      :fx="xpContentData.fx"
+      @onOpenCarousel="carouselActive = true"
+      @onCloseCarousel="carouselActive = false"
+    >
+      {{ xpContentData.text }}
+    </text-block>
+  </section>
 </template>
 
 <script setup lang="ts">
-import { nextTick, onBeforeMount, onMounted, ref, watch } from "vue";
+import { nextTick, onBeforeMount, onMounted, ref, watch, computed } from "vue";
 
 import {
   initSmoothScrolling,
@@ -48,25 +38,22 @@ import {
   scrollGrid,
   refreshScroll,
   scrollTo,
-} from "./helpers/scrollFx";
+} from "../helpers/scrollFx";
 
 import Splitting from "splitting";
 import "splitting/dist/splitting.css";
 import "splitting/dist/splitting-cells.css";
 
-import { RouterView } from "vue-router";
+import xpContent from "../configs/xpContent.json";
 
-import xpTitle from "./configs/xpTitle.json";
-import xpContent from "./configs/xpContent.json";
-import xpMarquee from "./configs/xpMarquee.json";
-import xpTutorial from "./configs/xpTutorial.json";
-
-import onTutoActivated from "./helpers/customEvents/tutoActivated";
-import isSafari from "./helpers/isSafari";
+import onTutoActivated from "../helpers/customEvents/tutoActivated";
+import isSafari from "../helpers/isSafari";
 
 const showApp = ref<boolean>(false);
 
-const isDevMode = ref<boolean>(import.meta.env.DEV);
+const xpContentData = computed(() => xpContent[1]);
+
+const index = ref<number>(1);
 
 const highlightActive = ref<boolean>(false);
 const highlightActiveIndex = ref<string>("0");
@@ -115,6 +102,8 @@ const computedBindedProps = (section: any, index: number) => {
     bindedProps.href = section.href;
   }
 
+  console.log(bindedProps);
+
   return bindedProps;
 };
 
@@ -124,35 +113,6 @@ const lockScroll = (e: any) => {
 };
 
 const initScroll = () => {
-  const fx1 = {
-    id: "fx1",
-    nodes: [
-      ...document.querySelectorAll(
-        ".text-block:not(.section--2):not(.section--3) .text-block__content.fx1[data-splitting]"
-      ),
-    ],
-  };
-
-  const fx1Section2 = {
-    id: "fx1",
-    nodes: [
-      ...document.querySelectorAll(
-        ".section--2 .text-block__content.fx1[data-splitting]"
-      ),
-    ],
-    delayContent: true,
-  };
-
-  const fx1Section3 = {
-    id: "fx1",
-    nodes: [
-      ...document.querySelectorAll(
-        ".section--3 .text-block__content.fx1[data-splitting]"
-      ),
-    ],
-    delayContent: true,
-  };
-
   const fx2 = {
     id: "fx2",
     nodes: [
@@ -161,18 +121,6 @@ const initScroll = () => {
       ),
       ...document.querySelectorAll(
         ".text-block:not(.section--2) .text-block__subtitle.fx2[data-splitting]"
-      ),
-    ],
-  };
-
-  const fx2Section2 = {
-    id: "fx2",
-    nodes: [
-      ...document.querySelectorAll(
-        ".section--2 .text-block__title.fx2[data-splitting]"
-      ),
-      ...document.querySelectorAll(
-        ".section--2 .text-block__subtitle.fx2[data-splitting]"
       ),
     ],
   };
@@ -250,15 +198,15 @@ const initScroll = () => {
   // scroll(fx1Section2);
   // scroll(fx2Section2);
 
-  // scrollGrid(collage1);
-  // scrollGrid(collage2);
-  // scrollGrid(collage3);
-  // scrollGrid(collage4);
-  // scrollGrid(collage5);
-  // scrollGrid(collage6);
-  // scrollGrid(collage7);
-  // scrollGrid(video1);
-  // scrollGrid(video2);
+  scrollGrid(collage1);
+  scrollGrid(collage2);
+  scrollGrid(collage3);
+  scrollGrid(collage4);
+  scrollGrid(collage5);
+  scrollGrid(collage6);
+  scrollGrid(collage7);
+  scrollGrid(video1);
+  scrollGrid(video2);
 
   // scroll(fx1);
   // scroll(fx1Section3);
@@ -320,29 +268,6 @@ onMounted(() => {
       highlightActiveIndex.value = `${section}`;
     });
 
-    let lastScrollTop = 0;
-    window.addEventListener("scroll", () => {
-      if (isSafari()) {
-        return;
-      }
-      const currentScrollTop = document.documentElement.scrollTop;
-
-      if (currentScrollTop > lastScrollTop) {
-        // Downward scroll
-        if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
-          scrollTo(window.innerHeight + 10);
-        }
-      } else if (currentScrollTop < lastScrollTop) {
-        // Upward scroll
-        if (
-          window.scrollY >= window.innerHeight + 1 &&
-          window.scrollY <= window.innerHeight * 2
-        ) {
-          // scrollTo(0);
-        }
-      }
-    });
-
     setTimeout(() => {
       const pinSpacer = document.querySelector(
         ".app > .pin-spacer:last-of-type"
@@ -355,20 +280,6 @@ onMounted(() => {
     }, 3200);
   });
 });
-
-watch(
-  [() => assetsLoaded.value, () => loaderLoaded.value],
-  ([assets, loader]) => {
-    if (assets && loader) {
-      document.dispatchEvent(onTutoActivated({ active: true, section: "0" }));
-      scrollTo(0);
-    }
-    // if (assets) {
-    //   document.dispatchEvent(onTutoActivated({ active: true, section: "0" }));
-    //   scrollTo(0);
-    // }
-  }
-);
 
 watch(
   () => carouselActive.value,
