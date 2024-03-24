@@ -295,8 +295,8 @@ const initScroll = () => {
     sectionId: 9,
   };
 
-  scroll(fx1Section2);
-  scroll(fx2Section2);
+  // scroll(fx1Section2);
+  // scroll(fx2Section2);
 
   scrollGrid(collage1);
   scrollGrid(collage2);
@@ -308,8 +308,8 @@ const initScroll = () => {
   scrollGrid(video1);
   scrollGrid(video2);
 
-  scroll(fx1);
-  scroll(fx1Section3);
+  // scroll(fx1);
+  // scroll(fx1Section3);
   scroll(fx2);
   scroll(fx3);
 };

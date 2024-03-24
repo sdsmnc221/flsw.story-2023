@@ -43,7 +43,11 @@
       >
         {{ title }}
       </h2>
-      <div class="text-block__content" :class="`${fx}`" data-splitting>
+      <div
+        class="text-block__content"
+        :class="`${fx} --background`"
+        data-splitting
+      >
         <slot />
       </div>
     </div>
