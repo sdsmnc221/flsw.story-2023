@@ -37,10 +37,18 @@
   </main>
 
   <paw-cursor></paw-cursor>
+
+  <assets-preload
+    v-for="(assets, index) in xpAssets"
+    :key="`assets-preload-${index}`"
+    :section-index="assets.sectionIndex"
+    :fx="assets.fx"
+    :collage="assets.collage"
+  ></assets-preload>
 </template>
 
 <script setup lang="ts">
-import { nextTick, onBeforeMount, onMounted, ref, watch } from "vue";
+import { nextTick, onBeforeMount, onMounted, ref, watch, computed } from "vue";
 
 import {
   initSmoothScrolling,
@@ -63,6 +71,7 @@ import xpTutorial from "./configs/xpTutorial.json";
 
 import onTutoActivated from "./helpers/customEvents/tutoActivated";
 import isSafari from "./helpers/isSafari";
+import { flattenDeep } from "lodash";
 
 const showApp = ref<boolean>(false);
 
@@ -75,6 +84,14 @@ const carouselActive = ref<boolean>(false);
 
 const assetsLoaded = ref<boolean>(false);
 const loaderLoaded = ref<boolean>(false);
+
+const xpAssets = computed(() => {
+  return xpContent.map((content, index) => ({
+    sectionIndex: index,
+    collage: content.collage ?? [],
+    fx: content.cllgFx,
+  }));
+});
 
 const computedBindedProps = (section: any, index: number) => {
   const bindedProps: any = {};

@@ -54,7 +54,7 @@
           <foreignObject :mask="`url(#circleMask-${id})`">
             <video
               ref="videoRef"
-              :data-src="`/img/${video?.replace(
+              :data-source="`/img/${video?.replace(
                 '.mp4',
                 mob ? '-mob.mp4' : '.mp4'
               )}`"

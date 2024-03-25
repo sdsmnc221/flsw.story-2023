@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AssetsPreload: typeof import('./src/components/AssetsPreload/AssetsPreload.vue')['default']
     BusinessCard: typeof import('./src/components/BusinessCard/BusinessCard.vue')['default']
     CloseButton: typeof import('./src/components/CloseButton/CloseButton.vue')['default']
     CollageBlock: typeof import('./src/components/CollageBlock/CollageBlock.vue')['default']
@@ -17,6 +18,8 @@ declare module 'vue' {
     MarqueeBlock: typeof import('./src/components/MarqueeBlock/MarqueeBlock.vue')['default']
     MarqueesContainer: typeof import('./src/components/MarqueesContainer/MarqueesContainer.vue')['default']
     PawCursor: typeof import('./src/components/PawCursor/PawCursor.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     ShareButton: typeof import('./src/components/ShareButton/ShareButton.vue')['default']
     TextBlock: typeof import('./src/components/TextBlock/TextBlock.vue')['default']
     TitleBlock: typeof import('./src/components/TitleBlock/TitleBlock.vue')['default']

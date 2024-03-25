@@ -273,7 +273,7 @@ onMounted(() => {
     window.addEventListener("scroll", () => {
       if (
         window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 1
+        document.body.offsetHeight - 72
       ) {
         router.push("/c1");
         window.dispatchEvent(onPageSwitched);

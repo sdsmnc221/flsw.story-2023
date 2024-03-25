@@ -46,12 +46,12 @@ function fetchAndCacheBlobAsset(
     });
 }
 
-function caching() {
+function prefetchAssets() {
+  window.assets = [];
+
   // Get all of the `<img>` elements that have a `data-src` property
   const imgElements = document.querySelectorAll("div[data-src]");
-  const videoElements = document.querySelectorAll("video[data-src]");
-
-  console.log({ imgElements, videoElements });
+  // const videoElements = document.querySelectorAll("div[data-src]");
 
   // Use reduce to count the number of images in each section
   const sectionImageCount = Array.from(imgElements).reduce(
@@ -69,15 +69,15 @@ function caching() {
   );
 
   // Loop over the image elements and pass their URLs to the web worker
-  videoElements.forEach((videoElement) => {
-    const imageURL = videoElement.getAttribute("data-src");
+  // videoElements.forEach((videoElement) => {
+  //   const imageURL = videoElement.getAttribute("data-src");
 
-    worker.postMessage({
-      imageURL,
-      isVideoBlock: true,
-    });
-    fetchAndCacheBlobAsset(imageURL, true);
-  });
+  //   worker.postMessage({
+  //     imageURL,
+  //     isVideoBlock: true,
+  //   });
+  //   fetchAndCacheBlobAsset(imageURL, true);
+  // });
 
   imgElements.forEach((imageElement, index) => {
     const imageURL = imageElement.getAttribute("data-src");
@@ -107,32 +107,33 @@ function caching() {
     // Grab the message data from the event
     const imageData = event.data;
 
-    // Get the original element for this image
-    const imageElement: any = document.querySelector(
-      imageData.isVideoBlock
-        ? `video[data-src='${imageData.imageURL}']`
-        : `div[data-src='${imageData.imageURL}']`
-    );
+    window.assets.push(imageData);
+    // // Get the original element for this image
+    // const imageElement: any = document.querySelector(
+    //   imageData.isVideoBlock
+    //     ? `video[data-src='${imageData.imageURL}']`
+    //     : `div[data-src='${imageData.imageURL}']`
+    // );
 
-    // console.log(imageElement);
+    // // console.log(imageElement);
 
-    // We can use the `Blob` as an image source! We just need to convert it
-    // to an object URL first
-    const objectURL = URL.createObjectURL(imageData.blob);
-    if (imageElement) {
-      if (imageData.imageURL.includes("jpg")) {
-        imageElement.style.backgroundImage = `url(${objectURL})`;
-      } else {
-        const videoElement = imageData.isVideoBlock
-          ? imageElement
-          : imageElement.querySelector("video");
-        videoElement.src = objectURL;
-      }
+    // // We can use the `Blob` as an image source! We just need to convert it
+    // // to an object URL first
+    // const objectURL = URL.createObjectURL(imageData.blob);
+    // if (imageElement) {
+    //   if (imageData.imageURL.includes("jpg")) {
+    //     imageElement.style.backgroundImage = `url(${objectURL})`;
+    //   } else {
+    //     const videoElement = imageData.isVideoBlock
+    //       ? imageElement
+    //       : imageElement.querySelector("video");
+    //     videoElement.src = objectURL;
+    //   }
 
-      // Let's remove the original `data-src` attribute to make sure we don't
-      // accidentally pass this image to the worker again in the future
-      imageElement.removeAttribute("data-src");
-    }
+    //   // Let's remove the original `data-src` attribute to make sure we don't
+    //   // accidentally pass this image to the worker again in the future
+    //   imageElement.removeAttribute("data-src");
+    // }
 
     // Check if all images have been loaded
     // If they have, dispatch the custom event
@@ -146,10 +147,11 @@ function caching() {
   });
 }
 
-caching();
+prefetchAssets();
 
 window.addEventListener("pageSwitched", () => {
   setTimeout(() => {
-    caching();
+    // caching();
+    // console.log(window.assets);
   }, 1000);
 });

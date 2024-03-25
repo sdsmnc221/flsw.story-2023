@@ -47,20 +47,23 @@ import "splitting/dist/splitting-cells.css";
 
 import xpContent from "../configs/xpContent.json";
 
+import onPageSwitched from "../helpers/customEvents/pageSwitched";
 import onTutoActivated from "../helpers/customEvents/tutoActivated";
 import isSafari from "../helpers/isSafari";
 
-const router = useRouter();
 const showApp = ref<boolean>(false);
 
-const xpContentData = computed(() => xpContent[1]);
+const xpContentData = computed(() => xpContent[2]);
 
-const index = ref<number>(1);
+const index = ref<number>(2);
 
 const highlightActive = ref<boolean>(false);
 const highlightActiveIndex = ref<string>("0");
 
 const carouselActive = ref<boolean>(false);
+
+const assetsLoaded = ref<boolean>(false);
+const loaderLoaded = ref<boolean>(false);
 
 const computedBindedProps = (section: any, index: number) => {
   const bindedProps: any = {};
@@ -104,6 +107,11 @@ const computedBindedProps = (section: any, index: number) => {
   console.log(bindedProps);
 
   return bindedProps;
+};
+
+const lockScroll = (e: any) => {
+  e.preventDefault();
+  scrollTo(window.scrollY + window.innerHeight);
 };
 
 const initScroll = () => {
@@ -208,8 +216,24 @@ const initScroll = () => {
   scroll(fx3);
 };
 
+const carouselLockApp = () => {
+  (document.querySelector("main.app") as any)?.style?.setProperty(
+    "--height-locked",
+    window.scrollY + window.innerHeight + "px"
+  );
+  document.querySelector("main.app")?.classList.add("--carousel-locked");
+  window.addEventListener("scroll", lockScroll);
+};
+
+const carouselUnlockApp = () => {
+  document.querySelector("main.app")?.classList.remove("--carousel-locked");
+  window.removeEventListener("scroll", lockScroll);
+};
+
 onBeforeMount(() => {
   initSmoothScrolling();
+
+  showApp.value = true;
 });
 
 onMounted(() => {
@@ -230,23 +254,21 @@ onMounted(() => {
     });
 
     window.addEventListener("scroll", () => {
-      console.log(window.scrollY);
-      if (window.scrollY === 1) {
-        setTimeout(() => {
-          router.push("/");
-        }, 4800);
-        return;
-      }
-
       if (
         window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 1
+        document.body.offsetHeight - 72
       ) {
-        setTimeout(() => {
-          router.push("/c2");
-        }, 4800);
-        return;
+        router.push("/c2");
+        window.dispatchEvent(onPageSwitched);
       }
+    });
+
+    document.addEventListener("assetsLoaded", () => {
+      assetsLoaded.value = true;
+    });
+
+    document.addEventListener("loaderLoaded", () => {
+      loaderLoaded.value = true;
     });
 
     document.addEventListener("tutoActivated", (e: any) => {
@@ -268,30 +290,19 @@ onMounted(() => {
         })`;
       }
     }, 3200);
-
-    setTimeout(() => {
-      // Load assets
-      const imgElements = document.querySelectorAll("div[data-source]");
-
-      [...imgElements].forEach((element) => {
-        const imageURL = element.getAttribute("data-source");
-        const asset = window.assets?.find((a) => a.imageURL === imageURL);
-
-        if (asset) {
-          const objectURL = URL.createObjectURL(asset.blob);
-          element.style.backgroundImage = `url(${objectURL})`;
-
-          if (element.querySelector("video")) {
-            const videoElement = element.querySelector(
-              "video"
-            ) as HTMLVideoElement;
-            videoElement.src = objectURL;
-          }
-        }
-      });
-    }, 120);
   });
 });
+
+watch(
+  () => carouselActive.value,
+  (active) => {
+    if (active) {
+      carouselLockApp();
+    } else {
+      carouselUnlockApp();
+    }
+  }
+);
 </script>
 
 <style lang="scss">
