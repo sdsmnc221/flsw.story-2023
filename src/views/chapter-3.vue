@@ -1,5 +1,5 @@
 <template>
-  <section class="app__chapter" ref="el">
+  <section class="app__chapter">
     <text-block
       :id="`section--${index}`"
       :subtitle="xpContentData.subtitle"
@@ -59,17 +59,16 @@ import onTutoActivated from "../helpers/customEvents/tutoActivated";
 
 const router = useRouter();
 
-const xpContentData = computed(() => xpContent[2]);
+const xpContentData = computed(() => xpContent[3]);
 
-const index = ref<number>(2);
+const index = ref<number>(3);
 
 const highlightActive = ref<boolean>(false);
 const highlightActiveIndex = ref<string>("0");
 
 const carouselActive = ref<boolean>(false);
 
-const el = ref<HTMLElement | null>(null);
-const { y, directions } = useScroll(el);
+const { y, directions } = useScroll(window);
 const { top: toTop, bottom: toBottom } = toRefs(directions);
 
 const computedBindedProps = (section: any, index: number) => {
@@ -146,12 +145,6 @@ const initScroll = () => {
     node: document.querySelector(".section--2.grid-wrap__gallery"),
     type: "collage",
     sectionId: 2,
-    cbEnter: () => {
-      router.push("/c1");
-    },
-    cbLeave: () => {
-      router.push("/c3");
-    },
   };
 
   const collage3 = {
@@ -159,6 +152,12 @@ const initScroll = () => {
     node: document.querySelector(".section--3.grid-wrap__gallery"),
     type: "collage",
     sectionId: 3,
+    cbEnter: () => {
+      router.push("/c2");
+    },
+    cbLeave: () => {
+      router.push("/c4");
+    },
   };
 
   const collage4 = {
@@ -203,13 +202,8 @@ const initScroll = () => {
     sectionId: 9,
   };
 
-  // scroll(fx1Section2);
-  // scroll(fx2Section2);
+  scrollGrid(collage3);
 
-  scrollGrid(collage2);
-
-  // scroll(fx1);
-  // scroll(fx1Section3);
   scroll(fx2);
   scroll(fx3);
 };
@@ -236,21 +230,19 @@ onMounted(() => {
     });
 
     // window.addEventListener("scroll", () => {
-    //   console.log({ y: y.value, top: toTop.value, bototm: toBottom.value });
-    //   if (y.value < 1 && toTop.value && !toBottom.value) {
+    //   if (y.value < 1 && toTop.value) {
     //     setTimeout(() => {
-    //       router.push("/c1");
+    //       router.push("/c2");
     //     }, 200);
     //     return;
     //   }
 
     //   if (
     //     window.innerHeight + y.value > document.body.offsetHeight - 1 &&
-    //     toBottom.value &&
-    //     !toTop.value
+    //     toBottom.value
     //   ) {
     //     setTimeout(() => {
-    //       router.push("/c3");
+    //       router.push("/c4");
     //     }, 200);
     //     return;
     //   }

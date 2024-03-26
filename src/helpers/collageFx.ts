@@ -21,7 +21,9 @@ const isStatic = isLowTech();
 const applyCollageAnimation = (
   grid: any,
   animationType: string,
-  sectionIndex: string
+  sectionIndex: string,
+  cbEnter?: null | (() => void),
+  cbLeave?: null | (() => void)
 ) => {
   let gridWrap, gridItems, gridItemsInner, timeline;
 
@@ -114,6 +116,8 @@ const applyCollageAnimation = (
         scrollTrigger: {
           start: "center center",
           end: "+=240%",
+          ...(cbEnter ? { onLeaveBack: cbEnter } : {}),
+          ...(cbLeave ? { onLeave: cbLeave } : {}),
         },
         stagger: 0,
       };
@@ -280,6 +284,8 @@ const applyCollageAnimation = (
             changeAppBackground(self);
           },
           onEnterBack: changeAppBackground,
+          ...(cbEnter ? { onLeaveBack: cbEnter } : {}),
+          ...(cbLeave ? { onLeave: cbLeave } : {}),
           ...(animationType === "cllg-fx2"
             ? {
                 onUpdate: (self) => {

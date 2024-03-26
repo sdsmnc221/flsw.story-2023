@@ -31,7 +31,7 @@
 
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
-        <component :is="Component" />
+        <component :is="Component" ref="el" />
       </transition>
     </router-view>
   </main>
@@ -48,7 +48,15 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onBeforeMount, onMounted, ref, watch, computed } from "vue";
+import {
+  nextTick,
+  onBeforeMount,
+  onMounted,
+  ref,
+  watch,
+  computed,
+  toRefs,
+} from "vue";
 
 import {
   initSmoothScrolling,
@@ -62,7 +70,8 @@ import Splitting from "splitting";
 import "splitting/dist/splitting.css";
 import "splitting/dist/splitting-cells.css";
 
-import { RouterView } from "vue-router";
+import { RouterView, useRouter } from "vue-router";
+import { useScroll } from "@vueuse/core";
 
 import xpTitle from "./configs/xpTitle.json";
 import xpContent from "./configs/xpContent.json";
@@ -73,7 +82,10 @@ import onTutoActivated from "./helpers/customEvents/tutoActivated";
 import isSafari from "./helpers/isSafari";
 import { flattenDeep } from "lodash";
 
+const router = useRouter();
 const showApp = ref<boolean>(false);
+
+const el = ref(null);
 
 const isDevMode = ref<boolean>(import.meta.env.DEV);
 
@@ -282,6 +294,115 @@ const initScroll = () => {
   scroll(fx2);
   scroll(fx3);
 };
+const { y, directions } = useScroll(window);
+const { top: toTop, bottom: toBottom } = toRefs(directions);
+const currentRoute = ref(router.currentRoute.value.fullPath);
+const onScroll = () => {
+  let nextRoute, previousRoute;
+  console.log({ y: y.value, up: toTop.value, down: toBottom.value });
+  if (y.value === 1 && toTop.value) {
+    switch (currentRoute.value) {
+      case "/c1":
+        previousRoute = "/";
+        break;
+      case "/c2":
+        previousRoute = "/c1";
+        break;
+      case "/c3":
+        previousRoute = "/c2";
+        break;
+      case "/c4":
+        previousRoute = "/c3";
+        break;
+      case "/c5":
+        previousRoute = "/c4";
+        break;
+      case "/c6":
+        previousRoute = "/c5";
+        break;
+      case "/c7":
+        previousRoute = "/c6";
+        break;
+      case "/c8":
+        previousRoute = "/c7";
+        break;
+      case "/end-1":
+        previousRoute = "/c8";
+        break;
+      case "/end-2":
+        previousRoute = "/end-1";
+        break;
+      case "/end-3":
+        previousRoute = "/end-2";
+        break;
+      default:
+        break;
+    }
+
+    if (previousRoute && !["/c2", "/c3"].includes(currentRoute.value)) {
+      router.push(previousRoute);
+      console.log("back");
+
+      return;
+    }
+  }
+  console.log(
+    currentRoute.value,
+    window.innerHeight + y.value,
+    document.body.offsetHeight
+  );
+  if (
+    window.innerHeight + y.value >= document.body.offsetHeight &&
+    toBottom.value
+  ) {
+    switch (currentRoute.value) {
+      case "/":
+        nextRoute = "/c1";
+        break;
+      case "/c1":
+        nextRoute = "/c2";
+        break;
+      case "/c2":
+        nextRoute = "/c3";
+        break;
+      case "/c3":
+        nextRoute = "/c4";
+        break;
+      case "/c4":
+        nextRoute = "/c5";
+        break;
+      case "/c5":
+        nextRoute = "/c6";
+        break;
+      case "/c6":
+        nextRoute = "/c7";
+        break;
+      case "/c7":
+        nextRoute = "/c8";
+        break;
+      case "/c8":
+        nextRoute = "/end-1";
+        break;
+      case "/end-1":
+        nextRoute = "/end-2";
+        break;
+      case "/end-2":
+        nextRoute = "/end-3";
+        break;
+      default:
+        break;
+    }
+
+    console.log(nextRoute);
+
+    if (nextRoute && !["/c2", "/c3"].includes(currentRoute.value)) {
+      router.push(nextRoute);
+      window.removeEventListener("scroll", onScroll);
+      console.log("next");
+      return;
+    }
+  }
+};
 
 const carouselLockApp = () => {
   (document.querySelector("main.app") as any)?.style?.setProperty(
@@ -338,27 +459,33 @@ onMounted(() => {
     });
 
     let lastScrollTop = 0;
-    window.addEventListener("scroll", () => {
-      if (isSafari()) {
-        return;
-      }
-      const currentScrollTop = document.documentElement.scrollTop;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (isSafari()) {
+          return;
+        }
+        const currentScrollTop = document.documentElement.scrollTop;
 
-      if (currentScrollTop > lastScrollTop) {
-        // Downward scroll
-        if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
-          scrollTo(window.innerHeight + 10);
+        if (currentScrollTop > lastScrollTop) {
+          // Downward scroll
+          if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
+            scrollTo(window.innerHeight + 10);
+          }
+        } else if (currentScrollTop < lastScrollTop) {
+          // Upward scroll
+          if (
+            window.scrollY >= window.innerHeight + 1 &&
+            window.scrollY <= window.innerHeight * 2
+          ) {
+            // scrollTo(0);
+          }
         }
-      } else if (currentScrollTop < lastScrollTop) {
-        // Upward scroll
-        if (
-          window.scrollY >= window.innerHeight + 1 &&
-          window.scrollY <= window.innerHeight * 2
-        ) {
-          // scrollTo(0);
-        }
-      }
-    });
+      },
+      { once: true }
+    );
+
+    window.addEventListener("scroll", onScroll, false);
 
     setTimeout(() => {
       const pinSpacer = document.querySelector(
@@ -395,6 +522,19 @@ watch(
     } else {
       carouselUnlockApp();
     }
+  }
+);
+
+watch(
+  () => router.currentRoute.value.fullPath,
+  (newRoute) => {
+    console.log(newRoute);
+    console.log(document.body.getBoundingClientRect().height);
+    setTimeout(() => {
+      currentRoute.value = newRoute;
+      window.removeEventListener("scroll", onScroll);
+      window.addEventListener("scroll", onScroll, false);
+    }, 200);
   }
 );
 </script>

@@ -275,6 +275,8 @@ const scrollGrid = (grid: {
   node: Element | null;
   type: string;
   sectionId: number;
+  cbEnter?: () => void;
+  cbLeave?: () => void;
 }) => {
   if (grid.node) {
     if (grid.type === "collage") {
@@ -283,7 +285,9 @@ const scrollGrid = (grid: {
         grid.id,
         [...grid.node.classList].filter((c: string) =>
           c.includes("section--")
-        )[0]
+        )[0],
+        grid.cbEnter,
+        grid.cbLeave
       );
     } else if (grid.type === "video") {
       applyVideoAnimation(grid.node, grid.id, grid.sectionId);

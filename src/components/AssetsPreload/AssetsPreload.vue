@@ -16,7 +16,7 @@ import shuffleArray from "../../helpers/shuffleArray";
 
 interface Props {
   collage: string[];
-  fx: string;
+  fx: string | undefined;
   sectionIndex: number;
 }
 

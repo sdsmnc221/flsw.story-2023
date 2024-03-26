@@ -1,5 +1,5 @@
 <template>
-  <section class="app__chapter">
+  <section class="app__chapter" ref="el">
     <text-block
       :id="`section--${index}`"
       :subtitle="xpContentData.subtitle"
@@ -30,15 +30,21 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onBeforeMount, onMounted, ref, watch, computed } from "vue";
-import { useRouter } from "vue-router";
+import {
+  nextTick,
+  onBeforeMount,
+  onMounted,
+  onUnmounted,
+  ref,
+  watch,
+  computed,
+} from "vue";
 
 import {
   initSmoothScrolling,
   scroll,
   scrollGrid,
   refreshScroll,
-  scrollTo,
 } from "../helpers/scrollFx";
 
 import Splitting from "splitting";
@@ -48,10 +54,6 @@ import "splitting/dist/splitting-cells.css";
 import xpContent from "../configs/xpContent.json";
 
 import onTutoActivated from "../helpers/customEvents/tutoActivated";
-import isSafari from "../helpers/isSafari";
-
-const router = useRouter();
-const showApp = ref<boolean>(false);
 
 const xpContentData = computed(() => xpContent[1]);
 
@@ -61,6 +63,8 @@ const highlightActive = ref<boolean>(false);
 const highlightActiveIndex = ref<string>("0");
 
 const carouselActive = ref<boolean>(false);
+
+const el = ref<HTMLElement | null>(null);
 
 const computedBindedProps = (section: any, index: number) => {
   const bindedProps: any = {};
@@ -100,8 +104,6 @@ const computedBindedProps = (section: any, index: number) => {
   if (section.href) {
     bindedProps.href = section.href;
   }
-
-  console.log(bindedProps);
 
   return bindedProps;
 };
@@ -193,14 +195,6 @@ const initScroll = () => {
   // scroll(fx2Section2);
 
   scrollGrid(collage1);
-  scrollGrid(collage2);
-  scrollGrid(collage3);
-  scrollGrid(collage4);
-  scrollGrid(collage5);
-  scrollGrid(collage6);
-  scrollGrid(collage7);
-  scrollGrid(video1);
-  scrollGrid(video2);
 
   // scroll(fx1);
   // scroll(fx1Section3);
@@ -227,26 +221,6 @@ onMounted(() => {
       // }, 2000);
 
       refreshScroll();
-    });
-
-    window.addEventListener("scroll", () => {
-      console.log(window.scrollY);
-      if (window.scrollY === 1) {
-        setTimeout(() => {
-          router.push("/");
-        }, 4800);
-        return;
-      }
-
-      if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 1
-      ) {
-        setTimeout(() => {
-          router.push("/c2");
-        }, 4800);
-        return;
-      }
     });
 
     document.addEventListener("tutoActivated", (e: any) => {
