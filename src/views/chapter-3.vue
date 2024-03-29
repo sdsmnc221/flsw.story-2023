@@ -152,12 +152,12 @@ const initScroll = () => {
     node: document.querySelector(".section--3.grid-wrap__gallery"),
     type: "collage",
     sectionId: 3,
-    cbEnter: () => {
-      router.push("/c2");
-    },
-    cbLeave: () => {
-      router.push("/c4");
-    },
+    // cbEnter: () => {
+    //   router.push("/c2");
+    // },
+    // cbLeave: () => {
+    //   router.push("/c4");
+    // },
   };
 
   const collage4 = {

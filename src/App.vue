@@ -294,111 +294,122 @@ const initScroll = () => {
   scroll(fx2);
   scroll(fx3);
 };
+
 const { y, directions } = useScroll(window);
 const { top: toTop, bottom: toBottom } = toRefs(directions);
 const currentRoute = ref(router.currentRoute.value.fullPath);
+const nextRoute = ref("");
+const previousRoute = ref("");
+
 const onScroll = () => {
-  let nextRoute, previousRoute;
   console.log({ y: y.value, up: toTop.value, down: toBottom.value });
-  if (y.value === 1 && toTop.value) {
+
+  if (y.value === 1 && toTop.value && !toBottom.value) {
     switch (currentRoute.value) {
       case "/c1":
-        previousRoute = "/";
+        previousRoute.value = "/";
         break;
       case "/c2":
-        previousRoute = "/c1";
+        previousRoute.value = "/c1";
         break;
       case "/c3":
-        previousRoute = "/c2";
+        previousRoute.value = "/c2";
         break;
       case "/c4":
-        previousRoute = "/c3";
+        previousRoute.value = "/c3";
         break;
       case "/c5":
-        previousRoute = "/c4";
+        previousRoute.value = "/c4";
         break;
       case "/c6":
-        previousRoute = "/c5";
+        previousRoute.value = "/c5";
         break;
       case "/c7":
-        previousRoute = "/c6";
+        previousRoute.value = "/c6";
         break;
       case "/c8":
-        previousRoute = "/c7";
+        previousRoute.value = "/c7";
         break;
       case "/end-1":
-        previousRoute = "/c8";
+        previousRoute.value = "/c8";
         break;
       case "/end-2":
-        previousRoute = "/end-1";
+        previousRoute.value = "/end-1";
         break;
       case "/end-3":
-        previousRoute = "/end-2";
+        previousRoute.value = "/end-2";
         break;
       default:
+        previousRoute.value = "";
         break;
     }
 
-    if (previousRoute && !["/c2", "/c3"].includes(currentRoute.value)) {
-      router.push(previousRoute);
-      console.log("back");
+    if (previousRoute.value) {
+      setTimeout(() => {
+        router.push(previousRoute.value);
+      }, 200);
 
       return;
     }
   }
+
   console.log(
-    currentRoute.value,
     window.innerHeight + y.value,
-    document.body.offsetHeight
+    document.body.offsetHeight,
+    "top" + toTop.value,
+    "bottom" + toBottom.value,
+    currentRoute.value
   );
   if (
     window.innerHeight + y.value >= document.body.offsetHeight &&
-    toBottom.value
+    toBottom.value &&
+    !toTop.value
   ) {
     switch (currentRoute.value) {
       case "/":
-        nextRoute = "/c1";
+        nextRoute.value = "/c1";
         break;
       case "/c1":
-        nextRoute = "/c2";
+        nextRoute.value = "/c2";
         break;
       case "/c2":
-        nextRoute = "/c3";
+        nextRoute.value = "/c3";
         break;
       case "/c3":
-        nextRoute = "/c4";
+        nextRoute.value = "/c4";
         break;
       case "/c4":
-        nextRoute = "/c5";
+        nextRoute.value = "/c5";
         break;
       case "/c5":
-        nextRoute = "/c6";
+        nextRoute.value = "/c6";
         break;
       case "/c6":
-        nextRoute = "/c7";
+        nextRoute.value = "/c7";
         break;
       case "/c7":
-        nextRoute = "/c8";
+        nextRoute.value = "/c8";
         break;
       case "/c8":
-        nextRoute = "/end-1";
+        nextRoute.value = "/end-1";
         break;
       case "/end-1":
-        nextRoute = "/end-2";
+        nextRoute.value = "/end-2";
         break;
       case "/end-2":
-        nextRoute = "/end-3";
+        nextRoute.value = "/end-3";
         break;
       default:
+        nextRoute.value = "";
         break;
     }
 
-    console.log(nextRoute);
+    if (nextRoute.value) {
+      setTimeout(() => {
+        router.push(nextRoute.value);
+        // window.removeEventListener("scroll", onScroll);
+      }, 200);
 
-    if (nextRoute && !["/c2", "/c3"].includes(currentRoute.value)) {
-      router.push(nextRoute);
-      window.removeEventListener("scroll", onScroll);
-      console.log("next");
       return;
     }
   }
@@ -458,32 +469,32 @@ onMounted(() => {
       highlightActiveIndex.value = `${section}`;
     });
 
-    let lastScrollTop = 0;
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (isSafari()) {
-          return;
-        }
-        const currentScrollTop = document.documentElement.scrollTop;
+    // let lastScrollTop = 0;
+    // window.addEventListener(
+    //   "scroll",
+    //   () => {
+    //     if (isSafari()) {
+    //       return;
+    //     }
+    //     const currentScrollTop = document.documentElement.scrollTop;
 
-        if (currentScrollTop > lastScrollTop) {
-          // Downward scroll
-          if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
-            scrollTo(window.innerHeight + 10);
-          }
-        } else if (currentScrollTop < lastScrollTop) {
-          // Upward scroll
-          if (
-            window.scrollY >= window.innerHeight + 1 &&
-            window.scrollY <= window.innerHeight * 2
-          ) {
-            // scrollTo(0);
-          }
-        }
-      },
-      { once: true }
-    );
+    //     if (currentScrollTop > lastScrollTop) {
+    //       // Downward scroll
+    //       if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
+    //         scrollTo(window.innerHeight + 10);
+    //       }
+    //     } else if (currentScrollTop < lastScrollTop) {
+    //       // Upward scroll
+    //       if (
+    //         window.scrollY >= window.innerHeight + 1 &&
+    //         window.scrollY <= window.innerHeight * 2
+    //       ) {
+    //         // scrollTo(0);
+    //       }
+    //     }
+    //   },
+    //   { once: true }
+    // );
 
     window.addEventListener("scroll", onScroll, false);
 
@@ -527,13 +538,13 @@ watch(
 
 watch(
   () => router.currentRoute.value.fullPath,
-  (newRoute) => {
-    console.log(newRoute);
-    console.log(document.body.getBoundingClientRect().height);
+  (newRoute, oldRoute) => {
+    console.log({ newRoute, oldRoute });
+
     setTimeout(() => {
       currentRoute.value = newRoute;
-      window.removeEventListener("scroll", onScroll);
-      window.addEventListener("scroll", onScroll, false);
+      // window.removeEventListener("scroll", onScroll);
+      // window.addEventListener("scroll", onScroll, false);
     }, 200);
   }
 );
