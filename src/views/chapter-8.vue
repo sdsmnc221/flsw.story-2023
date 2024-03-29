@@ -25,6 +25,7 @@
       @onCloseCarousel="carouselActive = false"
     >
       {{ xpContentData.text }}
+      <business-card></business-card>
     </text-block>
   </section>
 </template>
@@ -74,6 +75,8 @@ const { top: toTop, bottom: toBottom } = toRefs(directions);
 const computedBindedProps = (section: any, index: number) => {
   const bindedProps: any = {};
 
+  console.log(section);
+
   if (section.textPosition) {
     bindedProps.textPosition = section.textPosition;
   }
@@ -108,6 +111,10 @@ const computedBindedProps = (section: any, index: number) => {
 
   if (section.href) {
     bindedProps.href = section.href;
+  }
+
+  if (section.socialMedia) {
+    bindedProps.socialMedia = section.socialMedia;
   }
 
   return bindedProps;

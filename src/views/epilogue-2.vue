@@ -114,6 +114,15 @@ const computedBindedProps = (section: any, index: number) => {
 };
 
 const initScroll = () => {
+  const fx1 = {
+    id: "fx1",
+    nodes: [
+      ...document.querySelectorAll(
+        ".text-block:not(.section--2):not(.section--3) .text-block__content.fx1[data-splitting]"
+      ),
+    ],
+  };
+
   const fx2 = {
     id: "fx2",
     nodes: [
@@ -209,10 +218,10 @@ const initScroll = () => {
   scrollGrid(video1);
   scrollGrid(video2);
 
-  // scroll(fx1);
+  scroll(fx1);
   // scroll(fx1Section3);
-  scroll(fx2);
-  scroll(fx3);
+  // scroll(fx2);
+  // scroll(fx3);
 };
 
 onBeforeMount(() => {
@@ -300,11 +309,15 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .app {
   overflow: hidden;
   position: relative;
   width: 100%;
+
+  // &__chapter {
+  //   height: 110vh;
+  // }
 
   &.--carousel-locked {
     overflow: hidden;
