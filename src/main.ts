@@ -81,6 +81,7 @@ function prefetchAssets() {
 
   imgElements.forEach((imageElement, index) => {
     const imageURL = imageElement.getAttribute("data-src");
+
     const sectionIndex =
       imageElement.getAttribute("data-section")?.replace("section--", "") ??
       "unknown";

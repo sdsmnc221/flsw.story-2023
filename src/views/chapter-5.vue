@@ -281,6 +281,7 @@ onMounted(() => {
 
       [...imgElements].forEach((element) => {
         const imageURL = element.getAttribute("data-source");
+
         const asset = window.assets?.find((a) => a.imageURL === imageURL);
 
         if (asset) {

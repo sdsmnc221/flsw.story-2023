@@ -5,6 +5,7 @@
       ''
     )} ${hasCollage ? '--has-collage' : ''}`"
     :style="`--ratio:  ${ratio};`"
+    :data-source="`/img/${video?.replace('.mp4', mob ? '-mob.mp4' : '.mp4')}`"
   >
     <div class="content content--layout content--layout-2">
       <div class="content__svg-wrapper --background">

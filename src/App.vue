@@ -100,7 +100,7 @@ const loaderLoaded = ref<boolean>(false);
 const xpAssets = computed(() => {
   return xpContent.map((content, index) => ({
     sectionIndex: index,
-    collage: content.collage ?? [],
+    collage: content.collage ?? [content.video] ?? [],
     fx: content.cllgFx,
   }));
 });
@@ -302,7 +302,7 @@ const nextRoute = ref("");
 const previousRoute = ref("");
 
 const onScroll = () => {
-  console.log({ y: y.value, up: toTop.value, down: toBottom.value });
+  // console.log({ y: y.value, up: toTop.value, down: toBottom.value });
 
   if (y.value === 1 && toTop.value && !toBottom.value) {
     switch (currentRoute.value) {
@@ -353,13 +353,14 @@ const onScroll = () => {
     }
   }
 
-  console.log(
-    window.innerHeight + y.value,
-    document.body.offsetHeight,
-    "top" + toTop.value,
-    "bottom" + toBottom.value,
-    currentRoute.value
-  );
+  // console.log(
+  //   window.innerHeight + y.value,
+  //   document.body.offsetHeight,
+  //   "top" + toTop.value,
+  //   "bottom" + toBottom.value,
+  //   currentRoute.value
+  // );
+
   if (
     window.innerHeight + y.value >= document.body.offsetHeight &&
     toBottom.value &&
@@ -469,32 +470,32 @@ onMounted(() => {
       highlightActiveIndex.value = `${section}`;
     });
 
-    // let lastScrollTop = 0;
-    // window.addEventListener(
-    //   "scroll",
-    //   () => {
-    //     if (isSafari()) {
-    //       return;
-    //     }
-    //     const currentScrollTop = document.documentElement.scrollTop;
+    let lastScrollTop = 0;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (isSafari()) {
+          return;
+        }
+        const currentScrollTop = document.documentElement.scrollTop;
 
-    //     if (currentScrollTop > lastScrollTop) {
-    //       // Downward scroll
-    //       if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
-    //         scrollTo(window.innerHeight + 10);
-    //       }
-    //     } else if (currentScrollTop < lastScrollTop) {
-    //       // Upward scroll
-    //       if (
-    //         window.scrollY >= window.innerHeight + 1 &&
-    //         window.scrollY <= window.innerHeight * 2
-    //       ) {
-    //         // scrollTo(0);
-    //       }
-    //     }
-    //   },
-    //   { once: true }
-    // );
+        if (currentScrollTop > lastScrollTop) {
+          // Downward scroll
+          if (window.scrollY >= 0 && window.scrollY < window.innerHeight) {
+            scrollTo(window.innerHeight + 10);
+          }
+        } else if (currentScrollTop < lastScrollTop) {
+          // Upward scroll
+          if (
+            window.scrollY >= window.innerHeight + 1 &&
+            window.scrollY <= window.innerHeight * 2
+          ) {
+            // scrollTo(0);
+          }
+        }
+      },
+      { once: true }
+    );
 
     window.addEventListener("scroll", onScroll, false);
 

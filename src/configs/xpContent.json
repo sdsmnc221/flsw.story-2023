@@ -77,7 +77,6 @@
         "textColor": "dallas-brown",
         "textPosition": "center-special",
         "pseudoBackgroundColor": "sandy-clay-beige",
-        "spacing": "normal",
         "collage": [
             "c3-1.jpg",
             "c3-2.jpg",
@@ -137,7 +136,7 @@
         "text": "Voyageons au foyer des Petits Clochards, où mes sessions de désensibilisation, en tant que comportementaliste professionel, ont métamorphosé es chats sauvages, en compagnons  plus à l'aise avec le contact humain. mais restant encore timides.",
         "fx": "fx1",
         "cllgFx": "fx1",
-        "spacing": "xxl",
+        "spacing": "xl",
         "backgroundColor": "clear-day-white",
         "collage": [
             "c6-1.jpg",
@@ -192,7 +191,7 @@
         "text": "À travers les réseaux sociaux, nous avons partagé des moments forts, des rires et des réels viraux. Joignez-vous à notre communauté passionnée pour célébrer les liens indestructibles entre les cœurs félin-humains.",
         "fx": "fx1",
         "cllgFx": "fx5",
-        "spacing": "xxl",
+        "spacing": "xl",
         "backgroundColor": "peach-shortcake-orange",
         "textColor": "flsw-orange",
         "pseudoBackgroundColor": "white",
@@ -239,7 +238,8 @@
         "subtitle": "épilogue.",
         "title": "l'histoire 2024.",
         "text": "À la communauté de FeliSweet et à tous ceux qui partagent notre passion, je souhaite une année 2024 empreinte de bonheur, de connexions félines profondes et de prospérité.",
-        "fx": "fx1"
+        "fx": "fx1",
+        "spacing": "normal"
     },
     {
         "text": "Pour l'année 2024, que chaque jour soit une nouvelle aventure avec nos amis à fourrure.",
